@@ -168,7 +168,7 @@
 	</li>
 	<li><a href="#"><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 		<ul style="display:none;">
-		<li><a href="#"><span>레벨/권한 설정</span></a></li>
+		<li><a href="./EmpListAction.em"><span>레벨/권한 설정</span></a></li>
 		<li><a href="#"><span>공지사항 관리</span></a></li>
 		<li><a href="#"><span>전체 회원 관리</span></a></li>
 		
