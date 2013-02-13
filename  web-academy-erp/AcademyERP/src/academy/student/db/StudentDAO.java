@@ -96,10 +96,11 @@ public class StudentDAO {
     	try {
 			con = ds.getConnection();
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학'";
+			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()){
+			if(rs.next()){ // 정보가 있으면 저장
 				studentList = new ArrayList();
 				do{
 					StudentBean studentbean = new StudentBean();
@@ -150,7 +151,7 @@ public class StudentDAO {
     	try {
 			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
-				sql="UPDATE student SET st_status = '퇴출' WHERE mm_id =?"; //휴학처리
+				sql="UPDATE student SET st_status = '퇴출' WHERE mm_id =?"; //퇴출 처리
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, st_status[i]);
 				pstmt.executeUpdate();
@@ -236,12 +237,13 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'";
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'"; 
+			// 휴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			
 			
-			if(rs.next()){
+			if(rs.next()){ // 값을 가지고 있을경우 저장
 				leaveofabsenceList = new ArrayList();
 				do{
 					StudentBean studentbean = new StudentBean();
@@ -268,4 +270,25 @@ public class StudentDAO {
     	return leaveofabsenceList;
     	
     }
+    
+    public  void updateStudentReentrance(String[] st_status){
+    	String sql="";
+    	try {
+			con=ds.getConnection();
+			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
+				sql="UPDATE student SET st_status = '재학' WHERE mm_id =?"; //재학처리
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, st_status[i]);
+				pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    } 
 }
