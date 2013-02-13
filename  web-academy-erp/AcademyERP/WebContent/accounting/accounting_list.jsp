@@ -1,3 +1,5 @@
+<%@page import="academy.accounting.db.AccountingBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +10,9 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
+<%
+List acList = (List)request.getAttribute("acList");
+%>
 <body>
 <!-- UI Object -->	
 <div id="wrap">
@@ -49,40 +54,19 @@
 				%>
 				</select>
 			
-				<select name="">
-				<%
-				for (int i = 1; i <= 12; i++) {
-				%>
-					<option><%=i %>월</option>
-				<%
-				}
-				%>
-				</select>
-				
-				<select name="">
-				<%
-				for (int i = 1; i <= 31; i++) {
-				%>
-					<option><%=i %>일</option>
-				<%
-				}
-				%>
-				</select>
-				
-				<input type="button" value="년도별">
 				<input type="button" value="월별">
-				<input type="button" value="일별">
 			</div>
 		</td>
 		</tr> 
 </thead>
+
 <thead>
 <tr>
 <th scope="col">선택</th>
 <th scope="col">번호</th>
-<th scope="col">항목 유형</th>
 <th scope="col">회원ID</th>
 <th scope="col">이름</th>
+<th scope="col">항목 유형</th>
 <th scope="col">금액</th>
 <th scope="col">결제 유형</th>
 <th scope="col">담당자</th>
@@ -91,22 +75,23 @@
 </thead>
 <tbody>
 
-
+<% 
+for(int i=0;i<acList.size();i++){
+	AccountingBean acBean = (AccountingBean)acList.get(i);%>
 <tr>
 	<td>
-		<input name="" type="checkbox" value="" id="" class=""></label> 
+		<input type="checkbox" name="ac_id" value="<%=acBean.getAc_id()%>">
 	</td>
-<td>1</td>
-<td>수강료</td>
-<td>A12334654</td>
-<td>김철수</td>
-<td>1000000원</td>
-<td>카드</td>
-<td>관리자</td>
-<td>메모</td>
-		
+<td><%=acBean.getAc_id() %></td>
+<td><%=acBean.getMm_id() %></td>
+<td>직원,학생에서 가져와야됨</td>
+<td><%=acBean.getAc_io_type() %></td>
+<td><%=acBean.getAc_price() %>원</td>
+<td><%=acBean.getAc_cc_type() %></td>
+<td><%=acBean.getAc_manager_name() %></td>
+<td><%=acBean.getAc_memo() %></td>
 </tr>
-
+<%} %>
 		<!-- 버튼 -->
 		<tr align="right" >
 		<td align="center" colspan="9">
