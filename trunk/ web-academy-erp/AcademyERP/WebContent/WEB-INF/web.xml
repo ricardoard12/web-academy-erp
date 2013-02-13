@@ -75,11 +75,11 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>GroupFrontController</servlet-name>
-		<servlet-class>academy.group.action.GroupFrontController</servlet-class>
+		<servlet-name>GroupsFrontController</servlet-name>
+		<servlet-class>academy.groups.action.GroupsFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GroupFrontController</servlet-name>
+		<servlet-name>GroupsFrontController</servlet-name>
 		<url-pattern>*.gp</url-pattern>
 	</servlet-mapping>
 
