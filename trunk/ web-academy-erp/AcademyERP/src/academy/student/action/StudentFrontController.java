@@ -42,8 +42,8 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentTaketimeout.st")){
-        	action = new StudentTaketimeoutAction();
+        }else if(command.equals("/StudentLeaveofabsence.st")){
+        	action = new StudentLeaveofabsenceAction();
         	
         	try {
 				forward=action.execute(request, response);
