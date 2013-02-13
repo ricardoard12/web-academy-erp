@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.student.db.StudentDAO;
 
-public class StudentTaketimeoutAction implements Action{
+public class StudentLeaveofabsenceAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -18,7 +18,7 @@ public class StudentTaketimeoutAction implements Action{
 		
 		StudentDAO studentdao = new StudentDAO();
 		
-		studentdao.updateStatusTaketimeoutst(st_status);
+		studentdao.updateStudentLeaveofabsence(st_status);
 		
 	
 		forward.setRedirect(true);
