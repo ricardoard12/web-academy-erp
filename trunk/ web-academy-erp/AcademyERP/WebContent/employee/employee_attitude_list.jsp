@@ -64,32 +64,39 @@
 								class="i_check"><label for="a1"></label>
 							</td>
 							<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
-							<td><%=attitude.getAt_report_state() %></td>
 							<td>
-								<%if (attitude.getAt_open_time() != null) {%>
-									<%=attitude.getAt_open_time() %>
-								<%} else { %>
-									<input type="button" value="출근" onclick="location.href='#'">
-								<%} %>	
-							</td>
-							<td>
-								<%if (attitude.getAt_close_time() != null) {%>
-									<%=attitude.getAt_close_time() %>
-								<%} else { %>
-									<input type="button" value="퇴근" onclick="location.href='#'">
-								<%} %>	
+								<%
+									if (attitude.getAt_report_state().equals("Y")) {%>출근<%	} 
+									else {%>미출근<%} 
+								%>
 							</td>
 							<td>
 								<%
-									if (attitude.getAt_memo().length() > 10) {
-										%><%=attitude.getAt_memo().substring(10) + "..."%><%
+									if (attitude.getAt_open_time() != null) {%><%=attitude.getAt_open_time() %><%} 
+									else { %><input type="button" value="출근" onclick="location.href='#'">	<%} 
+								%>	
+							</td>
+							<td>
+								<%
+									if (attitude.getAt_close_time() != null) {%><%=attitude.getAt_close_time() %><%} 
+									else { %><input type="button" value="퇴근" onclick="location.href='#'">	<%} 
+								%>	
+							</td>
+							<td>
+								<%
+									if (attitude.getAt_memo() != null) {
+										if (attitude.getAt_memo().length() > 10) {
+											%><a href="#"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+										} else {
+											%><a href="#"><%=attitude.getAt_memo()%></a><%
+										} 
 									} else {
-										%><%=attitude.getAt_memo()%><%
-									}
-								%></td>
+										%><input type="button" value="입력" onclick="#"><%
+									}%>
+							</td>
 						</tr>
 					<%
-					}
+					} // for문 종료
 					%>
 						<!-- 버튼 -->
 						<tr align="right">
