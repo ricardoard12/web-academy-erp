@@ -230,4 +230,42 @@ public class StudentDAO {
 		}
 		return SutdentAttitudeList;
 	}
+    public List getLeaveofabsenceList(){
+		String sql="";
+    	List<StudentBean> leaveofabsenceList = null;
+    	
+    	try {
+			con = ds.getConnection();
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'";
+			pstmt =con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			
+			if(rs.next()){
+				leaveofabsenceList = new ArrayList();
+				do{
+					StudentBean studentbean = new StudentBean();
+					studentbean.setMm_name(rs.getString("mm_name"));
+					studentbean.setMm_id(rs.getString("mm_id"));
+					studentbean.setSt_school_name(rs.getString("st_school_name"));
+					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
+					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
+					studentbean.setSt_status(rs.getString("st_status"));
+					leaveofabsenceList.add(studentbean);
+				}while(rs.next());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    	
+    	return leaveofabsenceList;
+    	
+    }
 }

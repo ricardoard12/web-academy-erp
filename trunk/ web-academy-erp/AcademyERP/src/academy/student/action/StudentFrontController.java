@@ -21,7 +21,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
         ActionForward forward = null;
         Action action = null;
 
-        if (command.equals("/StudentJoinAction.st")) {
+        if (command.equals("/StudentJoinAction.st")) { //회원가입 액션
         	action = new StudentJoinAction();
         	try {
 				forward =action.execute(request, response);
@@ -29,11 +29,11 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentJoin.st")){
+        }else if(command.equals("/StudentJoin.st")){ //회원가입 폼
         	forward = new ActionForward();
         	forward.setRedirect(false);
         	forward.setPath("./student/student_join.jsp");
-        }else if(command.equals("/StudentListAction.st")){
+        }else if(command.equals("/StudentListAction.st")){ // 학생 목록
         	action= new StudentListAction();
         	
         	try {
@@ -42,7 +42,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentLeaveofabsence.st")){
+        }else if(command.equals("/StudentLeaveofabsence.st")){ // 휴학생처리
         	action = new StudentLeaveofabsenceAction();
         	
         	try {
@@ -51,7 +51,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentExpel.st")){
+        }else if(command.equals("/StudentExpel.st")){ // 퇴학 처리
         	action = new StudentExpelAction();
         	
         	try {
@@ -60,7 +60,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if( command.equals("/StudentAttitudeList.st")){
+        }else if( command.equals("/StudentAttitudeList.st")){ // 출석 현황
         	action = new StudentAttitudeListAction();
         	try {
 				forward = action.execute(request, response);
@@ -68,7 +68,16 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+        }else if(command.equals("StudentLeaveofabsenceList.st")){
+        	action = new StudentLeaveofabsenceListAction();
+        	try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
         }
+        
         
         // 이동
         if (forward != null) {

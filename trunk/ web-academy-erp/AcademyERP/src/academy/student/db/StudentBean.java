@@ -30,8 +30,18 @@ public class StudentBean {
     private int st_tuition; // 수강료
     private String st_tuition_state; // 회비 납부 여부
     private String st_memo; // 학생 메모
+    private String st_status; // 재학 현황
     
-    public String getMm_name() {
+    public String getSt_status() {
+		return st_status;
+	}
+	public void setSt_status(String st_status) {
+		this.st_status = st_status;
+	}
+	public void setMm_level(int mm_level) {
+		this.mm_level = mm_level;
+	}
+	public String getMm_name() {
         return mm_name;
     }
     public void setMm_name(String mm_name) {
