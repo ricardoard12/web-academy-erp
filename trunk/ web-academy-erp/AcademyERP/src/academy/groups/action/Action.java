@@ -1,4 +1,4 @@
-package academy.group.action;
+package academy.groups.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

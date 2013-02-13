@@ -1,4 +1,4 @@
-package academy.group.db;
+package academy.groups.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,12 +8,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class GroupDAO {
+public class GroupsDAO {
     Connection con=null;
     PreparedStatement pstmt=null;
     ResultSet rs=null;
     DataSource ds;
-    public GroupDAO() {
+    public GroupsDAO() {
         try {
             Context init=new InitialContext();
             ds=(DataSource)init.lookup("java:comp/env/jdbc/academy");
