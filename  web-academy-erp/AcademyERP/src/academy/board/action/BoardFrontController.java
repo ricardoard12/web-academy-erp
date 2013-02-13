@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
+
 public class BoardFrontController extends HttpServlet implements Servlet {
 
     @Override
@@ -21,9 +24,32 @@ public class BoardFrontController extends HttpServlet implements Servlet {
         ActionForward forward = null;
         Action action = null;
 
-        if (command.equals("")) {
-            
-        }
+        if (command.equals("/BoardWrite.bo")) {
+            forward = new ActionForward();
+            forward.setRedirect(false);
+            forward.setPath("./board/write.jsp");
+        }else if(command.equals("/BoardAddAction.bo")){
+			action=(Action) new BoardAddAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNotice.bo")){
+			action=(Action) new BoardNoticeAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardDetailAction.bo")){
+			action=(Action) new BoardDetailAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
         
         // 이동
         if (forward != null) {
@@ -36,5 +62,5 @@ public class BoardFrontController extends HttpServlet implements Servlet {
             }
         }
     }
-
+	
 }
