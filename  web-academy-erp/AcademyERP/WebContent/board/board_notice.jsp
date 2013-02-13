@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +11,12 @@
 <title>Insert title here</title>
 <%
 BoardBean boardbean =(BoardBean)request.getAttribute("boardbean");
+List boardList=(List)request.getAttribute("boardlist");
+int listcount=((Integer)request.getAttribute("listcount")).intValue();
+int nowpage=((Integer)request.getAttribute("page")).intValue();
+int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
+int startpage=((Integer)request.getAttribute("startpage")).intValue();
+int endpage=((Integer)request.getAttribute("endpage")).intValue();
 %>
 </head>
 <body>
@@ -49,40 +56,61 @@ BoardBean boardbean =(BoardBean)request.getAttribute("boardbean");
 <th scope="col">조회수</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+ <%
+    if(listcount>0){
+    	for(int i=0;i<boardList.size();i++){
+    		BoardBean board=(BoardBean)boardList.get(i);
+    		%>
+    		<tr>
 
-<td class="frm"><input type="checkbox" name="" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
-<td class="num">10</td>
-<td class="title"><a href="#">새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기</a></td>
-<td><a href="#"><%=boardbean.getBoard_subject() %></a></td>
-<td class="date"><%=boardbean.getBoard_date() %></td>
-<td class="hit"><%=boardbean.getBoard_readcount() %></td>
-</tr>
-<tr class="reply">
-<td class="frm"><input type="checkbox" name="" id="chk_sel2" value=""><label for="chk_sel2">선택</label></td>
-<td class="num">&nbsp;</td>
-<td class="title" style="padding-left:10px;"><a href="#">블로그 개편 답글</a></td>
-<td><a href="#">네이버맨</a></td>
-<td class="date">2008/02/14</td>
-<td class="hit">1234</td>
-</tr>
-<tr class="reply">
-<td class="frm"><input type="checkbox" name="" id="chk_sel3" value=""><label for="chk_sel3">선택</label></td>
-<td class="num">&nbsp;</td>
-<td class="title" style="padding-left:20px;"><a href="#">블로그 개편 답글</a></td>
-<td><a href="#">네이버맨</a></td>
-<td class="date">2008/02/14</td>
-<td class="hit">1234</td>
-</tr>
-<tr class="reply">
-<td class="frm"><input type="checkbox" name="" id="chk_sel4" value=""><label for="chk_sel4">선택</label></td>
-<td class="num">&nbsp;</td>
-<td class="title" style="padding-left:30px;"><a href="#">블로그 개편 답글</a> <img src="img/ic_pic.gif" width="13" height="12" alt="첨부이미지" class="pic"> <a href="#" class="comment">[5]</a> <img src="img/ic_new.gif" width="10" height="9" alt="새글" class="new"></td>
-<td><a href="#">네이버맨</a></td>
-<td class="date">2008/02/14</td>
-<td class="hit">1234</td>
-</tr>
+    		<td class="frm"><input type="checkbox" name="" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
+    		<td class="num"><%=boardbean.getBoard_num() %></td>
+    		<td class="title"><%
+     if(board.getBoard_re_lev()>0){//답변글
+    	 for(int a=0;a<=boardbean.getBoard_re_lev()*2;a++){
+    		 %>
+    		 &nbsp;
+    		 <%
+    	 }
+     %>
+     	▶
+     <%
+     }
+     %>
+    		<a href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>"><%=boardbean.getBoard_subject() %></a></td>
+    		<td><a href="#"><%=boardbean.getBoard_name() %></a></td>
+    		<td class="date"><%=boardbean.getBoard_date() %></td>
+    		<td class="hit"><%=boardbean.getBoard_readcount() %></td>
+    		</tr>
+    		<%}
+    }
+    		%>
+<tbody>
+
+<!-- <tr class="reply"> -->
+<!-- <td class="frm"><input type="checkbox" name="" id="chk_sel2" value=""><label for="chk_sel2">선택</label></td> -->
+<!-- <td class="num">&nbsp;</td> -->
+<!-- <td class="title" style="padding-left:10px;"><a href="#">블로그 개편 답글</a></td> -->
+<!-- <td><a href="#">네이버맨</a></td> -->
+<!-- <td class="date">2008/02/14</td> -->
+<!-- <td class="hit">1234</td> -->
+<!-- </tr> -->
+<!-- <tr class="reply"> -->
+<!-- <td class="frm"><input type="checkbox" name="" id="chk_sel3" value=""><label for="chk_sel3">선택</label></td> -->
+<!-- <td class="num">&nbsp;</td> -->
+<!-- <td class="title" style="padding-left:20px;"><a href="#">블로그 개편 답글</a></td> -->
+<!-- <td><a href="#">네이버맨</a></td> -->
+<!-- <td class="date">2008/02/14</td> -->
+<!-- <td class="hit">1234</td> -->
+<!-- </tr> -->
+<!-- <tr class="reply"> -->
+<!-- <td class="frm"><input type="checkbox" name="" id="chk_sel4" value=""><label for="chk_sel4">선택</label></td> -->
+<!-- <td class="num">&nbsp;</td> -->
+<!-- <td class="title" style="padding-left:30px;"><a href="#">블로그 개편 답글</a> <img src="img/ic_pic.gif" width="13" height="12" alt="첨부이미지" class="pic"> <a href="#" class="comment">[5]</a> <img src="img/ic_new.gif" width="10" height="9" alt="새글" class="new"></td> -->
+<!-- <td><a href="#">네이버맨</a></td> -->
+<!-- <td class="date">2008/02/14</td> -->
+<!-- <td class="hit">1234</td> -->
+<!-- </tr> -->
 </tbody>
 </table>
 
