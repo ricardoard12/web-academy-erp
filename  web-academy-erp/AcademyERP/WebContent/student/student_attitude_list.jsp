@@ -39,12 +39,12 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 			<!-- content -->
 			<div id="content">
 
-	<!-- 학생 출근 현황 시작 -->
+		<!-- 직원 출근 현황 시작 -->
 
 				<!-- UI Object -->
 				<table cellspacing="0" border="1" summary="유형별 자산목록리스트"
 					class="tbl_type_list">
-					<caption>직원 출근 현황</caption>
+					<caption>학생 출근 현황</caption>
 					<colgroup>
 						<col width="12%">
 						<col>
@@ -55,8 +55,8 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 							<th scope="col">선택</th>
 							<th scope="col">이름(아이디)</th>
 							<th scope="col">출결상황</th>
-							<th scope="col">출근시간</th>
-							<th scope="col">퇴근시간</th>
+							<th scope="col">출석시간</th>
+							<th scope="col">퇴실시간</th>
 							<th scope="col">메모</th>
 						</tr>
 					</thead>
@@ -70,40 +70,48 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 								class="i_check"><label for="a1"></label>
 							</td>
 							<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
-							<td><%=attitude.getAt_report_state() %></td>
 							<td>
-								<%if (attitude.getAt_open_time() != null) {%>
-									<%=attitude.getAt_open_time() %>
-								<%} else { %>
-									<input type="button" value="출근" onclick="location.href='#'">
-								<%} %>	
-							</td>
-							<td>
-								<%if (attitude.getAt_close_time() != null) {%>
-									<%=attitude.getAt_close_time() %>
-								<%} else { %>
-									<input type="button" value="퇴근" onclick="location.href='#'">
-								<%} %>	
+								<%
+									if (attitude.getAt_report_state().equals("Y")) {%>출석<%	} 
+									else {%>미출근<%} 
+								%>
 							</td>
 							<td>
 								<%
-									if (attitude.getAt_memo().length() > 10) {
-										%><%=attitude.getAt_memo().substring(10) + "..."%><%
+									if (attitude.getAt_open_time() != null) {%><%=attitude.getAt_open_time() %><%} 
+									else { %><input type="button" value="출석" onclick="location.href='#'">	<%} 
+								%>	
+							</td>
+							<td>
+								<%
+									if (attitude.getAt_close_time() != null) {%><%=attitude.getAt_close_time() %><%} 
+									else { %><input type="button" value="퇴실" onclick="location.href='#'">	<%} 
+								%>	
+							</td>
+							<td>
+								<%
+									if (attitude.getAt_memo() != null) {
+										if (attitude.getAt_memo().length() > 10) {
+											%><a href="#"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+										} else {
+											%><a href="#"><%=attitude.getAt_memo()%></a><%
+										} 
 									} else {
-										%><%=attitude.getAt_memo()%><%
-									}
-								%></td>
+										%><input type="button" value="입력" onclick="#"><%
+									}%>
+							</td>
 						</tr>
 					<%
-					}
+					} // for문 종료
 					%>
 						<!-- 버튼 -->
 						<tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="submit" value="선택 출근"> 
-									<input type="button" value="선택 퇴근"> 
-									<input type="button" value="선택 결근">
+									<input type="submit" value="선택 출석"> 
+									<input type="button" value="선택 퇴실"> 
+									<input type="button" value="선택 결석">
+									<input type="button" value="선택 지각">
 									<input type="button" value="선택 문자 발송">
 								</div>
 						</tr>
