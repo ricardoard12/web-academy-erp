@@ -19,7 +19,7 @@ public class BoardAddAction implements Action {
 		BoardBean boardbean = new BoardBean();
 		BoardDAO boarddao = new BoardDAO();
 		ActionForward forward = new ActionForward();
-		String uploadfolder = "./board/board_upload";
+		String uploadfolder = "board/board_upload";
 		String realFolder = request.getRealPath(uploadfolder);
 		int fileSize = 5 * 1024 * 1024;
 		
