@@ -1,3 +1,4 @@
+<%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +8,10 @@
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<%
+BoardBean boardbean =(BoardBean)request.getAttribute("boardbean");
+
+%>
 </head>
 <body>
 <!-- UI Object -->	
@@ -47,12 +52,13 @@
 </thead>
 <tbody>
 <tr>
+
 <td class="frm"><input type="checkbox" name="" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
 <td class="num">10</td>
 <td class="title"><a href="#">새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기 새로운 게시판 글쓰기</a></td>
-<td><a href="#">네이버맨</a></td>
-<td class="date">2008/02/14</td>
-<td class="hit">1234</td>
+<td><a href="#"><%=boardbean.getBoard_subject() %></a></td>
+<td class="date"><%=boardbean.getBoard_date() %></td>
+<td class="hit"><%=boardbean.getBoard_readcount() %></td>
 </tr>
 <tr class="reply">
 <td class="frm"><input type="checkbox" name="" id="chk_sel2" value=""><label for="chk_sel2">선택</label></td>
