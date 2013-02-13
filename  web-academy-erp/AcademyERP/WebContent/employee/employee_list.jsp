@@ -68,7 +68,7 @@
 							<td><input name="" type="checkbox" value="" id="a1"
 								class="i_check"><label for="a1"></label></td>
 
-							<td><a href="./EmployeeDetail.em?id=<%=employee.getEp_id()%>"><%=employee.getEp_id()%></a></td>
+							<td><a href="./EmployeeDetailAction.em?id=<%=employee.getEp_id()%>"><%=employee.getEp_id()%></a></td>
 							<td><%=member.getMm_name() %></td>
 							<td><%=employee.getEp_department() %></td>
 							<td><%=employee.getEp_position() %></td>
