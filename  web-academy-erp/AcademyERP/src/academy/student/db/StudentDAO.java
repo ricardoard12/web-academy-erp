@@ -152,7 +152,7 @@ public class StudentDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     }
-    public List getStudentAttitudeList() throws Exception { // 학생 출결 현황
+    public List getStudentAttitudeList(){ // 학생 출결 현황
 		List SutdentAttitudeList = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
