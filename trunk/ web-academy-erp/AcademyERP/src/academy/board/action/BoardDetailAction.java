@@ -19,7 +19,9 @@ public class BoardDetailAction implements Action {
 		boardbean = boarddao.getDetail(num);
 		request.setAttribute("boardbean", boardbean);
 		forward.setRedirect(false);
-		forward.setPath("./board/board_notice.jsp");
+
+		forward.setPath("./board/board_detail.jsp");
+
 		return forward;
 	}
 
