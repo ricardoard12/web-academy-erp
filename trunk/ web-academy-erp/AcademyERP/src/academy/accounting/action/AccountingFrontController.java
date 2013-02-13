@@ -24,7 +24,7 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
         if (command.equals("/AccountingAdd.ac")) {
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("./accounting/accounting_insert.jsp");
+            forward.setPath("./accounting/accounting_join.jsp");
         }
         
         // 이동
