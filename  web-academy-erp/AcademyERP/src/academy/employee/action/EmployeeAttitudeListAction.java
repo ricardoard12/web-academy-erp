@@ -15,6 +15,7 @@ public class EmployeeAttitudeListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		// 직원 출결 현황
 		System.out.println("EmployeeAttitudeListAction");
 		request.setCharacterEncoding("UTF-8");
 		

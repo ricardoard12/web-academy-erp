@@ -47,7 +47,7 @@
 					<thead>
 						<tr>
 							<th scope="col">선택</th>
-							<th scope="col">이름</th>
+							<th scope="col">이름(아이디)</th>
 							<th scope="col">출결상황</th>
 							<th scope="col">출근시간</th>
 							<th scope="col">퇴근시간</th>
@@ -63,7 +63,7 @@
 							<td><input name="" type="checkbox" value="" id="a1"
 								class="i_check"><label for="a1"></label>
 							</td>
-							<td><%=attitude.getAt_member_id() %></td>
+							<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
 							<td><%=attitude.getAt_report_state() %></td>
 							<td><%=attitude.getAt_open_time() %></td>
 							<td><%=attitude.getAt_close_time() %></td>
