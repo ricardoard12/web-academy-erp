@@ -57,7 +57,7 @@ public class EmployeeDAO {
     		pstmt.setString(13, employee.getMm_manager_id());
     		pstmt.executeUpdate();
     		
-    		sql = "INSERT INTO employee VALUES(?,?,?,?,?,?,?,?,?)";
+    		sql = "INSERT INTO employee (ep_id,ep_position,ep_department,ep_group_id,ep_subject_name,ep_bank_name,ep_account_num,ep_account_name,ep_salary) VALUES(?,?,?,?,?,?,?,?,?)";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, employee.getMm_id());
     		pstmt.setString(2, employee.getEp_position());
