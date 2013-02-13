@@ -12,6 +12,27 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+function taketimeout(){     
+    
+
+    document.Student_List.method = "post"     // method 선택, get, post
+    document.Student_List.action = "./StudentTaketimeout.st";  // submit 하기 위한 페이지 
+
+    document.Student_List.submit();
+   
+}
+function expel(){     
+    
+
+    document.Student_List.method = "post"     // method 선택, get, post
+    document.Student_List.action = "./StudentExpel.st";  // submit 하기 위한 페이지 
+
+    document.Student_List.submit();
+   
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -34,7 +55,7 @@
 			<div id="content">
 
 	<!-- 학생 목록 시작 -->
-
+				<form name="Student_List">
 				<!-- UI Object -->
 				<table cellspacing="0" border="1" summary="원생 리스트"
 					class="tbl_type_list">
@@ -63,7 +84,7 @@
 							
 					%>
 						<tr>
-							<td><input name="" type="checkbox" value="" id="a1"
+							<td><input name="st_status" type="checkbox" value="<%=studentBean.getMm_id()%>" id="a1"
 								class="i_check"><label for="a1"></label></td>
 
 							<td><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>"><%=studentBean.getMm_id()%></a></td>
@@ -80,9 +101,9 @@
 						<tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="button" value="원생 등록">
-									<input type="button" value="원생 휴원">
-									<input type="button" value="원생 퇴출">
+									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
+									<input type="button" value="원생 휴원" onclick="taketimeout()">
+									<input type="button" value="원생 퇴출" onclick="expel()">
 								</div>
 						</tr>
 
@@ -90,7 +111,7 @@
 					</tbody>
 				</table>
 				<!-- //UI Object -->
-
+				</form>
 				<!-- //수강생 관리 끝 -->
 
 			</div>
