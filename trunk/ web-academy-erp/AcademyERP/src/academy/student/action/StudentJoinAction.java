@@ -47,7 +47,10 @@ public class StudentJoinAction implements Action{
 			studentdao.insertStudent(studentbean); //회원정보 DB에 전송
 			
 			//System.out.println("성공");
-		return null;
+			
+			forward.setRedirect(true);
+			forward.setPath("./StudentListAction.st");
+		return forward;
 	}
 
 }
