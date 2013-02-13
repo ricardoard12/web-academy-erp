@@ -1,3 +1,4 @@
+<%@page import="org.apache.tomcat.jni.Mmap"%>
 <%@page import="academy.member.db.MemberBean"%>
 <%@page import="academy.employee.db.EmployeeBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -53,35 +54,19 @@
 										<th scope="row">이름</th>
 										<td>
 											<div class="item">
-<!-- 												<label for="temp_input" class="i_label" -->
-<!-- 													style="position: absolute; visibility: visible;"> -->
-<!-- 												</label> -->
-												<%=member.getMm_name() %>	
+												<label for="temp_input" class="i_label"
+													style="position: absolute; visibility: visible;">이름
+													입력</label> <input type="text" name="mm_name" id="temp_input"
+													class="i_text" style="width: 300px" value="<%=member.getMm_name() %>">
 											</div>
 										</td>
 									</tr>
+									
 									<tr>
 										<th scope="row">아이디</th>
 										<td>
 											<div class="item">
-												
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">비밀번호</th>
-										<td>
-											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">비밀번호
-													입력</label> <input type="password" name="mm_passwd" id="temp_input"
-													class="i_text" style="width: 300px">
-											</div> <br>
-											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">비밀번호
-													입력 확인</label> <input type="password" name="mm_passwd2"
-													id="temp_input" class="i_text" style="width: 300px">
+												<%=member.getMm_id() %>
 											</div>
 										</td>
 									</tr>
@@ -91,8 +76,8 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_jumin1" title="주민등록번호 입력"
-													class="i_text"> - <input type="password"
-													name="mm_jumin2" title="레이블 텍스트" class="i_text">
+													class="i_text" value="<%=member.getMm_jumin1() %>"> - <input type="password"
+													name="mm_jumin2" title="레이블 텍스트" class="i_text" value="<%=member.getMm_jumin2() %>">
 											</div>
 										</td>
 									</tr>
@@ -102,11 +87,14 @@
 										<td>
 											<div class="item">
 												<select name="mm_telDDD">
-													<option value="02">02</option>
-													<option value="051">051</option>
-													<option value="055">055</option>
+													<option value="02" <%if (member.getMm_tel().split("-")[0].equals("02")) %> selected>02</option>
+													<option value="031" <%if (member.getMm_tel().split("-")[0].equals("031")) %> selected>031</option>
+													<option value="051" <%if (member.getMm_tel().split("-")[0].equals("051")) %> selected>051</option>
+													<option value="052" <%if (member.getMm_tel().split("-")[0].equals("052")) %> selected>052</option>
+													<option value="053" <%if (member.getMm_tel().split("-")[0].equals("053")) %> selected>053</option>
+													<option value="055" <%if (member.getMm_tel().split("-")[0].equals("055")) %> selected>055</option>
 												</select> <input type="text" name="mm_tel" title="전화번호"
-													class="i_text">
+													class="i_text" value="<%=member.getMm_tel().split("-")[1] + "-" + member.getMm_tel().split("-")[2]%>">
 											</div>
 										</td>
 									</tr>
@@ -116,11 +104,12 @@
 										<td>
 											<div class="item">
 												<select name="mm_phoneDDD">
-													<option>010</option>
-													<option>011</option>
-													<option>017</option>
+													<option value="010" <%if (member.getMm_phone().split("-")[0].equals("010")) %> selected>010</option>
+													<option value="011" <%if (member.getMm_phone().split("-")[0].equals("011")) %> selected>011</option>
+													<option value="016" <%if (member.getMm_phone().split("-")[0].equals("016")) %> selected>016</option>
+													<option value="017" <%if (member.getMm_phone().split("-")[0].equals("017")) %> selected>017</option>
 												</select> <input type="text" name="mm_phone" title="휴대폰"
-													class="i_text">
+													class="i_text" value="<%=member.getMm_phone().split("-")[1] + "-" + member.getMm_phone().split("-")[2]%>">
 											</div>
 										</td>
 									</tr>
@@ -130,8 +119,8 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_zipcode1" title="우편번호1"
-													class="i_text"> - <input type="text"
-													name="mm_zipcode2" title="우편번호2" class="i_text">
+													class="i_text" value="<%=member.getMm_zipcode().split("-")[0] %>"> - <input type="text"
+													name="mm_zipcode2" title="우편번호2" class="i_text" value="<%=member.getMm_zipcode().split("-")[1] %>">
 											</div>
 										</td>
 									</tr>
@@ -140,7 +129,7 @@
 										<th scope="row">주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr1" title="주소" class="i_text">
+												<input type="text" name="mm_addr1" title="주소" class="i_text" value="<%=member.getMm_addr1() %>">
 											</div>
 										</td>
 									</tr>
@@ -150,7 +139,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_addr2" title="상세주소"
-													class="i_text">
+													class="i_text" value="<%=member.getMm_addr2() %>">
 											</div>
 										</td>
 									</tr>
@@ -160,14 +149,14 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_email1" title="이메일"
-													class="i_text">@ <input type="text"
-													name="mm_email2" title="도메인" class="i_text"> <select
-													name="select_domain" onchange="selectDomain()">
+													class="i_text" value="<%=member.getMm_email().split("@")[0] %>">@ <input type="text"
+													name="mm_email2" title="도메인" class="i_text" value="<%=member.getMm_email().split("@")[1] %>"> 
+												<select	name="select_domain" onchange="selectDomain()">
 													<option value="">직접 입력</option>
-													<option value="nate.com">nate.com</option>
-													<option value="naver.com">naver.com</option>
-													<option value="gmail.com">gmail.com</option>
-													<option value="hanmail.net">hanmail.net</option>
+													<option value="nate.com" <%if (member.getMm_email().split("@")[1].equals("nate.com")) %> selected>nate.com</option>
+													<option value="naver.com" <%if (member.getMm_email().split("@")[1].equals("naver.com")) %> selected>naver.com</option>
+													<option value="gmail.com" <%if (member.getMm_email().split("@")[1].equals("gmail.com")) %> selected>gmail.com</option>
+													<option value="hanmail.net" <%if (member.getMm_email().split("@")[1].equals("hanmail.com")) %> selected>hanmail.net</option>
 												</select>
 											</div>
 										</td>
@@ -177,10 +166,7 @@
 										<th scope="row">회원 등급</th>
 										<td>
 											<div class="item">
-												<select name="mm_level">
-													<option value="3">3(강사)</option>
-													<option value="4">4(관리자)</option>
-												</select>
+												<%=member.getMm_level() %>
 											</div>
 										</td>
 									</tr>
@@ -190,7 +176,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_manager_id" title="상위 관리자 ID"
-													class="i_text">
+													class="i_text" value="<%=member.getMm_manager_id()%>">
 											</div>
 										</td>
 									</tr>
@@ -200,7 +186,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_department" title="담당부서"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_department()%>">
 											</div>
 										</td>
 									</tr>
@@ -211,7 +197,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_position" title="직급"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_position()%>">
 											</div>
 										</td>
 									</tr>
@@ -221,11 +207,11 @@
 										<td>
 											<div class="item">
 												<select name="ep_subject_name">
-													<option value="국어">국어</option>
-													<option value="영어">영어</option>
-													<option value="수학">수학</option>
-													<option value="사회">사회</option>
-													<option value="과학">과학</option>
+													<option value="국어" <%if (employee.getEp_subject_name().equals("국어")) %> selected>국어</option>
+													<option value="영어" <%if (employee.getEp_subject_name().equals("영어")) %> selected>영어</option>
+													<option value="수학" <%if (employee.getEp_subject_name().equals("수학")) %> selected>수학</option>
+													<option value="사회" <%if (employee.getEp_subject_name().equals("사회")) %> selected>사회</option>
+													<option value="과학" <%if (employee.getEp_subject_name().equals("과학")) %> selected>과학</option>
 												</select>
 											</div>
 										</td>
@@ -236,7 +222,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_group_id" title="담당학급"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_group_id()%>">
 											</div>
 										</td>
 									</tr>
@@ -246,7 +232,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_salary" title="연봉"
-													class="i_text">원
+													class="i_text" value="<%=employee.getEp_salary()%>">원
 											</div>
 										</td>
 									</tr>
@@ -256,7 +242,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_bank_name" title="은행명"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_bank_name()%>">
 											</div>
 										</td>
 									</tr>
@@ -266,7 +252,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_account_num" title="계좌번호"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_account_num()%>">
 											</div>
 										</td>
 									</tr>
@@ -276,7 +262,7 @@
 										<td>
 											<div class="item">
 												<input type="text" name="ep_account_name" title="예금주"
-													class="i_text">
+													class="i_text" value="<%=employee.getEp_account_name()%>">
 											</div>
 										</td>
 									</tr>
@@ -286,8 +272,8 @@
 										<td></td>
 										<td align="left">
 											<div class="item">
-												<input type="submit" value="가입"> <input
-													type="button" name="" value="취소">
+												<input type="submit" value="수정"> 
+												<input type="button" name="" value="목록">
 											</div>
 										</td>
 									</tr>
@@ -297,7 +283,7 @@
 					</fieldset>
 				</form>
 
-				<!-- 회원가입 끝 -->
+				<!-- 직원 상세정보 조회 끝 -->
 
 			</div>
 			<!-- //content -->
