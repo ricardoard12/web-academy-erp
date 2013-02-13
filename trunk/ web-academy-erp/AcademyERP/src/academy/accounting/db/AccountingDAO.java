@@ -96,4 +96,97 @@ public class AccountingDAO {
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
         return acList;
     }
+    
+    //회비리스트
+    public List acfeeGetList(){
+        String sql="";
+        List acfeeList = null;
+        AccountingBean acBean = null;
+        try {
+            con=ds.getConnection();
+            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
+                    "where ac_io_type='수강료' order by ac_id desc";
+            pstmt=con.prepareStatement(sql);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                acfeeList = new ArrayList();
+                do{
+                    acBean = new AccountingBean();
+                    acBean.setAc_id(rs.getString("ac_id"));
+                    acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setAc_price(rs.getInt("ac_price"));
+                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
+                    acBean.setAc_io_type(rs.getString("ac_io_type"));
+                    acBean.setAc_date(rs.getDate("ac_date"));
+                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
+                    acBean.setAc_memo(rs.getString("ac_memo"));
+                    
+                    acfeeList.add(acBean);
+                }while(rs.next());
+            }            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return acfeeList;
+    }
+    
+    //수입 리스트
+    public List acincomingGetList(){
+        String sql="";
+        List acincomingList = null;
+        AccountingBean acBean = null;
+        try {
+            con=ds.getConnection();
+            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
+                    "where ac_io_type='수입' order by ac_id desc";
+            pstmt=con.prepareStatement(sql);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                acincomingList = new ArrayList();
+                do{
+                    acBean = new AccountingBean();
+                    acBean.setAc_id(rs.getString("ac_id"));
+                    acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setAc_price(rs.getInt("ac_price"));
+                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
+                    acBean.setAc_io_type(rs.getString("ac_io_type"));
+                    acBean.setAc_date(rs.getDate("ac_date"));
+                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
+                    acBean.setAc_memo(rs.getString("ac_memo"));
+                    
+                    acincomingList.add(acBean);
+                }while(rs.next());
+            }            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return acincomingList;
+    }
+    
+    //지출 리스트
+    public List acoutgoingGetList(){
+        String sql="";
+        List acoutgoingList = null;
+        AccountingBean acBean = null;
+        try {
+            con=ds.getConnection();
+            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
+                    "where ac_io_type='지출' order by ac_id desc";
+            pstmt=con.prepareStatement(sql);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                acoutgoingList = new ArrayList();
+                do{
+                    acBean = new AccountingBean();
+                    acBean.setAc_id(rs.getString("ac_id"));
+                    acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setAc_price(rs.getInt("ac_price"));
+                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
+                    acBean.setAc_io_type(rs.getString("ac_io_type"));
+                    acBean.setAc_date(rs.getDate("ac_date"));
+                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
+                    acBean.setAc_memo(rs.getString("ac_memo"));
+                    
+                    acoutgoingList.add(acBean);
+                }while(rs.next());
+            }            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return acoutgoingList;
+    }
 }
