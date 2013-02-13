@@ -13,11 +13,11 @@
 .tbl_type_notice tr.reply .title a{padding-left:12px;background:url(img/ic_reply.gif) 0 1px no-repeat}
 .tbl_type_notice tr.reply td a.comment{padding:0;background:none;color:#f00;font-size:12px;font-weight:bold}
 /* //notice */
-
+/**/
 /* list */
 .tbl_type_list_list,.tbl_type_list th,.tbl_type_list td{border:0}
 .tbl_type_list{width:100%;border-bottom:2px solid #dcdcdc;font-family:Tahoma;font-size:11px;text-align:center}
 .tbl_type_list caption{display:none}
-.tbl_type_list th{padding:7px 0 4px;border-top:2px solid #dcdcdc;background-color:#f5f7f9;color:#666;font-family:'돋움',dotum;font-size:12px;font-weight:bold}
+.tbl_type_list th{padding:7px 0 4px;border-top:2px solid #dcdcdc;background-color:#f5f7f9;color:#666;font-family:'���',dotum;font-size:12px;font-weight:bold}
 .tbl_type_list td{padding:6px 0 4px;border-top:1px solid #e5e5e5;color:#4c4c4c}
 /* //list */
