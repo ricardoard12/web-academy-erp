@@ -53,7 +53,17 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/EmployeeDetailAction.em")) {
+			action = new EmployeeDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
+		
 		// 이동
 		if (forward != null) {
 			if (forward.isRedirect()) {
