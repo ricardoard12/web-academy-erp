@@ -69,10 +69,11 @@ public class AttitudeDAO {
 				} else { // 오늘 출근 데이터가 없을 경우
 					AttitudeBean attitude = new AttitudeBean();
 					
-					attitude.setAt_member_id(rs.getString(1));
-					attitude.setAt_report_state("N");
+					attitude.setAt_member_id(rs.getString(1)); // ID 받아옴
+					attitude.setAt_report_state("N"); // 출근 상태 N(미출근) 으로 설정
 					
 					sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+					// 미출근 상태에서 오늘 날짜의 메모(사유)가 있는지 확인
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, rs.getString(1));
 					rs3 = pstmt.executeQuery();

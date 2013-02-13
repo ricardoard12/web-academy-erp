@@ -1,4 +1,4 @@
-package academy.group.action;
+package academy.groups.action;
 
 public class ActionForward {
     private boolean isRedirect = false;
