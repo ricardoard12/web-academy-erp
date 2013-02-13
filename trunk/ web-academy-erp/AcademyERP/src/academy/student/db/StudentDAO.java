@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -47,7 +49,7 @@ public class StudentDAO {
 
 			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo) VALUES(?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, studentbean.getMm_name());  //회원이름
+			pstmt.setString(1, studentbean.getMm_id());  //회원이름 => // 회원ID(mm_id) 로 수정하세요
 			pstmt.setString(2,studentbean.getSt_school_name()); // 학교명
 			pstmt.setString(3,studentbean.getSt_school_grade()); // 학년
 			pstmt.setString(4,studentbean.getSt_parent_name()); // 학부모이름
@@ -68,5 +70,43 @@ public class StudentDAO {
 			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
+    }
+    
+    public List studentList(){
+		List studentList =null;
+		
+    	String sql=""; //조회
+    	
+    	try {
+			con = ds.getConnection();
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				studentList = new ArrayList();
+				do{
+					StudentBean studentbean = new StudentBean();
+					studentbean.setMm_name(rs.getString("mm_name"));
+					studentbean.setMm_id(rs.getString("mm_id"));
+					studentbean.setSt_school_name(rs.getString("st_school_name"));
+					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
+					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
+					studentList.add(studentbean);
+				}while(rs.next());
+			}
+    	
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    	
+    	return studentList;
+    	
     }
 }
