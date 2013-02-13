@@ -82,7 +82,7 @@ public class AttitudeDAO {
 					rs3 = pstmt.executeQuery();
 					
 					if (rs.next()) { // 메모(사유)가 있을 경우
-						attitude.setAt_memo(rs.getString(1));
+						attitude.setAt_memo(rs.getString("at_memo"));
 					} 
 					
 					// 메모조차 없으면 전부 NULL로 설정됨
