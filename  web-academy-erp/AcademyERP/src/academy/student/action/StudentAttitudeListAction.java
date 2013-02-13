@@ -23,10 +23,10 @@ public class StudentAttitudeListAction implements Action{
 		List StudentAttitudeList = null;
 		StudentAttitudeList = studentdao.getStudentAttitudeList();
 		
-		request.setAttribute("attitudeList", StudentAttitudeList);
+		request.setAttribute("StudentAttitudeList", StudentAttitudeList);
 		
 		forward.setRedirect(false);
-		forward.setPath("./employee/employee_attitude_list.jsp");
+		forward.setPath("./student/student_attitude_list.jsp");
 		return forward;
 	}
 
