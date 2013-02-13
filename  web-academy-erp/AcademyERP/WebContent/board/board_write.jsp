@@ -43,7 +43,7 @@
 			<th scope="row">아이디</th>
 			<td>
 				<div class="item">
-					<input type="text" name="st_parent_id" title="학교명" class="i_text">
+					<input type="text" name="board_name" title="학교명" class="i_text">
 				</div>
 			</td>
 		</tr>
@@ -52,7 +52,7 @@
 			<th scope="row">제목</th>
 			<td>
 				<div class="item">
-					<input type="text" name="mm_name" id="temp_input"class="i_text" style="width: 300px">
+					<input type="text" name="board_subject" id="temp_input"class="i_text" style="width: 300px">
 		</div>
 						</td>
 					</tr>
@@ -72,7 +72,7 @@
 			<th scope="row">내용</th>
 			<td>
 				<div class="item">
-					<textarea name="st_memo" cols="100" rows="10" title="레이블 텍스트"
+					<textarea name="board_content" cols="100" rows="10" title="레이블 텍스트"
 						class="i_text"></textarea>
 				</div>
 			</td>
@@ -87,7 +87,7 @@
 				<div class="item">
 					<label for="temp_input" class="i_label"
 						style="position: absolute; visibility: visible;">비밀번호
-						입력</label> <input type="password" name="st_parent_passwd" id="temp_input"
+						입력</label> <input type="password" name="board_pass" id="temp_input"
 						class="i_text" style="width: 300px">
 				</div>
 			</td>
