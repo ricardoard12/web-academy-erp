@@ -64,6 +64,19 @@ public class StudentDAO {
 			pstmt.setString(11, "재학");
 			pstmt.executeUpdate();
 					
+			sql="INSERT INTO member(mm_name,mm_id,mm_passwd,mm_tel,mm_phone,mm_addr1,mm_addr2,mm_zipcode,mm_email,mm_reg_date,mm_level) VALUES(?,?,?,?,?,?,?,?,?,now(),?) ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, studentbean.getSt_parent_name());  //회원이름
+			pstmt.setString(2, studentbean.getSt_parent_id()); //회원아이디
+			pstmt.setString(3, studentbean.getSt_parent_passwd());; //회원비번
+			pstmt.setString(4, studentbean.getMm_tel());//회원전화번호
+			pstmt.setString(5, studentbean.getSt_parent_mobile()); //회원핸드폰 번호
+			pstmt.setString(6, studentbean.getMm_zipcode());//회원우편번호
+			pstmt.setString(7, studentbean.getMm_addr1());//주소
+			pstmt.setString(8, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(9, studentbean.getMm_email()); //회원메일
+			pstmt.setInt(10, 2); //학생레벨값 설정
+			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
