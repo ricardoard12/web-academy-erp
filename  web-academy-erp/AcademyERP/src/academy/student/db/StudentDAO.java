@@ -190,7 +190,7 @@ public class StudentDAO {
 					do { // 해당 과목 마치는 시간 입력
 						AttitudeBean attitude = new AttitudeBean();
 						
-						attitude.setMm_name(rs.getString("mm_name")); // 직원 명단 조회 결과 중 이름 저장
+						attitude.setMm_name(rs.getString("mm_name")); // 학생 명단 조회 결과 중 이름 저장
 						attitude.setAt_member_id(rs2.getString("at_member_id"));
 						attitude.setAt_report_state(rs2.getString("at_report_state"));
 						attitude.setAt_open_time(rs2.getDate("at_open_time"));
@@ -199,7 +199,7 @@ public class StudentDAO {
 						
 						SutdentAttitudeList.add(attitude);
 					} while (rs2.next());
-				} else { // 오늘 출근 데이터가 없을 경우
+				} else { // 오늘 출석 데이터가 없을 경우
 					AttitudeBean attitude = new AttitudeBean();
 					
 					attitude.setMm_name(rs.getString("mm_name"));
