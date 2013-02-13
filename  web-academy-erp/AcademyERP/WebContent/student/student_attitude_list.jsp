@@ -73,7 +73,7 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 							<td>
 								<%
 									if (attitude.getAt_report_state().equals("Y")) {%>출석<%	} 
-									else {%>미출근<%} 
+									else {%>미출석<%} 
 								%>
 							</td>
 							<td>
