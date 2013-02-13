@@ -110,7 +110,7 @@ public class StudentDAO {
     	return studentList;
     	
     }
-    public void updateStatusTaketimeoutst(String[] st_status){
+    public void updateStudentLeaveofabsence(String[] st_status){
     	String sql="";
     	try {
 			con=ds.getConnection();
