@@ -31,7 +31,7 @@
 
 				<!-- 학생 회원가입시작 -->
 
-				<form action="" method="post">
+				<form action="./StudentJoinAction.st" method="post">
 					<fieldset>
 						<legend>학생 회원가입</legend>
 						<div class="form_table">
@@ -72,7 +72,7 @@
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">이름
-													입력</label> <input type="text" name="" id="temp_input"
+													입력</label> <input type="text" name="mm_name" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div>
 										</td>
@@ -83,7 +83,7 @@
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">아이디
-													입력</label> <input type="text" name="" id="temp_input"
+													입력</label> <input type="text" name="mm_id" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div>
 										</td>
@@ -94,13 +94,13 @@
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">비밀번호
-													입력</label> <input type="password" name="" id="temp_input"
+													입력</label> <input type="password" name="mm_pw" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div> <br>
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">비밀번호
-													입력 확인</label> <input type="password" name="" id="temp_input"
+													입력 확인</label> <input type="password" name="mm_pw_check" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div>
 										</td>
@@ -118,8 +118,8 @@
 										<th scope="row">주민등록번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="주민등록번호 입력" class="i_text">
-												- <input type="password" name="" title="레이블 텍스트"
+												<input type="text" name="mm_jumin1" title="주민등록번호 입력" class="i_text">
+												- <input type="password" name="mm_jumin2" title="레이블 텍스트"
 													class="i_text">
 											</div>
 										</td>
@@ -130,11 +130,11 @@
 										<th scope="row">전화번호</th>
 										<td>
 											<div class="item">
-												<select name="">
+												<select name="mm_telDDD">
 													<option>02</option>
 													<option>051</option>
 													<option>055</option>
-												</select> <input type="text" name="" title="전화번호" class="i_text">
+												</select> <input type="text" name="mm_tel" title="전화번호" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -143,11 +143,11 @@
 										<th scope="row">휴대폰번호</th>
 										<td>
 											<div class="item">
-												<select name="">
+												<select name="mm_phoneDDD">
 													<option>010</option>
 													<option>011</option>
 													<option>017</option>
-												</select> <input type="text" name="" title="휴대폰" class="i_text">
+												</select> <input type="text" name="mm_phone" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -156,8 +156,8 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="휴대폰" class="i_text"> - 
-												<input type="text" name="" title="휴대폰" class="i_text">
+												<input type="text" name="mm_zipcode1" title="휴대폰" class="i_text"> - 
+												<input type="text" name="mm_zipcode2" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -166,7 +166,7 @@
 										<th scope="row">주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="휴대폰" class="i_text">
+												<input type="text" name="mm_addr1" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -175,7 +175,7 @@
 										<th scope="row">상세주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="휴대폰" class="i_text">
+												<input type="text" name="mm_addr2" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -185,9 +185,9 @@
 										<td>
 											<div class="item">
 
-												<input type="text" name="" title="이메일" class="i_text">@
-												<input type="text" name="" title="직접입력" class="i_text">
-												<select name="">
+												<input type="text" name="mm_email1" title="이메일" class="i_text">@
+												<input type="text" name="mm_email2" title="직접입력" class="i_text">
+												<select name="mm_emailDDD">
 													<option>hanmail.net</option>
 													<option>naver.com</option>
 													<option>gmail.com</option>
@@ -200,7 +200,7 @@
 										<th scope="row">학교명</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="학교명" class="i_text">
+												<input type="text" name="st_school_name" title="학교명" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -210,7 +210,7 @@
 										<td>
 											<div class="item">
 
-												<select name="">
+												<select name="st_school_grade">
 													<option>1학년</option>
 													<option>2학년</option>
 													<option>3학년</option>
@@ -223,7 +223,7 @@
 										<th scope="row">학부모 이름</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="학교명" class="i_text">
+												<input type="text" name="st_parent_name" title="학교명" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -232,11 +232,11 @@
 										<th scope="row">학부모 연락처</th>
 										<td>
 											<div class="item">
-												<select name="">
+												<select name="st_parent_mobileDDD">
 													<option>010</option>
 													<option>011</option>
 													<option>017</option>
-												</select> <input type="text" name="" title="휴대폰" class="i_text">
+												</select> <input type="text" name="st_parent_mobile" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -245,7 +245,7 @@
 										<th scope="row">학부모 아이디</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="학교명" class="i_text">
+												<input type="text" name="st_parent_id" title="학교명" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -256,13 +256,13 @@
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">비밀번호
-													입력</label> <input type="password" name="" id="temp_input"
+													입력</label> <input type="password" name="st_parent_passwd" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div> <br>
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">비밀번호
-													입력 확인</label> <input type="password" name="" id="temp_input"
+													입력 확인</label> <input type="password" name="st_parent_passwd_check" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div>
 										</td>
@@ -272,7 +272,7 @@
 										<th scope="row">수강료</th>
 										<td>
 											<div class="item">
-												<input type="text" name="" title="학교명" class="i_text">
+												<input type="text" name="st_tuition" title="학교명" class="i_text">
 												원
 											</div>
 										</td>
@@ -282,8 +282,8 @@
 										<th scope="row">납부여부</th>
 										<td>
 											<div class="item">
-												<input name="" type="radio" value="" id="c1" class="i_radio"><label
-													for="c1">납부</label> <input name="" type="radio" value=""
+												<input name="st_tuition_state" type="radio" value="납부" id="c1" class="i_radio"><label
+													for="c1">납부</label> <input name="st_tuition_state" type="radio" value="미납"
 													id="c2" class="i_radio"><label for="c2">미납</label>
 											</div>
 										</td>
@@ -294,7 +294,7 @@
 										<th scope="row">메모</th>
 										<td>
 											<div class="item">
-												<textarea name="" cols="50" rows="5" title="레이블 텍스트"
+												<textarea name="st_memo" cols="50" rows="5" title="레이블 텍스트"
 													class="i_text"></textarea>
 											</div>
 										</td>
