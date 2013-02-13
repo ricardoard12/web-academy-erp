@@ -137,7 +137,7 @@
 	</li>
 	<li><a href="#"><span>게시판</span><span class="i"></span></a>
 		<ul style="display:none;">
-		<li><a href="#"><span>공지사항</span></a></li>
+		<li><a href="./BoardNotice.bo"><span>공지사항</span></a></li>
 		<li><a href="#"><span>업무일지</span></a></li>
 		<li><a href="#"><span>강의계획서</span></a></li>
 		<li><a href="#"><span>수업자료실</span></a></li>
