@@ -126,4 +126,53 @@ public class EmployeeDAO {
     	
     	return vector;
     }
+    
+    public Vector getEmployeeDetail(String id) throws Exception {
+    	EmployeeBean employee = new EmployeeBean();
+    	MemberBean member = new MemberBean();
+    	Vector vector = new Vector();
+    	try {
+    		con = ds.getConnection();
+    		sql = "SELECT * FROM member,employee WHERE member.mm_id=? AND employee.ep_id=?";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, id);
+    		pstmt.setString(2, id);
+    		rs = pstmt.executeQuery();
+    		
+    		if (rs.next()) {
+    			member.setMm_id(rs.getString("mm_id"));
+    			member.setMm_name(rs.getString("mm_name"));
+    			member.setMm_jumin1(rs.getString("mm_jumin1"));
+    			member.setMm_jumin2(rs.getString("mm_jumin2"));
+    			member.setMm_tel(rs.getString("mm_tel"));
+    			member.setMm_phone(rs.getString("mm_phone"));
+    			member.setMm_addr1(rs.getString("mm_addr1"));
+    			member.setMm_addr2(rs.getString("mm_addr2"));
+    			member.setMm_zipcode(rs.getString("mm_zipcode"));
+    			member.setMm_email(rs.getString("mm_email"));
+    			member.setMm_reg_date(rs.getDate("mm_reg_date"));
+    			member.setMm_level(rs.getInt("mm_level"));
+    			member.setMm_manager_id(rs.getString("mm_manager_id"));
+    			
+    			employee.setEp_position(rs.getString("ep_position"));
+    			employee.setEp_department(rs.getString("ep_department"));
+    			employee.setEp_group_id(rs.getString("ep_group_id"));
+    			employee.setEp_subject_name(rs.getString("ep_subject_name"));
+    			employee.setEp_bank_name(rs.getString("ep_bank_name"));
+    			employee.setEp_account_num(rs.getString("ep_account_num"));
+    			employee.setEp_account_name(rs.getString("ep_account_name"));
+    			employee.setEp_salary(rs.getInt("ep_salary"));
+
+    			vector.add(member);
+    			vector.add(employee);
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		closingDB();
+    	}
+    	
+    	return vector;
+    }
+    
 }
