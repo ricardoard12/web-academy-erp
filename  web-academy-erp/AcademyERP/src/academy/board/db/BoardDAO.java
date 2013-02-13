@@ -93,7 +93,7 @@ public class BoardDAO {
 		int startrow=(page-1)*limit+1; 
 		try {
 			con=ds.getConnection();
-			//3 sql
+			
 			sql="select * from board order by board_re_ref desc, board_re_seq asc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startrow-1); 
@@ -129,13 +129,13 @@ public class BoardDAO {
 	public void setReadCountUpdate(int num) throws Exception{
 		String sql="";
 		try {
-			//1,2
+			
 			con=ds.getConnection();
-			//3
+			
 			sql="update board set board_readcount=board_readcount+1 where board_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			//4
+			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,15 +149,14 @@ public class BoardDAO {
 		String sql="";
 		BoardBean board=null;
 		try {
-			//1,2
+			
 			con=ds.getConnection();
-			//3
+			
 			sql="select * from board where board_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			//4
 			rs=pstmt.executeQuery();
-			//5 rs=자바빈
+		
 			if(rs.next()){
 				board=new BoardBean();
 				board.setBoard_num(rs.getInt("board_num"));
@@ -184,15 +183,15 @@ public class BoardDAO {
 		String sql="";
 		boolean x=false;
 		try {
-			//1,2
+			
 			con=ds.getConnection();
-			//3
+			
 			sql="select board_pass from board where board_num=? ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			//4
+			
 			rs=pstmt.executeQuery();
-			//5
+			
 			if(rs.next()){
 				String dbPasswd=rs.getString("board_pass");
 				if(passwd.equals(dbPasswd)){
@@ -231,13 +230,13 @@ public class BoardDAO {
 		String sql="";
 		boolean x=false;
 		try {
-			//1,2
+			
 			con=ds.getConnection();
-			//3
+			
 			sql="delete from board where board_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			//4
+			
 			pstmt.executeUpdate();
 			x=true;
 		} catch (Exception e) {
@@ -303,6 +302,6 @@ public class BoardDAO {
 		return x;
 	}
 	
-}//클래스
+}
 
 
