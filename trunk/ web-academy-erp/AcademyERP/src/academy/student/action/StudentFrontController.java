@@ -42,6 +42,24 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+        }else if(command.equals("/StudentTaketimeout.st")){
+        	action = new StudentTaketimeoutAction();
+        	
+        	try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+        }else if(command.equals("/StudentExpel.st")){
+        	action = new StudentExpelAction();
+        	
+        	try {
+				forward =action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
         }
         
         // 이동
