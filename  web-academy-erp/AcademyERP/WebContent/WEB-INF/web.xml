@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>ShoppingMall</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
+		<description>Academy DB</description>
+		<res-ref-name>root/1234</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+	<servlet>
+		<servlet-name>StudentFrontController</servlet-name>
+		<servlet-class>academy.student.action.StudentFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StudentFrontController</servlet-name>
+		<url-pattern>*.st</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardFrontController</servlet-name>
+		<servlet-class>academy.board.action.BoardFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardFrontController</servlet-name>
+		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EmployeeFrontController</servlet-name>
+		<servlet-class>academy.employee.action.EmployeeFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeFrontController</servlet-name>
+		<url-pattern>*.em</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GradeFrontController</servlet-name>
+		<servlet-class>academy.grade.action.GradeFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GradeFrontController</servlet-name>
+		<url-pattern>*.gr</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AccountingFrontController</servlet-name>
+		<servlet-class>academy.accounting.action.AccountingFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccountingFrontController</servlet-name>
+		<url-pattern>*.ac</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>TimetableFrontController</servlet-name>
+		<servlet-class>academy.timetable.action.TimetableFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TimetableFrontController</servlet-name>
+		<url-pattern>*.ti</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GroupFrontController</servlet-name>
+		<servlet-class>academy.group.action.GroupFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GroupFrontController</servlet-name>
+		<url-pattern>*.gp</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>RootFrontController</servlet-name>
+		<servlet-class>academy.root.action.RootFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RootFrontController</servlet-name>
+		<url-pattern>*.ro</url-pattern>
+	</servlet-mapping>
+	
+			<servlet>
+		<servlet-name>AttitudeFrontController</servlet-name>
+		<servlet-class>academy.attitude.action.AttitudeFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AttitudeFrontController</servlet-name>
+		<url-pattern>*.at</url-pattern>
+	</servlet-mapping>
+
+</web-app>
