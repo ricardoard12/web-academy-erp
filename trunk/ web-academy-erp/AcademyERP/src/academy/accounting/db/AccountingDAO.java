@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -62,5 +64,36 @@ public class AccountingDAO {
             
             pstmt.executeUpdate();
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+    }
+    
+    //전체리스트
+    public List acGetList(){
+        String sql="";
+        List acList = null;
+        AccountingBean acBean = null;
+        try {
+            con=ds.getConnection();
+            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
+            		"order by ac_id desc";
+            pstmt=con.prepareStatement(sql);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                acList = new ArrayList();
+                do{
+                    acBean = new AccountingBean();
+                    acBean.setAc_id(rs.getString("ac_id"));
+                    acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setAc_price(rs.getInt("ac_price"));
+                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
+                    acBean.setAc_io_type(rs.getString("ac_io_type"));
+                    acBean.setAc_date(rs.getDate("ac_date"));
+                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
+                    acBean.setAc_memo(rs.getString("ac_memo"));
+                    
+                    acList.add(acBean);
+                }while(rs.next());
+            }            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return acList;
     }
 }
