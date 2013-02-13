@@ -13,11 +13,11 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function taketimeout(){     
+function Leaveofabsence(){     
     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentTaketimeout.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentLeaveofabsence.st";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
@@ -102,7 +102,7 @@ function expel(){
 							<td align="center" colspan="7">
 								<div class="item">
 									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
-									<input type="button" value="원생 휴원" onclick="taketimeout()">
+									<input type="button" value="원생 휴원" onclick="Leaveofabsence()">
 									<input type="button" value="원생 퇴출" onclick="expel()">
 								</div>
 						</tr>
