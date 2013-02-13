@@ -32,52 +32,25 @@
 
 				<!-- 회계 등록 시작 -->
 
-				<form action="AccountingInsert.ac" method="post">
+				<form action="./AccountingJoinAction.ac" method="post">
 					<fieldset>
 						<legend>수입/지출 등록</legend>
 						<div class="form_table">
-							<table border="1" cellspacing="0" summary="회원가입">
+							<table border="1" cellspacing="0" summary="회계등록">
 								<tbody>
-									<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름입력하세요" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<span class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 없습니다.</span>
-			</div>
-		</td>
-		</tr> 
-		<tr>
-		<th scope="row">인풋:설명 숨기고 줄 바꿈</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="레이블 텍스트" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<p class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 했습니다.</p>
-			</div>
-		</td>
-		</tr> -->
-									<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름 입력하세요" class="i_text"> 숨겨두지 않은 설명 입니다. 줄 바꿈 없습니다.
-			</div>
-		</td>
-		</tr>-->
-
 
 									<!-- 회계 아이디는 일련번호 자동 등록 -->
 				<tr>
 					<th scope="row">항목 유형</th>
 					<td>
 						<div class="item">
-							<input name="" type="radio" value="" id="c1" class="i_radio"><label
-								for="c1">수강료</label> <input name="" type="radio" value=""
-								id="c1" class="i_radio"><label for="c1">수입</label>
-							<input name="" type="radio" value="" id="c1" class="i_radio"><label
-								for="c1">지출</label>
+						<!-- ac_ie_type 수강료 수입 지출 -->
+							<input name="ac_io_type" type="radio" value="수강료" id="c1" class="i_radio">
+							<label for="c1">수강료</label> 
+							<input name="ac_io_type" type="radio" value="수입" id="c1" class="i_radio">
+							<label for="c1">수입</label>
+							<input name="ac_io_type" type="radio" value="지출" id="c1" class="i_radio">
+							<label for="c1">지출</label>
 						</div>
 					</td>
 				</tr>
@@ -86,29 +59,16 @@
 					<th scope="row">회원 아이디</th>
 					<td>
 						<div class="item">
-							<label for="temp_input" class="i_label"
-								style="position: absolute; visibility: visible;">아이디
-								입력</label> <input type="text" name="" id="temp_input"
-								class="i_text" style="width: 300px">
+							<input type="text" name="mm_id" id="temp_input" class="i_text" style="width: 300px">
 						</div>
 					</td>
 				</tr>
 
-				<!-- <tr>
-<th scope="row">인풋:설명 보이고 줄 바꿈</th>
-<td>
-	<div class="item">
-		<input type="text" name="" title="레이블 텍스트" class="i_text">
-		<p class="i_dsc">숨겨두지 않은 설명 입니다. 줄 바꿈 했습니다.</p>
-	</div>
-</td>
-</tr>-->
-
-				<tr>
+			<tr>
 					<th scope="row">금액</th>
 					<td>
 						<div class="item">
-							<input type="text" name="" title="학교명" class="i_text">
+							<input type="text" name="ac_price" title="학교명" class="i_text">
 							원
 						</div>
 					</td>
@@ -118,9 +78,10 @@
 					<th scope="row">결제 유형</th>
 					<td>
 						<div class="item">
-							<input name="" type="radio" value="" id="c1" class="i_radio"><label
-								for="c1">현금</label> <input name="" type="radio" value=""
-								id="c2" class="i_radio"><label for="c2">카드</label>
+							<input name="ac_cc_type" type="radio" value="현금" id="c1" class="i_radio">
+							<label for="c1">현금</label> 
+							<input name="ac_cc_type" type="radio" value="카드" id="c2" class="i_radio">
+							<label for="c2">카드</label>
 						</div>
 					</td>
 				</tr>
@@ -130,10 +91,10 @@
 					<th scope="row">결제일</th>
 					<td>
 						<div class="item">
-<input type="text" name="target_date">
-<input type="button" value="달력보기" onClick="datePicker(event,'target_date',0)">
-<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->						
-										</div>
+							<input type="text" name="ac_date">
+							<input type="button" value="달력보기" onClick="datePicker(event,'ac_date',0)">
+							<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->						
+						</div>
 					</td>
 				</tr>
 
@@ -141,10 +102,7 @@
 					<th scope="row">담당자 이름</th>
 					<td>
 						<div class="item">
-							<label for="temp_input" class="i_label"
-								style="position: absolute; visibility: visible;">이름
-								입력</label> <input type="text" name="" id="temp_input"
-								class="i_text" style="width: 300px">
+						<input type="text" name="ac_manager_name" id="temp_input"	class="i_text" style="width: 300px">
 						</div>
 					</td>
 				</tr>
@@ -153,119 +111,33 @@
 					<th scope="row">메모</th>
 					<td>
 						<div class="item">
-							<textarea name="" cols="50" rows="5" title="레이블 텍스트"
+							<textarea name="ac_memo" cols="50" rows="5" title="레이블 텍스트"
 								class="i_text"></textarea>
 						</div>
 					</td>
 				</tr>
 
 
-
-
-
-				<!--  가입버튼 -->
+				<!--  수입/지출 등록 버튼 -->
 				<tr align="right">
 					<td></td>
 					<td align="left">
 						<div class="item">
-							<input type="submit" " value="등록"> <input
-								type="reset" name="" value="취소">
+							<input type="submit"  value="등록"> 
+							<input type="reset" value="취소">
 						</div>
 					</td>
 				</tr>
+				<!--  수입/지출 등록 버튼 끝 -->
 
 
-
-									<!-- <tr>
-		<th scope="row">멀티라인 인풋</th>
-		<td>
-			<div class="item">
-				<textarea name="" cols="50" rows="5" title="레이블 텍스트" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">멀티라인 인풋:레이블 클리어</th>
-		<td>
-			<div class="item">
-				<label for="temp_textarea" class="i_label" style="position:absolute; visibility:visible;">레이블 텍스트를 멀티라인 인풋과 오버레이</label>
-				<textarea name="" cols="50" rows="5" id="temp_textarea" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:단일 선택</th>
-		<td>
-			<div class="item">
-				<select name="">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:복수 선택</th>
-		<td>
-			<div class="item">
-				<select name="" multiple="multiple">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="a1" class="i_check"><label for="a1">레이블</label> <input name="" type="checkbox" value="" id="a2" class="i_check"><label for="a2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="b1" class="i_check"><label for="b1">레이블</label><br>
-				<input name="" type="checkbox" value="" id="b2" class="i_check"><label for="b2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="c1" class="i_radio"><label for="c1">레이블</label> <input name="" type="radio" value="" id="c2" class="i_radio"><label for="c2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="d1" class="i_radio"><label for="d1">레이블</label><br>
-				<input name="" type="radio" value="" id="d2" class="i_radio"><label for="d2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">파일</th>
-		<td>
-			<div class="item">
-				<input name="" type="file" title="레이블 텍스트">
-			</div>
-		</td>
-		</tr> -->
 								</tbody>
 							</table>
 						</div>
 					</fieldset>
 				</form>
 
-				<!-- 회원가입 끝 -->
+				<!-- 회계 등록 폼 끝 -->
 
 			</div>
 			<!-- //content -->

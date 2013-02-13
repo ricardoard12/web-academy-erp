@@ -6,12 +6,11 @@ public class AccountingBean {
     private String ac_id; // 회계 ID
     private String mm_id; // 회원ID
     private int ac_price; // 금액
-    private String ac_cc_type; // 결제유형(현금/카드)
-    private String ac_ir_type; // 항목유형(수강료/수입/지출)
+    private String ac_cc_type; // 결제유형(현금(cach)/카드(card))
+    private String ac_io_type; // 항목유형(수강료/수입(imcome)/지출(outgoing))
     private Date ac_date; // 결제일
     private String ac_manager_name; // 담당자명
     private String ac_memo; // 메모
-    
     public String getAc_id() {
         return ac_id;
     }
@@ -36,11 +35,11 @@ public class AccountingBean {
     public void setAc_cc_type(String ac_cc_type) {
         this.ac_cc_type = ac_cc_type;
     }
-    public String getAc_ir_type() {
-        return ac_ir_type;
+    public String getAc_io_type() {
+        return ac_io_type;
     }
-    public void setAc_ir_type(String ac_ir_type) {
-        this.ac_ir_type = ac_ir_type;
+    public void setAc_io_type(String ac_io_type) {
+        this.ac_io_type = ac_io_type;
     }
     public Date getAc_date() {
         return ac_date;
@@ -60,6 +59,5 @@ public class AccountingBean {
     public void setAc_memo(String ac_memo) {
         this.ac_memo = ac_memo;
     }
-    
-    
+   
 }

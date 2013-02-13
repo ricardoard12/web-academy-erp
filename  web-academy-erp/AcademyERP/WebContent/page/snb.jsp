@@ -157,7 +157,7 @@
 	</li>
 	<li><a href="#"><span>회계관리</span><span class="i"></span></a>
 		<ul style="display:none;">
-		<li><a href="./AccountingAdd.ac"><span>회계등록</span></a></li>
+		<li><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
 		<li><a href="#"><span>회비현황</span></a></li>
 		<li><a href="#"><span>수입현황</span></a></li>
 		<li><a href="#"><span>지출현황</span></a></li>

@@ -20,11 +20,22 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
         String command = requestURI.substring(contextPath.length());
         ActionForward forward = null;
         Action action = null;
-
-        if (command.equals("/AccountingAdd.ac")) {
+        
+        //수입지출 폼 
+        if(command.equals("/AccountingJoin.ac")) {
             forward = new ActionForward();
             forward.setRedirect(false);
             forward.setPath("./accounting/accounting_join.jsp");
+        //수입지출 등록            
+        }else if(command.equals("/AccountingJoinAction.ac")) {
+            action = new AccountingJoinAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
+        //수입지출 리스트       
+        }else if(command.equals("/AccountingList.ac")) {
+            action = new AccountingListAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
         }
         
         // 이동
