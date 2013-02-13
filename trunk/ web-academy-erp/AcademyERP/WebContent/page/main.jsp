@@ -13,14 +13,14 @@
     <p>#wrap</p>
     <!-- header -->
     <div id="header">
-        <jsp:include page="header.jsp"></jsp:include>
+        <jsp:include page="../page/header.jsp"></jsp:include>
     </div>
     <!-- //header -->
     <!-- container -->
     <div id="container">
         <!-- snb -->
         <div class="snb">
-             <jsp:include page="snb.jsp"></jsp:include>
+             <jsp:include page="../page/snb.jsp"></jsp:include>
         </div>
         <!-- //snb -->
         <!-- content -->
@@ -32,7 +32,7 @@
     <!-- //container -->
     <!-- footer -->
     <div id="footer">
-         <jsp:include page="footer.jsp"></jsp:include>
+         <jsp:include page="../page/footer.jsp"></jsp:include>
     </div>
     <!-- //footer -->
 </div>
