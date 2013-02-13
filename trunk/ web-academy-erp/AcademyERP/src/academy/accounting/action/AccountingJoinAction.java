@@ -16,7 +16,7 @@ public class AccountingJoinAction implements Action{
         
         acBean.setAc_io_type(request.getParameter("ac_io_type"));
         acBean.setMm_id(request.getParameter("mm_id"));
-        acBean.setAc_price("request.getParameter("ac_price"));
+        acBean.setAc_price(Integer.parseInt(request.getParameter("ac_price")));
         request.getParameter("ac_cc_type");
         request.getParameter("ac_date");
         request.getParameter("ac_manager_name");
