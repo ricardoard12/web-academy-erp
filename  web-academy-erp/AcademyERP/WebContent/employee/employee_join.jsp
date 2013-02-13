@@ -100,7 +100,10 @@
 											<div class="item">
 												<select name="mm_telDDD">
 													<option value="02">02</option>
+													<option value="031">031</option>
 													<option value="051">051</option>
+													<option value="052">052</option>
+													<option value="053">053</option>
 													<option value="055">055</option>
 												</select> <input type="text" name="mm_tel" title="전화번호"
 													class="i_text">
@@ -115,6 +118,7 @@
 												<select name="mm_phoneDDD">
 													<option>010</option>
 													<option>011</option>
+													<option>016</option>
 													<option>017</option>
 												</select> <input type="text" name="mm_phone" title="휴대폰"
 													class="i_text">
