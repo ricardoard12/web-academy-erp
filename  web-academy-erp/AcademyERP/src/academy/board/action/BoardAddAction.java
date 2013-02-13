@@ -21,7 +21,7 @@ public class BoardAddAction implements Action {
 		ActionForward forward = new ActionForward();
 		String uploadfolder = "board/board_upload";
 		String realFolder = request.getRealPath(uploadfolder);
-		int fileSize = 5 * 1024 * 1024;
+		int fileSize = 4 * 1024 * 1024;
 		
 		try{			
 			MultipartRequest multi = null;
