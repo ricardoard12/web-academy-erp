@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,41 +36,13 @@
 
 				<!-- 직원 회원가입시작 -->
 
-				<form action="./EmployeeAddAction.em" method="post" name="joinEmployeeForm">
+				<form action="./EmployeeAddAction.em" method="post"
+					name="joinEmployeeForm">
 					<fieldset>
 						<legend>직원 회원가입</legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
 								<tbody>
-									<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름입력하세요" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<span class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 없습니다.</span>
-			</div>
-		</td>
-		</tr> 
-		<tr>
-		<th scope="row">인풋:설명 숨기고 줄 바꿈</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="레이블 텍스트" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<p class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 했습니다.</p>
-			</div>
-		</td>
-		</tr> -->
-									<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름 입력하세요" class="i_text"> 숨겨두지 않은 설명 입니다. 줄 바꿈 없습니다.
-			</div>
-		</td>
-		</tr>-->
-
 									<tr>
 										<th scope="row">회원이름</th>
 										<td>
@@ -105,20 +77,12 @@
 											<div class="item">
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">비밀번호
-													입력 확인</label> <input type="password" name="mm_passwd2" id="temp_input"
-													class="i_text" style="width: 300px">
+													입력 확인</label> <input type="password" name="mm_passwd2"
+													id="temp_input" class="i_text" style="width: 300px">
 											</div>
 										</td>
 									</tr>
-									<!-- <tr>
-		<th scope="row">인풋:설명 보이고 줄 바꿈</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="레이블 텍스트" class="i_text">
-				<p class="i_dsc">숨겨두지 않은 설명 입니다. 줄 바꿈 했습니다.</p>
-			</div>
-		</td>
-		</tr>-->
+
 									<tr>
 										<th scope="row">주민등록번호</th>
 										<td>
@@ -129,7 +93,6 @@
 											</div>
 										</td>
 									</tr>
-
 
 									<tr>
 										<th scope="row">전화번호</th>
@@ -163,8 +126,9 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text">
-												- <input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="text" name="mm_zipcode1" title="우편번호1"
+													class="i_text"> - <input type="text"
+													name="mm_zipcode2" title="우편번호2" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -173,8 +137,7 @@
 										<th scope="row">주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr1" title="주소"
-													class="i_text">
+												<input type="text" name="mm_addr1" title="주소" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -193,9 +156,10 @@
 										<th scope="row">이메일 주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_email1" title="이메일" class="i_text">@
-												<input type="text" name="mm_email2" title="도메인" class="i_text" >
-												<select name="select_domain" onchange="selectDomain()">
+												<input type="text" name="mm_email1" title="이메일"
+													class="i_text">@ <input type="text"
+													name="mm_email2" title="도메인" class="i_text"> <select
+													name="select_domain" onchange="selectDomain()">
 													<option value="">직접 입력</option>
 													<option value="nate.com">nate.com</option>
 													<option value="naver.com">naver.com</option>
@@ -222,7 +186,8 @@
 										<th scope="row">상위 관리자 ID</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_manager_id" title="상위 관리자 ID" class="i_text">
+												<input type="text" name="mm_manager_id" title="상위 관리자 ID"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -231,7 +196,8 @@
 										<th scope="row">담당부서</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_department" title="담당부서" class="i_text">
+												<input type="text" name="ep_department" title="담당부서"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -241,7 +207,8 @@
 										<th scope="row">직급</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_position" title="직급" class="i_text">
+												<input type="text" name="ep_position" title="직급"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -265,7 +232,8 @@
 										<th scope="row">담당학급</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_group_id" title="담당학급" class="i_text">
+												<input type="text" name="ep_group_id" title="담당학급"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -274,7 +242,8 @@
 										<th scope="row">연봉</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_salary" title="연봉" class="i_text">원
+												<input type="text" name="ep_salary" title="연봉"
+													class="i_text">원
 											</div>
 										</td>
 									</tr>
@@ -283,7 +252,8 @@
 										<th scope="row">은행명</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_bank_name" title="은행명" class="i_text">
+												<input type="text" name="ep_bank_name" title="은행명"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -292,7 +262,8 @@
 										<th scope="row">계좌번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_account_num" title="계좌번호" class="i_text">
+												<input type="text" name="ep_account_num" title="계좌번호"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -301,15 +272,11 @@
 										<th scope="row">예금주</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_account_name" title="예금주" class="i_text">
+												<input type="text" name="ep_account_name" title="예금주"
+													class="i_text">
 											</div>
 										</td>
 									</tr>
-
-
-
-
-
 
 									<!--  가입버튼 -->
 									<tr align="right">
@@ -321,92 +288,6 @@
 											</div>
 										</td>
 									</tr>
-
-
-
-									<!-- <tr>
-		<th scope="row">멀티라인 인풋</th>
-		<td>
-			<div class="item">
-				<textarea name="" cols="50" rows="5" title="레이블 텍스트" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">멀티라인 인풋:레이블 클리어</th>
-		<td>
-			<div class="item">
-				<label for="temp_textarea" class="i_label" style="position:absolute; visibility:visible;">레이블 텍스트를 멀티라인 인풋과 오버레이</label>
-				<textarea name="" cols="50" rows="5" id="temp_textarea" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:단일 선택</th>
-		<td>
-			<div class="item">
-				<select name="">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:복수 선택</th>
-		<td>
-			<div class="item">
-				<select name="" multiple="multiple">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="a1" class="i_check"><label for="a1">레이블</label> <input name="" type="checkbox" value="" id="a2" class="i_check"><label for="a2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="b1" class="i_check"><label for="b1">레이블</label><br>
-				<input name="" type="checkbox" value="" id="b2" class="i_check"><label for="b2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="c1" class="i_radio"><label for="c1">레이블</label> <input name="" type="radio" value="" id="c2" class="i_radio"><label for="c2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="d1" class="i_radio"><label for="d1">레이블</label><br>
-				<input name="" type="radio" value="" id="d2" class="i_radio"><label for="d2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">파일</th>
-		<td>
-			<div class="item">
-				<input name="" type="file" title="레이블 텍스트">
-			</div>
-		</td>
-		</tr> -->
 								</tbody>
 							</table>
 						</div>
