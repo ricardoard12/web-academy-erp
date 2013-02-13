@@ -17,18 +17,18 @@ public class BoardListAction implements Action{
 		ActionForward forward=new ActionForward();
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("board_name");
-		// id ==null ./MemberLogin.me 이동
+		
 		if(id==null){
 			forward.setRedirect(true);
 			forward.setPath("./BoardNotice.bo ");
 			return forward;
 		}
-		//boarddao
+	
 		BoardDAO boarddao=new BoardDAO();
-		// List boardlist
+		
 		List boardlist=new ArrayList();
-		int page=1; //1페이지
-		int limit=10; //한페이지 글수
+		int page=1; 
+		int limit=10; 
 		
 		if(request.getParameter("page")!=null){
 			page=Integer.parseInt(request.getParameter("page"));
