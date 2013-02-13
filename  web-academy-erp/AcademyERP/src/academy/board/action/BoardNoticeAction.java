@@ -42,7 +42,7 @@ public class BoardNoticeAction implements Action {
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("boardlist", boardlist);
 		forward.setRedirect(false);
-		forward.setPath("./board/notice.jsp");
+		forward.setPath("./board/board_notice.jsp");
 		
 		return forward;
 	}
