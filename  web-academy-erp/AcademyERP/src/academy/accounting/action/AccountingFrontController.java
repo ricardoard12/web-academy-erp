@@ -31,9 +31,24 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
             action = new AccountingJoinAction();
             try {forward = action.execute(request, response);} 
             catch (Exception e) {e.printStackTrace();}
-        //수입지출 리스트       
+        //전체 리스트       
         }else if(command.equals("/AccountingList.ac")) {
             action = new AccountingListAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
+        // 회비 리스트
+        }else if(command.equals("/AccountingAcaFee.ac")) {
+            action = new AccountingAcaFeeAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
+        // 수입 리스트
+        }else if(command.equals("/AccountingIncoming.ac")) {
+            action = new AccountingIncomingAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
+        // 지출 리스트
+        }else if(command.equals("/AccountingOutgoing.ac")) {
+            action = new AccountingOutgoingAction();
             try {forward = action.execute(request, response);} 
             catch (Exception e) {e.printStackTrace();}
         }
