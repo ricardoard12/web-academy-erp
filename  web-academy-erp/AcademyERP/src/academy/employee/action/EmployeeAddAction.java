@@ -20,7 +20,6 @@ public class EmployeeAddAction implements Action {
 		ActionForward forward = new ActionForward();
 		EmployeeBean employee = new EmployeeBean();
 		EmployeeDAO employeeDAO = new EmployeeDAO();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-DD-mm");
 		
 		employee.setMm_name(request.getParameter("mm_name")); // 이름
 		employee.setMm_id(request.getParameter("mm_id")); // 아이디 (직원 아이디도 동일)
