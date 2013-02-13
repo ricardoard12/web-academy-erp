@@ -81,14 +81,11 @@ public class AttitudeDAO {
 					pstmt.setString(1, rs.getString(1));
 					rs3 = pstmt.executeQuery();
 					
-					if (rs.next()) { // 메모(사유)가 있을 경우
-						attitude.setAt_memo(rs.getString("at_memo"));
+					if (rs3.next()) { // 메모(사유)가 있을 경우
+						attitude.setAt_memo(rs3.getString("at_memo"));
 					} 
 					
-					// 메모조차 없으면 전부 NULL로 설정됨
-//					attitude.setAt_open_time(rs.getDate("at_open_time")); // 출근시간 NULL
-//					attitude.setAt_close_time(rs.getDate("at_close_time")); // 퇴근시간 NULL
-//					attitude.setAt_memo(rs.getString(1)); // 메모 NULL
+					// 메모조차 없으면 전부 자동으로 NULL로 설정됨
 					
 					attitudeList.add(attitude);
 				}
