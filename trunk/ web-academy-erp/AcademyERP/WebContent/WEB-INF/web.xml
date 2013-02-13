@@ -83,7 +83,7 @@
 		<url-pattern>*.gp</url-pattern>
 	</servlet-mapping>
 
-		<servlet>
+	<servlet>
 		<servlet-name>RootFrontController</servlet-name>
 		<servlet-class>academy.root.action.RootFrontController</servlet-class>
 	</servlet>
@@ -91,14 +91,22 @@
 		<servlet-name>RootFrontController</servlet-name>
 		<url-pattern>*.ro</url-pattern>
 	</servlet-mapping>
-	
-			<servlet>
+
+	<servlet>
 		<servlet-name>AttitudeFrontController</servlet-name>
 		<servlet-class>academy.attitude.action.AttitudeFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AttitudeFrontController</servlet-name>
 		<url-pattern>*.at</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MainFrontController</servlet-name>
+		<servlet-class>academy.main.action.MainFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainFrontController</servlet-name>
+		<url-pattern>*.main</url-pattern>
 	</servlet-mapping>
 
 </web-app>
