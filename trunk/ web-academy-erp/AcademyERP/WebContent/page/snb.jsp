@@ -163,7 +163,7 @@
 		<li><a href="#"><span>수입현황</span></a></li>
 		<li><a href="#"><span>지출현황</span></a></li>
 		<li><a href="#"><span>계좌관리</span></a></li>
-		<li><a href="#"><span>전체조회</span></a></li>
+		<li><a href="./AccountingList.ac"><span>전체조회</span></a></li>
 		</ul>
 	</li>
 	<li><a href="#"><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
