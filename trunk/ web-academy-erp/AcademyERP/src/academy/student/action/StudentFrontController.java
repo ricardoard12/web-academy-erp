@@ -60,7 +60,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if( command.equals("/StudentAttitudeList.st")){ // 출석 현황
+        }else if(command.equals("/StudentAttitudeList.st")){ // 출석 현황
         	action = new StudentAttitudeListAction();
         	try {
 				forward = action.execute(request, response);
@@ -68,7 +68,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("StudentLeaveofabsenceList.st")){
+        }else if(command.equals("/StudentLeaveofabsenceList.st")){ //휴원생관리
         	action = new StudentLeaveofabsenceListAction();
         	try {
 				forward=action.execute(request, response);
@@ -76,8 +76,23 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				e.printStackTrace();
 				// TODO: handle exception
 			}
+        }else if(command.equals("/StudentReentrance.st")){ // 휴원생을 다시 재수강시킨다.
+        	action = new StudentReentranceAction();
+        	try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+        }else if(command.equals("/StudentExpel2.st")){  // 휴원생중 퇴출 시킬 사람을 퇴출 시킨다.
+        	action = new StudentExpel2Action();
+        	try {
+				forward =action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
         }
-        
         
         // 이동
         if (forward != null) {

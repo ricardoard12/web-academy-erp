@@ -21,12 +21,12 @@ public class StudentAttitudeListAction implements Action{
 		StudentDAO studentdao = new StudentDAO();
 		
 		List StudentAttitudeList = null;
-		StudentAttitudeList = studentdao.getStudentAttitudeList();
+		StudentAttitudeList = studentdao.getStudentAttitudeList();  //DB에서 출석 관련정보를 가져온다.
 		
-		request.setAttribute("StudentAttitudeList", StudentAttitudeList);
+		request.setAttribute("StudentAttitudeList", StudentAttitudeList); // 가지고온 StudentAttitudeList 정보를 넘긴다.
 		
 		forward.setRedirect(false);
-		forward.setPath("./student/student_attitude_list.jsp");
+		forward.setPath("./student/student_attitude_list.jsp");// student_attitude_list 폼으로 이동
 		return forward;
 	}
 

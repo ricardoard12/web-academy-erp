@@ -5,27 +5,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.student.db.StudentDAO;
 
-public class StudentLeaveofabsenceAction implements Action{
+public class StudentReentranceAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
 		String[] st_status = request.getParameterValues("st_status");
 		
 		ActionForward forward = new ActionForward();
 		
 		StudentDAO studentdao = new StudentDAO();
 		
-		studentdao.updateStudentLeaveofabsence(st_status); // 휴학생으로 업데이트 시킨다.
+		studentdao.updateStudentReentrance(st_status); //재수강학생을 업데이트 한다.
 		
 	
 		forward.setRedirect(true);
-		forward.setPath("./StudentListAction.st"); //StudentListAction으로 이동
+		forward.setPath("./StudentLeaveofabsenceList.st");// 휴원생관리로 넘어감
 		
 		return forward;
-		
 	}
 
 }
