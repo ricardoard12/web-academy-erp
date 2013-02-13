@@ -97,8 +97,8 @@
 	
 	<li> <!-- class="active" --> <a href="#"><span>원생관리</span><span class="i"></span></a>
 		<ul style="display:none;">
-		<li> <!-- class="active" --><a href="#"><span>신규등록</span></a></li>
-		<li><a href="./StudentJoin.st"><span>수강생관리</span></a></li>
+		<li> <!-- class="active" --><a href="./StudentJoin.st"><span>신규등록</span></a></li>
+		<li><a href="#"><span>수강생관리</span></a></li>
 		<li><a href="#"><span>휴원생관리</span></a></li>
 		<li><a href="#"><span>퇴원생관리</span></a></li>
 		
