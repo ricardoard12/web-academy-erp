@@ -47,7 +47,7 @@ public class StudentDAO {
 			pstmt.executeUpdate();
 			
 
-			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo) VALUES(?,?,?,?,?,?,?,?,?,?)";
+			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo,st_status) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, studentbean.getMm_id());  //회원이름 => // 회원ID(mm_id) 로 수정하세요
 			pstmt.setString(2,studentbean.getSt_school_name()); // 학교명
@@ -58,7 +58,8 @@ public class StudentDAO {
 			pstmt.setString(7,studentbean.getSt_parent_passwd()); // 학부모패스워드
 			pstmt.setInt(8,studentbean.getSt_tuition()); // 수강료
 			pstmt.setString(9,studentbean.getSt_tuition_state()); // 회비납부여부
-			pstmt.setString(10,studentbean.getSt_memo()); // 메모		
+			pstmt.setString(10,studentbean.getSt_memo()); // 메모
+			pstmt.setString(11, "재학");
 			pstmt.executeUpdate();
 					
 			
@@ -79,7 +80,7 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id";
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학'";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
@@ -108,5 +109,45 @@ public class StudentDAO {
     	
     	return studentList;
     	
+    }
+    public void updateStatusTaketimeoutst(String[] st_status){
+    	String sql="";
+    	try {
+			con=ds.getConnection();
+			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
+				sql="UPDATE student SET st_status = '휴학' WHERE mm_id =?"; //휴학처리
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, st_status[i]);
+				pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    }
+    public  void updateStatusExpel(String[] st_status){
+    	String sql="";
+    	try {
+			con=ds.getConnection();
+			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
+				sql="UPDATE student SET st_status = '퇴출' WHERE mm_id =?"; //휴학처리
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, st_status[i]);
+				pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
     }
 }
