@@ -33,6 +33,15 @@ public class StudentFrontController extends HttpServlet implements Servlet {
         	forward = new ActionForward();
         	forward.setRedirect(false);
         	forward.setPath("./student/join.jsp");
+        }else if(command.equals("/StudentListAction.st")){
+        	action= new StudentListAction();
+        	
+        	try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
         }
         
         // 이동
