@@ -3,6 +3,9 @@ package academy.board.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import academy.board.db.BoardBean;
 import academy.board.db.BoardDAO;
 
@@ -16,15 +19,18 @@ public class BoardAddAction implements Action {
 		BoardBean boardbean = new BoardBean();
 		BoardDAO boarddao = new BoardDAO();
 		ActionForward forward = new ActionForward();
-		String uploadfolder = "boardupload";
+		String uploadfolder = "./board/board_upload";
 		String realFolder = request.getRealPath(uploadfolder);
 		int fileSize = 5 * 1024 * 1024;
 		
-		try{						
-			boardbean.setBoard_name(request.getParameter("st_parent_id"));
-			boardbean.setBoard_pass(request.getParameter("st_parent_pass"));
-			boardbean.setBoard_content(request.getParameter("st_memo"));
-			boardbean.setBoard_subject(request.getParameter("temp_input"));
+		try{			
+			MultipartRequest multi = null;
+			multi=new MultipartRequest(request,realFolder,fileSize,"utf-8",new DefaultFileRenamePolicy());
+			boardbean.setBoard_name(multi.getParameter("board_name"));
+			boardbean.setBoard_pass(multi.getParameter("board_pass"));
+			boardbean.setBoard_content(multi.getParameter("board_content"));
+			boardbean.setBoard_subject(multi.getParameter("board_subject"));
+			boardbean.setBoard_file(multi.getFilesystemName("board_file"));
 			boarddao.boardinsert(boardbean);
 			forward.setRedirect(true);
 			forward.setPath("./BoardNotice.bo");
