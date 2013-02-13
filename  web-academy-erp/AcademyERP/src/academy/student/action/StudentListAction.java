@@ -23,12 +23,12 @@ public class StudentListAction implements Action{
 		
 		List studentList = null;
 		
-		studentList = studentdao.studentList();
+		studentList = studentdao.studentList(); //재학중인 학생을 조회한다.
 		
-		request.setAttribute("studentList", studentList);
+		request.setAttribute("studentList", studentList); // 조회한 학생을 저장한다.
 		
 		forward.setRedirect(false);
-		forward.setPath("./student/student_list.jsp");
+		forward.setPath("./student/student_list.jsp"); //student_list 폼으로 이동
 		
 		return forward;
 	}
