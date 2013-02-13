@@ -31,7 +31,7 @@
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./StudentJoinAction.st" method="post">
+				<form action="./BoardAddAction.bo" method="post">
 					<fieldset>
 						<legend>게시판 글쓰기</legend>
 						<div class="form_table">
@@ -63,7 +63,7 @@
 				<th scope="row">파일</th>
 				<td>
 					<div class="item">
-						<input name="" type="file" title="레이블 텍스트">
+						<input name="board_file" type="file" title="레이블 텍스트">
 					</div>
 				</td>
 				</tr>
