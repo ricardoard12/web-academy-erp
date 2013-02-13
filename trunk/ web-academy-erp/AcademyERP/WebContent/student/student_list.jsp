@@ -35,9 +35,9 @@
 	<!-- 학생 목록 시작 -->
 
 				<!-- UI Object -->
-				<table cellspacing="0" border="1" summary="직원리스트"
+				<table cellspacing="0" border="1" summary="원생 리스트"
 					class="tbl_type_list">
-					<caption>학생 목록</caption>
+					<caption>원생 목록</caption>
 					<colgroup>
 						<col width="12%">
 						<col>
@@ -79,7 +79,9 @@
 						<tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="submit" value="선택 삭제">
+									<input type="button" value="원생 등록">
+									<input type="button" value="원생 휴원">
+									<input type="button" value="원생 퇴출">
 								</div>
 						</tr>
 
