@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="../css/login.css" rel="stylesheet" type="text/css">
+<link href="./css/login.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
@@ -98,7 +98,7 @@
 	<li> <!-- class="active" --> <a href="#"><span>원생관리</span><span class="i"></span></a>
 		<ul style="display:none;">
 		<li> <!-- class="active" --><a href="#"><span>신규등록</span></a></li>
-		<li><a href="#"><span>수강생관리</span></a></li>
+		<li><a href="./StudentJoin.st"><span>수강생관리</span></a></li>
 		<li><a href="#"><span>휴원생관리</span></a></li>
 		<li><a href="#"><span>퇴원생관리</span></a></li>
 		
