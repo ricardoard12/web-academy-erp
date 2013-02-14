@@ -21,7 +21,7 @@ public class MasterDAO {
 	public MasterDAO() {
 		try {
 			Context init = new InitialContext();
-			ds = (DataSource) init.lookup("java:comp/env/jdbc/academy");
+			ds = (DataSource) init.lookup("java:comp/env/jdbc/aca");
 			System.out.println("Master DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class MasterDAO {
 		}
 		try {
 			con = ds.getConnection();
-			String sql = "select mm_id,mm_name,ep_position,ep_department,mm_manager,mm_level"
+			String sql = "select mm_id,mm_name,ep_position,ep_department,mm_manager_id,mm_level"
 					+ " from member,employee where mm_id=ep_id" + str;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -70,14 +70,13 @@ public class MasterDAO {
 	}
 
 	private List<String> insertLevellist() throws Exception {
-		List<String> list = new ArrayList();
-		int i = 1;
-		list.add(rs.getString(i++));
-		list.add(rs.getString(i++));
-		list.add(rs.getString(i++));
-		list.add(rs.getString(i++));
-		list.add(rs.getString(i++));
-		list.add(rs.getString(i++));
+		List<String> list = new ArrayList();		
+		list.add(rs.getString(1));
+		list.add(rs.getString(2));
+		list.add(rs.getString(3));
+		list.add(rs.getString(4));
+		list.add(rs.getString(5));
+		list.add(rs.getString(6));
 		return list;
 	}
 
