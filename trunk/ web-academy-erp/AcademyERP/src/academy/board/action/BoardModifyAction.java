@@ -28,7 +28,7 @@ public class BoardModifyAction implements Action{
 			PrintWriter out=response.getWriter();
 			out.println("<script>");
 			out.println("alert('수정할 권한이 없습니다');");
-			out.println("location.href='./BoardList.bo';");
+			out.println("location.href='./BoardNotice.bo';");
 			out.println("</script>");
 			out.close();
 			return null;
