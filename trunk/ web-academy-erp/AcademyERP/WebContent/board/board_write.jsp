@@ -99,7 +99,7 @@
 			<td align="left">
 				<div class="item">
 					<input type="submit"  value="글쓰기"> 
-					<input type="reset" name="" value="취소">
+					<input type="button" name="" value="취소" onclick="location.href='./BoardNotice.bo'">
 				</div>
 			</td>
 		</tr>
