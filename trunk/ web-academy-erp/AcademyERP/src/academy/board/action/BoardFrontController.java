@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public class BoardFrontController extends HttpServlet implements Servlet {
 
     @Override
@@ -41,6 +42,31 @@ public class BoardFrontController extends HttpServlet implements Servlet {
 			}
 		}else if(command.equals("/BoardDetailAction.bo")){
 			action = new BoardDetailAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardModify.bo")){
+			action=new BoardModifyView();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardModifyAction.bo")){
+			action=new BoardModifyAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardDelete.bo")){
+			forward=new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./board/board_delete.jsp");
+		}else if(command.equals("/BoardDeleteAction.bo")){
+			action=new BoardDeleteAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
