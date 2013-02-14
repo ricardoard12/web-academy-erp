@@ -207,16 +207,16 @@ public class BoardDAO {
 		}
 		return x;
 	}
-	public void boardModify(BoardBean boarddata) throws Exception{
+	public void boardModify(BoardBean boardbean) throws Exception{
 		String sql="";
 		try {
 			
 			con=ds.getConnection();
 			sql="update board set board_subject=?, board_content=? where board_num=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, boarddata.getBoard_subject());
-			pstmt.setString(2, boarddata.getBoard_content());
-			pstmt.setInt(3, boarddata.getBoard_num());
+			pstmt.setString(1, boardbean.getBoard_subject());
+			pstmt.setString(2, boardbean.getBoard_content());
+			pstmt.setInt(3, boardbean.getBoard_num());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -248,12 +248,12 @@ public class BoardDAO {
 		}
 		return x;
 	}
-	public int boardReply(BoardBean boarddata){
+	public int boardReply(BoardBean boardbean){
 		String sql="";
 		int x=0;
-		int ref=boarddata.getBoard_re_ref();
-		int lev=boarddata.getBoard_re_lev();
-		int seq=boarddata.getBoard_re_seq();
+		int ref=boardbean.getBoard_re_ref();
+		int lev=boardbean.getBoard_re_lev();
+		int seq=boardbean.getBoard_re_seq();
 		int num=0;
 		try {
 			
@@ -281,17 +281,17 @@ public class BoardDAO {
 			sql="insert into board values(?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, boarddata.getBoard_name());
-			pstmt.setString(3, boarddata.getBoard_pass());
-			pstmt.setString(4, boarddata.getBoard_subject());
-			pstmt.setString(5, boarddata.getBoard_content());
+			pstmt.setString(2, boardbean.getBoard_name());
+			pstmt.setString(3, boardbean.getBoard_pass());
+			pstmt.setString(4, boardbean.getBoard_subject());
+			pstmt.setString(5, boardbean.getBoard_content());
 			pstmt.setString(6, "");
 			pstmt.setInt(7, ref);
 			pstmt.setInt(8, lev);
 			pstmt.setInt(9, seq);
 			pstmt.setInt(10, 0);
 			pstmt.executeUpdate();
-			x=num;
+			x = num;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
