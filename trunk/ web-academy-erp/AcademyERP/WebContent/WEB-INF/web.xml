@@ -100,6 +100,7 @@
 		<servlet-name>AttitudeFrontController</servlet-name>
 		<url-pattern>*.at</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>MainFrontController</servlet-name>
 		<servlet-class>academy.main.action.MainFrontController</servlet-class>
@@ -108,5 +109,13 @@
 		<servlet-name>MainFrontController</servlet-name>
 		<url-pattern>*.main</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>MasterFrontController</servlet-name>
+		<servlet-class>academy.master.action.MasterFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MasterFrontController</servlet-name>
+		<url-pattern>*.master</url-pattern>
+	</servlet-mapping>
 </web-app>
