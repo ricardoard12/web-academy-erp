@@ -57,7 +57,12 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
                 action = new AccountingDeleteAction();
                 try {forward = action.execute(request, response);} 
                 catch (Exception e) {e.printStackTrace();}
-            }
+        // 날짜 검색 리스트
+        }else if(command.equals("/AccountingDateSearch.ac")) {
+            action = new AccountingDateSearchAction();
+            try {forward = action.execute(request, response);} 
+            catch (Exception e) {e.printStackTrace();}
+        }
         
         // 이동
         if (forward != null) {
