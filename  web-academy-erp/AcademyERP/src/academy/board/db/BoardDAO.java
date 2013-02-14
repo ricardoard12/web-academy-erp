@@ -179,7 +179,7 @@ public class BoardDAO {
 		}
 		return boardbean;
 	}
-	public boolean isBoardWriter(int num,String passwd){
+	public boolean isBoardWriter(int num , String passwd){
 		String sql="";
 		boolean x=false;
 		try {
