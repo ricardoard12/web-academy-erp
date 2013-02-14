@@ -52,6 +52,7 @@
 								<td colspan="8" align="left">
 									<div class="item">
 										<input type="text" name="date"> 
+										<input type="button" value="검색" onclick="CheckDate()">
 										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 									</div>

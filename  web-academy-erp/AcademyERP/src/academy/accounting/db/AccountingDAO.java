@@ -97,6 +97,38 @@ public class AccountingDAO {
         return acList;
     }
     
+    //날짜검색 리스트
+    public List acSearchList(String date){
+        String sql="";
+        List searchlist = null;
+        AccountingBean acBean = null;
+        try {
+            con=ds.getConnection();
+            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
+                    "where ac_date = ? order by ac_id desc";
+            pstmt=con.prepareStatement(sql);
+            pstmt.setString(1, date);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                searchlist = new ArrayList();
+                do{
+                    acBean = new AccountingBean();
+                    acBean.setAc_id(rs.getString("ac_id"));
+                    acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setAc_price(rs.getInt("ac_price"));
+                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
+                    acBean.setAc_io_type(rs.getString("ac_io_type"));
+                    acBean.setAc_date(rs.getDate("ac_date"));
+                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
+                    acBean.setAc_memo(rs.getString("ac_memo"));
+                    
+                    searchlist.add(acBean);
+                }while(rs.next());
+            }            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return searchlist;
+    }
+    
     //회비리스트
     public List acfeeGetList(){
         String sql="";
