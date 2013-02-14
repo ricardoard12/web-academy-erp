@@ -23,9 +23,9 @@ public class StudentJoinAction implements Action{
 			studentbean.setMm_pw(request.getParameter("mm_pw")); //회원비번
 			studentbean.setMm_jumin1(request.getParameter("mm_jumin1")); //주민앞
 			studentbean.setMm_jumin2(request.getParameter("mm_jumin2")); // 주민뒤
-			studentbean.setMm_tel(request.getParameter("mm_telDDD")+request.getParameter("mm_tel")); //회원전화번호 
-			studentbean.setMm_phone(request.getParameter("mm_phoneDDD")+request.getParameter("mm_phone")); //회원핸드폰번호
-			studentbean.setMm_zipcode(request.getParameter("mm_zipcode1")+request.getParameter("mm_zipcode2")); //회원우편번호
+			studentbean.setMm_tel(request.getParameter("mm_telDDD")+"-"+request.getParameter("mm_tel1")+"-"+request.getParameter("mm_tel2")); //회원전화번호 
+			studentbean.setMm_phone(request.getParameter("mm_phoneDDD")+"-"+request.getParameter("mm_phone1")+"-"+request.getParameter("mm_phone2")); //회원핸드폰번호
+			studentbean.setMm_zipcode(request.getParameter("mm_zipcode1")+"-"+request.getParameter("mm_zipcode2")); //회원우편번호
 			studentbean.setMm_addr1(request.getParameter("mm_addr1"));  //회원주소
 			studentbean.setMm_addr2(request.getParameter("mm_addr2"));  //상세주소    
 			studentbean.setMm_email(request.getParameter("mm_email1")+"@"+request.getParameter("mm_email2")); //회원이메일
@@ -35,7 +35,7 @@ public class StudentJoinAction implements Action{
 			studentbean.setSt_school_name(request.getParameter("st_school_name")); //학교명
 			studentbean.setSt_school_grade(request.getParameter("st_school_grade")); //학년
 			studentbean.setSt_parent_name(request.getParameter("st_parent_name")); //학부모이름
-			studentbean.setSt_parent_mobile(request.getParameter("st_parent_mobileDDD")+request.getParameter("st_parent_mobile"));//학부모연락처 
+			studentbean.setSt_parent_mobile(request.getParameter("st_parent_mobileDDD")+"-"+request.getParameter("st_parent_mobile1")+"-"+request.getParameter("st_parent_mobile2"));//학부모연락처 
 			studentbean.setSt_parent_id(request.getParameter("st_parent_id")); //학부도아이디
 			studentbean.setSt_parent_passwd(request.getParameter("st_parent_passwd")); //학부모패스워드
 			studentbean.setSt_tuition(Integer.parseInt(request.getParameter("st_tuition"))); //수강료
@@ -49,7 +49,7 @@ public class StudentJoinAction implements Action{
 			//System.out.println("성공");
 			
 			forward.setRedirect(true);
-			forward.setPath("./StudentListAction.st");
+			forward.setPath("./StudentList.st");
 		return forward;
 	}
 
