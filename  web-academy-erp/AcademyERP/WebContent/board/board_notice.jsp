@@ -79,32 +79,8 @@
     }
     		%>
 
-    		<%
-    		//답글 추가시
-     if(boardbean.getBoard_re_lev()>0){
-    	 for(int a=0;a<=boardbean.getBoard_re_lev()*2;a++){
-    		 %>
-    		<tr class="reply">
-			<td class="frm"><input type="checkbox" name="" id="chk_sel3" value=""><label for="chk_sel3">선택</label></td>
-			<td class="num">&nbsp;</td>
-			<td class="title" style="padding-left:20px;"><a href="#"><%=boardbean.getBoard_subject() %></a></td>
-			<td><a href="#"><%=boardbean.getBoard_name() %></a></td>
-			<td class="date"><%=boardbean.getBoard_date() %></td>
-			<td class="hit"><%=boardbean.getBoard_readcount() %></td>
-			</tr>
-    		 
-<%
-    	 }
-     }
-     %>
-<tr>
-<td class="frm"><input type="checkbox" name="" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
-<td class="num">10</td>
-<td class="title"><a href="#">제목</a></td>
-<td><a href="#"><%=boardbean.getBoard_name() %></a></td>
-<td class="date"><%=boardbean.getBoard_date() %></td>
-<td class="hit"><%=boardbean.getBoard_readcount() %></td>
-</tr>
+    	
+
 <!-- <tr class="reply"> -->
 <!-- <td class="frm"><input type="checkbox" name="" id="chk_sel2" value=""><label for="chk_sel2">선택</label></td> -->
 <!-- <td class="num">&nbsp;</td> -->
@@ -113,14 +89,7 @@
 <!-- <td class="date">2008/02/14</td> -->
 <!-- <td class="hit">1234</td> -->
 <!-- </tr> -->
-<!-- <tr class="reply"> -->
-<!-- <td class="frm"><input type="checkbox" name="" id="chk_sel3" value=""><label for="chk_sel3">선택</label></td> -->
-<!-- <td class="num">&nbsp;</td> -->
-<!-- <td class="title" style="padding-left:20px;"><a href="#">블로그 개편 답글</a></td> -->
-<!-- <td><a href="#">네이버맨</a></td> -->
-<!-- <td class="date">2008/02/14</td> -->
-<!-- <td class="hit">1234</td> -->
-<!-- </tr> -->
+
 </tbody>
 </table>
 <div align="right">
