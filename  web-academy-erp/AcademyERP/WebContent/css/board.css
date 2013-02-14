@@ -14,7 +14,21 @@
 .tbl_type_notice tr.reply .title a{padding-left:12px;background:url(img/ic_reply.gif) 0 1px no-repeat}
 .tbl_type_notice tr.reply td a.comment{padding:0;background:none;color:#f00;font-size:12px;font-weight:bold}
 /* //notice */
+
+/* //reply */
+.tbl_type_reply{width:100%;margin-top:15px;border-top:1px solid #999;border-bottom:1px solid #999;color:#666;font-size:12px;table-layout:fixed}
+.tbl_type_reply,.tbl_type_reply th,.tbl_type_reply td{border:0}
+.tbl_type_reply caption{display:none}
+.tbl_type_reply td{padding:5px 0 3px 10px;line-height:1.4em;text-align:left}
+.tbl_type_reply .input_txt td{padding:5px 0 5px 10px;border-bottom:solid 1px #d2d2d2}
+.tbl_type_reply .input_txt td input,.tbl_type_reply .input_txt td textarea{vertical-align:middle}
+.tbl_type_reply .input_txt input.name{width:100px;padding:2px 0 1px;border:solid 1px #d2d2d2}
+.tbl_type_reply .input_txt textarea.comment{width:80%;height:14px;padding:2px 0 1px;border:solid 1px #d2d2d2}
+.tbl_type_reply .input_txt input.submit{width:60px;border:solid 1px #666;background-color:#f2f2f2;font-family:'돋움';font-size:12px;line-height:normal}
+/* //replyt */
+
 /**/
+
 /* list */
 .tbl_type_list_list,.tbl_type_list th,.tbl_type_list td{border:0}
 .tbl_type_list{width:100%;border-bottom:2px solid #dcdcdc;font-family:Tahoma;font-size:11px;text-align:center}

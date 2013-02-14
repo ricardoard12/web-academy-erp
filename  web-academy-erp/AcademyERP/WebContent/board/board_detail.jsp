@@ -32,7 +32,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
         <div id="content">
         
 <!-- detail 게시판 시작 -->
-<table cellspacing="0" border="1" summary="글 내용을 표시" class="tbl_type">
+<table cellspacing="0" border="1" summary="글 내용을 표시" class="tbl_type_notice">
 <caption>글 읽기</caption>
 <colgroup>
 <col width="80"><col><col width="80">
@@ -67,10 +67,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 
 </div>
 <br>
-<form name="" action="method">
-<fieldset>
-<legend>코멘트 영역</legend>
-	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type2">
+	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>
 	<colgroup>
 	<col width="110">
@@ -93,8 +90,6 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 	</tr>
 	</tbody>
 	</table>
-</fieldset>
-</form>
             
 <!-- //dtail 게시판 끝 -->
             
