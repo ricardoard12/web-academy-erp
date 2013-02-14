@@ -28,7 +28,6 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 				e.printStackTrace();
 			}
 		}
-
 		// 이동
 		if (forward != null) {
 			if (forward.isRedirect()) {
