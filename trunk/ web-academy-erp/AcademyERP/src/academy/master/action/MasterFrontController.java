@@ -20,7 +20,7 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 		String command = requestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-		if (command.equals("/LevelListAction.master")) {
+		if (command.equals("/LevelList.master")) {
 			action = new LevelListAction();
 			try {
 				forward = action.execute(request, response);
