@@ -1,5 +1,7 @@
 package academy.accounting.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,10 +18,12 @@ public class AccountingDateSearchAction implements Action{
         //체크값 받아오기
         String date = request.getParameter("date");
         
-        System.out.println(date);
-        /*acDao.acSearchList(date);*/
+        List searchlist = acDao.acSearchList(date);
         
-        forward.setRedirect(false);
+        //acList로 날려서 리스트에서 중복 작업을 피하기 위해서 변경
+        request.setAttribute("acList", searchlist);
+        //주소값 없애기 위해
+        forward.setRedirect(true);
         forward.setPath("./AccountingList.ac");
         return forward;
     }
