@@ -51,7 +51,7 @@
 				<!-- 직원 목록 시작 -->
 
 				<!-- UI Object -->
-				<form action="./EmployeeDeleteAction.em" method="get"
+				<form action="./EmployeeOutgoingAction.em" method="get"
 					name="employeeListForm" onsubmit="return checkForm()">
 					<table cellspacing="0" border="1" summary="직원리스트"
 						class="tbl_type_list">
