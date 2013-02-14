@@ -100,7 +100,7 @@
 <!-- Paginate -->
 
 
-<div class="paginate_complex">
+<div class="paginate_complex" align="center">
 <%
 if(nowpage<=1){
 	%>
