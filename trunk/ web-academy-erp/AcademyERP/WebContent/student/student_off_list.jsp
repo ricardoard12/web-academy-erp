@@ -13,19 +13,19 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function reentrance(){     
+function In(){     
     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentReentrance.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentIn.st";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
 }
-function expel(){     
+function Out(){     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentExpel2.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentOut.st?check=2";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
@@ -77,9 +77,9 @@ function expel(){
 					</thead>
 					<tbody>
 					<%
-							List LeaveofabsenceList = (List)request.getAttribute("LeaveofabsenceList");
-							for(int i = 0; i< LeaveofabsenceList.size(); i++){
-							StudentBean studentBean = (StudentBean)LeaveofabsenceList.get(i);
+							List StudentOffList = (List)request.getAttribute("StudentOffList");
+							for(int i = 0; i< StudentOffList.size(); i++){
+							StudentBean studentBean = (StudentBean)StudentOffList.get(i);
 							
 					%>
 						<tr>
@@ -100,8 +100,8 @@ function expel(){
 						<tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="button" value="원생 재등록"  onclick="reentrance()">
-									<input type="button" value="원생 퇴출" onclick="expel()">
+									<input type="button" value="원생 재등록"  onclick="In()">
+									<input type="button" value="원생 퇴출" onclick="Out()">
 								</div>
 						</tr>
 

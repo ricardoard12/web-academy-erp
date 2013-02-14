@@ -13,20 +13,20 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function Leaveofabsence(){     
+function Off(){     
     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentLeaveofabsence.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentOff.st";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
 }
-function expel(){     
+function Out(){     
     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentExpel.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentOut.st?check=1";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
@@ -61,9 +61,9 @@ function expel(){
 					class="tbl_type_list">
 					<caption>원생 목록</caption>
 					<colgroup>
-						<col width="14%">
+						<col width="12%">
 						<col>
-						<col width="14%" span="7">
+						<col width="12%" span="7">
 					</colgroup>
 					<thead>
 						<tr>
@@ -102,8 +102,8 @@ function expel(){
 							<td align="center" colspan="7">
 								<div class="item">
 									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
-									<input type="button" value="원생 휴원" onclick="Leaveofabsence()">
-									<input type="button" value="원생 퇴출" onclick="expel()">
+									<input type="button" value="원생 휴원" onclick="Off()">
+									<input type="button" value="원생 퇴출" onclick="Out()">
 								</div>
 						</tr>
 
