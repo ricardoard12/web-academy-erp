@@ -28,7 +28,7 @@ public class BoardDAO {
 	}//생성자	
 	
 	
-	public void boardinsert(BoardBean board){
+	public void boardinsert(BoardBean boardbean){
 		int num=0;
 		String sql="";
 		try {
@@ -45,11 +45,11 @@ public class BoardDAO {
 			sql="insert into board(board_num , board_name, board_pass, board_subject , board_content, board_file, board_re_ref , board_re_lev, board_re_seq, board_readcount, board_date) values(?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, board.getBoard_name());
-			pstmt.setString(3, board.getBoard_pass());
-			pstmt.setString(4, board.getBoard_subject());
-			pstmt.setString(5, board.getBoard_content());
-			pstmt.setString(6, board.getBoard_file());
+			pstmt.setString(2, boardbean.getBoard_name());
+			pstmt.setString(3, boardbean.getBoard_pass());
+			pstmt.setString(4, boardbean.getBoard_subject());
+			pstmt.setString(5, boardbean.getBoard_content());
+			pstmt.setString(6, boardbean.getBoard_file());
 			pstmt.setInt(7, num);
 			pstmt.setInt(8, 0);
 			pstmt.setInt(9, 0);
@@ -103,18 +103,18 @@ public class BoardDAO {
 			if(rs.next()){
 				list=new ArrayList(limit);
 				do{
-					BoardBean board=new BoardBean();
-					board.setBoard_num(rs.getInt("board_num"));
-					board.setBoard_name(rs.getString("board_name"));
-					board.setBoard_subject(rs.getString("board_subject"));
-					board.setBoard_content(rs.getString("board_content"));
-					board.setBoard_file(rs.getString("board_file"));
-					board.setBoard_re_ref(rs.getInt("board_re_ref"));
-					board.setBoard_re_lev(rs.getInt("board_re_lev"));
-					board.setBoard_re_seq(rs.getInt("board_re_seq"));
-					board.setBoard_readcount(rs.getInt("board_readcount"));
-					board.setBoard_date(rs.getDate("board_date"));
-					list.add(board); 
+					BoardBean boardbean=new BoardBean();
+					boardbean.setBoard_num(rs.getInt("board_num"));
+					boardbean.setBoard_name(rs.getString("board_name"));
+					boardbean.setBoard_subject(rs.getString("board_subject"));
+					boardbean.setBoard_content(rs.getString("board_content"));
+					boardbean.setBoard_file(rs.getString("board_file"));
+					boardbean.setBoard_re_ref(rs.getInt("board_re_ref"));
+					boardbean.setBoard_re_lev(rs.getInt("board_re_lev"));
+					boardbean.setBoard_re_seq(rs.getInt("board_re_seq"));
+					boardbean.setBoard_readcount(rs.getInt("board_readcount"));
+					boardbean.setBoard_date(rs.getDate("board_date"));
+					list.add(boardbean); 
 				}while(rs.next());
 			}
 		} catch (Exception e) {
@@ -147,7 +147,7 @@ public class BoardDAO {
 	}
 	public BoardBean getDetail(int num) throws Exception{
 		String sql="";
-		BoardBean board=null;
+		BoardBean boardbean=null;
 		try {
 			
 			con=ds.getConnection();
@@ -158,17 +158,17 @@ public class BoardDAO {
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()){
-				board=new BoardBean();
-				board.setBoard_num(rs.getInt("board_num"));
-				board.setBoard_name(rs.getString("board_name"));
-				board.setBoard_subject(rs.getString("board_subject"));
-				board.setBoard_content(rs.getString("board_content"));
-				board.setBoard_file(rs.getString("board_file"));
-				board.setBoard_re_ref(rs.getInt("board_re_ref"));
-				board.setBoard_re_lev(rs.getInt("board_re_lev"));
-				board.setBoard_re_seq(rs.getInt("board_re_seq"));
-				board.setBoard_readcount(rs.getInt("board_readcount"));
-				board.setBoard_date(rs.getDate("board_date"));
+				boardbean = new BoardBean();
+				boardbean.setBoard_num(rs.getInt("board_num"));
+				boardbean.setBoard_name(rs.getString("board_name"));
+				boardbean.setBoard_subject(rs.getString("board_subject"));
+				boardbean.setBoard_content(rs.getString("board_content"));
+				boardbean.setBoard_file(rs.getString("board_file"));
+				boardbean.setBoard_re_ref(rs.getInt("board_re_ref"));
+				boardbean.setBoard_re_lev(rs.getInt("board_re_lev"));
+				boardbean.setBoard_re_seq(rs.getInt("board_re_seq"));
+				boardbean.setBoard_readcount(rs.getInt("board_readcount"));
+				boardbean.setBoard_date(rs.getDate("board_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,7 +177,7 @@ public class BoardDAO {
 			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
-		return board;
+		return boardbean;
 	}
 	public boolean isBoardWriter(int num,String passwd){
 		String sql="";
