@@ -35,9 +35,11 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./BoardAddAction.bo" method="post" enctype="multipart/form-data">
+				<form action="./BoardModifyAction.bo" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="board_num" value="<%=boardbean.getBoard_num()%>">
+				
 					<fieldset>
-						<legend>게시판 글쓰기</legend>
+						<legend>게시판 수정</legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
 								<tbody>
@@ -103,7 +105,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 			<td></td>
 			<td align="left">
 				<div class="item">
-					<input type="submit"  value="글쓰기"> 
+					<input type="submit"  value="수정"> 
 					<input type="button" name="" value="취소" onclick="location.href='./BoardNotice.bo'">
 				</div>
 			</td>
