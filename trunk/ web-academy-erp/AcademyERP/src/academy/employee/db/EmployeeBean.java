@@ -16,7 +16,7 @@ public class EmployeeBean {
     private String mm_addr2;  //'회원 상세 주소',  
     private String mm_email;  //'회원 이메일',
     private Date mm_reg_date;  //회원 등록일',
-    private int mm_level;  //'등급',
+    private String mm_level;  //'등급',
     private String mm_manager_id;  //'매니저아이디',
     
     // 직원 단독 항목
@@ -102,11 +102,14 @@ public class EmployeeBean {
     public void setMm_reg_date(Date mm_reg_date) {
         this.mm_reg_date = mm_reg_date;
     }
-    public int getMm_level() {
+    public String getMm_level() {
         return mm_level;
     }
-    public void setMm_level(int mm_level) {
+    public void setMm_level(String mm_level) {
         this.mm_level = mm_level;
+    }
+    public void setMm_level(int mm_level) {
+        this.mm_level = mm_level + "";
     }
     public String getMm_manager_id() {
         return mm_manager_id;

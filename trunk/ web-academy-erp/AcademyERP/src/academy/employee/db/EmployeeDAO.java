@@ -66,7 +66,7 @@ public class EmployeeDAO {
 			pstmt.setString(9, employee.getMm_addr2());
 			pstmt.setString(10, employee.getMm_zipcode());
 			pstmt.setString(11, employee.getMm_email());
-			pstmt.setInt(12, employee.getMm_level());
+			pstmt.setString(12, employee.getMm_level());
 			pstmt.setString(13, employee.getMm_manager_id());
 			pstmt.executeUpdate();
 
@@ -163,7 +163,7 @@ public class EmployeeDAO {
     			member.setMm_zipcode(rs.getString("mm_zipcode"));
     			member.setMm_email(rs.getString("mm_email"));
     			member.setMm_reg_date(rs.getDate("mm_reg_date"));
-    			member.setMm_level(rs.getInt("mm_level"));
+    			member.setMm_level(rs.getString("mm_level"));
     			member.setMm_manager_id(rs.getString("mm_manager_id"));
     			
     			employee.setEp_position(rs.getString("ep_position"));
