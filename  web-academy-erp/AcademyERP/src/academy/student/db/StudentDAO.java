@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -126,7 +127,7 @@ public class StudentDAO {
     	return studentList;
     	
     }
-    public void updateStudentLeaveofabsence(String[] st_status){
+    public void updateStudentOff(String[] st_status){
     	String sql="";
     	try {
 			con=ds.getConnection();
@@ -146,7 +147,7 @@ public class StudentDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     }
-    public  void updateStatusExpel(String[] st_status){
+    public  void updatestudentOut(String[] st_status){
     	String sql="";
     	try {
 			con=ds.getConnection();
@@ -231,9 +232,9 @@ public class StudentDAO {
 		}
 		return SutdentAttitudeList;
 	}
-    public List getLeaveofabsenceList(){
+    public List getStudentOffList(){
 		String sql="";
-    	List<StudentBean> leaveofabsenceList = null;
+    	List<StudentBean> StudentOffList = null;
     	
     	try {
 			con = ds.getConnection();
@@ -244,7 +245,7 @@ public class StudentDAO {
 			
 			
 			if(rs.next()){ // 값을 가지고 있을경우 저장
-				leaveofabsenceList = new ArrayList();
+				StudentOffList = new ArrayList();
 				do{
 					StudentBean studentbean = new StudentBean();
 					studentbean.setMm_name(rs.getString("mm_name"));
@@ -254,7 +255,7 @@ public class StudentDAO {
 					studentbean.setGp_id(rs.getString("gp_id"));
 					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
 					studentbean.setSt_status(rs.getString("st_status"));
-					leaveofabsenceList.add(studentbean);
+					StudentOffList.add(studentbean);
 				}while(rs.next());
 			}
 			
@@ -267,11 +268,11 @@ public class StudentDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     	
-    	return leaveofabsenceList;
+    	return StudentOffList;
     	
     }
     
-    public  void updateStudentReentrance(String[] st_status){
+    public  void updateStudentIn(String[] st_status){
     	String sql="";
     	try {
 			con=ds.getConnection();
@@ -290,5 +291,64 @@ public class StudentDAO {
 			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
-    } 
+    }
+    
+    /**
+     * @param id
+     * @return
+     */
+    public StudentBean getStudentDetail(String id){
+		StudentBean studentbean = null;
+    	String sql="";
+    	
+    	try {
+			con= ds.getConnection();
+			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1," +
+					"m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name," +
+					"s.st_school_grade,s.gp_id,s.st_parent_id,s.st_parent_name,s.st_tuition," +
+					"s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id " +
+					"FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()){
+				studentbean = new StudentBean();
+				studentbean.setMm_id(rs.getString("mm_id"));
+				studentbean.setMm_name(rs.getString("mm_name"));
+				studentbean.setMm_jumin1(rs.getString("mm_jumin1"));
+				studentbean.setMm_jumin2(rs.getString("mm_jumin2"));
+				studentbean.setMm_tel(rs.getString("mm_tel"));
+				studentbean.setMm_phone(rs.getString("mm_phone"));
+				studentbean.setMm_addr1(rs.getString("mm_addr1"));
+				studentbean.setMm_addr2(rs.getString("mm_addr2"));
+				studentbean.setMm_zipcode(rs.getString("mm_zipcode"));
+				studentbean.setMm_email(rs.getString("mm_email"));
+				studentbean.setGp_id(rs.getString("gp_id"));
+				studentbean.setSt_school_name(rs.getString("st_school_name"));
+				studentbean.setSt_school_grade(rs.getString("st_school_grade"));
+				studentbean.setSt_parent_id(rs.getString("st_parent_id"));
+				studentbean.setSt_parent_name(rs.getString("st_parent_name"));
+				studentbean.setSt_tuition(rs.getInt("st_tuition"));
+				studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
+				studentbean.setSt_memo(rs.getString("st_memo"));
+				studentbean.setSt_status(rs.getString("st_status"));
+				studentbean.setSt_parent_mobile(rs.getString("st_parent_mobile"));
+				studentbean.setMm_level(rs.getInt("mm_level"));
+				studentbean.setMm_manager_id(rs.getString("mm_manager_id"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+		
+    	return studentbean;
+    	
+    }
 }
