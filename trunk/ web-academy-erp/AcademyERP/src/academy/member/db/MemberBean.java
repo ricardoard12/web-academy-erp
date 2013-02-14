@@ -15,7 +15,7 @@ public class MemberBean {
     private String mm_zipcode;
     private String mm_email;
     private Date mm_reg_date;
-    private int mm_level;
+    private String mm_level;
     private String mm_manager_id;
     public String getMm_name() {
         return mm_name;
@@ -89,10 +89,10 @@ public class MemberBean {
     public void setMm_reg_date(Date mm_reg_date) {
         this.mm_reg_date = mm_reg_date;
     }
-    public int getMm_level() {
+    public String getMm_level() {
         return mm_level;
     }
-    public void setMm_level(int mm_level) {
+    public void setMm_level(String mm_level) {
         this.mm_level = mm_level;
     }
     public String getMm_manager_id() {
