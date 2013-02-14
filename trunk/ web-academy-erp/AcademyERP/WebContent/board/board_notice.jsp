@@ -102,54 +102,42 @@
 
 
 
-<!-- Paginate -->
-<!-- <div class="paginate">
-	<a href="#" class="pre_end">맨앞</a>
-	<a href="#" class="pre">이전</a>
-	<a href="#">11</a>
-	<strong>12</strong>
-	<a href="#">13</a>
-	<a href="#">14</a>
-	<a href="#">15</a>
-	<a href="#">16</a>
-	<a href="#">17</a>
-	<a href="#">18</a>
-	<a href="#">19</a>
-	<a href="#">20</a>
-	<a href="#" class="next">다음</a>
-	<a href="#" class="next_end">맨뒤</a>
-</div> -->
+
 
 <div align="right">
 <input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'">
 <input type="button" name="board_delete" value="삭제" onclick="loaction.href='./BoardDelete.bo?num=<%=boardbean.getBoard_num()%>'">
 </div>
-<div align="center">
+
+<!-- Paginate -->
+
+
+<div class="paginate_complex">
 <%
 if(nowpage<=1){
 	%>
-	[이전]
+	<a href="#" class="direction prev"><span></span><span></span>처음</a>
 	<%
 }else{
 	%>
-	<a href="./BoardNotice.bo?page=<%=nowpage-1%>">[이전]</a>
+	<a href="./BoardNotice.bo?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
 <%
 for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
-		%>[<%=a %>]&nbsp;<%
+		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./BoardNotice.bo?page=<%=a%>">[<%=a %>]&nbsp;</a><%
+		%><a href="./BoardNotice.bo?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
 <%
 if(nowpage>=maxpage){
-	%>[다음]<%
+	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./BoardNotice.bo?page=<%=nowpage+1%>">[다음]</a><%
+	%><a href="./BoardNotice.bo?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>
