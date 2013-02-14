@@ -335,7 +335,7 @@ public class StudentDAO {
 				studentbean.setSt_memo(rs.getString("st_memo"));
 				studentbean.setSt_status(rs.getString("st_status"));
 				studentbean.setSt_parent_mobile(rs.getString("st_parent_mobile"));
-				studentbean.setMm_level(rs.getInt("mm_level"));
+				studentbean.setMm_level_id(rs.getInt("mm_level"));
 				studentbean.setMm_manager_id(rs.getString("mm_manager_id"));
 			}
 			
