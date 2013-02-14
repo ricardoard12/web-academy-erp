@@ -13,7 +13,7 @@ public class LevelListAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("findname");
 		System.out.println("LevelListAction");
 		/*
