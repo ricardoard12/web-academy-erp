@@ -52,10 +52,12 @@
 						<tr>
 							<th scope="col">선택</th>
 							<th scope="col">ID</th>
-							<th scope="col">이름</th>
-							<th scope="col">사수</th>
-							<th scope="col">부서</th>
+							<th scope="col">이름</th>					
 							<th scope="col">직책</th>
+							<th scope="col">부서</th>
+							<th scope="col">사수</th>
+							<th scope="col">현재 권한</th>
+							<th></th>
 							<th scope="col">권한변경</th>
 						</tr>
 					</thead>
@@ -68,18 +70,19 @@
 							<td><input name="masterchklist" type="checkbox" value=""
 								id="a1" class="i_check"><label for="a1"></label></td>
 							<%
-								int j = 1;
 							%>
-							<td><%=list.get(j++)%></td>
-							<td><%=list.get(j++)%></td>
-							<td><%=list.get(j++)%></td>
-							<td><%=list.get(j++)%></td>
-							<td><%=list.get(j++)%></td>
+							<td><%=list.get(0)%></td>
+							<td><%=list.get(1)%></td>
+							<td><%=list.get(2)%></td>
+							<td><%=list.get(3)%></td>
+							<td><%=list.get(4)%></td>
+							<td><%=list.get(5) %></td>
+							<td>───▷</td>
 							<td><select>
 									<option>권한 레벨 선택</option>
-									<option <%if (list.get(j).equals("3")) {%> selected <%}%>>3</option>
-									<option <%if (list.get(j).equals("4")) {%> selected <%}%>>4</option>
-									<option <%if (list.get(j).equals("5")) {%> selected <%}%>>5</option>
+									<option <%if (list.get(5).equals("3")) {%> selected <%}%>>3(일반)</option>
+									<option <%if (list.get(5).equals("4")) {%> selected <%}%>>4(팀장)</option>
+									<option <%if (list.get(5).equals("5")) {%> selected <%}%>>5(최고관리자)</option>
 							</select></td>
 						</tr>
 						<%
@@ -87,14 +90,14 @@
 						%>
 						<!-- 버튼 -->
 						<tr align="right">
-							<td align="center" colspan="7">
+							<td align="center" colspan="9">
 								<div class="item">
 									<input type="submit" value="저장하기"><input type="button"
 										value="뒤로 가기" onclick="history.back()">
 								</div>
 						</tr>
 						<tr>
-							<td align="center" colspan="7">
+							<td align="center" colspan="9">
 								<form action="./EmpListAction.em">
 									<div class="item">
 										<input type="text"><input type="submit">
