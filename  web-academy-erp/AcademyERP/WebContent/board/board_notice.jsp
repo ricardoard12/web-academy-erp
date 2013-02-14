@@ -65,7 +65,7 @@
     		boardbean=(BoardBean)boardList.get(i);
     		%>
     		<tr>
-    		<td class="frm"><input type="checkbox" name="board_check" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
+    		<td class="frm"><input type="checkbox" name="board_check" id="chk_sel" value="<%=boardbean.getBoard_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=boardbean.getBoard_num() %></td>
     		<td class="title"><a href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>"><%=boardbean.getBoard_subject() %></a></td>
     		<td><a href="#"><%=boardbean.getBoard_name() %></a></td>

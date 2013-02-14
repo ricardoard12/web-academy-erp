@@ -62,9 +62,9 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 </table>
 <!-- 수정 / 삭제 -->
 <br>
-<div align="left">
+<div align="center">
 <input type="button" name="board_modify" value="수정" onclick="location.href='BoardModify.bo?num=<%=boardbean.getBoard_num()%>'">
-
+<input type="button" name="" value="목록" onclick="location.href='BoardNotice.bo'">
 </div>
 <br>
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
