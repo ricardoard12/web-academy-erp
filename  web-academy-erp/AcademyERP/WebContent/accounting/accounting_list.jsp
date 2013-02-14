@@ -10,6 +10,7 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <script src="./js/calendar.js"></script>
 <title>Insert title here</title>
+
 </head>
 <%
     List acList = (List) request.getAttribute("acList");
@@ -33,12 +34,11 @@
 			<!-- content -->
 			<div id="content">
 
-					<form action="./AccountingDelete.ac" method="post" >
+					<form action="" name="acDeleteCheck" method="post" >
 							<!-- 회계 목록 시작 -->
 
 							<!-- UI Object -->
-							<table cellspacing="0" border="1" summary="유형별 자산목록리스트"
-								class="tbl_type_list">
+							<table cellspacing="0" border="1" summary="유형별 자산목록리스트" class="tbl_type_list">
 								<caption>회계 목록</caption>
 								<colgroup>
 									<col width="12%">
@@ -61,7 +61,7 @@
 
 								<thead>
 									<tr>
-										<th scope="col">선택</th>
+										<th scope="col">전체선택<br><input type="checkbox" name="all" onclick="CheckAll()"></th>
 										<th scope="col">번호</th>
 										<th scope="col">회원ID</th>
 										<th scope="col">이름</th>
@@ -79,8 +79,7 @@
 						        AccountingBean acBean = (AccountingBean) acList.get(i);
 						%>
 									<tr>		<!-- 삭제 체크값 넘기기 -->
-										<td><input type="checkbox" name="ac_id_check"
-											value="<%=acBean.getAc_id()%>"></td>
+										<td><input type="checkbox" name="check" value="<%=acBean.getAc_id()%>"></td>
 										<td><%=acBean.getAc_id()%></td>
 										<td><%=acBean.getMm_id()%></td>
 										<td>직원,학생에서 가져와야됨</td>
@@ -97,7 +96,7 @@
 									<tr align="right">
 										<td align="center" colspan="9">
 											<div class="item">
-												<input type="submit" value="선택 삭제">
+												<input type="button" value="선택삭제" onclick="Del()">
 											</div>
 										</td>
 									</tr>
@@ -108,6 +107,7 @@
 							<!-- //수강생 관리 끝 -->
 						</div>
 						<!-- //content -->
+						
 			</div>
 		<!-- //container -->
 		<!-- footer -->
@@ -117,6 +117,26 @@
 		<!-- //footer -->
 	</div>
 	<!-- //UI Object -->
+<!--  체크박스 확인 -->
+<script language="javascript">
 
+	function CheckAll() {
+		if (document.acDeleteCheck.all.checked == true) { // 체크가 되었다면
+			for ( var x = 0; x < acDeleteCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+				document.acDeleteCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
+			}
+		} else {
+			for ( var x = 0; x < acDeleteCheck.check.length; x++) { // 모두 해제 시킨다..
+				document.acDeleteCheck.check[x].checked = false;
+			}
+		}
+	}
+
+	function Del() {
+		document.acDeleteCheck.action = "./AccountingDelete.ac";
+		document.acDeleteCheck.submit();
+	}
+</script>
 </body>
+
 </html>

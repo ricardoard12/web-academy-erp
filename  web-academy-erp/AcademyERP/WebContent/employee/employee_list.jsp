@@ -43,9 +43,9 @@
 					class="tbl_type_list">
 					<caption>직원 목록</caption>
 					<colgroup>
-						<col width="12%">
+						<col width="14%">
 						<col>
-						<col width="12%" span="7">
+						<col width="14%" span="7">
 					</colgroup>
 					<thead>
 						<tr>

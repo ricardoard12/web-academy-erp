@@ -190,7 +190,24 @@ public class AccountingDAO {
         return acoutgoingList;
     }
     
-    public void acoutDeleteList(String[] check){
-        
+    public void acDeleteList(String[] check){
+        StringBuffer sql = new StringBuffer("delete from accounting where ac_id in (");
+        // 기본 쿼리문만을 StringBuffer로 생성한다.
+        for(int i=0; i<check.length; i++){
+            sql.append("'"+check[i]+"'");
+            if(i<check.length-1){   
+              //만약 check의 길이가 i보다 크다면 ,를 붙인다.
+                sql.append(",");
+            }else if(i==check.length-1){    
+              //위의조건 만족시 만약 i와 check가 같다면 ) 으로써 쿼리를 완성한다
+                sql.append(")");
+            }
+        }
+   
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.executeUpdate();
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
     }
 }

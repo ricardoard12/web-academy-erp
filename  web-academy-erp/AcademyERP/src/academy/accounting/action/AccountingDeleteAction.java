@@ -16,10 +16,11 @@ public class AccountingDeleteAction implements Action{
         AccountingDAO acDao = new AccountingDAO();
         
         //체크값 받아오기
-        String[] check = request.getParameterValues("ac_id_check");
+        String[] check = request.getParameterValues("check");
         
+
         //회계 리스트 삭제
-        acDao.acoutDeleteList(check);
+        acDao.acDeleteList(check);
         
         forward.setRedirect(false);
         forward.setPath("./AccountingList.ac");
