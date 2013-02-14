@@ -189,4 +189,8 @@ public class AccountingDAO {
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
         return acoutgoingList;
     }
+    
+    public void acoutDeleteList(String[] check){
+        
+    }
 }
