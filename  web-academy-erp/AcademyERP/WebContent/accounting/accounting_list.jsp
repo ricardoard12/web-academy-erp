@@ -34,7 +34,7 @@
 			<!-- content -->
 			<div id="content">
 
-					<form action="" name="acDeleteCheck" method="post" >
+					<form name="acDeleteCheck" method="post" >
 							<!-- 회계 목록 시작 -->
 
 							<!-- UI Object -->
@@ -51,8 +51,8 @@
 								<th scope="row">검색날짜선택</th>
 								<td colspan="8" align="left">
 									<div class="item">
-										<input type="text" name="ac_date"> 
-										<input type="button" value="달력보기" onClick="datePicker(event,'ac_date',0)">
+										<input type="text" name="date"> 
+										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 									</div>
 								</td>
@@ -135,6 +135,12 @@
 	function Del() {
 		document.acDeleteCheck.action = "./AccountingDelete.ac";
 		document.acDeleteCheck.submit();
+	}
+
+	function CheckDate() {
+		var date = document.acDeleteCheck.date.value;
+			document.acDeleteCheck.action = "./AccountingDateSearch.ac?date="+date;
+			document.acDeleteCheck.submit();
 	}
 </script>
 </body>
