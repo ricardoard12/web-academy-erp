@@ -13,7 +13,30 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function selectDomain() { // 도메인 선택
-		document.joinEmployeeForm.mm_email2.value = document.joinEmployeeForm.select_domain.value;
+		document.detailEmployeeForm.mm_email2.value = document.joinEmployeeForm.select_domain.value;
+	}
+	
+	function checkForm() { // 폼 입력 체크
+		if (document.detailEmployeeForm.mm_name == null) {
+			alert("이름을 입력하세요.");
+			document.detailEmployeeForm.mm_name.focus();
+			return null;
+		}
+		if (document.detailEmployeeForm.mm_jumin1 == null) {
+			alert("주민등록번호를 입력하세요.");
+			document.detailEmployeeForm.mm_jumin1.focus();
+			return null;
+		}
+		if (document.detailEmployeeForm.mm_jumin2 == null) {
+			alert("주민등록번호를 입력하세요.");
+			document.detailEmployeeForm.mm_jumin2.focus();
+			return null;
+		}
+		if (document.detailEmployeeForm.mm_manager_id == null) {
+			alert("상위관리자를 입력하세요.");
+			document.detailEmployeeForm.mm_manager_id.focus();
+			return null;
+		}
 	}
 </script>
 <title>Insert title here</title>
@@ -44,7 +67,7 @@
 
 				<!-- 직원 상세 정보 조회 시작 -->
 
-				<form action="#" method="post" name="#">
+				<form action="./EmployeeModifyAction.em" method="post" name="detailEmployeeForm" onsubmit="return checkForm()">
 					<fieldset>
 						<legend>직원 상세 정보</legend>
 						<div class="form_table">
@@ -93,8 +116,11 @@
 													<option value="052" <%if (member.getMm_tel().split("-")[0].equals("052")) %> selected>052</option>
 													<option value="053" <%if (member.getMm_tel().split("-")[0].equals("053")) %> selected>053</option>
 													<option value="055" <%if (member.getMm_tel().split("-")[0].equals("055")) %> selected>055</option>
-												</select> <input type="text" name="mm_tel" title="전화번호"
-													class="i_text" value="<%=member.getMm_tel().split("-")[1] + "-" + member.getMm_tel().split("-")[2]%>">
+												</select> 
+												<input type="text" name="mm_tel1" title="전화번호"
+													class="i_text" value="<%=member.getMm_tel().split("-")[1]%>"> - 
+												<input type="text" name="mm_tel2" title="전화번호"
+													class="i_text" value="<%=member.getMm_tel().split("-")[2]%>">	
 											</div>
 										</td>
 									</tr>
@@ -108,8 +134,11 @@
 													<option value="011" <%if (member.getMm_phone().split("-")[0].equals("011")) %> selected>011</option>
 													<option value="016" <%if (member.getMm_phone().split("-")[0].equals("016")) %> selected>016</option>
 													<option value="017" <%if (member.getMm_phone().split("-")[0].equals("017")) %> selected>017</option>
-												</select> <input type="text" name="mm_phone" title="휴대폰"
-													class="i_text" value="<%=member.getMm_phone().split("-")[1] + "-" + member.getMm_phone().split("-")[2]%>">
+												</select> 
+												<input type="text" name="mm_phone1" title="휴대폰"
+													class="i_text" value="<%=member.getMm_phone().split("-")[1]%>"> - 
+												<input type="text" name="mm_phone2" title="휴대폰"
+													class="i_text" value="<%=member.getMm_phone().split("-")[2]%>">
 											</div>
 										</td>
 									</tr>
@@ -267,13 +296,13 @@
 										</td>
 									</tr>
 
-									<!--  가입버튼 -->
+									<!-- 수정 버튼 -->
 									<tr align="right">
 										<td></td>
 										<td align="left">
 											<div class="item">
 												<input type="submit" value="수정"> 
-												<input type="button" name="" value="목록">
+												<input type="button" value="목록" onclick="./EmployeeListAction.em">
 											</div>
 										</td>
 									</tr>

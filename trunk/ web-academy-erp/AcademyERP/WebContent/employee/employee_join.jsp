@@ -105,8 +105,9 @@
 													<option value="052">052</option>
 													<option value="053">053</option>
 													<option value="055">055</option>
-												</select> <input type="text" name="mm_tel" title="전화번호"
-													class="i_text">
+												</select> 
+												<input type="text" name="mm_tel1" title="전화번호" class="i_text"> - 
+												<input type="text" name="mm_tel2" title="전화번호" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -120,8 +121,9 @@
 													<option>011</option>
 													<option>016</option>
 													<option>017</option>
-												</select> <input type="text" name="mm_phone" title="휴대폰"
-													class="i_text">
+												</select> 
+												<input type="text" name="mm_phone1" title="휴대폰" class="i_text"> - 
+												<input type="text" name="mm_phone2" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -130,9 +132,8 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_zipcode1" title="우편번호1"
-													class="i_text"> - <input type="text"
-													name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text"> - 
+													<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -160,10 +161,9 @@
 										<th scope="row">이메일 주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_email1" title="이메일"
-													class="i_text">@ <input type="text"
-													name="mm_email2" title="도메인" class="i_text"> <select
-													name="select_domain" onchange="selectDomain()">
+												<input type="text" name="mm_email1" title="이메일" class="i_text"> @ 
+												<input type="text" name="mm_email2" title="도메인" class="i_text"> 
+												<select name="select_domain" onchange="selectDomain()">
 													<option value="">직접 입력</option>
 													<option value="nate.com">nate.com</option>
 													<option value="naver.com">naver.com</option>
@@ -190,8 +190,7 @@
 										<th scope="row">상위 관리자 ID</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_manager_id" title="상위 관리자 ID"
-													class="i_text">
+												<input type="text" name="mm_manager_id" title="상위 관리자 ID" class="i_text">
 											</div>
 										</td>
 									</tr>
