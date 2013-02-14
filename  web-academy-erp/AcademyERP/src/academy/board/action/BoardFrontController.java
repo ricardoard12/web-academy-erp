@@ -26,21 +26,21 @@ public class BoardFrontController extends HttpServlet implements Servlet {
             forward.setRedirect(false);
             forward.setPath("./board/board_write.jsp");
         }else if(command.equals("/BoardAddAction.bo")){
-			action=(Action) new BoardAddAction();
+			action = new BoardAddAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardNotice.bo")){
-			action=(Action) new BoardNoticeAction();
+			action = new BoardNoticeAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardDetailAction.bo")){
-			action=(Action) new BoardDetailAction();
+			action = new BoardDetailAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
