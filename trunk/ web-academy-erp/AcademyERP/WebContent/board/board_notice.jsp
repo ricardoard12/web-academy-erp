@@ -65,7 +65,7 @@
     		boardbean=(BoardBean)boardList.get(i);
     		%>
     		<tr>
-    		<td class="frm"><input type="checkbox" name="" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
+    		<td class="frm"><input type="checkbox" name="board_check" id="chk_sel" value=""><label for="chk_sel">선택</label></td>
     		<td class="num"><%=boardbean.getBoard_num() %></td>
     		<td class="title"><a href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>"><%=boardbean.getBoard_subject() %></a></td>
     		<td><a href="#"><%=boardbean.getBoard_name() %></a></td>
@@ -119,7 +119,10 @@
 	<a href="#" class="next_end">맨뒤</a>
 </div> -->
 
-<div align="right"><input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'"></div>
+<div align="right">
+<input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'">
+<input type="button" name="board_delete" value="삭제" onclick="loaction.href='./BoardDelete.bo?num=<%=boardbean.getBoard_num()%>'">
+</div>
 <div align="center">
 <%
 if(nowpage<=1){

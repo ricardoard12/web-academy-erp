@@ -1,3 +1,4 @@
+<%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +8,9 @@
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<%
+BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
+%>
 </head>
 <body>
 <!-- UI Object -->	
@@ -37,38 +41,32 @@
 <thead>
 <tr>
 <th scope="row">제목</th>
-<td colspan="5">제발 울프팀 업데이트 끝내주세요!!</td>
+<td colspan="5"><%=boardbean.getBoard_subject() %></td>
 </tr>
 </thead>
 <tbody>
 <tr>
 <th scope="row">작성자</th>
-<td>노찬현</td>
+<td><%=boardbean.getBoard_name() %></td>
 <th scope="row">작성일</th>
-<td>2008.2.26</td>
+<td><%=boardbean.getBoard_date() %></td>
 <th scope="row">조회</th>
-<td>19</td>
+<td><%=boardbean.getBoard_readcount() %></td>
 </tr>
 <tr>
 <td colspan="6" class="cont">
-	안녕하세요 Ready to Combat 울프팀 입니다.<br>
-	금일 오전 7시 부터 진행된 정기점검이 완료되어 현재 정상적으로 서버가 오픈되었습니다. <br>
-	고객님들께서 게임에 접속이 가능하신 상태이니 게임에 접속을 해보시기 바랍니다. <br>
-	<br>
-	<strong>[업데이트 내용]</strong><br>
-	1.선물함 추가 및 선물시스템 업데이트 <br>
-	2.EX아이템(한코인아이템) 업데이트 <br>
-	3.신규 무기 칼(근접무기) 업데이트 <br>
-	&nbsp;* EX진지점령/울프진지점령 모드에서 인간형으로 플레이시 3번키로 선택가능<br>
-	4.신규 총기 P-226(보조무기) 업데이트 <br>
-	6.프라이드 마크 130개 업데이트<br>
-	<br>
-	<span style="color:#FF6600;">감사합니다.</span>
+<%=boardbean.getBoard_content() %>
 </td>
 </tr>
 </tbody>
 </table>
+<!-- 수정 / 삭제 -->
+<br>
+<div align="left">
+<input type="button" name="board_modify" value="수정" onclick="location.href='BoardModify.bo?num=<%=boardbean.getBoard_num()%>'">
 
+</div>
+<br>
 <form name="" action="method">
 <fieldset>
 <legend>코멘트 영역</legend>
