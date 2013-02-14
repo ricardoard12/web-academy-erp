@@ -28,7 +28,7 @@ public class StudentJoinAction implements Action{
 			studentbean.setMm_zipcode(request.getParameter("mm_zipcode1")+request.getParameter("mm_zipcode2")); //회원우편번호
 			studentbean.setMm_addr1(request.getParameter("mm_addr1"));  //회원주소
 			studentbean.setMm_addr2(request.getParameter("mm_addr2"));  //상세주소    
-			studentbean.setMm_email(request.getParameter("mm_email1")+request.getParameter("mm_email2")); //회원이메일
+			studentbean.setMm_email(request.getParameter("mm_email1")+"@"+request.getParameter("mm_email2")); //회원이메일
 		    
 		    
 		    

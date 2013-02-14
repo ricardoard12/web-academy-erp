@@ -3,27 +3,31 @@ package academy.student.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import academy.student.db.StudentBean;
 import academy.student.db.StudentDAO;
 
-public class StudentExpelAction implements Action{
+public class StudentDetailAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String[] st_status = request.getParameterValues("st_status");
-		
 		ActionForward forward = new ActionForward();
 		
 		StudentDAO studentdao = new StudentDAO();
 		
-		studentdao.updateStatusExpel(st_status); // DB에서 퇴학 정보를 업데이트 시킨다.
+		StudentBean studentbean = null;
 		
-		forward.setRedirect(true);
-		forward.setPath("./StudentListAction.st"); //StudentListAction 으로 이동
 		
+		String id  = request.getParameter("id");  // 아이디값 저정
+		
+		studentbean=  studentdao.getStudentDetail(id); // DB에서 조회
+		
+		request.setAttribute("studentbean", studentbean);
+		
+		forward.setRedirect(false);
+		forward.setPath("./student/student_detail.jsp");
 		return forward;
-		
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.student.db.StudentBean;
 import academy.student.db.StudentDAO;
 
-public class StudentLeaveofabsenceListAction implements Action{
+public class StudentOffListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -19,12 +19,12 @@ public class StudentLeaveofabsenceListAction implements Action{
 		
 		StudentDAO studentdao = new StudentDAO();
 		
-		List<StudentBean> LeaveofabsenceList  = null;
-		LeaveofabsenceList =  studentdao.getLeaveofabsenceList();// 휴학생 조회해서 lsit 넣기
+		List<StudentBean> StudentOffList  = null;
+		StudentOffList =  studentdao.getStudentOffList();// 휴학생 조회해서 lsit 넣기
 		
-		request.setAttribute("LeaveofabsenceList", LeaveofabsenceList); // LeaveofabsenceList정보를 저장한다.
+		request.setAttribute("StudentOffList", StudentOffList); // LeaveofabsenceList정보를 저장한다.
 		forward.setRedirect(false);
-		forward.setPath("./student/student_leaveofabsencelist.jsp");//student_leaveofabsencelist폼으로 이동
+		forward.setPath("./student/student_off_list.jsp");//student_leaveofabsencelist폼으로 이동
 		
 		return forward;
 	}
