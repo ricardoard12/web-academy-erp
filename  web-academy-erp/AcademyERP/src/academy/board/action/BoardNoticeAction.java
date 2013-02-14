@@ -19,6 +19,7 @@ public class BoardNoticeAction implements Action {
 		
 		int page = 1;
 		int limit = 13;
+
 		
 		if(request.getParameter("page") != null){
 			page = Integer.parseInt(request.getParameter("page"));
