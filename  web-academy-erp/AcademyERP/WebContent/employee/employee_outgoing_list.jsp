@@ -59,17 +59,18 @@
 						<colgroup>
 							<col width="14%">
 							<col>
-							<col width="14%" span="7">
+							<col width="14%" span="8">
 						</colgroup>
 						<thead>
 							<tr>
 								<th scope="col">선택</th>
-								<th scope="col">직원ID</th>
 								<th scope="col">이름</th>
 								<th scope="col">담당부서</th>
 								<th scope="col">직급</th>
 								<th scope="col">담당과목</th>
-								<th scope="col">담당학급</th>
+								<th scope="col">근무시작일</th>
+								<th scope="col">근무종료일</th>
+								<th scope="col">메모</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,7 +96,7 @@
 							%>
 							<!-- 버튼 -->
 							<tr align="right">
-								<td align="center" colspan="7">
+								<td align="center" colspan="8">
 									<div class="item">
 										<input type="submit" value="선택 삭제">
 									</div>
