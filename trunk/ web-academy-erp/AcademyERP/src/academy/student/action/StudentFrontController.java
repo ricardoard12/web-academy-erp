@@ -42,8 +42,8 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentLeaveofabsence.st")){ // 휴학생처리
-        	action = new StudentLeaveofabsenceAction();
+        }else if(command.equals("/StudentOff.st")){ // 휴학생처리
+        	action = new StudentOffAction();
         	
         	try {
 				forward=action.execute(request, response);
@@ -51,8 +51,8 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentExpel.st")){ // 퇴학 처리
-        	action = new StudentExpelAction();
+        }else if(command.equals("/StudentOut.st")){ // 퇴학 처리
+        	action = new StudentOutAction();
         	
         	try {
 				forward =action.execute(request, response);
@@ -68,26 +68,26 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentLeaveofabsenceList.st")){ //휴원생관리
-        	action = new StudentLeaveofabsenceListAction();
+        }else if(command.equals("/StudentOffList.st")){ //휴원생관리
+        	action = new StudentOffListAction();
         	try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 				// TODO: handle exception
 			}
-        }else if(command.equals("/StudentReentrance.st")){ // 휴원생을 다시 재수강시킨다.
-        	action = new StudentReentranceAction();
+        }else if(command.equals("/StudentIn.st")){ // 휴원생을 다시 재수강시킨다.
+        	action = new StudentInAction();
         	try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentExpel2.st")){  // 휴원생중 퇴출 시킬 사람을 퇴출 시킨다.
-        	action = new StudentExpel2Action();
-        	try {
-				forward =action.execute(request, response);
+        }else if(command.equals("/StudentDetail.st")){
+        	action =new StudentDetailAction();
+        	 try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
