@@ -17,7 +17,7 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
-	Vector empList = (Vector) request.getAttribute("empList");
+	List empList = (List) request.getAttribute("empList");
 %>
 <body>
 	<!-- UI Object -->
