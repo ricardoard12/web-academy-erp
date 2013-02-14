@@ -76,7 +76,7 @@
 							<td><%=list.get(j++)%></td>
 							<td><%=list.get(j++)%></td>
 							<td><select>
-									<option></option>
+									<option>권한 레벨 선택</option>
 									<option <%if (list.get(j).equals("3")) {%> selected <%}%>>3</option>
 									<option <%if (list.get(j).equals("4")) {%> selected <%}%>>4</option>
 									<option <%if (list.get(j).equals("5")) {%> selected <%}%>>5</option>
