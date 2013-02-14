@@ -138,52 +138,7 @@ public class EmployeeDAO {
 		}
 
 		return vector;
-	}
-
-	// Young-Ho source
-	// get Emp List
-	public Vector getEmplist(String name) {
-		Vector empList = null;
-		String str = "";
-		if (name != null) {
-			str = " AND mm_name like '%" + name + "%'";
-		}
-		try {
-			con = ds.getConnection();
-			sql = "select * from member where mm_level>=3" + str;
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			empList = new Vector<>();
-			while (rs.next()) {
-				empList.add(insertMember());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closingDB();
-		}
-		return empList;
-	}
-
-	private MemberBean insertMember() throws Exception {
-		MemberBean member = new MemberBean();
-		member.setMm_name(rs.getString("mm_name"));
-		member.setMm_id(rs.getString("mm_id"));
-		member.setMm_passwd(rs.getString("mm_passwd"));
-		member.setMm_jumin1(rs.getString("mm_jumin1"));
-		member.setMm_jumin2(rs.getString("mm_jumin2"));
-		member.setMm_tel(rs.getString("mm_tel"));
-		member.setMm_phone(rs.getString("mm_phone"));
-		member.setMm_addr1(rs.getString("mm_addr1"));
-		member.setMm_addr2(rs.getString("mm_addr2"));
-		member.setMm_zipcode(rs.getString("mm_zipcode"));
-		member.setMm_email(rs.getString("mm_email"));
-		member.setMm_reg_date(rs.getDate("mm_reg_date"));
-		member.setMm_level(rs.getInt("mm_level"));
-		member.setMm_manager_id(rs.getString("mm_manager_id"));
-		return member;
-	}
-    
+	}    
     public Vector getEmployeeDetail(String id) throws Exception {
     	EmployeeBean employee = new EmployeeBean();
     	MemberBean member = new MemberBean();
