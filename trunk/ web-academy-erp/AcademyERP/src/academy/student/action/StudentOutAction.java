@@ -25,7 +25,7 @@ public class StudentOutAction implements Action{
 		
 		if(check.equals("1")){
 			forward.setRedirect(true);
-			forward.setPath("./StudentListAction.st"); //StudentListAction 으로 이동
+			forward.setPath("./StudentList.st"); //StudentListAction 으로 이동
 		}else if(check.equals("2")){
 			forward.setRedirect(true);
 			forward.setPath("./StudentOffList.st"); //StudentListAction 으로 이동

@@ -33,7 +33,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
         	forward = new ActionForward();
         	forward.setRedirect(false);
         	forward.setPath("./student/student_join.jsp");
-        }else if(command.equals("/StudentListAction.st")){ // 학생 목록
+        }else if(command.equals("/StudentList.st")){ // 학생 목록
         	action= new StudentListAction();
         	
         	try {
@@ -84,9 +84,25 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentDetail.st")){
+        }else if(command.equals("/StudentDetail.st")){ // 상세정보
         	action =new StudentDetailAction();
         	 try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+        }else if(command.equals("/StudentModifyAction.st")){ // 회원수정
+        	action = new StudentModifyAction();
+        	try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+        }else if(command.equals("/StudentOutList.st")){ //휴학생 정보
+        	action = new StudentOutListAction();
+        	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO: handle exception

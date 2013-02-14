@@ -22,7 +22,7 @@ public class StudentOffAction implements Action{
 		
 	
 		forward.setRedirect(true);
-		forward.setPath("./StudentListAction.st"); //StudentListAction으로 이동
+		forward.setPath("./StudentList.st"); //StudentListAction으로 이동
 		
 		return forward;
 		
