@@ -51,7 +51,13 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
             action = new AccountingOutgoingAction();
             try {forward = action.execute(request, response);} 
             catch (Exception e) {e.printStackTrace();}
-        }
+            
+        // 회계 리스트 삭제
+        }else if(command.equals("/AccountingDelete.ac")) {
+                action = new AccountingDeleteAction();
+                try {forward = action.execute(request, response);} 
+                catch (Exception e) {e.printStackTrace();}
+            }
         
         // 이동
         if (forward != null) {
