@@ -14,7 +14,7 @@ public class LevelListAction implements Action {
 			HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
-		String name = request.getParameter("name");
+		String name = request.getParameter("findname");
 		System.out.println("LevelListAction");
 		/*
 		 * 세션값 확인 level 값으로 판단한다. HttpSession session = request.getSession();
