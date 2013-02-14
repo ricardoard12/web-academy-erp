@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import academy.board.db.BoardBean;
 import academy.board.db.BoardDAO;
 
@@ -18,8 +21,15 @@ public class BoardModifyAction implements Action{
 		BoardDAO boarddao=new BoardDAO();
 		BoardBean boardbean=new BoardBean();
 		ActionForward forward=new ActionForward();
-		int num = Integer.parseInt(request.getParameter("board_num"));
-		String passwd = request.getParameter("board_pass");
+		
+		String uploadfolder = "board/board_upload";
+		String realFolder = request.getRealPath(uploadfolder);
+		int fileSize = 5 * 1024 * 1024;
+		MultipartRequest multi = null;
+		multi=new MultipartRequest(request,realFolder,fileSize,"utf-8",new DefaultFileRenamePolicy());
+		
+		int num = Integer.parseInt(multi.getParameter("board_num"));
+		String passwd = multi.getParameter("board_pass");
 		boolean userCheck=boarddao.isBoardWriter(num,passwd);
 		System.out.println(userCheck);
 		
@@ -34,9 +44,9 @@ public class BoardModifyAction implements Action{
 			return null;
 		}
 		
-		boardbean.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
-		boardbean.setBoard_subject(request.getParameter("board_subject"));
-		boardbean.setBoard_content(request.getParameter("board_content"));
+		boardbean.setBoard_num(Integer.parseInt(multi.getParameter("board_num")));
+		boardbean.setBoard_subject(multi.getParameter("board_subject"));
+		boardbean.setBoard_content(multi.getParameter("board_content"));
 	
 		boarddao.boardModify(boardbean);
 		
