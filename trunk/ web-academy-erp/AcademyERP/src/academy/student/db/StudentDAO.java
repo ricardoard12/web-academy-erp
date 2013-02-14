@@ -42,9 +42,9 @@ public class StudentDAO {
 			pstmt.setString(5, studentbean.getMm_jumin2());// 주민뒤
 			pstmt.setString(6, studentbean.getMm_tel());//회원전화번호
 			pstmt.setString(7, studentbean.getMm_phone()); //회원핸드폰 번호
-			pstmt.setString(8, studentbean.getMm_zipcode());//회원우편번호
-			pstmt.setString(9, studentbean.getMm_addr1());//주소
-			pstmt.setString(10, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(8, studentbean.getMm_addr1());//주소
+			pstmt.setString(9, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(10, studentbean.getMm_zipcode());//회원우편번호
 			pstmt.setString(11, studentbean.getMm_email()); //회원메일
 			pstmt.setInt(12, 1); //학생레벨값 설정
 			pstmt.executeUpdate();
@@ -72,11 +72,11 @@ public class StudentDAO {
 			pstmt.setString(3, studentbean.getSt_parent_passwd());; //회원비번
 			pstmt.setString(4, studentbean.getMm_tel());//회원전화번호
 			pstmt.setString(5, studentbean.getSt_parent_mobile()); //회원핸드폰 번호
-			pstmt.setString(6, studentbean.getMm_zipcode());//회원우편번호
-			pstmt.setString(7, studentbean.getMm_addr1());//주소
-			pstmt.setString(8, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(6, studentbean.getMm_addr1());//주소
+			pstmt.setString(7, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(8, studentbean.getMm_zipcode());//회원우편번호
 			pstmt.setString(9, studentbean.getMm_email()); //회원메일
-			pstmt.setInt(10, 2); //학생레벨값 설정
+			pstmt.setInt(10, 2); //부모레벨값 설정
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -158,7 +158,7 @@ public class StudentDAO {
     	try {
 			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
-				sql="UPDATE student SET st_status = '퇴출' WHERE mm_id =?"; //퇴출 처리
+				sql="UPDATE student SET st_status = '퇴학' WHERE mm_id =?"; //퇴출 처리
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, st_status[i]);
 				pstmt.executeUpdate();
@@ -283,6 +283,44 @@ public class StudentDAO {
     	return StudentOffList;
     	
     }
+    public List getStudentOutList(){
+		String sql="";
+    	List<StudentBean> studentoutlist = null;
+    	
+    	try {
+			con = ds.getConnection();
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학'"; 
+			// 퇴학생의 목록을 가져온다.
+			pstmt =con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			
+			if(rs.next()){ // 값을 가지고 있을경우 저장
+				studentoutlist = new ArrayList();
+				do{
+					StudentBean studentbean = new StudentBean();
+					studentbean.setMm_name(rs.getString("mm_name"));
+					studentbean.setMm_id(rs.getString("mm_id"));
+					studentbean.setSt_school_name(rs.getString("st_school_name"));
+					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
+					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
+					studentbean.setSt_status(rs.getString("st_status"));
+					studentoutlist.add(studentbean);
+				}while(rs.next());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    	return studentoutlist;
+    	
+    }
     
     public  void updateStudentIn(String[] st_status){
     	String sql="";
@@ -305,10 +343,6 @@ public class StudentDAO {
 		}
     }
     
-    /**
-     * @param id
-     * @return
-     */
     public StudentBean getStudentDetail(String id){
 		StudentBean studentbean = null;
     	String sql="";
@@ -363,4 +397,62 @@ public class StudentDAO {
     	return studentbean;
     	
     }
+    public void setStudentModify(StudentBean studentbean){
+    	String sql="";
+    	
+    	try {
+			con = ds.getConnection();
+			
+			// 학생 정보 업데이트
+			sql="UPDATE member SET mm_name=?,mm_jumin1=?,mm_jumin2=?,mm_tel=?,mm_phone=?,mm_addr1=?,mm_addr2=?,mm_zipcode=?,mm_email=?,mm_manager_id=? WHERE mm_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, studentbean.getMm_name());  //회원이름
+			pstmt.setString(2, studentbean.getMm_jumin1());; //주민앞
+			pstmt.setString(3, studentbean.getMm_jumin2());// 주민뒤
+			pstmt.setString(4, studentbean.getMm_tel());//회원전화번호
+			pstmt.setString(5, studentbean.getMm_phone()); //회원핸드폰 번호
+			pstmt.setString(6, studentbean.getMm_addr1());//주소
+			pstmt.setString(7, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(8, studentbean.getMm_zipcode());//회원우편번호
+			pstmt.setString(9, studentbean.getMm_email()); //회원메일
+			pstmt.setString(10, studentbean.getMm_manager_id()); //매니저 아이뒤 
+			pstmt.setString(11, studentbean.getMm_id()); //회원아이디
+			pstmt.executeUpdate();
+			
+			sql="UPDATE student SET st_school_name=?,st_school_grade=?,st_parent_name=?,st_parent_mobile=?,st_tuition=?,st_tuition_state=?,st_memo=? WHERE mm_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,studentbean.getSt_school_name()); // 학교명
+			pstmt.setString(2,studentbean.getSt_school_grade()); // 학년
+			pstmt.setString(3,studentbean.getSt_parent_name()); // 학부모이름
+			pstmt.setString(4,studentbean.getSt_parent_mobile()); // 학부모연락처
+			pstmt.setInt(5,studentbean.getSt_tuition()); // 수강료
+			pstmt.setString(6,studentbean.getSt_tuition_state()); // 회비납부여부
+			pstmt.setString(7,studentbean.getSt_memo()); // 메모
+			pstmt.setString(8, studentbean.getMm_id());  //회원ID
+			pstmt.executeUpdate();
+			
+			// 부모 정보 수정된거 업데이트
+			sql="UPDATE member SET mm_name=?,mm_tel=?,mm_phone=?,mm_addr1=?,mm_addr2=?,mm_zipcode=?,mm_email=?,mm_manager_id=? WHERE mm_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, studentbean.getSt_parent_name());  //회원이름
+			pstmt.setString(2, studentbean.getMm_tel());//회원전화번호
+			pstmt.setString(3, studentbean.getSt_parent_mobile()); //회원핸드폰 번호
+			pstmt.setString(4, studentbean.getMm_addr1());//주소
+			pstmt.setString(5, studentbean.getMm_addr2()); //상세주소
+			pstmt.setString(6, studentbean.getMm_zipcode());//회원우편번호
+			pstmt.setString(7, studentbean.getMm_email()); //회원메일
+			pstmt.setString(8, studentbean.getMm_manager_id()); //회원메일		
+			pstmt.setString(9, studentbean.getSt_parent_id()); //회원아이디
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    }
+    
 }
