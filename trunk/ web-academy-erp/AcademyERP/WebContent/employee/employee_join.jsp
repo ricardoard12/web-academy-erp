@@ -12,6 +12,49 @@
 	function selectDomain() { // 도메인 선택
 		document.joinEmployeeForm.mm_email2.value = document.joinEmployeeForm.select_domain.value;
 	}
+	
+	function checkForm() { // 폼 입력 체크
+		if (document.joinEmployeeForm.mm_name.value.length == 0) {
+			alert("이름을 입력하세요.");
+			document.joinEmployeeForm.mm_name.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_id.value.length == 0) {
+			alert("아이디를 입력하세요.");
+			document.joinEmployeeForm.mm_id.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_passwd.value.length == 0) {
+			alert("비밀번호를 입력하세요.");
+			document.joinEmployeeForm.mm_passwd.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_passwd2.value.length == 0) {
+			alert("비밀번호 확인을 입력하세요.");
+			document.joinEmployeeForm.mm_passwd2.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_passwd.value != document.joinEmployeeForm.mm_passwd2.value) {
+			alert("입력하신 비밀번호가 서로 다릅니다.");
+			document.joinEmployeeForm.mm_passwd.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_jumin1.value.length == 0) {
+			alert("주민등록번호를 입력하세요.");
+			document.joinEmployeeForm.mm_jumin1.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_jumin2.value.length == 0) {
+			alert("주민등록번호를 입력하세요.");
+			document.joinEmployeeForm.mm_jumin2.focus();
+			return false;
+		}
+		if (document.joinEmployeeForm.mm_manager_id.value.length == 0) {
+			alert("상위관리자를 입력하세요.");
+			document.joinEmployeeForm.mm_manager_id.focus();
+			return false;
+		}
+	}
 </script>
 <title>Insert title here</title>
 </head>
@@ -37,7 +80,7 @@
 				<!-- 직원 회원가입시작 -->
 
 				<form action="./EmployeeAddAction.em" method="post"
-					name="joinEmployeeForm">
+					name="joinEmployeeForm" onsubmit="return checkForm()">
 					<fieldset>
 						<legend>직원 회원가입</legend>
 						<div class="form_table">
@@ -286,8 +329,8 @@
 										<td></td>
 										<td align="left">
 											<div class="item">
-												<input type="submit" value="가입"> <input
-													type="button" name="" value="취소">
+												<input type="submit" value="가입"> 
+												<input type="button" value="취소" onclick="history.back()">
 											</div>
 										</td>
 									</tr>
