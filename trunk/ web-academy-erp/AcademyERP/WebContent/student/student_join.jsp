@@ -8,6 +8,127 @@
 <link href="./css/join.css" rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
+	
+	<script type="text/javascript">
+	function selectDomain() { // 도메인 선택
+		document.StudentJoinForm.mm_emailDDD.value = document.joinEmployeeForm.select_domain.value;
+	}
+	
+	function checkForm() { // 폼 입력 체크
+		if (document.StudentJoinForm.mm_name.value.length == 0) {
+			alert("이름을 입력하세요.");
+			document.StudentJoinForm.mm_name.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_id.value.length == 0) {
+			alert("아이디를 입력하세요.");
+			document.StudentJoinForm.mm_id.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_pw.value.length == 0) {
+			alert("비밀번호를 입력하세요.");
+			document.StudentJoinForm.mm_passwd.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_pw_check.value.length == 0) {
+			alert("비밀번호 확인을 입력하세요.");
+			document.StudentJoinForm.mm_passwd2.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_pw.value != document.StudentJoinForm.mm_pw_check.value) {
+			alert("입력하신 비밀번호가 서로 다릅니다.");
+			document.StudentJoinForm.mm_pw.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_jumin1.value.length == 0) {
+			alert("주민등록번호를 입력하세요.");
+			document.StudentJoinForm.mm_jumin1.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_jumin2.value.length == 0) {
+			alert("주민등록번호를 입력하세요.");
+			document.StudentJoinForm.mm_jumin2.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.mm_tel1.value.length == 0) {
+			alert("전화번호를 입력하세요.");
+			document.StudentJoinForm.mm_tel1.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_tel2.value.length == 0) {
+			alert("전화번호를 입력하세요.");
+			document.StudentJoinForm.mm_tel2.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_phone1.value.length == 0) {
+			alert("휴대전화 번호를 입력하세요.");
+			document.StudentJoinForm.mm_phone1.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_phone2.value.length == 0) {
+			alert("휴대전화 번호를 입력하세요.");
+			document.StudentJoinForm.mm_phone2.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_zipcode1.value.length == 0) {
+			alert("우편번호 번호를 입력하세요.");
+			document.StudentJoinForm.mm_zipcode1.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_zipcode2.value.length == 0) {
+			alert("우편번호 번호를 입력하세요.");
+			document.StudentJoinForm.mm_zipcode2.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_addr1.value.length == 0) {
+			alert("주소 번호를 입력하세요.");
+			document.StudentJoinForm.mm_addr1.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_addr2.value.length == 0) {
+			alert("상세주소 번호를 입력하세요.");
+			document.StudentJoinForm.mm_addr2.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_email1.value.length == 0) {
+			alert("이메일 번호를 입력하세요.");
+			document.StudentJoinForm.mm_email1.focus();
+			return false;
+		}if (document.StudentJoinForm.mm_email2.value.length == 0) {
+			alert("이메일 번호를 입력하세요.");
+			document.StudentJoinForm.mm_email2.focus();
+			return false;
+		}if (document.StudentJoinForm.st_school_name.value.length == 0) {
+			alert("학교명를 입력하세요.");
+			document.StudentJoinForm.st_school_name.focus();
+			return false;
+		}if (document.StudentJoinForm.st_parent_name.value.length == 0) {
+			alert("부모이름을 입력하세요.");
+			document.StudentJoinForm.st_parent_name.focus();
+			return false;
+		}if (document.StudentJoinForm.st_parent_mobile1.value.length == 0) {
+			alert("부모연락처을 입력하세요.");
+			document.StudentJoinForm.st_parent_mobile1.focus();
+			return false;
+		}if (document.StudentJoinForm.st_parent_mobile2.value.length == 0) {
+			alert("부모연락처을 입력하세요.");
+			document.StudentJoinForm.st_parent_mobile2.focus();
+			return false;
+		}if (document.StudentJoinForm.st_parent_id.value.length == 0) {
+			alert("부모아이디을 입력하세요.");
+			document.StudentJoinForm.st_parent_id.focus();
+			return false;
+		}if (document.StudentJoinForm.st_parent_passwd.value.length == 0) {
+			alert("비빌번호를  입력하세요.");
+			document.StudentJoinForm.st_parent_passwd.focus();
+			return false;
+		}
+		if (document.StudentJoinForm.st_parent_passwd.value != document.StudentJoinForm.st_parent_passwd_check.value) {
+			alert("입력하신 비밀번호가 서로 다릅니다.");
+			document.StudentJoinForm.st_parent_passwd.focus();
+			return false;
+		}if (document.StudentJoinForm.st_tuition.value.length == 0) {
+			alert("수강료를  입력하세요.");
+			document.StudentJoinForm.st_tuition.focus();
+			return false;
+		}
+		
+		
+	}
+	
+	</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -31,7 +152,7 @@
 
 				<!-- 학생 회원가입시작 -->
 
-				<form action="./StudentJoinAction.st" method="post">
+				<form action="./StudentJoinAction.st" method="post" name="StudentJoinForm" onsubmit="return checkForm()">
 					<fieldset>
 						<legend>학생 회원가입</legend>
 						<div class="form_table">
@@ -311,15 +432,6 @@
 											</div>
 										</td>
 									</tr>
-
-
-
-
-
-
-
-
-
 
 									<!--  가입버튼 -->
 									<tr align="right">
