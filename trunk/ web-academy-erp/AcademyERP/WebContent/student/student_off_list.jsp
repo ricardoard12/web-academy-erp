@@ -86,7 +86,7 @@ function Out(){
 							<td><input name="st_status" type="checkbox" value="<%=studentBean.getMm_id()%>" id="a1"
 								class="i_check"><label for="a1"></label></td>
 
-							<td><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>"><%=studentBean.getMm_id()%></a></td>
+							<td><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=2"><%=studentBean.getMm_id()%></a></td>
 							<td><%=studentBean.getMm_name() %></td>
 							<td><%=studentBean.getSt_school_name() %></td>
 							<td><%=studentBean.getSt_school_grade()%></td>

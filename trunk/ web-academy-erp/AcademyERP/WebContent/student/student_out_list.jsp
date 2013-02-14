@@ -13,20 +13,19 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-function Off(){     
+function In(){     
     
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentOff.st";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentIn.st";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
 }
 function Out(){     
-    
 
     document.Student_List.method = "post"     // method 선택, get, post
-    document.Student_List.action = "./StudentOut.st?check=1";  // submit 하기 위한 페이지 
+    document.Student_List.action = "./StudentOut.st?check=2";  // submit 하기 위한 페이지 
 
     document.Student_List.submit();
    
@@ -57,9 +56,9 @@ function Out(){
 	<!-- 학생 목록 시작 -->
 				<form name="Student_List">
 				<!-- UI Object -->
-				<table cellspacing="0" border="1" summary="원생 리스트"
+				<table cellspacing="0" border="1" summary="휴원생 리스트"
 					class="tbl_type_list">
-					<caption>원생 목록</caption>
+					<caption>휴원생 목록</caption>
 					<colgroup>
 						<col width="12%">
 						<col>
@@ -78,16 +77,16 @@ function Out(){
 					</thead>
 					<tbody>
 					<%
-							List studentList = (List)request.getAttribute("studentList");
-							for(int i = 0; i< studentList.size(); i++){
-							StudentBean studentBean = (StudentBean)studentList.get(i);
+							List StudentOutList = (List)request.getAttribute("StudentOutList");
+							for(int i = 0; i< StudentOutList.size(); i++){
+							StudentBean studentBean = (StudentBean)StudentOutList.get(i);
 							
 					%>
 						<tr>
 							<td><input name="st_status" type="checkbox" value="<%=studentBean.getMm_id()%>" id="a1"
 								class="i_check"><label for="a1"></label></td>
 
-							<td><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=1"><%=studentBean.getMm_id()%></a></td>
+							<td><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=3"><%=studentBean.getMm_id()%></a></td>
 							<td><%=studentBean.getMm_name() %></td>
 							<td><%=studentBean.getSt_school_name() %></td>
 							<td><%=studentBean.getSt_school_grade()%></td>
@@ -97,15 +96,7 @@ function Out(){
 					<%
 					}
 					%>
-						<!-- 버튼 -->
-						<tr align="right">
-							<td align="center" colspan="7">
-								<div class="item">
-									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
-									<input type="button" value="원생 휴원" onclick="Off()">
-									<input type="button" value="원생 퇴출" onclick="Out()">
-								</div>
-						</tr>
+	
 
 
 					</tbody>
