@@ -31,7 +31,7 @@
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./BoardAddAction.bo" method="post">
+				<form action="./BoardAddAction.bo" method="post" enctype="multipart/form-data">
 					<fieldset>
 						<legend>게시판 글쓰기</legend>
 						<div class="form_table">
