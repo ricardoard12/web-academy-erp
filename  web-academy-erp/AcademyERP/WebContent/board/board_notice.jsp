@@ -118,7 +118,7 @@
 	<a href="#" class="next">다음</a>
 	<a href="#" class="next_end">맨뒤</a>
 </div> -->
-<br>
+
 <div align="right"><input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'"></div>
 <div align="center">
 <%
