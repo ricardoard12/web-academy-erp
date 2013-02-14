@@ -132,9 +132,14 @@
 											<div class="item">
 												<select name="mm_telDDD">
 													<option>02</option>
+													<option>031</option>
 													<option>051</option>
+													<option>052</option>
+													<option>053</option>
 													<option>055</option>
-												</select> <input type="text" name="mm_tel" title="전화번호" class="i_text">
+												</select> 
+												<input type="text" name="mm_tel1" title="전화번호" class="i_text">-
+												<input type="text" name="mm_tel2" title="전화번호" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -146,8 +151,11 @@
 												<select name="mm_phoneDDD">
 													<option>010</option>
 													<option>011</option>
+													<option>016</option>
 													<option>017</option>
-												</select> <input type="text" name="mm_phone" title="휴대폰" class="i_text">
+													
+												</select> <input type="text" name="mm_phone1" title="휴대폰" class="i_text">-
+												<input type="text" name="mm_phone2" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -156,8 +164,8 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_zipcode1" title="휴대폰" class="i_text"> - 
-												<input type="text" name="mm_zipcode2" title="휴대폰" class="i_text">
+												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text"> - 
+												<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -166,7 +174,7 @@
 										<th scope="row">주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr1" title="휴대폰" class="i_text">
+												<input type="text" name="mm_addr1" title="주소" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -175,7 +183,7 @@
 										<th scope="row">상세주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr2" title="휴대폰" class="i_text">
+												<input type="text" name="mm_addr2" title="상세주소" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -187,10 +195,12 @@
 
 												<input type="text" name="mm_email1" title="이메일" class="i_text">@
 												<input type="text" name="mm_email2" title="직접입력" class="i_text">
-												<select name="mm_emailDDD">
-													<option>hanmail.net</option>
-													<option>naver.com</option>
-													<option>gmail.com</option>
+												<select name="mm_emailDDD" onchange="selectDomain()">
+													<option value="">직접 입력</option>
+													<option value="nate.com">nate.com</option>
+													<option value="naver.com">naver.com</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="hanmail.net">hanmail.net</option>
 												</select>
 											</div>
 										</td>
@@ -235,8 +245,10 @@
 												<select name="st_parent_mobileDDD">
 													<option>010</option>
 													<option>011</option>
+													<option>016</option>
 													<option>017</option>
-												</select> <input type="text" name="st_parent_mobile" title="휴대폰" class="i_text">
+												</select> <input type="text" name="st_parent_mobile1" title="휴대폰" class="i_text">-
+												<input type="text" name="st_parent_mobile2" title="휴대폰" class="i_text">
 											</div>
 										</td>
 									</tr>
@@ -314,8 +326,9 @@
 										<td></td>
 										<td align="left">
 											<div class="item">
-												<input type="submit" " value="가입"> <input
-													type="button" name="" value="취소">
+												<input type="submit" value="가입"> 
+												<input type="reset" value="다시쓰기">
+												<input type="button" value="목록" onclick="location.href='./StudentList.st'">
 											</div>
 										</td>
 									</tr>
