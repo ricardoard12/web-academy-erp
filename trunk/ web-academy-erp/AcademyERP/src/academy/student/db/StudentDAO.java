@@ -137,6 +137,12 @@ public class StudentDAO {
 				pstmt.setString(1, st_status[i]);
 				pstmt.executeUpdate();
 			}
+			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
+				sql="UPDATE member SET mm_level = 0 WHERE mm_id =?"; //레벨제로
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, st_status[i]);
+				pstmt.executeUpdate();
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,6 +159,12 @@ public class StudentDAO {
 			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
 				sql="UPDATE student SET st_status = '퇴출' WHERE mm_id =?"; //퇴출 처리
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, st_status[i]);
+				pstmt.executeUpdate();
+			}
+			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
+				sql="UPDATE member SET mm_level = 0 WHERE mm_id =?"; //레벨제로
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, st_status[i]);
 				pstmt.executeUpdate();
