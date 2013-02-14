@@ -18,7 +18,7 @@ public class BoardNoticeAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		int page = 1;
-		int limit = 3;
+		int limit = 13;
 		
 		if(request.getParameter("page") != null){
 			page = Integer.parseInt(request.getParameter("page"));
@@ -27,7 +27,7 @@ public class BoardNoticeAction implements Action {
 		boardlist=boarddao.getBoardList(page,limit);
 		int maxpage=listcount/limit+(listcount%limit==0?0:1);
 		maxpage=(int)((double)listcount/limit+0.95);
-		int pageblock=3;
+		int pageblock=5;
 		int startpage=((int)(page/pageblock)-(page%pageblock==0?1:0))*pageblock+1;
 		startpage=(((int)((double)page/pageblock+0.9))-1)*pageblock+1;
 		int endpage=startpage+pageblock-1;
