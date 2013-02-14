@@ -17,7 +17,7 @@ public class BoardDeleteAction implements Action{
 		BoardDAO boarddao=new BoardDAO();
 		ActionForward forward=new ActionForward();
 		boolean usercheck=false;
-		int num=Integer.parseInt(request.getParameter("board_num"));
+		int num=Integer.parseInt(request.getParameter("num"));
 		String passwd=request.getParameter("board_pass");
 		usercheck=boarddao.isBoardWriter(num, passwd);
 		if(usercheck==false){
