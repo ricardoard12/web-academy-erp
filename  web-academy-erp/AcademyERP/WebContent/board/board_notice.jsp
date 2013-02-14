@@ -119,6 +119,7 @@
 	<a href="#" class="next_end">맨뒤</a>
 </div> -->
 <br>
+<div align="right"><input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'"></div>
 <div align="center">
 <%
 if(nowpage<=1){
@@ -148,7 +149,9 @@ if(nowpage>=maxpage){
 }
 
 %>
+
 </div>
+
 <!-- //Paginate -->
             
 <!-- //게시판 끝 -->
