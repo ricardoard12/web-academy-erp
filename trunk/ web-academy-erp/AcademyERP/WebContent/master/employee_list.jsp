@@ -1,5 +1,4 @@
 <%@page import="java.util.Vector"%>
-<%@page import="academy.member.db.MemberBean"%>
 <%@page import="academy.employee.db.EmployeeBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,26 +54,32 @@
 							<th scope="col">ID</th>
 							<th scope="col">이름</th>
 							<th scope="col">사수</th>
+							<th scope="col">부서</th>
+							<th scope="col">직책</th>
 							<th scope="col">권한변경</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							for (int i = 0; i < empList.size(); i++) {
-								MemberBean member = (MemberBean) empList.get(i);
+								List list = (List) empList.get(i);
 						%>
 						<tr>
-							<td><input name="" type="checkbox" value="" id="a1"
-								class="i_check"><label for="a1"></label></td>
-
-							<td><%=member.getMm_id()%></td>
-							<td><%=member.getMm_name()%></td>
-							<td><%=member.getMm_manager_id()%></td>
+							<td><input name="masterchklist" type="checkbox" value=""
+								id="a1" class="i_check"><label for="a1"></label></td>
+							<%
+								int j = 1;
+							%>
+							<td><%=list.get(j++)%></td>
+							<td><%=list.get(j++)%></td>
+							<td><%=list.get(j++)%></td>
+							<td><%=list.get(j++)%></td>
+							<td><%=list.get(j++)%></td>
 							<td><select>
 									<option></option>
-									<option <%if (member.getMm_level() == 3) {%> selected <%}%>>3</option>
-									<option <%if (member.getMm_level() == 4) {%> selected <%}%>>4</option>
-									<option <%if (member.getMm_level() == 5) {%> selected <%}%>>5</option>
+									<option <%if (list.get(j).equals("3")) {%> selected <%}%>>3</option>
+									<option <%if (list.get(j).equals("4")) {%> selected <%}%>>4</option>
+									<option <%if (list.get(j).equals("5")) {%> selected <%}%>>5</option>
 							</select></td>
 						</tr>
 						<%
