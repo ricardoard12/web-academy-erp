@@ -26,8 +26,8 @@ public class EmployeeAddAction implements Action {
 		employee.setMm_passwd(request.getParameter("mm_passwd")); // 패스워드
 		employee.setMm_jumin1(request.getParameter("mm_jumin1")); // 주민번호 앞
 		employee.setMm_jumin2(request.getParameter("mm_jumin2")); // 주민번호 뒤
-		employee.setMm_tel(request.getParameter("mm_telDDD") + "-" + request.getParameter("mm_tel")); // 전화번호
-		employee.setMm_phone(request.getParameter("mm_phoneDDD") + "-" + request.getParameter("mm_phone")); // 휴대폰
+		employee.setMm_tel(request.getParameter("mm_telDDD") + "-" + request.getParameter("mm_tel1") + "-" + request.getParameter("mm_tel2")); // 전화번호
+		employee.setMm_phone(request.getParameter("mm_phoneDDD") + "-" + request.getParameter("mm_phone1") + "-" + request.getParameter("mm_phone2")); // 휴대폰
 		employee.setMm_addr1(request.getParameter("mm_addr1")); // 주소
 		employee.setMm_addr2(request.getParameter("mm_addr2")); // 상세주소
 		employee.setMm_zipcode(request.getParameter("mm_zipcode1") + "-" + request.getParameter("mm_zipcode2")); // 우편번호
