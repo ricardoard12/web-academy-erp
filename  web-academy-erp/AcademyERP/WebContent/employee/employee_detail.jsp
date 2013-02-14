@@ -17,25 +17,25 @@
 	}
 	
 	function checkForm() { // 폼 입력 체크
-		if (document.detailEmployeeForm.mm_name == null) {
+		if (document.detailEmployeeForm.mm_name.value.length == 0) {
 			alert("이름을 입력하세요.");
 			document.detailEmployeeForm.mm_name.focus();
-			return null;
+			return false;
 		}
-		if (document.detailEmployeeForm.mm_jumin1 == null) {
+		if (document.detailEmployeeForm.mm_jumin1.value.length == 0) {
 			alert("주민등록번호를 입력하세요.");
 			document.detailEmployeeForm.mm_jumin1.focus();
-			return null;
+			return false;
 		}
-		if (document.detailEmployeeForm.mm_jumin2 == null) {
+		if (document.detailEmployeeForm.mm_jumin2.value.length == 0) {
 			alert("주민등록번호를 입력하세요.");
 			document.detailEmployeeForm.mm_jumin2.focus();
-			return null;
+			return false;
 		}
-		if (document.detailEmployeeForm.mm_manager_id == null) {
+		if (document.detailEmployeeForm.mm_manager_id.value.length == 0) {
 			alert("상위관리자를 입력하세요.");
 			document.detailEmployeeForm.mm_manager_id.focus();
-			return null;
+			return false;
 		}
 	}
 </script>
@@ -302,7 +302,7 @@
 										<td align="left">
 											<div class="item">
 												<input type="submit" value="수정"> 
-												<input type="button" value="목록" onclick="./EmployeeListAction.em">
+												<input type="button" value="목록" onclick="location.href='./EmployeeListAction.em'">
 											</div>
 										</td>
 									</tr>
