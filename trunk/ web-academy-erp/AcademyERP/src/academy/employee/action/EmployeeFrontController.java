@@ -46,13 +46,6 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/EmpListAction.em")) {
-			action = new EmpListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} else if (command.equals("/EmployeeDetailAction.em")) {
 			action = new EmployeeDetailAction();
 			try {
