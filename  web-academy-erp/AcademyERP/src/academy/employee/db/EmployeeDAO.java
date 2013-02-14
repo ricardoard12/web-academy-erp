@@ -99,7 +99,7 @@ public class EmployeeDAO {
 		Vector vector = new Vector();
 		try {
 			con = ds.getConnection();
-			sql = "SELECT * FROM employee";
+			sql = "SELECT * FROM employee WHERE ep_status='재직'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -185,6 +185,26 @@ public class EmployeeDAO {
     	}
     	
     	return vector;
+    }
+    
+    public void employeeOutgoing(String ep_id) throws Exception {
+    	try {
+    		con = ds.getConnection();
+    		sql = "UPDATE employee SET ep_status='퇴직' WHERE ep_id=?";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, ep_id);
+    		pstmt.executeUpdate();
+    		
+    		sql = "UPDATE member SET mm_level=0 WHERE mm_id=?";
+			pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, ep_id);
+    		pstmt.executeUpdate();
+    		
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	} finally {
+    		closingDB();
+    	}
     }
     
 }
