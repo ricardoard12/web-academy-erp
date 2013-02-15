@@ -14,15 +14,16 @@ public class LevelListAction implements Action {
 			HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("findname");
+		String findname = request.getParameter("findname");
 		System.out.println("LevelListAction");
 		/*
 		 * 세션값 확인 level 값으로 판단한다. HttpSession session = request.getSession();
 		 * MemberBean member = (MemberBean) session.getAttribute("세션값");
 		 * if(member.getMm_level()!=5){ response.sendRedirect(""); }
 		 */
-		List<List> emplist = new MasterDAO().getEmplist(name);
+		List<List> emplist = new MasterDAO().getEmplist(findname);
 		request.setAttribute("empList", emplist);
+		request.setAttribute("findname", findname);
 		forward.setPath("./master/employee_list.jsp");
 		forward.setRedirect(false);
 		return forward;
