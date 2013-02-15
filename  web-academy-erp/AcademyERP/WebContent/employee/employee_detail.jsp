@@ -37,6 +37,12 @@
 			document.detailEmployeeForm.mm_manager_id.focus();
 			return false;
 		}
+		
+		if (confirm("수정하시겠습니까?") == true) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 </script>
 <title>Insert title here</title>

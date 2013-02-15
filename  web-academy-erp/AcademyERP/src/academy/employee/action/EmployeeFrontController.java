@@ -67,6 +67,20 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/EmployeeAttitudeTimeRecordingAction.em")) {
+			action = new EmployeeAttitudeTimeRecordingAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/EmployeeAttitudeAddMemoAction.em")) {
+			action = new EmployeeAttitudeAddMemoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
