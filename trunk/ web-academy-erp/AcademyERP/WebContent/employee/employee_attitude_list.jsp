@@ -19,6 +19,7 @@
 // 		if (parseInt(navigator.appVersion) >= 4) { win.window.focus(); }
 // 	}
 	function winopen(id, at_memo) {
+		if (at_memo == "null") at_memo="";
 		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
 	}
 </script>
@@ -26,7 +27,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
-	SimpleDateFormat sdf = new SimpleDateFormat("HH:MM:SS");
+	SimpleDateFormat sdf = new SimpleDateFormat("hh:MM");
 %>
 <body>
 	<!-- UI Object -->
@@ -96,12 +97,12 @@
 									<%
 										if (attitude.getAt_memo() != null) {
 											if (attitude.getAt_memo().length() > 10) {
-												%><a href=""><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+												%><a href="#" onclick="winopen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
 											} else {
-												%><a href="#"><%=attitude.getAt_memo()%></a><%
+												%><a href="#" onclick="winopen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo()%></a><%
 											} 
 										} else {
-											%><input type="button" value="입력" onclick="winopen('<%=attitude.getAt_member_id() %>','')"><%
+											%><input type="button" value="입력" onclick="winopen('<%=attitude.getAt_member_id() %>','null')"><%
 										}%>
 								</td>
 							</tr>
