@@ -78,13 +78,13 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 							</td>
 							<td>
 								<%
-									if (attitude.getAt_open_time() != null) {%><%=attitude.getAt_open_time() %><%} 
+									if (attitude.getAt_come_time() != null) {%><%=attitude.getAt_come_time() %><%} 
 									else { %><input type="button" value="출석" onclick="location.href='#'">	<%} 
 								%>	
 							</td>
 							<td>
 								<%
-									if (attitude.getAt_close_time() != null) {%><%=attitude.getAt_close_time() %><%} 
+									if (attitude.getAt_leave_time() != null) {%><%=attitude.getAt_leave_time() %><%} 
 									else { %><input type="button" value="퇴실" onclick="location.href='#'">	<%} 
 								%>	
 							</td>
@@ -97,7 +97,7 @@ List StudentAttitudeList = (List) request.getAttribute("StudentAttitudeList");
 											%><a href="#"><%=attitude.getAt_memo()%></a><%
 										} 
 									} else {
-										%><input type="button" value="입력" onclick="#"><%
+										%><input type="button" value="입력" onclick=""><%
 									}%>
 							</td>
 						</tr>
