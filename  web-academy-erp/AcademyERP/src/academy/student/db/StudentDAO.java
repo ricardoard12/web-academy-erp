@@ -193,7 +193,7 @@ public class StudentDAO {
 
 			SutdentAttitudeList = new ArrayList();
 			while (rs.next()) {
-				sql = "SELECT * FROM attitude WHERE at_open_time > current_date() AND at_member_id=?";
+				sql = "SELECT * FROM attitude WHERE at_come_time > current_date() AND at_member_id=?";
 				// 출석 시간 날짜가 오늘인 데이터 중 아이디 일치 여부 확인
 				
 				pstmt = con.prepareStatement(sql);
@@ -207,8 +207,8 @@ public class StudentDAO {
 						attitude.setMm_name(rs.getString("mm_name")); // 학생 명단 조회 결과 중 이름 저장
 						attitude.setAt_member_id(rs2.getString("at_member_id"));
 						attitude.setAt_report_state(rs2.getString("at_report_state"));
-						attitude.setAt_open_time(rs2.getDate("at_open_time"));
-						attitude.setAt_close_time(rs2.getDate("at_close_time"));
+						attitude.setAt_come_time(rs2.getDate("at_come_time"));
+						attitude.setAt_leave_time(rs2.getDate("at_leave_time"));
 						attitude.setAt_memo(rs2.getString("at_memo"));
 						
 						SutdentAttitudeList.add(attitude);
