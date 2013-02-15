@@ -29,6 +29,9 @@ public class EmployeeBean {
     private String ep_account_num; // 계좌 번호
     private String ep_account_name; // 예금주
     private int ep_salary; // 연봉
+    private Date ep_in_date; // 입사일
+    private Date ep_out_date; // 퇴사일
+    private String ep_memo; // 퇴사 사유 등 메모
     
     public String getMm_name() {
         return mm_name;
@@ -171,5 +174,23 @@ public class EmployeeBean {
     public void setEp_salary(int ep_salary) {
         this.ep_salary = ep_salary;
     }
+	public Date getEp_in_date() {
+		return ep_in_date;
+	}
+	public void setEp_in_date(Date ep_in_date) {
+		this.ep_in_date = ep_in_date;
+	}
+	public Date getEp_out_date() {
+		return ep_out_date;
+	}
+	public void setEp_out_date(Date ep_out_date) {
+		this.ep_out_date = ep_out_date;
+	}
+	public String getEp_memo() {
+		return ep_memo;
+	}
+	public void setEp_memo(String ep_memo) {
+		this.ep_memo = ep_memo;
+	}
     
 }
