@@ -10,18 +10,6 @@
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function checkForm() {
-		var check = document.getElementsByName('employeeSelect');
-		for (var i = 0; i < check.length; i++) {
-			if (check[i].checked == true) {
-				return true;
-			}
-		}
-		alert("직원을 선택하세요.");
-		return false;
-	}
-</script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -51,8 +39,6 @@
 				<!-- 직원 목록 시작 -->
 
 				<!-- UI Object -->
-				<form action="./EmployeeDeleteAction.em" method="get"
-					name="employeeListForm" onsubmit="return checkForm()">
 					<table cellspacing="0" border="1" summary="직원리스트"
 						class="tbl_type_list">
 						<caption>직원 목록</caption>
@@ -63,7 +49,7 @@
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col">선택</th>
+								<th scope="col">아이디</th>
 								<th scope="col">이름</th>
 								<th scope="col">담당부서</th>
 								<th scope="col">직급</th>
@@ -80,27 +66,37 @@
 									MemberBean member = (MemberBean) memberList.get(i);
 							%>
 							<tr>
-								<td><input name="employeeSelect" type="checkbox" id="a1"
-									class="i_check" value="<%=employee.getEp_id()%>"><label for="a1"></label></td>
-
 								<td><a
 									href="./EmployeeDetailAction.em?id=<%=employee.getEp_id()%>"><%=employee.getEp_id()%></a></td>
 								<td><%=member.getMm_name()%></td>
 								<td><%=employee.getEp_department()%></td>
 								<td><%=employee.getEp_position()%></td>
 								<td><%=employee.getEp_subject_name()%></td>
-								<td><%=employee.getEp_group_id()%></td>
+								<td><%=employee.getEp_in_date()%></td>
+								<td><%=employee.getEp_out_date()%></td>
+								<td>
+									<%
+										if (employee.getEp_memo() != null) {
+											if (employee.getEp_memo().length() > 10) {
+												%><a href="#"><%=employee.getEp_memo().substring(0,10) + "..."%></a><%
+											} else {
+												%><a href="#"><%=employee.getEp_memo()%></a><%
+											} 
+										} else {
+											%><input type="button" value="입력" onclick="#"><%
+										}%>
+								</td>
 							</tr>
 							<%
 								}
 							%>
 							<!-- 버튼 -->
-							<tr align="right">
-								<td align="center" colspan="8">
-									<div class="item">
-										<input type="submit" value="선택 삭제">
-									</div>
-							</tr>
+<!-- 							<tr align="right"> -->
+<!-- 								<td align="center" colspan="8"> -->
+<!-- 									<div class="item"> -->
+<!-- 										<input type="submit" value="선택 삭제"> -->
+<!-- 									</div> -->
+<!-- 							</tr> -->
 						</tbody>
 					</table>
 				</form>
