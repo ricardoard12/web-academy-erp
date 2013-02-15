@@ -11,7 +11,7 @@
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
     
-    String[] board_check = request.getParameterValues("board_check");
+   	
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,7 +42,7 @@
         
             <!-- 게시판 시작 -->
             <!-- UI Object -->
-<form method="get" action="location.href='./BoardDeleteAction.bo'">
+<form method="post" action="./BoardDeleteAction.bo">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 <caption>게시판 리스트</caption>
 <colgroup>

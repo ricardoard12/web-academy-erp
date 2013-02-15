@@ -66,7 +66,9 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 <input type="button" name="board_modify" value="수정" onclick="location.href='BoardModify.bo?num=<%=boardbean.getBoard_num()%>'">
 <input type="button" name="" value="목록" onclick="location.href='BoardNotice.bo'">
 </div>
-<br><form action="./BoardReplyAction.bo" method="post">
+<br>
+
+<form action="./BoardReplyAction.bo" method="post">
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>
 	<colgroup>
