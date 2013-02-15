@@ -1,6 +1,7 @@
 package academy.accounting.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,7 +99,7 @@ public class AccountingDAO {
     }
     
     //날짜검색 리스트
-    public List acSearchList(String date){
+    public List acSearchList(Date date){
         String sql="";
         List searchlist = null;
         AccountingBean acBean = null;
@@ -107,7 +108,7 @@ public class AccountingDAO {
             sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
                     "where ac_date = ? order by ac_id desc";
             pstmt=con.prepareStatement(sql);
-            pstmt.setString(1, date);
+            pstmt.setDate(1, date);
             rs=pstmt.executeQuery();
             if(rs.next()){
                 searchlist = new ArrayList();
