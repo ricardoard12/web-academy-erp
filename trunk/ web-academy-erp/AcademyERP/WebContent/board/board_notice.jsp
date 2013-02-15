@@ -96,7 +96,7 @@
 
 </tbody>
 </table>
-
+<!-- mm_level에 따라보이게하기 -->
 <div align="right">
 <input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'">
 <%-- <input type="button" name="board_delete" value="삭제" onclick="location.href='./BoardDeleteAction.bo?num=<%=boardbean.getBoard_num()%>&board_check=<%=board_check%>'"> --%>
