@@ -81,7 +81,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 			<td>
 				<div class="item">
 					<textarea name="board_content" cols="100" rows="10" title="레이블 텍스트"
-						id= "board_content" class="i_text"><%=boardbean.getBoard_content() %></textarea>
+						id= "contents" class="i_text" style="display: none;"><%=boardbean.getBoard_content() %></textarea>
 				</div>
 			</td>
 		</tr>
@@ -106,7 +106,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 			<td></td>
 			<td align="left">
 				<div class="item">
-					<input type="submit"  value="수정"> 
+					<input type="submit"  value="수정" onclick="submitContents(this)"> 
 					<input type="button" name="" value="취소" onclick="location.href='./BoardNotice.bo'">
 				</div>
 			</td>
@@ -136,7 +136,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
-				elPlaceHolder : "board_content",
+				elPlaceHolder : "contents",
 				sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
 				htParams : {
 					bUseToolbar : true,
@@ -146,23 +146,23 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 				}, //boolean
 				fOnAppLoad : function() {
 					//예제 코드
-					//oEditors.getById["board_content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+					//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 				},
 				fCreator : "createSEditor2"
 			});
 
 			function pasteHTML() {
 				var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-				oEditors.getById["board_content"].exec("PASTE_HTML", [ sHTML ]);
+				oEditors.getById["contents"].exec("PASTE_HTML", [ sHTML ]);
 			}
 
 			function showHTML() {
-				var sHTML = oEditors.getById["board_content"].getIR();
+				var sHTML = oEditors.getById["contents"].getIR();
 				alert(sHTML);
 			}
 
-			function submitboard_content(elClickedObj) {
-				oEditors.getById["board_content"].exec("UPDATE_board_content_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+			function submitContents(elClickedObj) {
+				oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
 
 				// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
 
@@ -175,7 +175,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 			function setDefaultFont() {
 				var sDefaultFont = '궁서';
 				var nFontSize = 24;
-				oEditors.getById["board_content"].setDefaultFont(sDefaultFont,
+				oEditors.getById["contents"].setDefaultFont(sDefaultFont,
 						nFontSize);
 			}
 		</script>
