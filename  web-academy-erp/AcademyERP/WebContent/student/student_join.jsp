@@ -27,17 +27,17 @@
 		}
 		if (document.StudentJoinForm.mm_pw.value.length == 0) {
 			alert("비밀번호를 입력하세요.");
-			document.StudentJoinForm.mm_passwd.focus();
+			document.StudentJoinForm.mm_pw.focus();
 			return false;
 		}
 		if (document.StudentJoinForm.mm_pw_check.value.length == 0) {
 			alert("비밀번호 확인을 입력하세요.");
-			document.StudentJoinForm.mm_passwd2.focus();
+			document.StudentJoinForm.mm_pw_check.focus();
 			return false;
 		}
 		if (document.StudentJoinForm.mm_pw.value != document.StudentJoinForm.mm_pw_check.value) {
 			alert("입력하신 비밀번호가 서로 다릅니다.");
-			document.StudentJoinForm.mm_pw.focus();
+			document.StudentJoinForm.mm_pw_check.focus();
 			return false;
 		}
 		if (document.StudentJoinForm.mm_jumin1.value.length == 0) {
@@ -85,10 +85,6 @@
 		}if (document.StudentJoinForm.mm_email1.value.length == 0) {
 			alert("이메일 번호를 입력하세요.");
 			document.StudentJoinForm.mm_email1.focus();
-			return false;
-		}if (document.StudentJoinForm.mm_email2.value.length == 0) {
-			alert("이메일 번호를 입력하세요.");
-			document.StudentJoinForm.mm_email2.focus();
 			return false;
 		}if (document.StudentJoinForm.st_school_name.value.length == 0) {
 			alert("학교명를 입력하세요.");

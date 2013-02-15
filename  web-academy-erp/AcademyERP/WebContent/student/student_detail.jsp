@@ -275,9 +275,9 @@
 										<th scope="row">납부여부</th>
 										<td>
 											<div class="item">
-												<input name="st_tuition_state" type="radio" value="납부" id="c1" class="i_radio"><label
+												<input name="st_tuition_state" type="radio" value="납부" id="c1" class="i_radio" <%if(studentbean.getSt_tuition_state().equals("납부")){ %>checked<%} %>><label
 													for="c1">납부</label> <input name="st_tuition_state" type="radio" value="미납"
-													id="c2" class="i_radio"><label for="c2">미납</label>
+													id="c2" class="i_radio" <%if(studentbean.getSt_tuition_state().equals("미납")){ %>checked<%} %>><label for="c2">미납</label>
 											</div>
 										</td>
 									</tr>
