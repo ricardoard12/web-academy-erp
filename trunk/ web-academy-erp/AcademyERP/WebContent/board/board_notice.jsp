@@ -10,6 +10,8 @@
     int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
+    
+    String[] board_check = request.getParameterValues("board_check");
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,6 +42,7 @@
         
             <!-- 게시판 시작 -->
             <!-- UI Object -->
+<form method="get" action="location.href='./BoardDeleteAction.bo'">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 <caption>게시판 리스트</caption>
 <colgroup>
@@ -77,6 +80,7 @@
     		<%
     	}
     }
+
     		%>
 
     	
@@ -92,9 +96,12 @@
 
 </tbody>
 </table>
+
 <div align="right">
 <input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'">
-<input type="button" name="board_delete" value="삭제" onclick="loaction.href='./BoardDelete.bo?num=<%=boardbean.getBoard_num()%>'">
+<%-- <input type="button" name="board_delete" value="삭제" onclick="location.href='./BoardDeleteAction.bo?num=<%=boardbean.getBoard_num()%>&board_check=<%=board_check%>'"> --%>
+<input type="submit" name="board_delete" value="삭제">
+</form>
 </div>
 
 <!-- Paginate -->
