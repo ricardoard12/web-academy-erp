@@ -158,7 +158,7 @@
 					<li><a href="./EmployeeListAction.em"><span>직원현황</span></a></li>
 					<li><a href="./EmployeeAttitudeListAction.em"><span>근태관리</span></a></li>
 					<li><a href="#"><span>급여관리</span></a></li>
-					<li><a href="#"><span>퇴직자관리</span></a></li>
+					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
 			<li><a href="#"><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
