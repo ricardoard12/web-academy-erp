@@ -40,6 +40,7 @@
 				<!-- 직원 목록 시작 -->
 
 				<!-- UI Object -->
+				<form>
 				<table cellspacing="0" border="1" summary="직원리스트"
 					class="tbl_type_list">
 					<caption>직원 목록</caption>
@@ -50,12 +51,12 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">선택</th>
 							<th scope="col">ID</th>
-							<th scope="col">이름</th>					
+							<th scope="col">이름</th>
 							<th scope="col">직책</th>
 							<th scope="col">부서</th>
 							<th scope="col">사수</th>
+							<th scope="col">상태</th>
 							<th scope="col">현재 권한</th>
 							<th></th>
 							<th scope="col">권한변경</th>
@@ -67,18 +68,15 @@
 								List list = (List) empList.get(i);
 						%>
 						<tr>
-							<td><input name="masterchklist" type="checkbox" value=""
-								id="a1" class="i_check"><label for="a1"></label></td>
-							<%
-							%>
 							<td><%=list.get(0)%></td>
 							<td><%=list.get(1)%></td>
 							<td><%=list.get(2)%></td>
 							<td><%=list.get(3)%></td>
 							<td><%=list.get(4)%></td>
-							<td><%=list.get(5) %></td>
+							<td><%=list.get(6)%></td>
+							<td><%=list.get(5)%></td>
 							<td>───▷</td>
-							<td><select>
+							<td><select onchange="">
 									<option>권한 레벨 선택</option>
 									<option <%if (list.get(5).equals("3")) {%> selected <%}%>>3(일반)</option>
 									<option <%if (list.get(5).equals("4")) {%> selected <%}%>>4(팀장)</option>
@@ -90,17 +88,18 @@
 						%>
 						<!-- 버튼 -->
 						<tr align="right">
-							<td align="center" colspan="9">
+							<td align="center" colspan="8">
 								<div class="item">
-									<input type="submit" value="저장하기"><input type="button"
-										value="뒤로 가기" onclick="history.back()">
+									<input type="button" value="뒤로 가기" onclick="history.back()">
 								</div>
 						</tr>
+						</form>
 						<tr>
-							<td align="center" colspan="9">
-								<form action="./EmpListAction.em">
+							<td align="center" colspan="8">
+								<form action="./LevelList.master">
 									<div class="item">
-										<input type="text"><input type="submit">
+										<input type="text" name="findname"><input
+											type="submit" value="검색하기">
 									</div>
 								</form>
 							</td>
