@@ -226,28 +226,29 @@ public class BoardDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
 	}
-	public boolean boardDelete(int num) throws Exception{
-		String sql="";
-		boolean x=false;
-		try {
-			
-			con=ds.getConnection();
-			
-			sql="delete from board where board_num=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			
-			pstmt.executeUpdate();
-			x=true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
-		}
-		return x;
-	}
+	public boolean boardDelete(String[] num) throws Exception{
+		StringBuffer sql = new StringBuffer("delete from board where board_num=?");
+        // 기본 쿼리문만을 StringBuffer로 생성한다.
+        for(int i=0; i<num.length; i++){
+            sql.append("'"+num[i]+"'");
+            if(i<num.length-1){   
+              //만약 check의 길이가 i보다 크다면 ,를 붙인다.
+                sql.append(",");
+            }else if(i==num.length-1){    
+              //위의조건 만족시 만약 i와 check가 같다면 ) 으로써 쿼리를 완성한다
+                sql.append(")");
+            }
+        }
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.executeUpdate();
+        } catch (Exception e) {e.printStackTrace();} 
+        finally {if(rs!=null)try{rs.close();}catch(SQLException ex){}
+		if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+		if(con!=null)try{con.close();}catch(SQLException ex){}}
+		return false;
+    }
 	public int boardReply(BoardBean boardbean){
 		String sql="";
 		int x=0;
