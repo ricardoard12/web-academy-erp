@@ -66,7 +66,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 <input type="button" name="board_modify" value="수정" onclick="location.href='BoardModify.bo?num=<%=boardbean.getBoard_num()%>'">
 <input type="button" name="" value="목록" onclick="location.href='BoardNotice.bo'">
 </div>
-<br>
+<br><form action="./BoardReplyAction.bo" method="post">
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>
 	<colgroup>
@@ -75,8 +75,8 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 	</colgroup>
 	<tbody>
 	<tr class="input_txt">
-	<td><input type="text" title="이름" name="" value="" class="name"></td>
-	<td><textarea cols="65" rows="5" name="" class="comment"></textarea>
+	<td><input type="text" title="이름" name="board_name" value="" class="name"></td>
+	<td><textarea cols="65" rows="5" name="board_content" class="comment"></textarea>
 		<input type="submit" title="입력" value="입력" class="submit">
 	</td>
 	</tr>
@@ -90,6 +90,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 	</tr>
 	</tbody>
 	</table>
+	</form>
             
 <!-- //dtail 게시판 끝 -->
             
