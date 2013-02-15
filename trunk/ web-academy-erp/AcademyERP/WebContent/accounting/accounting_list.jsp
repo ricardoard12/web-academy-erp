@@ -13,7 +13,14 @@
 
 </head>
 <%
-    List acList = (List) request.getAttribute("acList");
+	String kind = request.getParameter("kind");
+	//날짜 검색시 구별 하는 방법
+	if(kind.equals("")){
+	    kind = (String)request.getAttribute("kind");
+	}
+	
+	List aclist = (List)request.getAttribute("aclist");
+    
 %>
 <body>
 	<!-- UI Object -->
@@ -34,8 +41,9 @@
 			<!-- content -->
 			<div id="content">
 
-					<form name="acDeleteCheck" method="post" >
-							<!-- 회계 목록 시작 -->
+					<form name="acCheck" method="post" >
+					<input type="hidden" name=kind value="<%=kind %>">
+						<!-- 회계 목록 시작 -->
 
 							<!-- UI Object -->
 							<table cellspacing="0" border="1" summary="유형별 자산목록리스트" class="tbl_type_list">
@@ -76,8 +84,8 @@
 								<tbody>
 
 									<%
-						    for (int i = 0; i < acList.size(); i++) {
-						        AccountingBean acBean = (AccountingBean) acList.get(i);
+						    for (int i = 0; i < aclist.size(); i++) {
+						        AccountingBean acBean = (AccountingBean) aclist.get(i);
 						%>
 									<tr>		<!-- 삭제 체크값 넘기기 -->
 										<td><input type="checkbox" name="check" value="<%=acBean.getAc_id()%>"></td>
@@ -122,26 +130,30 @@
 <script language="javascript">
 
 	function CheckAll() {
-		if (document.acDeleteCheck.all.checked == true) { // 체크가 되었다면
-			for ( var x = 0; x < acDeleteCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
-				document.acDeleteCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
+		if (document.acCheck.all.checked == true) { // 체크가 되었다면
+			for ( var x = 0; x < acCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+				document.acCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
 			}
 		} else {
-			for ( var x = 0; x < acDeleteCheck.check.length; x++) { // 모두 해제 시킨다..
-				document.acDeleteCheck.check[x].checked = false;
+			for ( var x = 0; x < acCheck.check.length; x++) { // 모두 해제 시킨다..
+				document.acCheck.check[x].checked = false;
 			}
 		}
 	}
 
 	function Del() {
-		document.acDeleteCheck.action = "./AccountingDelete.ac";
-		document.acDeleteCheck.submit();
+		document.acCheck.action = "./AccountingDelete.ac";
+		document.acCheck.submit();
 	}
 
 	function CheckDate() {
-		var date = document.acDeleteCheck.date.value;
-			document.acDeleteCheck.action = "./AccountingDateSearch.ac?date="+date;
-			document.acDeleteCheck.submit();
+		var date = document.acCheck.date.value;
+		if(date == ''){
+			alert('날짜 입력하세요');
+		}else{
+			document.acCheck.action = "./AccountingList.ac?date="+date;
+			document.acCheck.submit();
+		}
 	}
 </script>
 </body>
