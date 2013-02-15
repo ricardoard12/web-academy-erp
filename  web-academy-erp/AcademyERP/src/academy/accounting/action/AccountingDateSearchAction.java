@@ -1,5 +1,6 @@
 package academy.accounting.action;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,15 +17,14 @@ public class AccountingDateSearchAction implements Action{
         AccountingDAO acDao = new AccountingDAO();
         
         //체크값 받아오기
-        String date = request.getParameter("date");
-        
+        Date date = Date.valueOf(request.getParameter("date"));
         List searchlist = acDao.acSearchList(date);
         
         //acList로 날려서 리스트에서 중복 작업을 피하기 위해서 변경
         request.setAttribute("acList", searchlist);
         //주소값 없애기 위해
-        forward.setRedirect(true);
-        forward.setPath("./AccountingList.ac");
+        forward.setRedirect(false);
+        forward.setPath("./accounting/accounting_list.jsp");
         return forward;
     }
 
