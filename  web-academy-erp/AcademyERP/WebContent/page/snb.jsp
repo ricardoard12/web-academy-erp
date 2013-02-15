@@ -1,5 +1,9 @@
+<%@page import="academy.member.db.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	MemberBean member = (MemberBean) session.getAttribute("sMember");
+%>
 <!DOCTYPE>
 <html>
 <head>
@@ -104,8 +108,7 @@
 					class="i"></span></a>
 				<ul style="display: none;">
 					<li>
-						<!-- class="active" -->
-						<a href="./StudentJoin.st"><span>신규등록</span></a>
+						<!-- class="active" --> <a href="./StudentJoin.st"><span>신규등록</span></a>
 					</li>
 					<li><a href="./StudentList.st"><span>수강생관리</span></a></li>
 					<li><a href="./StudentOffList.st"><span>휴원생관리</span></a></li>
@@ -141,9 +144,11 @@
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
+				<!-- 선생님용 메뉴 -->
+<%-- 				<%if(member.level.equals("3")||member.level.equals("5")){ %> --%>
 			<li><a href="#"><span>게시판</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li><a href="./BoardNotice.bo"><span>공지사항</span></a></li>
+					<li><a href="./BoardNotice.bo?gid=0>"><span>공지사항</span></a></li>
 					<li><a href="#"><span>업무일지</span></a></li>
 					<li><a href="#"><span>강의계획서</span></a></li>
 					<li><a href="#"><span>수업자료실</span></a></li>
@@ -151,6 +156,7 @@
 					<li><a href="#"><span>직원자료실</span></a></li>
 					<li><a href="#"><span>직원게시판</span></a></li>
 				</ul></li>
+<%-- 				<%} %> --%>
 			<li><a href="#"><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./EmployeeAdd.em"><span>신규등록</span></a></li>
