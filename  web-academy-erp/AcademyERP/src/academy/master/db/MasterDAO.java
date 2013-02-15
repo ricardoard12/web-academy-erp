@@ -30,29 +30,40 @@ public class MasterDAO {
 	}
 
 	private void dbClose() {
-		if (rs != null || con != null || pstmt != null)
+		if (rs != null)
 			try {
 				rs.close();
-				con.close();
-				pstmt.close();
-				System.out.println("Master DB Closed");
-			} catch (SQLException e2) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				e.printStackTrace();
 			}
+		if (con != null)
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if (pstmt != null)
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		System.out.println("Master DB Closed");
 
 	}
 
-	// 직원들의 목록과 권한 설정하기
+	// 직원들의 목록과 권한 가져오기
 	public List<List> getEmplist(String name) {
 		List<List> empList = null;
 		String str = "";
-		System.out.println(name);
-		if (name!=null) {
+		System.out.println("검색어 : " + name);
+		if (name != null) {
 			str = " AND mm_name LIKE '%" + name + "%'";
-			System.out.println("haha");
-		}else{
-			str="";
+		} else {
+			str = "";
 		}
 		try {
 			con = ds.getConnection();
@@ -74,7 +85,7 @@ public class MasterDAO {
 	}
 
 	private List<String> insertLevellist() throws Exception {
-		List<String> list = new ArrayList();		
+		List<String> list = new ArrayList();
 		list.add(rs.getString(1));
 		list.add(rs.getString(2));
 		list.add(rs.getString(3));
@@ -83,6 +94,24 @@ public class MasterDAO {
 		list.add(rs.getString(6));
 		list.add(rs.getString(7));
 		return list;
+	}
+
+	// level update 부분
+	public void updateLevel(String id, String level) {
+		try {
+			con = ds.getConnection();
+			String sql = "update member set mm_level=" + level
+					+ " where mm_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			System.out.println("update 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("update 실패");
+		} finally {
+			dbClose();
+		}
 	}
 
 }
