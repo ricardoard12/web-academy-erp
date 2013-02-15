@@ -32,7 +32,7 @@
 
 				<!-- 회계 등록 시작 -->
 
-				<form action="./AccountingJoinAction.ac" method="post">
+				<form action="./AccountingJoinAction.ac" method="post" name="acCheck">
 					<fieldset>
 						<legend>수입/지출 등록</legend>
 						<div class="form_table">
@@ -91,7 +91,7 @@
 					<th scope="row">결제일</th>
 					<td>
 						<div class="item">
-							<input type="text" name="ac_date">
+							<input type="text" name="ac_date" >
 							<input type="button" value="달력보기" onClick="datePicker(event,'ac_date',0)">
 							<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->						
 						</div>
@@ -123,7 +123,7 @@
 					<td></td>
 					<td align="left">
 						<div class="item">
-							<input type="submit"  value="등록"> 
+							<input type="submit"  value="등록" onclick="return CheckDate()"> 
 							<input type="reset" value="취소">
 						</div>
 					</td>
@@ -151,6 +151,15 @@
 	</div>
 
 	<script type="text/javascript">
+		function CheckDate() {
+			var date = document.acCheck.ac_date.value;
+			if(date == ''){
+				alert('날짜 입력하세요');
+				return false;
+			}
+			
+		}
+		
 		jQuery(function() {
 			// Help Toggle
 			$('.item>.i_help').click(function() {
