@@ -74,7 +74,7 @@
 			<td>
 				<div class="item">
 					<textarea name="board_content" cols="100" rows="10" title="레이블 텍스트"
-						id="contents" class="i_text" style="display: none;"></textarea>
+						id="board_content" class="i_text" style="display: none;"></textarea>
 				</div>
 			</td>
 		</tr>
@@ -129,7 +129,7 @@
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
-				elPlaceHolder : "contents",
+				elPlaceHolder : "board_content",
 				sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
 				htParams : {
 					bUseToolbar : true,
@@ -139,23 +139,23 @@
 				}, //boolean
 				fOnAppLoad : function() {
 					//예제 코드
-					//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+					//oEditors.getById["board_content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 				},
 				fCreator : "createSEditor2"
 			});
 
 			function pasteHTML() {
 				var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-				oEditors.getById["contents"].exec("PASTE_HTML", [ sHTML ]);
+				oEditors.getById["board_content"].exec("PASTE_HTML", [ sHTML ]);
 			}
 
 			function showHTML() {
-				var sHTML = oEditors.getById["contents"].getIR();
+				var sHTML = oEditors.getById["board_content"].getIR();
 				alert(sHTML);
 			}
 
-			function submitContents(elClickedObj) {
-				oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+			function submitboard_content(elClickedObj) {
+				oEditors.getById["board_content"].exec("UPDATE_board_content_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
 
 				// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
 
@@ -168,7 +168,7 @@
 			function setDefaultFont() {
 				var sDefaultFont = '궁서';
 				var nFontSize = 24;
-				oEditors.getById["contents"].setDefaultFont(sDefaultFont,
+				oEditors.getById["board_content"].setDefaultFont(sDefaultFont,
 						nFontSize);
 			}
 		</script>
