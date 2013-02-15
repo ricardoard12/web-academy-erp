@@ -74,7 +74,7 @@
 			<td>
 				<div class="item">
 					<textarea name="board_content" cols="100" rows="10" title="레이블 텍스트"
-						id="board_content" class="i_text" style="display: none;"></textarea>
+						id="contents" class="i_text" style="display: none;"></textarea>
 				</div>
 			</td>
 		</tr>
@@ -99,7 +99,7 @@
 			<td></td>
 			<td align="left">
 				<div class="item">
-					<input type="submit"  value="글쓰기"> 
+					<input type="submit"  value="글쓰기" onclick="submitContents(this)"> 
 					<input type="button" name="" value="취소" onclick="location.href='./BoardNotice.bo'">
 				</div>
 			</td>
@@ -111,7 +111,53 @@
 						</div>
 					</fieldset>
 				</form>
+<script type="text/javascript">
+			var oEditors = [];
+			nhn.husky.EZCreator.createInIFrame({
+				oAppRef : oEditors,
+				elPlaceHolder : "contents",
+				sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
+				htParams : {
+					bUseToolbar : true,
+					fOnBeforeUnload : function() {
+						//alert("아싸!");	
+					}
+				}, //boolean
+				fOnAppLoad : function() {
+					//예제 코드
+					//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+				},
+				fCreator : "createSEditor2"
+			});
 
+			function pasteHTML() {
+				var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+				oEditors.getById["contents"].exec("PASTE_HTML", [ sHTML ]);
+			}
+
+			function showHTML() {
+				var sHTML = oEditors.getById["contents"].getIR();
+				alert(sHTML);
+			}
+
+			function submitContents(elClickedObj) {
+				oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+
+				// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+
+				try {
+					elClickedObj.form.submit();
+				} catch (e) {
+				}
+			}
+
+			function setDefaultFont() {
+				var sDefaultFont = '궁서';
+				var nFontSize = 24;
+				oEditors.getById["contents"].setDefaultFont(sDefaultFont,
+						nFontSize);
+			}
+		</script>
 				<!-- 회원가입 끝 -->
 
 			</div>
@@ -125,79 +171,6 @@
 		<!-- //footer -->
 	</div>
 	
-	<script type="text/javascript">
-			var oEditors = [];
-			nhn.husky.EZCreator.createInIFrame({
-				oAppRef : oEditors,
-				elPlaceHolder : "board_content",
-				sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
-				htParams : {
-					bUseToolbar : true,
-					fOnBeforeUnload : function() {
-						//alert("아싸!");	
-					}
-				}, //boolean
-				fOnAppLoad : function() {
-					//예제 코드
-					//oEditors.getById["board_content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-				},
-				fCreator : "createSEditor2"
-			});
-
-			function pasteHTML() {
-				var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-				oEditors.getById["board_content"].exec("PASTE_HTML", [ sHTML ]);
-			}
-
-			function showHTML() {
-				var sHTML = oEditors.getById["board_content"].getIR();
-				alert(sHTML);
-			}
-
-			function submitboard_content(elClickedObj) {
-				oEditors.getById["board_content"].exec("UPDATE_board_content_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
-
-				// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
-
-				try {
-					elClickedObj.form.submit();
-				} catch (e) {
-				}
-			}
-
-			function setDefaultFont() {
-				var sDefaultFont = '궁서';
-				var nFontSize = 24;
-				oEditors.getById["board_content"].setDefaultFont(sDefaultFont,
-						nFontSize);
-			}
-		</script>
-		
-	<script type="text/javascript">
-		jQuery(function() {
-			// Help Toggle
-			$('.item>.i_help').click(function() {
-				$(this).parent('.item').find('.i_dsc').toggleClass('hide');
-			});
-			// Input Clear
-			var i_text = $('.item>.i_label').next('.i_text');
-			$('.item>.i_label').css('position', 'absolute');
-			i_text.focus(function() {
-				$(this).prev('.i_label').css('visibility', 'hidden');
-			}).blur(function() {
-				if ($(this).val() == '') {
-					$(this).prev('.i_label').css('visibility', 'visible');
-				} else {
-					$(this).prev('.i_label').css('visibility', 'hidden');
-				}
-			}).change(function() {
-				if ($(this).val() == '') {
-					$(this).prev('.i_label').css('visibility', 'visible');
-				} else {
-					$(this).prev('.i_label').css('visibility', 'hidden');
-				}
-			}).blur();
-		});
-	</script>
+	
 </body>
 </html>
