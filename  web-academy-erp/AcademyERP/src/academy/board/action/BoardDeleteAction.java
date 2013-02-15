@@ -16,22 +16,25 @@ public class BoardDeleteAction implements Action{
 		
 		BoardDAO boarddao=new BoardDAO();
 		ActionForward forward=new ActionForward();
-		boolean usercheck=false;
-		int num=Integer.parseInt(request.getParameter("num"));
-		String passwd=request.getParameter("board_pass");
-		usercheck=boarddao.isBoardWriter(num, passwd);
-		if(usercheck==false){
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('삭제권한이 없습니다.');");
-			out.println("location.href='./BoardList.bo';");
-			out.println("</script>");
-			out.close();
-			return null;
-		}
+		String[] board_check = request.getParameterValues("board_check");
+//		int num = board_check.length;
+		//int[] num =Integer.parseInt(request.getParameterValues("board_check"));
 		
-		boolean result=boarddao.boardDelete(num);
+//		boolean usercheck=false;
+//		String passwd=request.getParameter("board_pass");
+//		usercheck=boarddao.isBoardWriter(num, passwd);
+//		if(usercheck==false){
+//			response.setContentType("text/html;charset=utf-8");
+//			PrintWriter out=response.getWriter();
+//			out.println("<script>");
+//			out.println("alert('삭제권한이 없습니다.');");
+//			out.println("location.href='./BoardList.bo';");
+//			out.println("</script>");
+//			out.close();
+//			return null;
+//		}
+		
+		boolean result=boarddao.boardDelete(board_check);
 		if(result==false){
 			System.out.println("삭제실패");
 			return null;
