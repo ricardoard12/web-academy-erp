@@ -23,14 +23,17 @@ public class EmployeeAttitudeAddMemoAction implements Action {
 		boolean result = attitudeDAO.employeeAttitudeAddMemo(id, at_memo);
 		
 		if (result == true) {
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('메모 작성이 완료되었습니다.')");
+			out.println("opener.reload()");
 			out.println("window.close()");
 			out.println("</script>");
 			out.close();
 			return null;
 		} else {
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('메모 작성이 실패하였습니다.')");
