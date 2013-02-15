@@ -47,13 +47,13 @@ public class BoardFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//		}else if(command.equals("/BoardModify.bo")){
-//			action=new BoardModifyView();
-//			try {
-//				forward=action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+		}else if(command.equals("/BoardModify.bo")){
+			action=new BoardModifyView();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/BoardModifyAction.bo")){
 			action=new BoardModifyAction();
 			try {

@@ -30,6 +30,8 @@ public class BoardModifyAction implements Action{
 		
 		int num = Integer.parseInt(multi.getParameter("board_num"));
 		String passwd = multi.getParameter("board_pass");
+		System.out.println(num);
+		System.out.println(passwd);
 		boolean userCheck=boarddao.isBoardWriter(num,passwd);
 		System.out.println(userCheck);
 		
@@ -37,7 +39,7 @@ public class BoardModifyAction implements Action{
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script>");
-			out.println("alert('수정할 권한이 없습니다');");
+			out.println("alert('비밀번호가 틀립니다.');");
 			out.println("location.href='./BoardNotice.bo';");
 			out.println("</script>");
 			out.close();
