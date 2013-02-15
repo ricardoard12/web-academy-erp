@@ -15,7 +15,11 @@
 		var check = document.getElementsByName('employeeSelect');
 		for (var i = 0; i < check.length; i++) {
 			if (check[i].checked == true) {
-				return true;
+				if (confirm("퇴사 처리 하시겠습니까?") == true) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		alert("직원을 선택하세요.");
@@ -97,7 +101,7 @@
 							<tr align="right">
 								<td align="center" colspan="7">
 									<div class="item">
-										<input type="submit" value="선택 삭제">
+										<input type="submit" value="퇴직 처리">
 									</div>
 							</tr>
 						</tbody>
