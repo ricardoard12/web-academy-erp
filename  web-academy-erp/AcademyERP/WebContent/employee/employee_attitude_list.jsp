@@ -73,13 +73,13 @@
 							<td>
 								<%
 									if (attitude.getAt_open_time() != null) {%><%=attitude.getAt_open_time() %><%} 
-									else { %><input type="button" value="출근" onclick="location.href='#'">	<%} 
+									else { %><input type="button" value="출근" onclick="location.href='./employeeAttitudeComeTimeAction.em'">	<%} 
 								%>	
 							</td>
 							<td>
 								<%
 									if (attitude.getAt_close_time() != null) {%><%=attitude.getAt_close_time() %><%} 
-									else { %><input type="button" value="퇴근" onclick="location.href='#'">	<%} 
+									else { %><input type="button" value="퇴근" onclick="location.href='./employeeAttitudeLeaveTimeAction.em'">	<%} 
 								%>	
 							</td>
 							<td>
