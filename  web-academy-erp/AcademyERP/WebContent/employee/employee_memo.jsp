@@ -9,17 +9,15 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)request.getAttribute("id");
-	String at_memo = (String)request.getAttribute("msg");
+	String at_memo = (String)request.getAttribute("at_memo");
 %>
 <body>
-	<form action="./EmployeeAttitudeAddMemoAction.em" method="post">
+	<form action="./EmployeeAttitudeAddMemoAction.em?id=<%=id %>" method="post">
 		<table>
 			<tr><th>메모</th></tr>
 			<tr>
 				<td>
-					<textarea rows="5" cols="40" name="at_memo">
-						<%if (at_memo != null) %><%=at_memo %>
-					</textarea>
+					<textarea rows="6" cols="42" name="at_memo"><%if (at_memo != null) %><%=at_memo %></textarea>
 				</td>
 			</tr>
 			<tr>
