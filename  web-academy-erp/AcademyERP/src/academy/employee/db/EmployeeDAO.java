@@ -70,7 +70,7 @@ public class EmployeeDAO {
 			pstmt.setString(13, employee.getMm_manager_id());
 			pstmt.executeUpdate();
 
-			sql = "INSERT INTO employee (ep_id,ep_position,ep_department,ep_group_id,ep_subject_name,ep_bank_name,ep_account_num,ep_account_name,ep_salary) VALUES(?,?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO employee (ep_id,ep_position,ep_department,ep_group_id,ep_subject_name,ep_bank_name,ep_account_num,ep_account_name,ep_salary,ep_in_date) VALUES(?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, employee.getMm_id());
 			pstmt.setString(2, employee.getEp_position());
@@ -139,6 +139,7 @@ public class EmployeeDAO {
 
 		return vector;
 	}    
+	
     public Vector getEmployeeDetail(String id) throws Exception {
     	EmployeeBean employee = new EmployeeBean();
     	MemberBean member = new MemberBean();
@@ -190,7 +191,7 @@ public class EmployeeDAO {
     public void employeeOutgoing(String ep_id) throws Exception {
     	try {
     		con = ds.getConnection();
-    		sql = "UPDATE employee SET ep_status='퇴직' WHERE ep_id=?";
+    		sql = "UPDATE employee SET ep_status='퇴직',ep_out_date=now() WHERE ep_id=?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, ep_id);
     		pstmt.executeUpdate();
@@ -207,4 +208,53 @@ public class EmployeeDAO {
     	}
     }
     
+    public Vector getEmployeeOutgoingList() throws Exception {
+		List employeeList = null;
+		List memberList = null;
+		Vector vector = new Vector();
+		try {
+			con = ds.getConnection();
+			sql = "SELECT * FROM employee WHERE ep_status='퇴직'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			employeeList = new ArrayList();
+			memberList = new ArrayList();
+			ResultSet rs2 = null;
+			while (rs.next()) {
+				EmployeeBean employee = new EmployeeBean();
+				MemberBean member = new MemberBean();
+
+				employee.setEp_id(rs.getString("ep_id"));
+				employee.setEp_department(rs.getString("ep_department"));
+				employee.setEp_position(rs.getString("ep_position"));
+				employee.setEp_subject_name(rs.getString("ep_subject_name"));
+				employee.setEp_group_id(rs.getString("ep_group_id"));
+				employee.setEp_in_date(rs.getDate("ep_in_date"));
+				employee.setEp_out_date(rs.getDate("ep_out_date"));
+				employee.setEp_memo(rs.getString("ep_memo"));
+
+				sql = "SELECT mm_name FROM member WHERE mm_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("ep_id"));
+				rs2 = pstmt.executeQuery();
+
+				if (rs2.next()) {
+					member.setMm_name(rs2.getString("mm_name"));
+				}
+
+				employeeList.add(employee);
+				memberList.add(member);
+			}
+
+			vector.add(employeeList);
+			vector.add(memberList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+
+		return vector;
+	}    
 }
