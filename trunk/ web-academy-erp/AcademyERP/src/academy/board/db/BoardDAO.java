@@ -88,17 +88,18 @@ public class BoardDAO {
 		return x;
 	}
 	
-	public List getBoardList(int page,int limit){
+	public List getBoardList(String gid,int page,int limit){
 		String sql="";
 		List list=null;
 		int startrow=(page-1)*limit+1; 
 		try {
 			con=ds.getConnection();
 			
-			sql="select * from board order by board_re_ref desc, board_re_seq asc limit ?,?";
+			sql="select * from board where gid=? order by board_re_ref desc, board_re_seq asc limit ?,?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startrow-1); 
-			pstmt.setInt(2, limit); 
+			pstmt.setString(1,gid);
+			pstmt.setInt(2, startrow-1); 
+			pstmt.setInt(3, limit); 
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()){
@@ -114,7 +115,7 @@ public class BoardDAO {
 					boardbean.setBoard_re_lev(rs.getInt("board_re_lev"));
 					boardbean.setBoard_re_seq(rs.getInt("board_re_seq"));
 					boardbean.setBoard_readcount(rs.getInt("board_readcount"));
-					boardbean.setBoard_date(rs.getDate("board_date"));
+					boardbean.setBoard_date(rs.getDate("board_date"));					
 					list.add(boardbean); 
 				}while(rs.next());
 			}
