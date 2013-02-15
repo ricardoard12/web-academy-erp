@@ -125,7 +125,8 @@ public class AttitudeDAO {
 		}
     }
    
-    public void employeeAttitudeAddMemo(String id, String msg) throws Exception {
+    public boolean employeeAttitudeAddMemo(String id, String at_memo) throws Exception {
+    	boolean result = false;
     	try {
     		con = ds.getConnection();
     		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
@@ -136,21 +137,24 @@ public class AttitudeDAO {
     		if (rs.next()) {
     			sql = "UPDATE attitude SET at_memo=? WHERE at_idx=?";
     			pstmt = con.prepareStatement(sql);
-    			pstmt.setString(1, msg);
+    			pstmt.setString(1, at_memo);
     			pstmt.setInt(2, rs.getInt("at_idx"));
     			pstmt.executeUpdate();
     		} else {
     			sql = "INSERT INTO attitude (at_member_id, at_memo) VALUES(?,?)";
     			pstmt = con.prepareStatement(sql);
     			pstmt.setString(1, id);
-    			pstmt.setString(2, msg);
+    			pstmt.setString(2, at_memo);
     			pstmt.executeUpdate();
     		}
+    		result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closingDB();
 		}
+    	
+    	return result;
     }
 
 }

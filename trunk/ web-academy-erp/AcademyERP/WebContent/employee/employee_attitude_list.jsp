@@ -11,8 +11,15 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function winopen() {
-		
+// 	function winopen(mypage, myname, w, h, scroll) {
+// 		var winl = (screen.width - w) / 2;
+// 		var wint = (screen.height - h) / 2;
+// 		winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+// 		win = window.open(mypage, myname, winprops)
+// 		if (parseInt(navigator.appVersion) >= 4) { win.window.focus(); }
+// 	}
+	function winopen(id, at_memo) {
+		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
 	}
 </script>
 </head>
@@ -94,7 +101,7 @@
 												%><a href="#"><%=attitude.getAt_memo()%></a><%
 											} 
 										} else {
-											%><input type="button" value="입력" onclick="winopen(<%=attitude.getAt_member_id() %>);'"><%
+											%><input type="button" value="입력" onclick="winopen('<%=attitude.getAt_member_id() %>','')"><%
 										}%>
 								</td>
 							</tr>

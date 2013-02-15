@@ -1,5 +1,7 @@
 package academy.employee.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,15 +15,30 @@ public class EmployeeAttitudeAddMemoAction implements Action {
 		System.out.println("EmployeeAttitudeMemoAddAction");
 		request.setCharacterEncoding("UTF-8");
 		
-		ActionForward forward = new ActionForward();
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
 		
 		String id = request.getParameter("id");
-		String msg = request.getParameter("msg");
+		String at_memo = request.getParameter("at_memo");
 		
-		attitudeDAO.employeeAttitudeAddMemo(id, msg);
+		boolean result = attitudeDAO.employeeAttitudeAddMemo(id, at_memo);
 		
-		return forward;
+		if (result == true) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('메모 작성이 완료되었습니다.')");
+			out.println("window.close()");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('메모 작성이 실패하였습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 	}
 
 }

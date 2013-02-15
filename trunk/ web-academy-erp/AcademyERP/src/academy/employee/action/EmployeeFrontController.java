@@ -74,6 +74,13 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/EmployeeAttitudeMemoAction.em")) {
+			action = new EmployeeAttitudeMemoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/EmployeeAttitudeAddMemoAction.em")) {
 			action = new EmployeeAttitudeAddMemoAction();
 			try {
@@ -82,7 +89,6 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 				e.printStackTrace();
 			}
 		}
-		
 		
 		
 		// 이동
