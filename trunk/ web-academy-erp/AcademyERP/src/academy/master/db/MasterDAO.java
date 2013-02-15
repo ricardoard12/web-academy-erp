@@ -47,12 +47,16 @@ public class MasterDAO {
 	public List<List> getEmplist(String name) {
 		List<List> empList = null;
 		String str = "";
-		if (name != null) {
-			str = " AND LIKE '%" + name + "%'";
+		System.out.println(name);
+		if (name!=null) {
+			str = " AND mm_name LIKE '%" + name + "%'";
+			System.out.println("haha");
+		}else{
+			str="";
 		}
 		try {
 			con = ds.getConnection();
-			String sql = "select mm_id,mm_name,ep_position,ep_department,mm_manager_id,mm_level"
+			String sql = "select mm_id,mm_name,ep_position,ep_department,mm_manager_id,mm_level,ep_status"
 					+ " from member,employee where mm_id=ep_id" + str;
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -77,6 +81,7 @@ public class MasterDAO {
 		list.add(rs.getString(4));
 		list.add(rs.getString(5));
 		list.add(rs.getString(6));
+		list.add(rs.getString(7));
 		return list;
 	}
 
