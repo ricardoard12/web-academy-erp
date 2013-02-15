@@ -10,6 +10,12 @@
 <link href="./css/join.css" rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+function selectDomain() { // 도메인 선택
+	document.StudentJoinForm.mm_email2.value = document.StudentJoinForm.mm_emailDDD.value;
+}
+</script>	
+
 <title>Insert title here</title>
 </head>
 <% StudentBean studentbean = (StudentBean)request.getAttribute("studentbean");// detail에서 넘긴 값을 받아옴 
@@ -116,12 +122,12 @@
 										<td>
 											<div class="item">
 												<select name="mm_telDDD">
-													<option value="02" <%if (studentbean.getMm_tel().split("-")[0].equals("02")) %> selected>02</option>
-													<option value="031" <%if (studentbean.getMm_tel().split("-")[0].equals("031")) %> selected>031</option>
-													<option value="051" <%if (studentbean.getMm_tel().split("-")[0].equals("051")) %> selected>051</option>
-													<option value="052" <%if (studentbean.getMm_tel().split("-")[0].equals("052")) %> selected>052</option>
-													<option value="053" <%if (studentbean.getMm_tel().split("-")[0].equals("053")) %> selected>053</option>
-													<option value="055" <%if (studentbean.getMm_tel().split("-")[0].equals("055")) %> selected>055</option>
+													<option value="02" <%if (studentbean.getMm_tel().split("-")[0].equals("02")) {%> selected<%} %>>02</option>
+													<option value="031" <%if (studentbean.getMm_tel().split("-")[0].equals("031")){ %> selected<%} %>>031</option>
+													<option value="051" <%if (studentbean.getMm_tel().split("-")[0].equals("051")) {%> selected<%} %>>051</option>
+													<option value="052" <%if (studentbean.getMm_tel().split("-")[0].equals("052")) {%> selected<%} %>>052</option>
+													<option value="053" <%if (studentbean.getMm_tel().split("-")[0].equals("053")) {%> selected<%} %>>053</option>
+													<option value="055" <%if (studentbean.getMm_tel().split("-")[0].equals("055")) {%> selected<%} %>>055</option>
 												</select> <input type="text" name="mm_tel1" title="전화번호" class="i_text" value="<%=studentbean.getMm_tel().split("-")[1]%>">-
 												<input type="text" name="mm_tel2" title="전화번호" class="i_text" value="<%=studentbean.getMm_tel().split("-")[2]%>">
 											</div>
@@ -133,10 +139,10 @@
 										<td>
 											<div class="item">
 												<select name="mm_phoneDDD">
-													<option value="010" <%if (studentbean.getMm_phone().split("-")[0].equals("010")) %> selected>010</option>
-													<option value="011" <%if (studentbean.getMm_phone().split("-")[0].equals("011")) %> selected>011</option>
-													<option value="016" <%if (studentbean.getMm_phone().split("-")[0].equals("016")) %> selected>016</option>
-													<option value="017" <%if (studentbean.getMm_phone().split("-")[0].equals("017")) %> selected>017</option>
+													<option value="010" <%if (studentbean.getMm_phone().split("-")[0].equals("010")) {%> selected<%} %>>010</option>
+													<option value="011" <%if (studentbean.getMm_phone().split("-")[0].equals("011")) {%> selected<%} %>>011</option>
+													<option value="016" <%if (studentbean.getMm_phone().split("-")[0].equals("016")) {%> selected<%} %>>016</option>
+													<option value="017" <%if (studentbean.getMm_phone().split("-")[0].equals("017")) {%> selected<%} %>>017</option>
 												</select> <input type="text" name="mm_phone1" title="휴대폰" class="i_text" value="<%=studentbean.getMm_phone().split("-")[1]%>">-
 												<input type="text" name="mm_phone2" title="휴대폰" class="i_text" value="<%=studentbean.getMm_phone().split("-")[2]%>">
 											</div>
@@ -180,10 +186,10 @@
 												<input type="text" name="mm_email2" title="직접입력" class="i_text" value="<%=studentbean.getMm_email().split("@")[1]%>">
 												<select name="mm_emailDDD" onchange="selectDomain()">
 													<option value="">직접 입력</option>
-													<option value="nate.com" <%if (studentbean.getMm_email().split("@")[1].equals("nate.com")) %> selected>nate.com</option>
-													<option value="naver.com" <%if (studentbean.getMm_email().split("@")[1].equals("naver.com")) %> selected>naver.com</option>
-													<option value="gmail.com" <%if (studentbean.getMm_email().split("@")[1].equals("gmail.com")) %> selected>gmail.com</option>
-													<option value="hanmail.net" <%if (studentbean.getMm_email().split("@")[1].equals("hanmail.com")) %> selected>hanmail.net</option>
+													<option value="nate.com" <%if (studentbean.getMm_email().split("@")[1].equals("nate.com")) {%> selected<%} %>>nate.com</option>
+													<option value="naver.com" <%if (studentbean.getMm_email().split("@")[1].equals("naver.com")){ %> selected<%} %>>naver.com</option>
+													<option value="gmail.com" <%if (studentbean.getMm_email().split("@")[1].equals("gmail.com")){ %> selected<%} %>>gmail.com</option>
+													<option value="hanmail.net" <%if (studentbean.getMm_email().split("@")[1].equals("hanmail.com")) {%> selected<%} %>>hanmail.net</option>
 												</select>
 											</div>
 										</td>
@@ -204,10 +210,9 @@
 											<div class="item">
 
 												<select name="st_school_grade">
-													<option><%=studentbean.getSt_school_grade()%></option>
-													<option>1학년</option>
-													<option>2학년</option>
-													<option>3학년</option>
+													<option value="1학년" <%if (studentbean.getSt_school_grade().equals("1학년")) {%> selected<%} %>>1학년</option>
+													<option value="2학년" <%if (studentbean.getSt_school_grade().equals("2학년")) {%> selected<%} %>>2학년</option>
+													<option value="3학년" <%if (studentbean.getSt_school_grade().equals("3학년")) {%> selected<%} %>>3학년</option>
 												</select>
 											</div>
 										</td>
@@ -227,10 +232,10 @@
 										<td>
 											<div class="item">
 												<select name="st_parent_mobileDDD">
-													<option value="010" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("010")) %> selected>010</option>
-													<option value="011" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("011")) %> selected>011</option>
-													<option value="016" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("016")) %> selected>016</option>
-													<option value="017" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("017")) %> selected>017</option>
+													<option value="010" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("010")) {%> selected<%} %>>010</option>
+													<option value="011" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("011")) {%> selected<%} %>>011</option>
+													<option value="016" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("016")) {%> selected<%} %>>016</option>
+													<option value="017" <%if (studentbean.getSt_parent_mobile().split("-")[0].equals("017")) {%> selected<%} %>>017</option>
 												</select> <input type="text" name="st_parent_mobile1" title="휴대폰" class="i_text" value="<%=studentbean.getSt_parent_mobile().split("-")[1]%>">-
 												<input type="text" name="st_parent_mobile2" title="휴대폰" class="i_text" value="<%=studentbean.getSt_parent_mobile().split("-")[2]%>">
 											</div>
