@@ -11,7 +11,7 @@
 	
 	<script type="text/javascript">
 	function selectDomain() { // 도메인 선택
-		document.StudentJoinForm.mm_emailDDD.value = document.joinEmployeeForm.select_domain.value;
+		document.StudentJoinForm.mm_email2.value = document.StudentJoinForm.mm_emailDDD.value;
 	}
 	
 	function checkForm() { // 폼 입력 체크
@@ -79,15 +79,21 @@
 			document.StudentJoinForm.mm_addr1.focus();
 			return false;
 		}if (document.StudentJoinForm.mm_addr2.value.length == 0) {
-			alert("상세주소 번호를 입력하세요.");
+			alert("상세주소를 입력하세요.");
 			document.StudentJoinForm.mm_addr2.focus();
 			return false;
 		}if (document.StudentJoinForm.mm_email1.value.length == 0) {
-			alert("이메일 번호를 입력하세요.");
+			alert("이메일를 입력하세요.");
 			document.StudentJoinForm.mm_email1.focus();
 			return false;
-		}if (document.StudentJoinForm.st_school_name.value.length == 0) {
-			alert("학교명를 입력하세요.");
+		}if (document.StudentJoinForm.mm_email2.value.length == 0) {
+			alert("이메일를 입력하세요.");
+			document.StudentJoinForm.mm_email2.focus();
+			return false;
+		}
+		
+		if (document.StudentJoinForm.st_school_name.value.length == 0) {
+			alert("학교이름을  입력하세요.");
 			document.StudentJoinForm.st_school_name.focus();
 			return false;
 		}if (document.StudentJoinForm.st_parent_name.value.length == 0) {
@@ -121,8 +127,38 @@
 			return false;
 		}
 		
-		
 	}
+	function ch_inputLen_jumin(date) {    // 주민번호 앞자리 6자리 입력후 자동 넘김
+		var obj=document.StudentJoinForm;
+		if(date.length==6 ){
+			obj.mm_jumin2.focus();
+		}
+	}
+	
+	function ch_inputLen_mtel(date) {    // 전화번호 앞자리 3자리 입력후 자동 넘김
+		var obj=document.StudentJoinForm;
+		if(date.length==3 ){
+			obj.mm_tel2.focus();
+		}
+	}
+	function ch_inputLen_mphone(date) {    // 휴폰번호 앞자리4자리 입력후 자동 넘김
+		var obj=document.StudentJoinForm;
+		if(date.length==4 ){
+			obj.mm_phone2.focus();
+		}
+	}
+	function ch_inputLen_zipcode(date) {    // 우편번호 앞자리 3자리 입력후 자동 넘김
+		var obj=document.StudentJoinForm;
+		if(date.length==3){
+			obj.mm_zipcode2.focus();
+		}
+	}function ch_inputLen_mmoblie(date) {    // 학부모 전화번호 앞자리 5자리 입력후 자동 넘김
+		var obj=document.StudentJoinForm;
+		if(date.length==4){
+			obj.st_parent_mobile2.focus();
+		}
+	}
+	
 	
 	</script>
 <title>Insert title here</title>
@@ -235,9 +271,9 @@
 										<th scope="row">주민등록번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_jumin1" title="주민등록번호 입력" class="i_text">
+												<input type="text" name="mm_jumin1" title="주민등록번호 입력" class="i_text" maxlength="6" onkeyup="ch_inputLen_jumin(this.value)">
 												- <input type="password" name="mm_jumin2" title="레이블 텍스트"
-													class="i_text">
+													class="i_text" maxlength="7">
 											</div>
 										</td>
 									</tr>
@@ -255,8 +291,8 @@
 													<option>053</option>
 													<option>055</option>
 												</select> 
-												<input type="text" name="mm_tel1" title="전화번호" class="i_text">-
-												<input type="text" name="mm_tel2" title="전화번호" class="i_text">
+												<input type="text" name="mm_tel1" title="전화번호" class="i_text" maxlength="3" onkeyup="ch_inputLen_mtel(this.value)">-
+												<input type="text" name="mm_tel2" title="전화번호" class="i_text" maxlength="4">
 											</div>
 										</td>
 									</tr>
@@ -271,8 +307,8 @@
 													<option>016</option>
 													<option>017</option>
 													
-												</select> <input type="text" name="mm_phone1" title="휴대폰" class="i_text">-
-												<input type="text" name="mm_phone2" title="휴대폰" class="i_text">
+												</select> <input type="text" name="mm_phone1" title="휴대폰" class="i_text" maxlength="4" onkeyup="ch_inputLen_mphone(this.value)">-
+												<input type="text" name="mm_phone2" title="휴대폰" class="i_text" maxlength="4">
 											</div>
 										</td>
 									</tr>
@@ -281,8 +317,8 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text"> - 
-												<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text" maxlength="3" onkeyup="ch_inputLen_zipcode(this.value)"> - 
+												<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text" maxlength="3">
 											</div>
 										</td>
 									</tr>
@@ -364,8 +400,8 @@
 													<option>011</option>
 													<option>016</option>
 													<option>017</option>
-												</select> <input type="text" name="st_parent_mobile1" title="휴대폰" class="i_text">-
-												<input type="text" name="st_parent_mobile2" title="휴대폰" class="i_text">
+												</select> <input type="text" name="st_parent_mobile1" title="휴대폰" class="i_text" maxlength="4" onkeyup="ch_inputLen_mmoblie(this.value)">-
+												<input type="text" name="st_parent_mobile2" title="휴대폰" class="i_text" maxlength="4">
 											</div>
 										</td>
 									</tr>
@@ -413,7 +449,7 @@
 											<div class="item">
 												<input name="st_tuition_state" type="radio" value="납부" id="c1" class="i_radio"><label
 													for="c1">납부</label> <input name="st_tuition_state" type="radio" value="미납"
-													id="c2" class="i_radio"><label for="c2">미납</label>
+													id="c2" class="i_radio" checked="checked"><label for="c2">미납</label>
 											</div>
 										</td>
 									</tr>
