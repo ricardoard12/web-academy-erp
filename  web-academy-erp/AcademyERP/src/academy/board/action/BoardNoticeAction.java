@@ -25,7 +25,7 @@ public class BoardNoticeAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		int listcount = boarddao.getListCount();
-		boardlist=boarddao.getBoardList(page,limit);
+//		boardlist=boarddao.getBoardList(page,limit);
 		int maxpage=listcount/limit+(listcount%limit==0?0:1);
 		maxpage=(int)((double)listcount/limit+0.95);
 		int pageblock=5;
