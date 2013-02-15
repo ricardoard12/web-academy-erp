@@ -15,7 +15,7 @@
 		<div class="major">
 		<!-- class="major + (m1~m12)"-->
 			<ul>
-			<li class="m1"><a href="#"><span>HOME</span></a>
+			<li class="m1"><a href="./Main.main"><span>HOME</span></a>
 			<li class="m2"><a href="#"><span>학원소개</span></a>
 				<div class="sub">
 					<ul>
