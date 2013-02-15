@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import academy.member.db.MemberBean;
+
 public class MasterDAO {
 
 	Connection con = null;
@@ -112,6 +114,20 @@ public class MasterDAO {
 		} finally {
 			dbClose();
 		}
+	}
+
+	public List getAllMemberList(int toggle, String col) {
+		MemberBean member=null;
+		String str="";
+	
+		try{
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}
+		return null;
 	}
 
 }
