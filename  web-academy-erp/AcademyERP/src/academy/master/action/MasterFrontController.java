@@ -27,6 +27,13 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/updatelevel.master")) {
+			action = new LevelupdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// 이동
 		if (forward != null) {
