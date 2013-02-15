@@ -111,7 +111,7 @@
 						</div>
 					</fieldset>
 				</form>
-<script type="text/javascript">
+		<script type="text/javascript">
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				oAppRef : oEditors,
