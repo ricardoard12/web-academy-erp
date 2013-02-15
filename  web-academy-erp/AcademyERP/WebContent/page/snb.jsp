@@ -173,7 +173,7 @@
 				<ul style="display: none;">
 					<li><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
 					<li><a href="#"><span>공지사항 관리</span></a></li>
-					<li><a href="#"><span>전체 회원 관리</span></a></li>
+					<li><a href="./AllMemberList.master"><span>전체 회원 관리</span></a></li>
 				</ul></li>
 
 		</ul>
