@@ -1,5 +1,6 @@
 package academy.accounting.action;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +28,27 @@ public class AccountingJoinAction implements Action{
         
         AccountingDAO acDao = new AccountingDAO();
         //수입지출 입력
-        acDao.acInsert(acBean);
-        forward.setRedirect(false);
-        forward.setPath("./AccountingList.ac");
-        return forward;
+        boolean result = acDao.acJoin(acBean);
+        
+        if(result){
+            response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('성공적으로 가입하였습니다');");
+            out.println("location.href='./AccountingJoin.ac'");
+            out.println("</script>");
+            out.close();
+        }else{
+            response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('실패하였습니다');");
+            out.println("history.go(-1);");
+            out.println("</script>");
+            out.close();
+        }
+        
+        return null;
     }
 
 }

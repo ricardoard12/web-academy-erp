@@ -32,12 +32,14 @@ public class AccountingDAO {
         if (rs != null) try {rs.close();} catch (Exception e) {}
     }
     
-    public void acInsert(AccountingBean acBean){
+    public boolean acJoin(AccountingBean acBean){
         Calendar cal=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
         String sql="";
         int num=0;
         String acnum = ""; //회계ID
+        boolean result = false;  //정상가입확인 여부
+        
         try {
             //회계ID 번호 구하기
             con=ds.getConnection();
@@ -64,19 +66,29 @@ public class AccountingDAO {
             pstmt.setString(8, acBean.getAc_memo());
             
             pstmt.executeUpdate();
+            result = true;
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return result;
     }
     
     //전체리스트
-    public List acGetList(){
-        String sql="";
+    public List ackindList(String kind){
+        StringBuffer sql = new StringBuffer("select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting ");
         List acList = null;
         AccountingBean acBean = null;
         try {
             con=ds.getConnection();
-            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
-            		"order by ac_id desc";
-            pstmt=con.prepareStatement(sql);
+            if(kind.equals("fee")){
+                sql.append("where ac_io_type = '수강료' ");
+            }else if(kind.equals("in")){
+                sql.append("where ac_io_type = '수입' ");
+            }else if(kind.equals("out")){
+                sql.append("where ac_io_type = '지출' ");
+            }else if(kind.equals("list")){}
+            
+            sql.append("order by ac_id desc");
+            
+            pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
             if(rs.next()){
                 acList = new ArrayList();
@@ -130,98 +142,6 @@ public class AccountingDAO {
         return searchlist;
     }
     
-    //회비리스트
-    public List acfeeGetList(){
-        String sql="";
-        List acfeeList = null;
-        AccountingBean acBean = null;
-        try {
-            con=ds.getConnection();
-            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
-                    "where ac_io_type='수강료' order by ac_id desc";
-            pstmt=con.prepareStatement(sql);
-            rs=pstmt.executeQuery();
-            if(rs.next()){
-                acfeeList = new ArrayList();
-                do{
-                    acBean = new AccountingBean();
-                    acBean.setAc_id(rs.getString("ac_id"));
-                    acBean.setMm_id(rs.getString("mm_id"));
-                    acBean.setAc_price(rs.getInt("ac_price"));
-                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
-                    acBean.setAc_io_type(rs.getString("ac_io_type"));
-                    acBean.setAc_date(rs.getDate("ac_date"));
-                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
-                    acBean.setAc_memo(rs.getString("ac_memo"));
-                    
-                    acfeeList.add(acBean);
-                }while(rs.next());
-            }            
-        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
-        return acfeeList;
-    }
-    
-    //수입 리스트
-    public List acincomingGetList(){
-        String sql="";
-        List acincomingList = null;
-        AccountingBean acBean = null;
-        try {
-            con=ds.getConnection();
-            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
-                    "where ac_io_type='수입' order by ac_id desc";
-            pstmt=con.prepareStatement(sql);
-            rs=pstmt.executeQuery();
-            if(rs.next()){
-                acincomingList = new ArrayList();
-                do{
-                    acBean = new AccountingBean();
-                    acBean.setAc_id(rs.getString("ac_id"));
-                    acBean.setMm_id(rs.getString("mm_id"));
-                    acBean.setAc_price(rs.getInt("ac_price"));
-                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
-                    acBean.setAc_io_type(rs.getString("ac_io_type"));
-                    acBean.setAc_date(rs.getDate("ac_date"));
-                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
-                    acBean.setAc_memo(rs.getString("ac_memo"));
-                    
-                    acincomingList.add(acBean);
-                }while(rs.next());
-            }            
-        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
-        return acincomingList;
-    }
-    
-    //지출 리스트
-    public List acoutgoingGetList(){
-        String sql="";
-        List acoutgoingList = null;
-        AccountingBean acBean = null;
-        try {
-            con=ds.getConnection();
-            sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
-                    "where ac_io_type='지출' order by ac_id desc";
-            pstmt=con.prepareStatement(sql);
-            rs=pstmt.executeQuery();
-            if(rs.next()){
-                acoutgoingList = new ArrayList();
-                do{
-                    acBean = new AccountingBean();
-                    acBean.setAc_id(rs.getString("ac_id"));
-                    acBean.setMm_id(rs.getString("mm_id"));
-                    acBean.setAc_price(rs.getInt("ac_price"));
-                    acBean.setAc_cc_type(rs.getString("ac_cc_type"));
-                    acBean.setAc_io_type(rs.getString("ac_io_type"));
-                    acBean.setAc_date(rs.getDate("ac_date"));
-                    acBean.setAc_manager_name(rs.getString("ac_manager_name"));
-                    acBean.setAc_memo(rs.getString("ac_memo"));
-                    
-                    acoutgoingList.add(acBean);
-                }while(rs.next());
-            }            
-        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
-        return acoutgoingList;
-    }
     
     public void acDeleteList(String[] check){
         StringBuffer sql = new StringBuffer("delete from accounting where ac_id in (");

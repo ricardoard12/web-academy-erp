@@ -31,37 +31,16 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
             action = new AccountingJoinAction();
             try {forward = action.execute(request, response);} 
             catch (Exception e) {e.printStackTrace();}
-        //전체 리스트       
+        //kind별 리스트(list,in,out,date)       
         }else if(command.equals("/AccountingList.ac")) {
             action = new AccountingListAction();
             try {forward = action.execute(request, response);} 
             catch (Exception e) {e.printStackTrace();}
-        // 회비 리스트
-        }else if(command.equals("/AccountingAcaFee.ac")) {
-            action = new AccountingAcaFeeAction();
-            try {forward = action.execute(request, response);} 
-            catch (Exception e) {e.printStackTrace();}
-        // 수입 리스트
-        }else if(command.equals("/AccountingIncoming.ac")) {
-            action = new AccountingIncomingAction();
-            try {forward = action.execute(request, response);} 
-            catch (Exception e) {e.printStackTrace();}
-        // 지출 리스트
-        }else if(command.equals("/AccountingOutgoing.ac")) {
-            action = new AccountingOutgoingAction();
-            try {forward = action.execute(request, response);} 
-            catch (Exception e) {e.printStackTrace();}
-            
         // 회계 리스트 삭제
         }else if(command.equals("/AccountingDelete.ac")) {
                 action = new AccountingDeleteAction();
                 try {forward = action.execute(request, response);} 
                 catch (Exception e) {e.printStackTrace();}
-        // 날짜 검색 리스트
-        }else if(command.equals("/AccountingDateSearch.ac")) {
-            action = new AccountingDateSearchAction();
-            try {forward = action.execute(request, response);} 
-            catch (Exception e) {e.printStackTrace();}
         }
         
         // 이동

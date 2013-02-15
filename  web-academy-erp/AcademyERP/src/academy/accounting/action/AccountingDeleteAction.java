@@ -17,13 +17,15 @@ public class AccountingDeleteAction implements Action{
         
         //체크값 받아오기
         String[] check = request.getParameterValues("check");
+        //삭제후 돌아갈 페이지 정하기
+        String kind = request.getParameter("kind");
         
-
         //회계 리스트 삭제
         acDao.acDeleteList(check);
         
-        forward.setRedirect(false);
-        forward.setPath("./AccountingList.ac");
+        //페이지 현샹유지 true
+        forward.setRedirect(true);
+        forward.setPath("./AccountingList.ac?kind="+kind);
         return forward;
     }
 
