@@ -27,7 +27,7 @@ public class EmployeeAttitudeAddMemoAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('메모 작성이 완료되었습니다.')");
-			out.println("opener.reload()");
+			out.println("opener.location.reload()"); //부모창 새로고침 후 자식창 닫기
 			out.println("window.close()");
 			out.println("</script>");
 			out.close();
