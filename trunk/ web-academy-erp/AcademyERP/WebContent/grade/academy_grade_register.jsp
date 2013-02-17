@@ -36,36 +36,17 @@
 		<div class="form_table">
 		<table border="1" cellspacing="0" summary="회원가입">
 		<tbody>
-		<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름입력하세요" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<span class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 없습니다.</span>
-			</div>
-		</td>
-		</tr> 
-		<tr>
-		<th scope="row">인풋:설명 숨기고 줄 바꿈</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="레이블 텍스트" class="i_text">
-				<button type="button" class="i_help"><span>?</span></button>
-				<p class="i_dsc hide">숨겨둔 설명 입니다. 줄 바꿈 했습니다.</p>
-			</div>
-		</td>
-		</tr> -->
-		<!-- <tr>
-		<th scope="row">회원 이름</th>
-		<td>
-			<div class="item">
-				<input type="text" name="" title="이름 입력하세요" class="i_text"> 숨겨두지 않은 설명 입니다. 줄 바꿈 없습니다.
-			</div>
-		</td>
-		</tr>-->
 		
-
+		
+		<tr> 
+		<th scope="row">학생ID</th>
+		<td>
+			<div class="item">
+				<input type="text" name="mm_id" title="학생ID" class="i_text"><input type="button" value="아이디찾기" onclick="windowopen()">
+			</div>
+		</td>
+		</tr>
+		
 		<tr> 
 		<th scope="row">과목코드</th>
 		<td>
@@ -77,6 +58,15 @@
 		
 		<tr> 
 		<th scope="row">과목명</th>
+		<td>
+			<div class="item">
+				<input type="text" name="" title="휴대폰" class="i_text">
+			</div>
+		</td>
+		</tr>
+		
+		<tr> 
+		<th scope="row">점수</th>
 		<td>
 			<div class="item">
 				<input type="text" name="" title="휴대폰" class="i_text">
@@ -126,7 +116,10 @@
 		<th scope="row">응시일자</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="휴대폰" class="i_text">
+				<input type="text" name="date" title="휴대폰" class="i_text">
+				<input type="button" value="검색" onclick="CheckDate()">
+				<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
+				<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 			</div>
 		</td>
 		</tr>
@@ -148,89 +141,7 @@
 		
 		
 		
-		<!-- <tr>
-		<th scope="row">멀티라인 인풋</th>
-		<td>
-			<div class="item">
-				<textarea name="" cols="50" rows="5" title="레이블 텍스트" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">멀티라인 인풋:레이블 클리어</th>
-		<td>
-			<div class="item">
-				<label for="temp_textarea" class="i_label" style="position:absolute; visibility:visible;">레이블 텍스트를 멀티라인 인풋과 오버레이</label>
-				<textarea name="" cols="50" rows="5" id="temp_textarea" class="i_text"></textarea>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:단일 선택</th>
-		<td>
-			<div class="item">
-				<select name="">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">셀렉트:복수 선택</th>
-		<td>
-			<div class="item">
-				<select name="" multiple="multiple">
-					<option>옵션 하나</option>
-					<option>옵션 둘</option>
-					<option>옵션 셋</option>
-				</select>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="a1" class="i_check"><label for="a1">레이블</label> <input name="" type="checkbox" value="" id="a2" class="i_check"><label for="a2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">체크박스 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="checkbox" value="" id="b1" class="i_check"><label for="b1">레이블</label><br>
-				<input name="" type="checkbox" value="" id="b2" class="i_check"><label for="b2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 없는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="c1" class="i_radio"><label for="c1">레이블</label> <input name="" type="radio" value="" id="c2" class="i_radio"><label for="c2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">라디오 인풋:줄 바꿈 있는</th>
-		<td>
-			<div class="item">
-				<input name="" type="radio" value="" id="d1" class="i_radio"><label for="d1">레이블</label><br>
-				<input name="" type="radio" value="" id="d2" class="i_radio"><label for="d2">레이블</label>
-			</div>
-		</td>
-		</tr>
-		<tr>
-		<th scope="row">파일</th>
-		<td>
-			<div class="item">
-				<input name="" type="file" title="레이블 텍스트">
-			</div>
-		</td>
-		</tr> -->
+		
 		</tbody>
 		</table>
 	</div>
@@ -250,7 +161,19 @@
     <!-- //footer -->
 </div>
 
+<script src="../js/calendar.js"></script>
 <script type="text/javascript">
+
+function CheckDate() {
+	var date = document.acCheck.date.value;
+	if(date == ''){
+		alert('날짜 입력하세요');
+	}else{
+		document.acCheck.action = "./AccountingList.ac?date="+date;
+		document.acCheck.submit();
+	}
+}
+
 jQuery(function(){
 	// Help Toggle
 	$('.item>.i_help').click(function(){
