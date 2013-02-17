@@ -130,6 +130,9 @@
 			<li><a href="#"><span>성적관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>학교성적관리</span></a></li>
+					<li><a href="#"><span> - 시험등록</span></a></li>
+					<li><a href="#"><span> - 진행중시험</span></a></li>
+					
 					<li><a href="#"><span>학원시험관리</span></a></li>
 
 					<li><a href="#"><span> - 시험등록</span></a></li>
