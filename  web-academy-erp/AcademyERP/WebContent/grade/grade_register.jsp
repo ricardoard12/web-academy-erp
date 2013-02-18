@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/default.css" rel="stylesheet" type="text/css">
-<link href="../css/join.css" rel="stylesheet" type="text/css">
+<link href="./css/default.css" rel="stylesheet" type="text/css">
+<link href="./css/join.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="../js/jquery-1.9.1.js"></script> 
+<script src="./js/jquery-1.9.1.js"></script> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -56,7 +56,7 @@
 			</div>
 		</td>
 		</tr>
-		
+		<!-- tr태그의 school 클래스 academy클래스 폼 구별 -->
 		<tr class="school"> 
 		<th scope="row">학교명</th>
 		<td>
@@ -126,7 +126,7 @@
 		</tr>
 		
 		
-		
+		<!-- width 값 강제  -->
 		<tr class="school">
 		<th scope="row" width="202">시험장소</th>
 		<td>
@@ -189,11 +189,13 @@
     <!-- //footer -->
 </div>
 
-<script src="../js/calendar.js"></script>
+<script src="./js/calendar.js"></script>
 
 <script type="text/javascript">
 
 jQuery(document).ready(function() {
+	
+	/* 클래스 academy, school 폼 변환*/
 	if(jQuery("#academy").is(":checked") ) {
         jQuery(".school").hide();
         jQuery(".academy").show();
