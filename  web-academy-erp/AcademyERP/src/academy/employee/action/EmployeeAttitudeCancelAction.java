@@ -19,17 +19,18 @@ public class EmployeeAttitudeCancelAction implements Action {
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
 		
 		String id = request.getParameter("id");
+		String type = request.getParameter("type");
 		
-		boolean result = attitudeDAO.employeeAttitudeCancel(id);
+		boolean result = attitudeDAO.employeeAttitudeCancel(id, type);
 		if (result == false) {
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('결근 처리가 실패하였습니다.')");
-			out.println("history.back()");
-			out.println("</script>");
-			out.close();
-			return null;
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('취소 처리가 실패하였습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+				return null;
 		}
 		
 		forward.setRedirect(true);
