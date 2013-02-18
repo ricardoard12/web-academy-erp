@@ -10,27 +10,6 @@
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function memoOpen(id, at_memo) {
-		if (at_memo == "null") at_memo="";
-		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
-	}
-	function timeEditOpen(id, time, type) {
-		window.open("./EmployeeAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type, "timeEdit", "width=350,height=200,scrollbars=no");
-	}
-	function confirmCancel(id, type) {
-		if (confirm("결근 처리 하시겠습니까?") == true) {
-			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
-			return null;
-		}
-	}
-	function confirmCancel2(id, type) {
-		if (confirm("취소 처리 하시겠습니까?") == true) {
-			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
-			return null;
-		}
-	}	
-</script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -160,4 +139,25 @@
 	<!-- //UI Object -->
 
 </body>
+<script type="text/javascript">
+	function memoOpen(id, at_memo) {
+		if (at_memo == "null") at_memo="";
+		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
+	}
+	function timeEditOpen(id, time, type) {
+		window.open("./EmployeeAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type, "timeEdit", "width=350,height=200,scrollbars=no");
+	}
+	function confirmCancel(id, type) {
+		if (confirm("결근 처리 하시겠습니까?") == true) {
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
+			return null;
+		}
+	}
+	function confirmCancel2(id, type) {
+		if (confirm("취소 처리 하시겠습니까?") == true) {
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
+			return null;
+		}
+	}	
+</script>
 </html>
