@@ -21,8 +21,10 @@ public class GradeFrontController extends HttpServlet implements Servlet {
         ActionForward forward = null;
         Action action = null;
 
-        if (command.equals("")) {
-            
+        if (command.equals("/GradeJoin.gr")) {
+            forward = new ActionForward();
+            forward.setRedirect(false);
+            forward.setPath("./grade/grade_register.jsp");
         }
         
         // 이동
