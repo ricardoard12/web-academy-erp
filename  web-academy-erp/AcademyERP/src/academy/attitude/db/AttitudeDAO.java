@@ -10,8 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import academy.employee.db.EmployeeBean;
-
 public class AttitudeDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -48,7 +46,7 @@ public class AttitudeDAO {
 
 			attitudeList = new ArrayList();
 			while (rs.next()) {
-				sql = "SELECT * FROM attitude WHERE at_come_time > current_date() AND at_member_id=?";
+				sql = "SELECT * FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
 				// 출근 시간 날짜가 오늘인 데이터 중 아이디 일치 여부 확인
 				
 				pstmt = con.prepareStatement(sql);
@@ -101,6 +99,7 @@ public class AttitudeDAO {
 	
     public int employeeAttitudeTimeRecording(String id, String type) throws Exception {
     	int result = 0;
+    	ResultSet rs2 = null;
     	System.out.println("Type : " + type);
     	try {
     		System.out.println("기록 준비");
@@ -113,18 +112,31 @@ public class AttitudeDAO {
     		if (rs.next()) {
     			System.out.println("이전 시간 등록 내역 있음");
     				System.out.println("출근 내역 있음");
-    				sql = "UPDATE attitude SET at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
+    				sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
     	    		pstmt = con.prepareStatement(sql);
     	    		pstmt.setString(1, id);
     	    		pstmt.executeUpdate();
     		} else {
     			System.out.println("이전 시간 등록 내역 없음");
     			if (!type.equals("leave")) {
-	    			sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
-	    			pstmt = con.prepareStatement(sql);
-		    		pstmt.setString(1, id);
-		    		pstmt.executeUpdate();
-		    		result = 1;
+    				sql = "SELECT at_memo,at_memo_date FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setString(1, id);
+    				rs2 = pstmt.executeQuery();
+    				
+    				if (rs2.next()) {
+    					sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_memo_date > current_date()";
+        	    		pstmt = con.prepareStatement(sql);
+        	    		pstmt.setString(1, id);
+        	    		pstmt.executeUpdate();
+			    		result = 1;
+    				} else {
+    					sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
+		    			pstmt = con.prepareStatement(sql);
+			    		pstmt.setString(1, id);
+			    		pstmt.executeUpdate();
+        	    		result = 1;
+    				}
     			} else {
     				result = -1;
     			}
@@ -157,7 +169,7 @@ public class AttitudeDAO {
     			pstmt.executeUpdate();
     		} else {
     			System.out.println("새 메모 작성");
-    			sql = "INSERT INTO attitude (at_member_id, at_memo,at_memo_date) VALUES(?,?,now())";
+    			sql = "INSERT INTO attitude (at_member_id,at_report_state,at_memo,at_memo_date) VALUES(?,'N',?,now())";
     			pstmt = con.prepareStatement(sql);
     			pstmt.setString(1, id);
     			pstmt.setString(2, at_memo);
