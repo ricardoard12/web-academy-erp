@@ -74,6 +74,7 @@ function Out(){
 							<th scope="col">학년</th>
 							<th scope="col">소속학급</th>
 							<th scope="col">수강료현황</th>
+							<th scope="col">상담</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -93,6 +94,7 @@ function Out(){
 							<td><%=studentBean.getSt_school_grade()%></td>
 							<td><%=studentBean.getGp_id() %></td>
 							<td><%=studentBean.getSt_tuition_state() %></td>
+							<td><input type="button" value="상담"  onclick="location.href='./StudentCounsel.st?id=<%=studentBean.getMm_id()%>'"></td>
 						</tr>
 					<%
 					}

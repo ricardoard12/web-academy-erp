@@ -454,5 +454,45 @@ public class StudentDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     }
+    public StudentBean getStudentinfo(String id){
+		String sql="";
+		StudentBean studentbean=null;
+		try {
+			con= ds.getConnection();
+			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_id,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_id=g.gp_id and s.st_status='재학' and m.mm_id=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				studentbean = new StudentBean();
+				studentbean.setMm_id(rs.getString("mm_id")); //학생아이디
+				studentbean.setMm_name(rs.getString("mm_name")); //학생이름
+				studentbean.setMm_tel(rs.getString("mm_tel"));//전화번호
+				studentbean.setMm_phone(rs.getString("mm_phone")); // 폰번호
+				studentbean.setMm_email(rs.getString("mm_email")); // 이메일
+				
+				studentbean.setSt_parent_name(rs.getString("st_parent_name"));//부모이름
+				studentbean.setSt_parent_mobile(rs.getString("st_parent_mobile"));// 부모 전화
+				studentbean.setSt_school_name(rs.getString("st_school_name"));// 학교이름
+				studentbean.setSt_school_grade(rs.getString("st_school_grade")); // 학년
+				studentbean.setSt_status(rs.getString("st_status")); //상태
+				studentbean.setEp_id(rs.getString("ep_id")); //담임
+				studentbean.setGp_id(rs.getString("gp_id")); // 소속학과
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    	
+    	
+    	return studentbean;
+    	
+    }
     
 }
