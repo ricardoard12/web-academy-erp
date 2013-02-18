@@ -22,6 +22,12 @@
 		if (at_memo == "null") at_memo="";
 		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
 	}
+	function confirmCancel(id) {
+		if (confirm("결근 처리 하시겠습니까?") == true) {
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id;
+			return null;
+		}
+	}
 </script>
 </head>
 <%
@@ -57,7 +63,7 @@
 						<colgroup>
 							<col width="12%">
 							<col>
-							<col width="12%" span="5">
+							<col width="12%" span="6">
 						</colgroup>
 						<thead>
 							<tr>
@@ -66,6 +72,7 @@
 								<th scope="col">출근시간</th>
 								<th scope="col">퇴근시간</th>
 								<th scope="col">메모</th>
+								<th scope="col">취소</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -104,6 +111,9 @@
 										} else {
 											%><input type="button" value="입력" onclick="winopen('<%=attitude.getAt_member_id() %>','null')"><%
 										}%>
+								</td>
+								<td>
+									<input type="button" value="결근처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>')">
 								</td>
 							</tr>
 						<%
