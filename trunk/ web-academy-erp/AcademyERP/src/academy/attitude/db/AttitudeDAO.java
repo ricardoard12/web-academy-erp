@@ -3,6 +3,7 @@ package academy.attitude.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -255,4 +256,186 @@ public class AttitudeDAO {
     	
     	return result;
     }
+    public boolean StudentAttitudeEditTime(String id,String editTime,String type){
+    	boolean result = false;
+    	try {
+    		con = ds.getConnection();
+    		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, editTime);
+    		pstmt.setString(2, id);
+    		pstmt.executeUpdate();
+    		
+    		result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	return result;
+    	
+    }
+    public boolean studentAttitudeAddMemo(String id, String at_memo) throws Exception {
+    	boolean result = false;
+    	try {
+    		System.out.println(id);
+    		con = ds.getConnection();
+    		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, id);
+    		rs = pstmt.executeQuery();
+    		
+    		if (rs.next()) {
+    			System.out.println("메모 추가");
+    			sql = "UPDATE attitude SET at_memo=?,at_memo_date=now() WHERE at_idx=?";
+    			pstmt = con.prepareStatement(sql);
+    			pstmt.setString(1, at_memo);
+    			pstmt.setInt(2, rs.getInt("at_idx"));
+    			pstmt.executeUpdate();
+    		} else {
+    			System.out.println("새 메모 작성");
+    			sql = "INSERT INTO attitude (at_member_id,at_report_state,at_memo,at_memo_date) VALUES(?,'N',?,now())";
+    			pstmt = con.prepareStatement(sql);
+    			pstmt.setString(1, id);
+    			pstmt.setString(2, at_memo);
+    			pstmt.executeUpdate();
+    		}
+    		result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	return result;
+    }
+    public int studentAttitudeTimeRecording(String id, String type) throws Exception {
+    	int result = 0;
+    	ResultSet rs2 = null;
+    	
+    	try {
+    		System.out.println("기록 준비");
+    		con = ds.getConnection();
+    		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, id);
+    		rs = pstmt.executeQuery();
+    		System.out.println(type);
+    		if (rs.next()) {
+    			System.out.println("이전 시간 등록 내역 있음");
+    				System.out.println("출근 내역 있음");
+    				sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
+    	    		pstmt = con.prepareStatement(sql);
+    	    		pstmt.setString(1, id);
+    	    		pstmt.executeUpdate();
+    	    		result = 1;
+    		} else {
+    			System.out.println("이전 시간 등록 내역 없음");
+    			if (!type.equals("leave")) {
+    				sql = "SELECT at_memo,at_memo_date FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setString(1, id);
+    				rs2 = pstmt.executeQuery();
+    				
+    				if (rs2.next()) {
+    					sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_memo_date > current_date()";
+        	    		pstmt = con.prepareStatement(sql);
+        	    		pstmt.setString(1, id);
+        	    		pstmt.executeUpdate();
+			    		result = 1;
+    				} else {
+    					sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
+		    			pstmt = con.prepareStatement(sql);
+			    		pstmt.setString(1, id);
+			    		pstmt.executeUpdate();
+        	    		result = 1;
+    				}
+    			} else {
+    				result = -1;
+    			}
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	System.out.println(result);
+    	return result;
+    }
+    public boolean studentAttitudeCancel(String id, String type) throws Exception {
+    	boolean result = false;
+    	try {
+    		con = ds.getConnection();
+    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, id);
+    		rs = pstmt.executeQuery();
+	    		
+    		if (rs.next()) { // 메모 있을 경우
+    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+		    		pstmt = con.prepareStatement(sql);
+		    		pstmt.setDate(1, null);
+		    		pstmt.setDate(2, null);
+		    		pstmt.setString(3, "N");
+		    		pstmt.setString(4, id);
+		    		pstmt.executeUpdate();
+    			} else if (type.equals("leave")) { // 퇴근 시간 취소 버튼 클릭시
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setDate(1, null);
+    				pstmt.setString(2, id);
+    				pstmt.executeUpdate();
+    			}
+    		} else { // 메모 없을 경우
+    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+	    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
+	    			pstmt = con.prepareStatement(sql);
+	    			pstmt.setString(1, id);
+	    			pstmt.executeUpdate();
+    			} else { // 퇴근 시간 취소 버튼 클릭시
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setDate(1, null);
+    				pstmt.setString(2, id);
+	    			pstmt.executeUpdate();
+    			}
+    		}
+    		
+    		result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	
+    	return result;
+    }
+    public String getstudentAttitudeGpid(String id){
+    	String sql="";
+		String gp_id=null;
+		
+		try {
+			con =ds.getConnection();
+			sql="select gp_id from student As s, " +
+					"attitude As a where s.mm_id = a.at_member_id  and " +
+					"at_member_id =? and a. at_idx = (select  max(at_idx) from attitude where at_member_id=?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				gp_id = rs.getString("gp_id");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closingDB();
+		}
+    	
+    	return gp_id;
+    }
+    
 }

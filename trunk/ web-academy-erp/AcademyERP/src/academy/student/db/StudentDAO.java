@@ -179,16 +179,17 @@ public class StudentDAO {
 			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     }
-    public List getStudentAttitudeList(){ // 학생 출결 현황
+    public List getStudentAttitudeList(String gp_name){ // 학생 출결 현황
 		List SutdentAttitudeList = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		String sql="";
 		try {
 			con = ds.getConnection();
-			sql = "SELECT s.mm_id,m.mm_name FROM student AS s,member AS m WHERE s.mm_id = m.mm_id AND st_status = '재학'"; 
+			sql = "SELECT s.mm_id,m.mm_name FROM student AS s,member AS m WHERE s.mm_id = m.mm_id AND st_status = '재학' and gp_id =?"; 
 			// 학생 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, gp_name);
 			rs = pstmt.executeQuery();
 
 			SutdentAttitudeList = new ArrayList();
@@ -207,8 +208,8 @@ public class StudentDAO {
 						attitude.setMm_name(rs.getString("mm_name")); // 학생 명단 조회 결과 중 이름 저장
 						attitude.setAt_member_id(rs2.getString("at_member_id"));
 						attitude.setAt_report_state(rs2.getString("at_report_state"));
-						attitude.setAt_come_time(rs2.getDate("at_come_time"));
-						attitude.setAt_leave_time(rs2.getDate("at_leave_time"));
+						attitude.setAt_come_time(rs2.getTimestamp("at_come_time"));
+						attitude.setAt_leave_time(rs2.getTimestamp("at_leave_time"));
 						attitude.setAt_memo(rs2.getString("at_memo"));
 						
 						SutdentAttitudeList.add(attitude);
@@ -244,6 +245,7 @@ public class StudentDAO {
 		}
 		return SutdentAttitudeList;
 	}
+    
     public List getStudentOffList(){
 		String sql="";
     	List<StudentBean> StudentOffList = null;
@@ -459,7 +461,7 @@ public class StudentDAO {
 		StudentBean studentbean=null;
 		try {
 			con= ds.getConnection();
-			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_id,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_id=g.gp_id and s.st_status='재학' and m.mm_id=?";
+			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_id,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_id=g.gp_name and s.st_status='재학' and m.mm_id=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
