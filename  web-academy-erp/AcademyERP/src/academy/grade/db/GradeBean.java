@@ -3,32 +3,32 @@ package academy.grade.db;
 import java.sql.Date;
 
 public class GradeBean {
-    private String gr_id; // 과목 아이디
-    private String gr_name; // 과목명
-    private String gr_contents; // 시험내용
+    private String gr_code; // 과목 코드
+    private String gr_subject; // 과목명
+    private String gr_memo; // 시험내용
     private String mm_id; // 학생ID
     private int gr_score; // 과목 점수
     private Date gr_exam_date; // 시험 일자
     private String ep_id; // 담당 강사
-    private String gr_where_test; // 시험 장소 분류(학교 or 학원)
-    
-    public String getGr_id() {
-        return gr_id;
+    private String gr_place; // 시험 장소 분류(학교 or 학원)
+    private String gr_period;  //학교시험종류
+    public String getGr_code() {
+        return gr_code;
     }
-    public void setGr_id(String gr_id) {
-        this.gr_id = gr_id;
+    public void setGr_code(String gr_code) {
+        this.gr_code = gr_code;
     }
-    public String getGr_name() {
-        return gr_name;
+    public String getGr_subject() {
+        return gr_subject;
     }
-    public void setGr_name(String gr_name) {
-        this.gr_name = gr_name;
+    public void setGr_subject(String gr_subject) {
+        this.gr_subject = gr_subject;
     }
-    public String getGr_contents() {
-        return gr_contents;
+    public String getGr_memo() {
+        return gr_memo;
     }
-    public void setGr_contents(String gr_contents) {
-        this.gr_contents = gr_contents;
+    public void setGr_memo(String gr_memo) {
+        this.gr_memo = gr_memo;
     }
     public String getMm_id() {
         return mm_id;
@@ -54,11 +54,17 @@ public class GradeBean {
     public void setEp_id(String ep_id) {
         this.ep_id = ep_id;
     }
-    public String getGr_where_test() {
-        return gr_where_test;
+    public String getGr_place() {
+        return gr_place;
     }
-    public void setGr_where_test(String gr_where_test) {
-        this.gr_where_test = gr_where_test;
+    public void setGr_place(String gr_place) {
+        this.gr_place = gr_place;
+    }
+    public String getGr_period() {
+        return gr_period;
+    }
+    public void setGr_period(String gr_period) {
+        this.gr_period = gr_period;
     }
     
 }

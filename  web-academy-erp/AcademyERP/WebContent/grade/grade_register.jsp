@@ -31,7 +31,7 @@
         
 <!-- 회원가입시작 -->
 
-<form action="" name="grade" method="post">
+<form action="./GradeJoinAction.gr" name="grade" method="post">
 	<fieldset>
 		<legend>학원/학교 시험등록</legend>
 		<div class="form_table">
@@ -42,8 +42,8 @@
 		<th scope="row">시험장소</th>
 		<td>
 			<div class="item">
-				<input name="gr_where" type="radio" value="학원" id="academy" class="i_radio" checked="checked"><label>학원</label>
-				<input name="gr_where" type="radio" value="학교" id="school" class="i_radio" ><label>학교</label>
+				<input name="gr_place" type="radio" value="학원" id="academy" class="i_radio" checked><label>학원</label>
+				<input name="gr_place" type="radio" value="학교" id="school" class="i_radio" ><label>학교</label>
 			</div>
 		</td>
 		</tr>
@@ -52,7 +52,8 @@
 		<th scope="row">학생ID</th>
 		<td>
 			<div class="item">
-				<input type="text" name="mm_id" title="학생ID" class="i_text"><input type="button" value="아이디찾기" onclick="windowopen()">
+				<input type="text" name="mm_id" title="학생ID" class="i_text">
+				<input type="button" value="아이디찾기" onclick="windowopen()">
 			</div>
 		</td>
 		</tr>
@@ -61,7 +62,7 @@
 		<th scope="row">학교명</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				아이디에서 학교명만 가져와서 보여주기 입력은 안해도 되
 			</div>
 		</td>
 		</tr>
@@ -70,7 +71,7 @@
 		<th scope="row">과목코드</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				<input type="text" name="gr_code" title="" class="i_text">
 			</div>
 		</td>
 		</tr>
@@ -79,7 +80,7 @@
 		<th scope="row">과목명</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				<input type="text" name="gr_subject" title="" class="i_text">
 			</div>
 		</td>
 		</tr>
@@ -88,7 +89,7 @@
 		<th scope="row">과목점수</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				<input type="text" name="gr_score" title="" class="i_text">
 			</div>
 		</td>
 		</tr>
@@ -97,7 +98,7 @@
 		<th scope="row">과목 설명</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				<textarea rows="6" cols="42" name="gr_memo"></textarea>
 			</div>
 		</td>
 		</tr>
@@ -107,7 +108,8 @@
 		<th scope="row">담당강사</th>
 		<td>
 			<div class="item">
-				<input type="text" name="" title="" class="i_text">
+				<input type="text" name="ep_id" title="" class="i_text">
+				<input type="button" value="강사찾기" onclick="windowopen()">
 			</div>
 		</td>
 		</tr>
@@ -118,8 +120,8 @@
 		<th scope="row">응시일자</th>
 		<td colspan="3">
 			<div class="item">
-				<input type="text" name="date" title="" class="i_text">
-				<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
+				<input type="text" name="gr_exam_date" title="" class="i_text">
+				<input type="button" value="달력보기" onClick="datePicker(event,'gr_exam_date',0)">
 				<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 			</div>
 		</td>
@@ -128,27 +130,27 @@
 		
 		<!-- width 값 강제  -->
 		<tr class="school">
-		<th scope="row" width="202">시험장소</th>
+		<th scope="row" width="170">학교시험종류</th>
 		<td>
 			<div class="item">
-				<input name="" type="radio" value="1-1-중간" id="d1" class="i_radio"><label for="d1">1학년-1학기-중간고사</label>
-				<input name="" type="radio" value="1-1-기말" id="d2" class="i_radio"><label for="d2">1학년-1학기-기말고사</label>
-				<input name="" type="radio" value="1-2-중간" id="d1" class="i_radio"><label for="d1">1학년-2학기-중간고사</label>
-				<input name="" type="radio" value="1-2-기말" id="d2" class="i_radio"><label for="d2">1학년-2학기-기말고사</label>
+				<input name="gr_period" type="radio" value="1-1-중간" id="d1" class="i_radio"><label for="d1">1학년-1학기-중간고사</label>
+				<input name="gr_period" type="radio" value="1-1-기말" id="d2" class="i_radio"><label for="d2">1학년-1학기-기말고사</label>
+				<input name="gr_period" type="radio" value="1-2-중간" id="d1" class="i_radio"><label for="d1">1학년-2학기-중간고사</label>
+				<input name="gr_period" type="radio" value="1-2-기말" id="d2" class="i_radio"><label for="d2">1학년-2학기-기말고사</label>
 				
 				<br>
 				
-				<input name="" type="radio" value="2-1-중간" id="d1" class="i_radio"><label for="d1">2학년-1학기-중간고사</label>
-				<input name="" type="radio" value="2-1-기말" id="d2" class="i_radio"><label for="d2">2학년-1학기-기말고사</label>
-				<input name="" type="radio" value="2-2-중간" id="d1" class="i_radio"><label for="d1">2학년-2학기-중간고사</label>
-				<input name="" type="radio" value="2-2-기말" id="d2" class="i_radio"><label for="d2">2학년-2학기-기말고사</label>
+				<input name="gr_period" type="radio" value="2-1-중간" id="d1" class="i_radio"><label for="d1">2학년-1학기-중간고사</label>
+				<input name="gr_period" type="radio" value="2-1-기말" id="d2" class="i_radio"><label for="d2">2학년-1학기-기말고사</label>
+				<input name="gr_period" type="radio" value="2-2-중간" id="d1" class="i_radio"><label for="d1">2학년-2학기-중간고사</label>
+				<input name="gr_period" type="radio" value="2-2-기말" id="d2" class="i_radio"><label for="d2">2학년-2학기-기말고사</label>
 				
 				<br>
 				
-				<input name="" type="radio" value="3-1-중간" id="d1" class="i_radio"><label for="d1">3학년-1학기-중간고사</label>
-				<input name="" type="radio" value="3-1-기말" id="d2" class="i_radio"><label for="d2">3학년-1학기-기말고사</label>
-				<input name="" type="radio" value="3-2-중간" id="d1" class="i_radio"><label for="d1">3학년-2학기-중간고사</label>
-				<input name="" type="radio" value="3-2-기말" id="d2" class="i_radio"><label for="d2">3학년-2학기-기말고사</label>
+				<input name="gr_period" type="radio" value="3-1-중간" id="d1" class="i_radio"><label for="d1">3학년-1학기-중간고사</label>
+				<input name="gr_period" type="radio" value="3-1-기말" id="d2" class="i_radio"><label for="d2">3학년-1학기-기말고사</label>
+				<input name="gr_period" type="radio" value="3-2-중간" id="d1" class="i_radio"><label for="d1">3학년-2학기-중간고사</label>
+				<input name="gr_period" type="radio" value="3-2-기말" id="d2" class="i_radio"><label for="d2">3학년-2학기-기말고사</label>
 			</div>
 		</td>
 		</tr>
@@ -161,14 +163,11 @@
 		</td>
 		<td align="left">
 			<div class="item">
-				<input type="submit" value="가입">
+				<input type="submit" value="등록">
 				<input type="button" value="취소">
 			</div>
 		</td>
 		</tr>
-		
-		
-		
 		
 		</tbody>
 		</table>
