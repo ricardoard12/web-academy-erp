@@ -32,7 +32,15 @@ public class StudentBean {
     private String st_memo; // 학생 메모
     private String st_status; // 재학 현황
     
-    public String getSt_status() {
+    //
+    private String ep_id;// 학급 담임
+    public String getEp_id() {
+		return ep_id;
+	}
+	public void setEp_id(String ep_id) {
+		this.ep_id = ep_id;
+	}
+	public String getSt_status() {
 		return st_status;
 	}
 	public void setSt_status(String st_status) {
