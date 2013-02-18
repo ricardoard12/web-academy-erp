@@ -56,7 +56,7 @@ public class AttitudeDAO {
 				rs2 = pstmt.executeQuery();
 				
 				if (rs2.next()) { // 오늘 출근 데이터가 있을 경우
-					do { // 해당 출 퇴근 시간 입력
+					do { // 해당 출 퇴근 시간 전달
 						AttitudeBean attitude = new AttitudeBean();
 						
 						attitude.setMm_name(rs.getString("mm_name")); // 직원 명단 조회 결과 중 이름 저장
@@ -99,30 +99,43 @@ public class AttitudeDAO {
 		return attitudeList;
 	}
 	
-    public void employeeAttitudeTimeRecording(String id, String type) throws Exception {
+    public int employeeAttitudeTimeRecording(String id, String type) throws Exception {
+    	int result = 0;
+    	System.out.println("Type : " + type);
     	try {
+    		System.out.println("기록 준비");
     		con = ds.getConnection();
-    		sql = "SELECT at_member_id FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
+    		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
     		rs = pstmt.executeQuery();
     		
     		if (rs.next()) {
-	    		sql = "UPDATE attitude SET at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
-	    		pstmt = con.prepareStatement(sql);
-	    		pstmt.setString(1, id);
-	    		pstmt.executeUpdate();
+    			System.out.println("이전 시간 등록 내역 있음");
+    				System.out.println("출근 내역 있음");
+    				sql = "UPDATE attitude SET at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
+    	    		pstmt = con.prepareStatement(sql);
+    	    		pstmt.setString(1, id);
+    	    		pstmt.executeUpdate();
     		} else {
-    			sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
-    			pstmt = con.prepareStatement(sql);
-	    		pstmt.setString(1, id);
-	    		pstmt.executeUpdate();
+    			System.out.println("이전 시간 등록 내역 없음");
+    			if (!type.equals("leave")) {
+	    			sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
+	    			pstmt = con.prepareStatement(sql);
+		    		pstmt.setString(1, id);
+		    		pstmt.executeUpdate();
+		    		result = 1;
+    			} else {
+    				result = -1;
+    			}
     		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closingDB();
 		}
+    	System.out.println(result);
+    	return result;
     }
    
     public boolean employeeAttitudeAddMemo(String id, String at_memo) throws Exception {
@@ -130,21 +143,21 @@ public class AttitudeDAO {
     	try {
     		System.out.println(id);
     		con = ds.getConnection();
-    		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
+    		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
     		rs = pstmt.executeQuery();
     		
     		if (rs.next()) {
     			System.out.println("메모 추가");
-    			sql = "UPDATE attitude SET at_memo=? WHERE at_idx=?";
+    			sql = "UPDATE attitude SET at_memo=?,at_memo_date=now() WHERE at_idx=?";
     			pstmt = con.prepareStatement(sql);
     			pstmt.setString(1, at_memo);
     			pstmt.setInt(2, rs.getInt("at_idx"));
     			pstmt.executeUpdate();
     		} else {
     			System.out.println("새 메모 작성");
-    			sql = "INSERT INTO attitude (at_member_id, at_memo) VALUES(?,?)";
+    			sql = "INSERT INTO attitude (at_member_id, at_memo,at_memo_date) VALUES(?,?,now())";
     			pstmt = con.prepareStatement(sql);
     			pstmt.setString(1, id);
     			pstmt.setString(2, at_memo);
@@ -164,14 +177,25 @@ public class AttitudeDAO {
     	boolean result = false;
     	try {
     		con = ds.getConnection();
-    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
     		pstmt = con.prepareStatement(sql);
-    		pstmt.setDate(1, null);
-    		pstmt.setDate(2, null);
-    		pstmt.setString(3, "N");
-    		pstmt.setString(4, id);
-    		pstmt.executeUpdate();
+    		pstmt.setString(1, id);
+    		rs = pstmt.executeQuery();
     		
+    		if (rs.next()) {
+	    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+	    		pstmt = con.prepareStatement(sql);
+	    		pstmt.setDate(1, null);
+	    		pstmt.setDate(2, null);
+	    		pstmt.setString(3, "N");
+	    		pstmt.setString(4, id);
+	    		pstmt.executeUpdate();
+    		} else {
+    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
+    			pstmt = con.prepareStatement(sql);
+    			pstmt.setString(1, id);
+    			pstmt.executeUpdate();
+    		}
     		result = true;
 		} catch (Exception e) {
 			e.printStackTrace();

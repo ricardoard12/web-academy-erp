@@ -1,5 +1,7 @@
 package academy.employee.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +22,27 @@ public class EmployeeAttitudeTimeRecordingAction implements Action {
 		String id = request.getParameter("id");
 		String type = request.getParameter("type");
 		
-		attitudeDAO.employeeAttitudeTimeRecording(id, type);
+		int result = attitudeDAO.employeeAttitudeTimeRecording(id, type);
+		
+		if (result == -1) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('출근 시간을 먼저 등록하세요.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else if (result == 0) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('시간 기록을 실패하였습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		forward.setRedirect(true);
 		forward.setPath("./EmployeeAttitudeListAction.em");
