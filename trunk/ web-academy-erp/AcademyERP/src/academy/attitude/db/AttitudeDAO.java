@@ -60,9 +60,10 @@ public class AttitudeDAO {
 						attitude.setMm_name(rs.getString("mm_name")); // 직원 명단 조회 결과 중 이름 저장
 						attitude.setAt_member_id(rs2.getString("at_member_id"));
 						attitude.setAt_report_state(rs2.getString("at_report_state"));
-						attitude.setAt_come_time(rs2.getDate("at_come_time"));
-						attitude.setAt_leave_time(rs2.getDate("at_leave_time"));
+						attitude.setAt_come_time(rs2.getTimestamp("at_come_time"));
+						attitude.setAt_leave_time(rs2.getTimestamp("at_leave_time"));
 						attitude.setAt_memo(rs2.getString("at_memo"));
+						attitude.setAt_idx(rs2.getInt("at_idx"));
 						
 						attitudeList.add(attitude);
 					} while (rs2.next());
@@ -100,7 +101,6 @@ public class AttitudeDAO {
     public int employeeAttitudeTimeRecording(String id, String type) throws Exception {
     	int result = 0;
     	ResultSet rs2 = null;
-    	System.out.println("Type : " + type);
     	try {
     		System.out.println("기록 준비");
     		con = ds.getConnection();
@@ -116,6 +116,7 @@ public class AttitudeDAO {
     	    		pstmt = con.prepareStatement(sql);
     	    		pstmt.setString(1, id);
     	    		pstmt.executeUpdate();
+    	    		result = 1;
     		} else {
     			System.out.println("이전 시간 등록 내역 없음");
     			if (!type.equals("leave")) {
@@ -185,7 +186,7 @@ public class AttitudeDAO {
     	return result;
     }
 
-    public boolean employeeAttitudeCancel(String id) throws Exception {
+    public boolean employeeAttitudeCancel(String id, String type) throws Exception {
     	boolean result = false;
     	try {
     		con = ds.getConnection();
@@ -193,21 +194,58 @@ public class AttitudeDAO {
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
     		rs = pstmt.executeQuery();
-    		
-    		if (rs.next()) {
-	    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
-	    		pstmt = con.prepareStatement(sql);
-	    		pstmt.setDate(1, null);
-	    		pstmt.setDate(2, null);
-	    		pstmt.setString(3, "N");
-	    		pstmt.setString(4, id);
-	    		pstmt.executeUpdate();
-    		} else {
-    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
-    			pstmt = con.prepareStatement(sql);
-    			pstmt.setString(1, id);
-    			pstmt.executeUpdate();
+	    		
+    		if (rs.next()) { // 메모 있을 경우
+    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+		    		pstmt = con.prepareStatement(sql);
+		    		pstmt.setDate(1, null);
+		    		pstmt.setDate(2, null);
+		    		pstmt.setString(3, "N");
+		    		pstmt.setString(4, id);
+		    		pstmt.executeUpdate();
+    			} else if (type.equals("leave")) { // 퇴근 시간 취소 버튼 클릭시
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setDate(1, null);
+    				pstmt.setString(2, id);
+    				pstmt.executeUpdate();
+    			}
+    		} else { // 메모 없을 경우
+    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+	    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
+	    			pstmt = con.prepareStatement(sql);
+	    			pstmt.setString(1, id);
+	    			pstmt.executeUpdate();
+    			} else { // 퇴근 시간 취소 버튼 클릭시
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				pstmt = con.prepareStatement(sql);
+    				pstmt.setDate(1, null);
+    				pstmt.setString(2, id);
+	    			pstmt.executeUpdate();
+    			}
     		}
+    		
+    		result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	
+    	return result;
+    }
+    
+    public boolean employeeAttitudeEditTime(String id, String editTime, String type) throws Exception {
+    	boolean result = false;
+    	try {
+    		con = ds.getConnection();
+    		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, editTime);
+    		pstmt.setString(2, id);
+    		pstmt.executeUpdate();
+    		
     		result = true;
 		} catch (Exception e) {
 			e.printStackTrace();

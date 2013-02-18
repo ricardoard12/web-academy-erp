@@ -11,22 +11,31 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function winopen(id, at_memo) {
+	function memoOpen(id, at_memo) {
 		if (at_memo == "null") at_memo="";
 		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
 	}
-	function confirmCancel(id) {
+	function timeEditOpen(id, time, type) {
+		window.open("./EmployeeAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type, "timeEdit", "width=350,height=200,scrollbars=no");
+	}
+	function confirmCancel(id, type) {
 		if (confirm("결근 처리 하시겠습니까?") == true) {
-			location.href="./EmployeeAttitudeCancelAction.em?id=" + id;
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
 			return null;
 		}
 	}
+	function confirmCancel2(id, type) {
+		if (confirm("취소 처리 하시겠습니까?") == true) {
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type;
+			return null;
+		}
+	}	
 </script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
-	SimpleDateFormat sdf = new SimpleDateFormat("hh:MM");
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 %>
 <body>
 	<!-- UI Object -->
@@ -77,36 +86,45 @@
 								<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
 								<td>
 									<%
+										// at_report_state Y : 출근, N : 미출근
 										if (attitude.getAt_report_state().equals("Y")) {%>출근<%	} 
 										else {%>미출근<%} 
 									%>
 								</td>
 								<td>
 									<%
-										if (attitude.getAt_come_time() != null) {%><%=sdf.format(attitude.getAt_come_time()) %><%} 
-										else { %><input type="button" value="출근" onclick="location.href='./EmployeeAttitudeTimeRecordingAction.em?type=come&id=<%=attitude.getAt_member_id()%>'">	<%} 
+										if (attitude.getAt_come_time() != null) { // 출근 시간이 기록되어 있을 경우
+											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdf.format(attitude.getAt_come_time()) %>','come')"><%=sdf.format(attitude.getAt_come_time()) %></a>&nbsp;
+											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+										} else { %><input type="button" value="출근" onclick="location.href='./EmployeeAttitudeTimeRecordingAction.em?type=come&id=<%=attitude.getAt_member_id()%>'">	<%} 
 									%>	
 								</td>
 								<td>
 									<%
-										if (attitude.getAt_leave_time() != null) {%><%=sdf.format(attitude.getAt_leave_time()) %><%} 
-										else { %><input type="button" value="퇴근" onclick="location.href='./EmployeeAttitudeTimeRecordingAction.em?type=leave&id=<%=attitude.getAt_member_id()%>'">	<%} 
+										if (attitude.getAt_leave_time() != null) { // 퇴근 시간이 기록되어 있을 경우
+											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdf.format(attitude.getAt_leave_time()) %>','leave')"><%=sdf.format(attitude.getAt_leave_time()) %></a>&nbsp;
+											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+										} else { %><input type="button" value="퇴근" onclick="location.href='./EmployeeAttitudeTimeRecordingAction.em?type=leave&id=<%=attitude.getAt_member_id()%>'">	<%} 
 									%>	
 								</td>
 								<td>
 									<%
-										if (attitude.getAt_memo() != null) {
-											if (attitude.getAt_memo().length() > 10) {
-												%><a href="#" onclick="winopen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+										if (attitude.getAt_memo() != null) { // 메모가 기록되어 있을 경우
+											if (attitude.getAt_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
+												%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
 											} else {
-												%><a href="#" onclick="winopen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo()%></a><%
+												if (attitude.getAt_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
+													%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%
+												} else {
+													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo()%></a><%
+												}
 											} 
-										} else {
-											%><input type="button" value="입력" onclick="winopen('<%=attitude.getAt_member_id() %>','null')"><%
+										} else { // 메모 없을 경우
+											%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null')"><%
 										}%>
 								</td>
 								<td>
-									<input type="button" value="결근처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>')">
+									<input type="button" value="결근처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all')">
 								</td>
 							</tr>
 						<%

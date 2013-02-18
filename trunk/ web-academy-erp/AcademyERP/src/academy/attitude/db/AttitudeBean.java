@@ -1,15 +1,17 @@
 package academy.attitude.db;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AttitudeBean {
 	private String at_member_id;
 	private String mm_name;
     private String at_report_state;
-    private Date at_come_time;
-    private Date at_leave_time;
+    private Timestamp at_come_time;
+    private Timestamp at_leave_time;
     private String at_memo;
     private Date at_memo_date;
+    private int at_idx;
     
     public String getAt_member_id() {
 		return at_member_id;
@@ -29,16 +31,16 @@ public class AttitudeBean {
     public void setAt_report_state(String at_report_state) {
         this.at_report_state = at_report_state;
     }
-    public Date getAt_come_time() {
+    public Timestamp getAt_come_time() {
         return at_come_time;
     }
-    public void setAt_come_time(Date at_come_time) {
+    public void setAt_come_time(Timestamp at_come_time) {
         this.at_come_time = at_come_time;
     }
-    public Date getAt_leave_time() {
+    public Timestamp getAt_leave_time() {
         return at_leave_time;
     }
-    public void setAt_leave_time(Date at_leave_time) {
+    public void setAt_leave_time(Timestamp at_leave_time) {
         this.at_leave_time = at_leave_time;
     }
     public String getAt_memo() {
@@ -52,6 +54,12 @@ public class AttitudeBean {
 	}
 	public void setAt_memo_date(Date at_memo_date) {
 		this.at_memo_date = at_memo_date;
+	}
+	public int getAt_idx() {
+		return at_idx;
+	}
+	public void setAt_idx(int at_idx) {
+		this.at_idx = at_idx;
 	}
     
 }
