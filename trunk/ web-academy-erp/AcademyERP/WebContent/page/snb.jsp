@@ -91,7 +91,7 @@
 	<div id="menu_v" class="menu_v">
 		<ul>
 
-			<li><a href="#"><span>학부모/학생용</span><span class="i"></span></a>
+			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>학생정보조회</span></a></li>
 					<li><a href="#"><span>회비내역조회</span></a></li>
@@ -104,7 +104,7 @@
 				</ul></li>
 
 			<li>
-				<!-- class="active" --> <a href="#"><span>원생관리</span><span
+				<!-- class="active" --> <a><span>원생관리</span><span
 					class="i"></span></a>
 				<ul style="display: none;">
 					<li>
@@ -117,7 +117,7 @@
 				</ul>
 			</li>
 
-			<li><a href="#"><span>학급관리</span><span class="i"></span></a>
+			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>학급별시간표</span></a></li>
 					<li><a href="#"><span>학급정보</span></a></li>
@@ -127,20 +127,21 @@
 					<li><a href="#"><span>학급진도관리</span></a></li>
 				</ul></li>
 
-			<li><a href="#"><span>성적관리</span><span class="i"></span></a>
+			<li><a><span>성적관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li><a href="#"><span>학교성적관리</span></a></li>
-					<li><a href="#"><span> - 시험등록</span></a></li>
+					<li><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
+
+					<li><a><span><strong>학교성적관리</strong></span></a></li>
 					<li><a href="#"><span> - 진행중시험</span></a></li>
 					
-					<li><a href="#"><span>학원시험관리</span></a></li>
+					<li><a ><span><strong>학원시험관리</strong></span></a></li>
 
-					<li><a href="#"><span> - 시험등록</span></a></li>
+					
 					<li><a href="#"><span> - 진행중시험</span></a></li>
 					<li><a href="#"><span> - 완료된시험</span></a></li>
 				</ul></li>
 
-			<li><a href="#"><span>시간표관리</span><span class="i"></span></a>
+			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>전체시간표</span></a></li>
 					<li><a href="#"><span>강사별시간표</span></a></li>
@@ -149,7 +150,7 @@
 				</ul></li>
 				<!-- 선생님용 메뉴 -->
 <%-- 				<%if(member.level.equals("3")||member.level.equals("5")){ %> --%>
-			<li><a href="#"><span>게시판</span><span class="i"></span></a>
+			<li><a><span>게시판</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./BoardNotice.bo?gid=0>"><span>공지사항</span></a></li>
 					<li><a href="#"><span>업무일지</span></a></li>
@@ -160,7 +161,7 @@
 					<li><a href="#"><span>직원게시판</span></a></li>
 				</ul></li>
 <%-- 				<%} %> --%>
-			<li><a href="#"><span>직원관리</span><span class="i"></span></a>
+			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./EmployeeAdd.em"><span>신규등록</span></a></li>
 
@@ -169,7 +170,7 @@
 					<li><a href="#"><span>급여관리</span></a></li>
 					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
-			<li><a href="#"><span>회계관리</span><span class="i"></span></a>
+			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
 					<li><a href="./AccountingList.ac?kind=fee"><span>회비현황</span></a></li>
@@ -178,7 +179,7 @@
 					<li><a href="#"><span>계좌관리</span></a></li>
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
-			<li><a href="#"><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
+			<li><a><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
 					<li><a href="#"><span>공지사항 관리</span></a></li>
