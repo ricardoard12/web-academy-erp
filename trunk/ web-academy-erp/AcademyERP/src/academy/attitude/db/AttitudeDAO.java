@@ -160,4 +160,25 @@ public class AttitudeDAO {
     	return result;
     }
 
+    public boolean employeeAttitudeCancel(String id) throws Exception {
+    	boolean result = false;
+    	try {
+    		con = ds.getConnection();
+    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setDate(1, null);
+    		pstmt.setDate(2, null);
+    		pstmt.setString(3, "N");
+    		pstmt.setString(4, id);
+    		pstmt.executeUpdate();
+    		
+    		result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	
+    	return result;
+    }
 }

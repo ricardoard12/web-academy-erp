@@ -88,6 +88,13 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/EmployeeAttitudeCancelAction.em")) {
+			action = new EmployeeAttitudeCancelAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
