@@ -326,10 +326,10 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 					%>
 						<tr>
 							<td><%=counselerbean.getIdx() %></td>
-							<td><a href="./StudentDetail.st?id=<%=counselerbean.getMm_id()%>&check=1"><%=counselerbean.getCo_subject()%></a></td>
+							<td><a href="./StudentDetail.st?id=<%=counselerbean.getMm_id()%>&check=1"><%=counselerbean.getCc_subject()%></a></td>
 							<td><%=counselerbean.getGp_id()%></td>
 							<td><%=counselerbean.getEp_id()%></td>
-							<td><%=counselerbean.getCo_date() %></td>
+							<td><%=counselerbean.getCc_date() %></td>
 							<td><input type="button" value="상담"  onclick="location.href='./StudentSounsel.st?id=<%=counselerbean.getMm_id()%>'"></td>
 						</tr>
 						

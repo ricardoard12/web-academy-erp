@@ -62,7 +62,7 @@ public class CounselerDAO {
 	    	
 	    	try {
 				con= ds.getConnection();
-				sql="select idx,mm_id,co_subject,co_content,co_date,gp_id,ep_id from counsel where mm_id=? order by idx DESC limit ?,?";
+				sql="select idx,mm_id,cc_subject,cc_content,cc_date,gp_id,ep_id from counsel where mm_id=? order by idx DESC limit ?,?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setInt(2, startrow-1);// 시작계수
@@ -73,9 +73,9 @@ public class CounselerDAO {
 					counselList = new ArrayList();
 					do{
 						CounselerBean counselbean = new CounselerBean(); // counselbean에 조회한 데이터 저장
-						counselbean.setCo_content(rs.getString("co_content"));
-						counselbean.setCo_date(rs.getDate("co_date"));
-						counselbean.setCo_subject(rs.getString("co_subject"));
+						counselbean.setCc_content(rs.getString("cc_content"));
+						counselbean.setCc_date(rs.getDate("cc_date"));
+						counselbean.setCc_subject(rs.getString("cc_subject"));
 						counselbean.setEp_id(rs.getString("ep_id"));
 						counselbean.setIdx(rs.getInt("idx"));
 						counselbean.setMm_id(rs.getString("mm_id"));
