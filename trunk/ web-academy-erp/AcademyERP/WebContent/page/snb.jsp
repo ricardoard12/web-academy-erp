@@ -28,17 +28,13 @@
 							<strong>박한빛</strong>님 반갑습니다
 						</dt>
 						<dd>
-							<label> 회원정보수정</label> <label><a href="#login"
-								accesskey="L" title="Accesskey(L)" id="login_anchor"
-								class="login_btn_sml"><span>로그인</span></a></label> <label><a
-								href="#" class="btn_sml"><span>로그아웃</span></a></label>
+							<label> 회원정보수정</label> 
+							<label><a href="#login" accesskey="L" title="Accesskey(L)" id="login_anchor"
+								class="login_btn_sml"><span>로그인</span></a></label> 
+								<label><a href="#" class="btn_sml"><span>로그아웃</span></a></label>
 						</dd>
 					</dl>
 
-					<!-- <div id="login_footer">
-					<input name="" type="image" src="http://static.naver.com/common/btn/btn_confirm2.gif" alt="확인">
-					<a href="#"><img src="http://static.naver.com/common/btn/btn_cancel2.gif" alt="취소" width="38" height="21"></a>
-				</div> -->
 				</fieldset>
 			</form>
 			<!-- //Layer Content -->
@@ -48,28 +44,25 @@
 				<div class="bg"></div>
 				<div id="login" class="g_login">
 					<a href="#login_anchor" title="로그인 레이어 닫기" class="close">X</a>
-					<form action="" id="g_login" class="g_login">
+					<form action="./MemberLogin.me" id="g_login" class="g_login" method="post">
 						<fieldset>
 							<legend>Login</legend>
 							<div class="item">
-								<label for="uid" class="i_label"
-									style="position: absolute; visibility: visible;">ID</label><input
-									name="" type="text" value="" id="uid" class="i_text uid">
+								<label for="uid" class="i_label" style="position: absolute; visibility: visible;">ID</label>
+								<input name="mm_id" type="text" id="uid" class="i_text uid">
 							</div>
 							<div class="item">
-								<label for="upw" class="i_label"
-									style="position: absolute; visibility: visible;">PASSWORD</label><input
-									name="" type="password" value="" id="upw" class="i_text upw">
+								<label for="upw" class="i_label" style="position: absolute; visibility: visible;">Password</label>
+								<input name="mm_passwd" type="password" id="upw" class="i_text upw">
 							</div>
 							<p class="keeping">
-								<input name="" type="checkbox" value="" id="keepid"
-									class="i_check"><label for="keepid">로그인 유지</label>
+								<input name="" type="checkbox" value="" id="keepid" class="i_check">
+								<label for="keepid">로그인 유지</label>
 							</p>
-							<p class="warning">브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다. 로그인 유지 기능을
-								사용할 경우 다음 접속부터는 로그인을 하실 필요가 없습니다. 단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가
-								유출될 수 있으니 꼭 로그아웃을 해주세요.</p>
-							<span class="btn_login"><input name="" type="submit"
-								value="로그인"></span>
+							<p class="warning">브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.<br>
+							로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인을 하실 필요가 없습니다.<br>
+							단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.</p>
+							<span class="btn_login"><input name="" type="submit" value="로그인"></span>
 							<ul class="help">
 								<li class="first"><a href="#">아이디/비밀번호 찾기</a></li>
 							</ul>

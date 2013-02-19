@@ -21,7 +21,13 @@ public class MemberFrontController extends HttpServlet implements Servlet {
         ActionForward forward = null;
         Action action = null;
 
-        if (command.equals("/")) {
+        if (command.equals("/MemberLogin.me")) {
+            action = new MemberLoginAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         
         // 이동
