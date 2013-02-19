@@ -117,17 +117,106 @@ public class MasterDAO {
 	}
 
 	public List getAllMemberList(int toggle, String col) {
-		MemberBean member=null;
-		String str="";
-	
-		try{
-			
-		}catch(Exception e){
+		MemberBean member = null;
+		String str = "";
+
+		try {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			dbClose();
 		}
 		return null;
 	}
 
+	// 전체 학급의 갯수를 구한다.
+	public int getCount() {
+		int x = 0;
+		try {
+			con = ds.getConnection();
+			String sql = "select count(gp_idx) from groups";
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return x;
+	}
+
+	// 리스트별로 클래스의 수를 가져온다.
+	public List getClassList(int page, int limit) {
+		List list = null;
+		int startrow = (page - 1) * limit + 1;
+		try {
+			System.out.println("->");
+			con = ds.getConnection();
+			String sql = "select gp_idx,gp_name,groups.ep_id,member.mm_name,gp_lev,gp_half,gp_ea,gp_status,gp_startdate,gp_enddate from groups,member where groups.ep_id=member.mm_id "
+					+ "order by gp_idx desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startrow - 1);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			System.out.println("<-");
+			if (rs.next()) {
+				list = new ArrayList(limit);
+				do {
+					list.add(insertClass());
+				} while (rs.next());
+			}
+			System.out.println("리스트 가져감");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return list;
+	}
+
+	private List insertClass() throws Exception {
+		List list = new ArrayList();
+		list.add(rs.getInt("gp_idx"));
+		list.add(rs.getString("gp_name"));
+		list.add(rs.getString("ep_id"));
+		list.add(rs.getString("mm_name"));
+		list.add(rs.getString("gp_lev"));
+		list.add(rs.getString("gp_half"));
+		list.add(rs.getInt("gp_ea"));
+		list.add(rs.getString("gp_status"));
+		list.add(rs.getDate("gp_startdate"));
+		list.add(rs.getDate("gp_enddate"));
+		return list;
+	}
+
+	// 상태 변경 ^^
+	public void updateStatus(String id, String status) {
+
+		try {
+			con = ds.getConnection();
+			String sql = "update groups set gp_status='" + status
+					+ "' where gp_idx=" + Integer.parseInt(id);
+			con.prepareStatement(sql).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}
+
+	// 지울꺼다...
+	public void deleteclass(String string) {
+		try {
+			con = ds.getConnection();
+			String sql = "delete from groups where gp_idx='" + string + "'";
+			con.prepareStatement(sql).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}
 }
