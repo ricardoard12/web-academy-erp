@@ -222,11 +222,13 @@ public class MasterDAO {
 
 	public List getTeachserList() {
 		List tList = null;
+		String str="재직";
 		try {
 			con = ds.getConnection();
-			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name" +
-					"where employee,member " +
-					"from member.mm_id=employee.ep_id AND employee.ep_status=' 재직'";
+			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name " +
+					"from employee,member " +
+					"where mm_id=ep_id AND ep_status='"+str+"'";
+			System.out.println("선생 리스트 ->");
 			rs=con.prepareStatement(sql).executeQuery();
 			if(rs.next()){
 				tList=new ArrayList();
@@ -234,7 +236,7 @@ public class MasterDAO {
 					tList.add(getTeacherInfo());
 					
 				}while(rs.next());
-			}
+			}System.out.println("<-선생 리스트");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
