@@ -239,29 +239,23 @@
 </body>
 <script type="text/javascript">
 	function memoOpen(id, at_memo) {
-		if (at_memo == "null")
-			at_memo = "";
-		window.open("./StudentAttitudeMemoAction.st?id=" + id + "&at_memo="
-				+ at_memo, "memo", "width=350,height=200,scrollbars=no");
+		if (at_memo == "null") at_memo="";
+		window.open("./StudentAttitudeMemoAction.st?id=" + id + "&at_memo=" + at_memo, "memo", "width=350,height=200,scrollbars=no");
 	}
 	function timeEditOpen(id, time, type) {
-		window.open("./StudentAttitudeEditTime.st?id=" + id + "&time=" + time
-				+ "&type=" + type, "timeEdit",
-				"width=350,height=200,scrollbars=no");
+		window.open("./StudentAttitudeEditTime.st?id=" + id + "&time=" + time + "&type=" + type, "timeEdit", "width=350,height=200,scrollbars=no");
 	}
 	function confirmCancel(id, type) {
 		if (confirm("결근 처리 하시겠습니까?") == true) {
-			location.href = "./StudentAttitudeCancelAction.st?id=" + id
-					+ "&type=" + type;
+			location.href="./StudentAttitudeCancelAction.st?id=" + id + "&type=" + type;
 			return null;
 		}
 	}
 	function confirmCancel2(id, type) {
 		if (confirm("취소 처리 하시겠습니까?") == true) {
-			location.href = "./StudentAttitudeCancelAction.st?id=" + id
-					+ "&type=" + type;
+			location.href="./StudentAttitudeCancelAction.st?id=" + id + "&type=" + type;
 			return null;
 		}
-	}
+	}	
 </script>
 </html>

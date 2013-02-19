@@ -124,7 +124,7 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 			forward.setPath("./student/student_attitude_editTime.jsp");
         
         }else if(command.equals("/StudentAttitudeEditTimeAction.st")){
-        	action = new StudentAttitudeCancelAction();
+        	action = new StudentAttitudeEditTimeAction();
         	try {
         		forward= action.execute(request, response);
 			} catch (Exception e) {
