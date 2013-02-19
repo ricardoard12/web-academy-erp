@@ -15,6 +15,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
+	String date = (String) request.getAttribute("date");
 	SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 %>
 <body>
@@ -51,12 +52,14 @@
 						<thead>
 							<tr>
 								<th scope="row">검색날짜선택</th>
-								<td colspan="6" align="left">
+								<td colspan="2" align="left">
 									<div class="item">
 										<input type="text" name="date"> 
 										<input type="button" value="검색" onclick="CheckDate()">
 										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
 									</div>
 								</td>
 							</tr>
