@@ -1,6 +1,8 @@
 package academy.employee.action;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +22,13 @@ public class EmployeeAttitudeAddMemoAction implements Action {
 		String id = request.getParameter("id");
 		String at_memo = request.getParameter("at_memo");
 		
-		boolean result = attitudeDAO.employeeAttitudeAddMemo(id, at_memo);
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		String date = request.getParameter("date");
+		if (date == null) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
+		}
+		
+		boolean result = attitudeDAO.employeeAttitudeAddMemo(id, at_memo, date);
 		
 		if (result == true) {
 			response.setContentType("text/html;charset=UTF-8");

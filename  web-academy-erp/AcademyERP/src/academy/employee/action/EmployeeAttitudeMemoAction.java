@@ -18,9 +18,11 @@ public class EmployeeAttitudeMemoAction implements Action {
 		
 		String id = request.getParameter("id");
 		String at_memo = request.getParameter("at_memo");
+		String date = request.getParameter("date");
 		
 		request.setAttribute("id", id);
 		request.setAttribute("at_memo", at_memo);
+		request.setAttribute("date", date);
 		
 		forward.setRedirect(false);
 		forward.setPath("./employee/employee_memo.jsp");

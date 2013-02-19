@@ -26,14 +26,16 @@ public class EmployeeAttitudeEditTimeAction implements Action {
 		String type = request.getParameter("type");
 		String hour = request.getParameter("hour");
 		String minute = request.getParameter("minute");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 		
-		String date = sdf.format(Calendar.getInstance().getTime());
+		String date = request.getParameter("date");
+		if (date == null) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
+		}
 		
 		String editTime = date + " " + hour + ":" + minute;
-//		System.out.println("editTime : " + editTime);
 		
-		boolean result = attitudeDAO.employeeAttitudeEditTime(id,editTime,type);
+		boolean result = attitudeDAO.employeeAttitudeEditTime(id, editTime, type, date);
 		
 		if (result == true) {
 			response.setContentType("text/html;charset=UTF-8");

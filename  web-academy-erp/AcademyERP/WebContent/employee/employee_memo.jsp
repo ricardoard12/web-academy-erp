@@ -10,9 +10,11 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)request.getAttribute("id");
 	String at_memo = (String)request.getAttribute("at_memo");
+	String date = (String)request.getAttribute("date");
 %>
 <body>
 	<form action="./EmployeeAttitudeAddMemoAction.em?id=<%=id %>" method="post">
+	<input type="hidden" name="date" value="<%=date %>">
 		<table>
 			<tr><th>메모</th></tr>
 			<tr>
