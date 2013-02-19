@@ -179,7 +179,7 @@
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
 				<!-- 선생님용 메뉴 -->
-<%-- 				<%if(member.level.equals("3")||member.level.equals("5")){ %> --%>
+<%-- 				<%if(level.equals("3")||level.equals("4") || level.equals("5")){ %> --%>
 			<li><a><span>게시판</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./BoardNotice.bo?gid=0>"><span>공지사항</span></a></li>

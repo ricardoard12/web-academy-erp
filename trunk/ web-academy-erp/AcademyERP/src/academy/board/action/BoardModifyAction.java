@@ -46,9 +46,11 @@ public class BoardModifyAction implements Action{
 			return null;
 		}
 		
+		
 		boardbean.setBoard_num(Integer.parseInt(multi.getParameter("board_num")));
 		boardbean.setBoard_subject(multi.getParameter("board_subject"));
 		boardbean.setBoard_content(multi.getParameter("board_content"));
+		boardbean.setBoard_file(multi.getParameter("board_file"));
 	
 		boarddao.boardModify(boardbean);
 		

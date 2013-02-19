@@ -46,6 +46,8 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 </thead>
 <tbody>
 <tr>
+<th scope="row">첨부파일</th>
+<td><%=boardbean.getBoard_file() %></td>
 <th scope="row">작성자</th>
 <td><%=boardbean.getBoard_name() %></td>
 <th scope="row">작성일</th>
