@@ -44,7 +44,7 @@ public class MemberDAO {
         
         try {
             con = ds.getConnection();
-            sql = "select mm_passwd, mm_name from member where mm_id = ?";
+            sql = "select mm_passwd, mm_name, mm_level from member where mm_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMm_id());
             rs = pstmt.executeQuery();
@@ -54,8 +54,15 @@ public class MemberDAO {
                     //비밀번호 맞음
                     x=1;
                     vector.add(0, x);
+                    
+                    //이름 받기
                     String name = rs.getString("mm_name");
                     vector.add(1, name);
+                    
+                    //레벨값 받기
+                    String level = rs.getString("mm_level");
+                    vector.add(2, level);
+                    
                     
                 }else{
                     //비밀번호 틀림
