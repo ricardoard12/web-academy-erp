@@ -20,6 +20,11 @@
 	<div id="info_wrap" style="top: 20px; left: 20px; width: 200px">
 		<div id="info_content">
 			<!-- Layer Content -->
+			
+			<%
+				//세션으로 id 값 받음
+				String id = (String)session.getAttribute("id");
+			%>
 			<form action="" method="post">
 				<h4 class="ly_header">회원 로그인</h4>
 				<fieldset>
