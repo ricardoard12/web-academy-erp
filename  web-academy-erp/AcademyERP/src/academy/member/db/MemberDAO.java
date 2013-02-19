@@ -48,6 +48,7 @@ public class MemberDAO {
                 if(rs.getString("mm_passwd").equals(member.getMm_passwd())){
                     //비밀번호 맞음
                     x=1;
+                    
                 }else{
                     //비밀번호 틀림
                     x=0;

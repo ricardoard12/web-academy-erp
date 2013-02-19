@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.member.db.MemberBean;
 import academy.member.db.MemberDAO;
@@ -51,8 +52,9 @@ public class MemberLoginAction implements Action{
             
         }
         
-        //아아디 띄우기(로그인 id)
-        request.setAttribute("id", mm_id);
+        //세션으로 아아디 띄우기(로그인 id)
+        HttpSession session = request.getSession();
+        session.setAttribute("id", mm_id);
         
         forward.setRedirect(false);
         forward.setPath("./Main.main");
