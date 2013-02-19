@@ -41,6 +41,41 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/TimeTableSet.master")) {
+			action = new TimeTableAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ClassList.master")) {
+			action = new classListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CreateClass.master")) {
+			action = new classListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ClassStatusUpdate.master")) {
+			action = new classstatusupdate();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/DeleteClass.master")) {
+			action = new classdeleteaction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// 이동
 		if (forward != null) {
@@ -53,5 +88,4 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 			}
 		}
 	}
-
 }
