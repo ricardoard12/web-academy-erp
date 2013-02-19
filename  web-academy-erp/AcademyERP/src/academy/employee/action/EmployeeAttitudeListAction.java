@@ -38,6 +38,7 @@ public class EmployeeAttitudeListAction implements Action {
 		attitudeList = attitudeDAO.getEmployeeAttitudeList(date);
 		
 		request.setAttribute("attitudeList", attitudeList);
+		request.setAttribute("date", date);
 		
 		forward.setRedirect(false);
 		forward.setPath("./employee/employee_attitude_list.jsp");
