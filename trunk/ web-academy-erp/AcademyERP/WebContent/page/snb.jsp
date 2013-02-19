@@ -26,6 +26,8 @@
 				String id = (String)session.getAttribute("id");
 				//세션으로 name값 받음
 				String name = (String)session.getAttribute("name");
+				//세션으로 level 값 받음
+				String level = (String)session.getAttribute("level");
 			%>
 			<form action="" method="post">
 				<h4 class="ly_header">회원 로그인</h4>
@@ -36,23 +38,38 @@
 						<dt>
 							<strong><%=name %></strong>님 반갑습니다
 						</dt>
-						<% } %>
+						
+							<dt><strong>
+							<% if(level.equals("1")){%>
+								학생
+							<%}else if(level.equals("2")){ %>
+								부모님
+							<%}else if(level.equals("3")){ %>
+								선생님
+							<%}else if(level.equals("4")){ %>
+								중간관리자
+							<%}else if(level.equals("5")){ %>
+								원장님
+							<%}else if(level.equals("6")){ %>
+							 	영호(신)
+							 <%} %>
+							</strong>입니다</dt>
+						
+						<%} %>
+						
 						
 						<dd>
-						
-						
 						<% if(name != null){%>
 							<label> 회원정보수정</label> 
 						<% } %>
-						
 						<% if(name == null){%>
-							<label>반값습니다 <br> 로그인하세요</label>
+							<label>반갑습니다 <br> 로그인하세요</label>
 							<label><a href="#login" accesskey="L" title="Accesskey(L)" id="login_anchor" class="login_btn_sml"><span>로그인</span></a></label> 
 						<% }else{ %>		
 								<label><a href="./MemberLogout.me" class="btn_sml"><span onclick="">로그아웃</span></a></label>
 						<%} %>
-						
 						</dd>
+						
 					</dl>
 
 				</fieldset>

@@ -60,9 +60,13 @@ public class MemberLoginAction implements Action{
         HttpSession session = request.getSession();
         session.setAttribute("id", mm_id);
         
-        //DB에서 가져온 DB값 띄운다
+        //DB에서 가져온 이름 DB값 띄운다
         String name = (String) vector.get(1);
         session.setAttribute("name", name);
+        
+        //DB에서 가져온 레벨 DB값 띄운다
+        String level = (String)vector.get(2);
+        session.setAttribute("level", level);
         
         forward.setRedirect(false);
         forward.setPath("./Main.main");
