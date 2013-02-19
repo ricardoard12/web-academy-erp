@@ -219,4 +219,35 @@ public class MasterDAO {
 			dbClose();
 		}
 	}
+
+	public List getTeachserList() {
+		List tList = null;
+		try {
+			con = ds.getConnection();
+			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name" +
+					"where employee,member " +
+					"from member.mm_id=employee.ep_id AND employee.ep_status=' 재직'";
+			rs=con.prepareStatement(sql).executeQuery();
+			if(rs.next()){
+				tList=new ArrayList();
+				do{
+					tList.add(getTeacherInfo());
+					
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return tList;
+	}
+
+	private List getTeacherInfo() throws Exception{
+		List list =new ArrayList();
+		list.add(rs.getString("ep_id"));
+		list.add(rs.getString("mm_name"));
+		list.add(rs.getString("ep_subject_name"));
+		return list;
+	}
 }
