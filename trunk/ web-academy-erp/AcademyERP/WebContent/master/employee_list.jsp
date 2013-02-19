@@ -12,7 +12,7 @@
 		findname = request.getParameter("findname");
 	}
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -119,14 +119,14 @@
 						</form>
 						<!-- 버튼 -->
 						<tr align="right">
-							<td align="center" colspan="8">
+							<td align="center" colspan="9">
 								<div class="item">
 									<input type="button" value="뒤로 가기" onclick="history.back()">
 								</div>
 						</tr>
 
 						<tr>
-							<td align="center" colspan="8">
+							<td align="center" colspan="9">
 								<form action="./LevelList.master">
 									<div class="item">
 										<input type="text" name="findname"><input
