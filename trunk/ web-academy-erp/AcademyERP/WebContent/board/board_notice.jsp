@@ -1,17 +1,20 @@
+<%@page import="academy.member.db.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
     BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
+    MemberBean memberbean = (MemberBean) request.getAttribute("memberbean");   	
     List boardList=(List)request.getAttribute("boardlist");
     int listcount=((Integer)request.getAttribute("listcount")).intValue();
     int nowpage=((Integer)request.getAttribute("page")).intValue();
     int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
+   
+    String level = request.getParameter("level");
     
-   	
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -97,12 +100,13 @@
 </tbody>
 </table>
 <!-- mm_level에 따라보이게하기 -->
+<% if(level.equals("4") || level.equals("5")){%>
 <div align="right">
 <input type="button" name="board_write" value="글쓰기" onclick="location.href='./BoardWrite.bo'">
-<%-- <input type="button" name="board_delete" value="삭제" onclick="location.href='./BoardDeleteAction.bo?num=<%=boardbean.getBoard_num()%>&board_check=<%=board_check%>'"> --%>
 <input type="submit" name="board_delete" value="삭제">
 </form>
 </div>
+<%} %>
 
 <!-- Paginate -->
 
