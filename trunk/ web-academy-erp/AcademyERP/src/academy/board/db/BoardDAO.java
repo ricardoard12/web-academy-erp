@@ -12,6 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
+
 public class BoardDAO {
 	Connection con;
 	PreparedStatement pstmt;
@@ -88,35 +90,35 @@ public class BoardDAO {
 		return x;
 	}
 	
-	public List getBoardList(String gid,int page,int limit){
+	public List getBoardList(int page,int limit){
 		String sql="";
 		List list=null;
-		int startrow=(page-1)*limit+1; 
+		int startrow=(page-1)*limit+1; //현재페이지 시작행
 		try {
 			con=ds.getConnection();
-			
-			sql="select * from board where gid=? order by board_re_ref desc, board_re_seq asc limit ?,?";
+			//3 sql
+			sql="select * from board order by board_re_ref desc, board_re_seq asc limit ?,?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,gid);
-			pstmt.setInt(2, startrow-1); 
-			pstmt.setInt(3, limit); 
+			pstmt.setInt(1, startrow-1); //시작위치-1
+			pstmt.setInt(2, limit); //개수
+			//4 저장 = 실행
 			rs=pstmt.executeQuery();
-		
+			//5 rs => 자바빈 저장
 			if(rs.next()){
-				list=new ArrayList(limit);
+				list=new ArrayList(limit);//ArrayList객체생성
 				do{
-					BoardBean boardbean=new BoardBean();
-					boardbean.setBoard_num(rs.getInt("board_num"));
-					boardbean.setBoard_name(rs.getString("board_name"));
-					boardbean.setBoard_subject(rs.getString("board_subject"));
-					boardbean.setBoard_content(rs.getString("board_content"));
-					boardbean.setBoard_file(rs.getString("board_file"));
-					boardbean.setBoard_re_ref(rs.getInt("board_re_ref"));
-					boardbean.setBoard_re_lev(rs.getInt("board_re_lev"));
-					boardbean.setBoard_re_seq(rs.getInt("board_re_seq"));
-					boardbean.setBoard_readcount(rs.getInt("board_readcount"));
-					boardbean.setBoard_date(rs.getDate("board_date"));					
-					list.add(boardbean); 
+					BoardBean board=new BoardBean();//자바빈객체
+					board.setBoard_num(rs.getInt("board_num"));
+					board.setBoard_name(rs.getString("board_name"));
+					board.setBoard_subject(rs.getString("board_subject"));
+					board.setBoard_content(rs.getString("board_content"));
+					board.setBoard_file(rs.getString("board_file"));
+					board.setBoard_re_ref(rs.getInt("board_re_ref"));
+					board.setBoard_re_lev(rs.getInt("board_re_lev"));
+					board.setBoard_re_seq(rs.getInt("board_re_seq"));
+					board.setBoard_readcount(rs.getInt("board_readcount"));
+					board.setBoard_date(rs.getDate("board_date"));
+					list.add(board); //자바빈 -> 한칸
 				}while(rs.next());
 			}
 		} catch (Exception e) {
@@ -233,18 +235,7 @@ public class BoardDAO {
 		int num2;
 		Statement stmt =null;
 		boolean result=false;
-//		StringBuffer sql = new StringBuffer("delete from board where board_num=?");
-//        // 기본 쿼리문만을 StringBuffer로 생성한다.
-//        for(int i=0; i<num.length; i++){
-//            sql.append("'"+num[i]+"'");
-//            if(i<num.length-1){   
-//              //만약 check의 길이가 i보다 크다면 ,를 붙인다.
-//                sql.append(",");
-//            }else if(i==num.length-1){    
-//              //위의조건 만족시 만약 i와 check가 같다면 ) 으로써 쿼리를 완성한다
-//                sql.append(")");
-//            }
-//        }
+
         try {
             con = ds.getConnection();
             for(int i=0; i<num.length; i++){
