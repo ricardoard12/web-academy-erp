@@ -1,6 +1,8 @@
 package academy.employee.action;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +23,13 @@ public class EmployeeAttitudeCancelAction implements Action {
 		String id = request.getParameter("id");
 		String type = request.getParameter("type");
 		
-		boolean result = attitudeDAO.employeeAttitudeCancel(id, type);
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		String date = request.getParameter("date");
+		if (date == null) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
+		}
+		
+		boolean result = attitudeDAO.employeeAttitudeCancel(id, type, date);
 		if (result == false) {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();

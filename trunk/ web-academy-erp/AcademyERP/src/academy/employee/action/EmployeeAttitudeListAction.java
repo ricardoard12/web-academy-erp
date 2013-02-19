@@ -1,6 +1,8 @@
 package academy.employee.action;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +25,17 @@ public class EmployeeAttitudeListAction implements Action {
 		AttitudeBean attitude = new AttitudeBean();
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
 		EmployeeDAO employeeDAO = new EmployeeDAO();
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		
+		
+		String date = request.getParameter("date");
+		if (date == null) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
+		}
+		System.out.println(date);
 		
 		List attitudeList = new ArrayList();
-		attitudeList = attitudeDAO.getEmployeeAttitudeList();
+		attitudeList = attitudeDAO.getEmployeeAttitudeList(date);
 		
 		request.setAttribute("attitudeList", attitudeList);
 		

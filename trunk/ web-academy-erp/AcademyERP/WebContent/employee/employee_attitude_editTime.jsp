@@ -13,11 +13,13 @@
 	String id = request.getParameter("id");
  	String time = request.getParameter("time");
 	String type = request.getParameter("type");
+	String date = request.getParameter("date");
 %>
 <body>
 	<form action="./EmployeeAttitudeEditTimeAction.em" method="post">
 		<input type="hidden" name="id" value="<%=id %>">
 		<input type="hidden" name="type" value="<%=type%>">
+		<input type="hidden" name="date" value="<%=date%>">
 <%-- 		<input type="hidden" name="time" value="<%=time %>"> --%>
 		<table>
 		<%if (type.equals("come")) {%>
