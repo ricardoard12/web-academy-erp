@@ -216,11 +216,12 @@ public class BoardDAO {
 		try {
 			
 			con=ds.getConnection();
-			sql="update board set board_subject=?, board_content=? where board_num=?";
+			sql="update board set board_file=?, board_subject=?, board_content=? where board_num=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, boardbean.getBoard_subject());
-			pstmt.setString(2, boardbean.getBoard_content());
-			pstmt.setInt(3, boardbean.getBoard_num());
+			pstmt.setString(1, boardbean.getBoard_file());
+			pstmt.setString(2, boardbean.getBoard_subject());
+			pstmt.setString(3, boardbean.getBoard_content());
+			pstmt.setInt(4, boardbean.getBoard_num());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
