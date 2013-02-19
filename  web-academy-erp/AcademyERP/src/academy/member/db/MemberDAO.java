@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,13 +35,16 @@ public class MemberDAO {
         System.out.println("Master DB Closed");
     }
     
-    public int isMember(MemberBean member){
+    public Vector isMember(MemberBean member){
+        // 확인되면 이름을 가져와야 되어서 Vector 사용
+        // 0번째는 인증 번호 1번째는 사용자 이름
         int x = -1;
         String sql="";
+        Vector vector = new Vector();
         
         try {
             con = ds.getConnection();
-            sql = "select mm_passwd from member where mm_id = ?";
+            sql = "select mm_passwd, mm_name from member where mm_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMm_id());
             rs = pstmt.executeQuery();
@@ -48,21 +53,26 @@ public class MemberDAO {
                 if(rs.getString("mm_passwd").equals(member.getMm_passwd())){
                     //비밀번호 맞음
                     x=1;
+                    vector.add(0, x);
+                    String name = rs.getString("mm_name");
+                    vector.add(1, name);
                     
                 }else{
                     //비밀번호 틀림
                     x=0;
+                    vector.add(0, x);
                 }
             }else{
                 //아이디없음
                 x = -1;
+                vector.add(0, x);
             }
             
         } catch (SQLException e) {  
             e.printStackTrace();
         }finally{   dbClose(); }
         
-        return x;
+        return vector;
     }
     
     /*public List getMemberList(){
