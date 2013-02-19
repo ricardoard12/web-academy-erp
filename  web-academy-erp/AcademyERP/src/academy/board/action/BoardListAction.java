@@ -17,10 +17,12 @@ public class BoardListAction implements Action {
 
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
+		String level = request.getParameter("level");
+		System.out.println(level);
 		HttpSession session = request.getSession();
 		/*
-		 * MemberBean member=(MemberBean)session.getAttribute("세션에 저장된 멤버 객체");
-		 * if(member==null){
+		 * MemberBean memberbean=(MemberBean)session.getAttribute("세션에 저장된 멤버 객체");
+		 * if(memberbean==null){
 		 *  세션 값 없음.
 		 *  메인 페이지로 돌리기.
 		 * }
@@ -28,16 +30,8 @@ public class BoardListAction implements Action {
 		 * 
 		 * 
 		 * */
-		/*재우 소스*/
-		/*String id = (String) session.getAttribute("board_name");
-
-		if (id == null) {
-			forward.setRedirect(true);
-			forward.setPath("./BoardNotice.bo ");
-			return forward;
-		}*/
+				
 		
-		String gid = "";//게시판을 구분 변수
 		BoardDAO boarddao = new BoardDAO();
 
 		List boardlist = new ArrayList();
@@ -50,7 +44,8 @@ public class BoardListAction implements Action {
 
 		int listcount = boarddao.getListCount();
 
-		boardlist = boarddao.getBoardList(gid, page, limit);
+//		boardlist = boarddao.getBoardList(gid, page, limit);
+		boardlist = boarddao.getBoardList(page, limit);
 
 		int maxpage = (int) ((double) listcount / limit + 0.95);
 

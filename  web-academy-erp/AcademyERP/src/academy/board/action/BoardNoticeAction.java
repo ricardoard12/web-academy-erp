@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.board.db.BoardDAO;
+import academy.member.db.MemberBean;
 
 public class BoardNoticeAction implements Action {
 
@@ -16,6 +18,7 @@ public class BoardNoticeAction implements Action {
 		BoardDAO boarddao = new BoardDAO();
 		List boardlist = new ArrayList();
 		ActionForward forward = new ActionForward();
+		String level = request.getParameter("level");
 		
 		int page = 1;
 		int limit = 13;
@@ -25,7 +28,7 @@ public class BoardNoticeAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		int listcount = boarddao.getListCount();
-//		boardlist=boarddao.getBoardList(page,limit);
+		boardlist=boarddao.getBoardList(page,limit);
 		int maxpage=listcount/limit+(listcount%limit==0?0:1);
 		maxpage=(int)((double)listcount/limit+0.95);
 		int pageblock=5;
@@ -36,6 +39,7 @@ public class BoardNoticeAction implements Action {
 			endpage=maxpage;
 		}
 		
+		request.setAttribute("level", level);
 		request.setAttribute("page", page);
 		request.setAttribute("maxpage", maxpage);
 		request.setAttribute("startpage", startpage);
