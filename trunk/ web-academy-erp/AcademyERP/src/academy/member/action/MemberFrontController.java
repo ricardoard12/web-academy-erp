@@ -28,6 +28,13 @@ public class MemberFrontController extends HttpServlet implements Servlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else if (command.equals("/MemberLogout.me")) {
+            action = new MemberLogoutAction();
+            try {
+                forward = action.execute(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         
         // 이동

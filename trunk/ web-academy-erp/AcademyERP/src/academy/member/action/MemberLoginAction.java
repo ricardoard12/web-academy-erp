@@ -1,6 +1,7 @@
 package academy.member.action;
 
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,10 @@ public class MemberLoginAction implements Action{
         memberbean.setMm_passwd(mm_passwd);
         
         MemberDAO memberdao = new MemberDAO();
-        int result = memberdao.isMember(memberbean);
+        Vector vector = memberdao.isMember(memberbean);
+        
+        //벡터로 가져와서 검사
+        int result = (int)vector.get(0);
         
         if(result == 0){
             //비밀번호 틀림
@@ -55,6 +59,10 @@ public class MemberLoginAction implements Action{
         //세션으로 아아디 띄우기(로그인 id)
         HttpSession session = request.getSession();
         session.setAttribute("id", mm_id);
+        
+        //DB에서 가져온 DB값 띄운다
+        String name = (String) vector.get(1);
+        session.setAttribute("name", name);
         
         forward.setRedirect(false);
         forward.setPath("./Main.main");

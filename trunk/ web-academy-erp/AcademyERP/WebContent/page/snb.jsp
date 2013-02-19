@@ -24,19 +24,34 @@
 			<%
 				//세션으로 id 값 받음
 				String id = (String)session.getAttribute("id");
+				//세션으로 name값 받음
+				String name = (String)session.getAttribute("name");
 			%>
 			<form action="" method="post">
 				<h4 class="ly_header">회원 로그인</h4>
 				<fieldset>
 					<dl class="ly_body">
+						
+						<% if(name != null){%>
 						<dt>
-							<strong>박한빛</strong>님 반갑습니다
+							<strong><%=name %></strong>님 반갑습니다
 						</dt>
+						<% } %>
+						
 						<dd>
+						
+						
+						<% if(name != null){%>
 							<label> 회원정보수정</label> 
-							<label><a href="#login" accesskey="L" title="Accesskey(L)" id="login_anchor"
-								class="login_btn_sml"><span>로그인</span></a></label> 
-								<label><a href="#" class="btn_sml"><span>로그아웃</span></a></label>
+						<% } %>
+						
+						<% if(name == null){%>
+							<label>반값습니다 <br> 로그인하세요</label>
+							<label><a href="#login" accesskey="L" title="Accesskey(L)" id="login_anchor" class="login_btn_sml"><span>로그인</span></a></label> 
+						<% }else{ %>		
+								<label><a href="./MemberLogout.me" class="btn_sml"><span onclick="">로그아웃</span></a></label>
+						<%} %>
+						
 						</dd>
 					</dl>
 
@@ -191,6 +206,8 @@
 
 
 	<script type="text/javascript">
+	
+	
 		jQuery(function($) {
 			var loginWindow = $('.mw_login');
 			var login = $('#login');
