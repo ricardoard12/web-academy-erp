@@ -1,3 +1,4 @@
+<%@page import="academy.groups.db.GroupsBean"%>
 <%@page import="academy.member.db.MemberBean"%>
 <%@page import="academy.employee.db.EmployeeBean"%>
 <%@page import="java.util.List"%>
@@ -32,6 +33,7 @@
 
 	List employeeList = (List) request.getAttribute("employeeList");
 	List memberList = (List) request.getAttribute("memberList");
+	List groupsList = (List) request.getAttribute("groupsList");
 %>
 <body>
 	<!-- UI Object -->
@@ -81,6 +83,7 @@
 								for (int i = 0; i < employeeList.size(); i++) {
 									EmployeeBean employee = (EmployeeBean) employeeList.get(i);
 									MemberBean member = (MemberBean) memberList.get(i);
+									GroupsBean groups = (GroupsBean) groupsList.get(i);
 							%>
 							<tr>
 								<td><input name="employeeSelect" type="checkbox" id="a1"
@@ -92,7 +95,7 @@
 								<td><%=employee.getEp_department()%></td>
 								<td><%=employee.getEp_position()%></td>
 								<td><%=employee.getEp_subject_name()%></td>
-								<td><%=employee.getEp_group_id()%></td>
+								<td><%=groups.getGp_name() %>(<%=groups.getGp_id()%>)</td>
 							</tr>
 							<%
 								}

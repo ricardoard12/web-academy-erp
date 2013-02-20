@@ -21,12 +21,15 @@ public class EmployeeFrontController extends HttpServlet implements Servlet {
 		ActionForward forward = null;
 		Action action = null;
 
-		if (command.equals("/EmployeeAdd.em")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("./employee/employee_join.jsp");
-		} else if (command.equals("/EmployeeAddAction.em")) {
-			action = new EmployeeAddAction();
+		if (command.equals("/EmployeeJoin.em")) {
+			action = new EmployeeJoin();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/EmployeeJoinAction.em")) {
+			action = new EmployeeJoinAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

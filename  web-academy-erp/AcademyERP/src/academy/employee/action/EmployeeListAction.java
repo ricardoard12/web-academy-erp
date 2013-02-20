@@ -22,13 +22,16 @@ public class EmployeeListAction implements Action {
 		Vector vector = new Vector();
 		List employeeList = new ArrayList();
 		List memberList = new ArrayList();
+		List groupsList = new ArrayList();
 		
 		vector = employeeDAO.getEmployeeList();
 		employeeList = (List)vector.get(0);
 		memberList = (List)vector.get(1);
+		groupsList = (List)vector.get(2);
 		
 		request.setAttribute("employeeList", employeeList);
 		request.setAttribute("memberList", memberList);
+		request.setAttribute("groupsList", groupsList);
 		
 		forward.setRedirect(false);
 		forward.setPath("./employee/employee_list.jsp");
