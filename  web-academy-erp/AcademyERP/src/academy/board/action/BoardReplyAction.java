@@ -24,8 +24,7 @@ public class BoardReplyAction implements Action{
 		boardbean.setBoard_re_seq(Integer.parseInt(request.getParameter("board_re_seq")));
 		boardbean.setBoard_name(request.getParameter("board_name"));
 		boardbean.setBoard_pass(request.getParameter("board_pass"));
-		boardbean.setBoard_memo(request.getParameter("board_memo"));
-	
+			
 		int result=0;
 		result=boarddao.boardReply(boardbean);
 		if(result==0){
