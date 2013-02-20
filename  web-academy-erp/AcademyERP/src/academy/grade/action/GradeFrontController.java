@@ -27,8 +27,15 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             forward.setPath("./grade/grade_register.jsp");
         }else if(command.equals("/GradeJoinAction.gr")) {
             action = new GradeJoinAction();
-            try {
-                forward = action.execute(request, response);
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+        }else if(command.equals("/GradeAcademyList.gr")) {
+            action = new GradeAcademyListAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+        }else if(command.equals("/GradeSchoolList.gr")) {
+            action = new GradeSchoolListAction();
+            try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
         }
         

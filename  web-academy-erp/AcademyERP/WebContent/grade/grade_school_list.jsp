@@ -34,41 +34,37 @@
 				<!-- UI Object -->
 
 				<%
-				    List gradeAcademyList = (List)request.getAttribute("gradeAcademyList");
+				    List gradeSchoolList = (List)request.getAttribute("gradeSchoolList");
 				%>
-				<table cellspacing="0" border="1" summary="학원 시험 목록" class="tbl_type_list">
-					<caption>학원 시험 목록</caption>
+				<table cellspacing="0" border="1" summary="학교 시험 목록" class="tbl_type_list">
+					<caption>학교 시험 목록</caption>
 					<colgroup>
 						<col width="12%">
 						<col>
-						<col width="12%" span="8">
+						<col width="16%" span="6">
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">선택</th>
 							<th scope="col">학생ID</th>
-							<th scope="col">과목ID</th>
 							<th scope="col">과목명</th>
 							<th scope="col">과목성적</th>
 							<th scope="col">과목설명</th>
-							<th scope="col">담당강사</th>
-							<th scope="col">응시날짜</th>
+							<th scope="col">시험기간</th>
 						</tr>
 					</thead>
 					<tbody>
 
-					<% for(int i=0; i<gradeAcademyList.size(); i++){
-						GradeBean gradebean = (GradeBean)gradeAcademyList.get(i);%>
+					<% for(int i=0; i<gradeSchoolList.size(); i++){
+						GradeBean gradebean = (GradeBean)gradeSchoolList.get(i);%>
 						<tr>
 							<td><input name="" type="checkbox" value="" id="a1" class="i_check">
 							<label for="a1"></label></td>
 							<td><%=gradebean.getMm_id() %></td>
-							<td><%=gradebean.getGr_code() %></td>
 							<td><%=gradebean.getGr_subject() %></td>
 							<td><%=gradebean.getGr_score() %></td>
 							<td><%=gradebean.getGr_memo() %></td>
-							<td><%=gradebean.getEp_id() %></td>
-							<td><%=gradebean.getGr_exam_date() %></td>
+							<td><%=gradebean.getGr_period() %></td>
 						</tr>
 					<% }%>
 						<!-- 버튼 -->
