@@ -90,6 +90,33 @@ public class BoardDAO {
 		return x;
 	}
 	
+//	덧글을 위한 ListCount 설정(수정중)
+	
+	public int getReListCount() throws Exception{
+		String sql = "";
+		int x = 0;
+		try {
+			con = ds.getConnection();
+			
+			sql = "select count(*) from board";
+			pstmt = con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				x = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+		return x;
+		
+	}
+	
 	public List getBoardList(int page,int limit){
 		String sql="";
 		List list=null;
