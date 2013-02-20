@@ -138,7 +138,8 @@
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
 					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
-	<%}else if(level.equals("3")|| level.equals("4") || level.equals("5")|| level.equals("6")){ %>
+	<%}
+		if(level.equals("3")|| level.equals("4") || level.equals("5")|| level.equals("6")){ %>
 			
 			<li><!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -201,7 +202,8 @@
 					<li><a href="#"><span>직원게시판</span></a></li>
 				</ul></li>
 
-<%}else if(level.equals("4") || level.equals("5")|| level.equals("6")){ %>
+<%}
+		if(level.equals("4") || level.equals("5")|| level.equals("6")){ %>
 			
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -213,7 +215,8 @@
 					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
 				
-<%}else if(level.equals("5")|| level.equals("6")){ %>		        
+<%}
+	if(level.equals("5")|| level.equals("6")){ %>		        
 			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
