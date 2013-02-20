@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import academy.groups.db.GroupsBean;
 import academy.member.db.MemberBean;
 
 public class EmployeeDAO {
@@ -53,7 +54,7 @@ public class EmployeeDAO {
 		boolean result = false;
 		try {
 			con = ds.getConnection();
-			sql = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),?,?)";
+			sql = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),?,?,null)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, employee.getMm_name());
 			pstmt.setString(2, employee.getMm_id());
@@ -70,17 +71,16 @@ public class EmployeeDAO {
 			pstmt.setString(13, employee.getMm_manager_id());
 			pstmt.executeUpdate();
 
-			sql = "INSERT INTO employee (ep_id,ep_position,ep_department,ep_group_id,ep_subject_name,ep_bank_name,ep_account_num,ep_account_name,ep_salary,ep_in_date) VALUES(?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO employee (ep_id,ep_position,ep_department,ep_subject_name,ep_bank_name,ep_account_num,ep_account_name,ep_salary,ep_in_date) VALUES(?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, employee.getMm_id());
 			pstmt.setString(2, employee.getEp_position());
 			pstmt.setString(3, employee.getEp_department());
-			pstmt.setString(4, employee.getEp_group_id());
-			pstmt.setString(5, employee.getEp_subject_name());
-			pstmt.setString(6, employee.getEp_bank_name());
-			pstmt.setString(7, employee.getEp_account_num());
-			pstmt.setString(8, employee.getEp_account_name());
-			pstmt.setInt(9, employee.getEp_salary());
+			pstmt.setString(4, employee.getEp_subject_name());
+			pstmt.setString(5, employee.getEp_bank_name());
+			pstmt.setString(6, employee.getEp_account_num());
+			pstmt.setString(7, employee.getEp_account_name());
+			pstmt.setInt(8, employee.getEp_salary());
 			pstmt.executeUpdate();
 
 			result = true;
@@ -96,6 +96,7 @@ public class EmployeeDAO {
 	public Vector getEmployeeList() throws Exception {
 		List employeeList = null;
 		List memberList = null;
+		List groupsList = null;
 		Vector vector = new Vector();
 		try {
 			con = ds.getConnection();
@@ -105,16 +106,17 @@ public class EmployeeDAO {
 
 			employeeList = new ArrayList();
 			memberList = new ArrayList();
+			groupsList = new ArrayList();
 			ResultSet rs2 = null;
 			while (rs.next()) {
 				EmployeeBean employee = new EmployeeBean();
 				MemberBean member = new MemberBean();
+				GroupsBean groups = new GroupsBean();
 
 				employee.setEp_id(rs.getString("ep_id"));
 				employee.setEp_department(rs.getString("ep_department"));
 				employee.setEp_position(rs.getString("ep_position"));
 				employee.setEp_subject_name(rs.getString("ep_subject_name"));
-				employee.setEp_group_id(rs.getString("ep_group_id"));
 
 				sql = "SELECT mm_name FROM member WHERE mm_id=?";
 				pstmt = con.prepareStatement(sql);
@@ -125,12 +127,26 @@ public class EmployeeDAO {
 					member.setMm_name(rs2.getString("mm_name"));
 				}
 
+				ResultSet rs3 = null;
+				
+				sql = "SELECT gp_id, gp_name FROM groups WHERE ep_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("ep_id"));
+				rs3 = pstmt.executeQuery();
+				
+				if (rs3.next()) {
+					groups.setGp_id(rs3.getString("gp_id"));
+					groups.setGp_name(rs3.getString("gp_name"));
+				}
+				
 				employeeList.add(employee);
 				memberList.add(member);
+				groupsList.add(groups);
 			}
 
 			vector.add(employeeList);
 			vector.add(memberList);
+			vector.add(groupsList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -169,7 +185,6 @@ public class EmployeeDAO {
     			
     			employee.setEp_position(rs.getString("ep_position"));
     			employee.setEp_department(rs.getString("ep_department"));
-    			employee.setEp_group_id(rs.getString("ep_group_id"));
     			employee.setEp_subject_name(rs.getString("ep_subject_name"));
     			employee.setEp_bank_name(rs.getString("ep_bank_name"));
     			employee.setEp_account_num(rs.getString("ep_account_num"));
@@ -229,7 +244,6 @@ public class EmployeeDAO {
 				employee.setEp_department(rs.getString("ep_department"));
 				employee.setEp_position(rs.getString("ep_position"));
 				employee.setEp_subject_name(rs.getString("ep_subject_name"));
-				employee.setEp_group_id(rs.getString("ep_group_id"));
 				employee.setEp_in_date(rs.getDate("ep_in_date"));
 				employee.setEp_out_date(rs.getDate("ep_out_date"));
 				employee.setEp_memo(rs.getString("ep_memo"));
@@ -256,5 +270,33 @@ public class EmployeeDAO {
 		}
 
 		return vector;
-	}    
+	}
+    
+    public List getManagerList(String mm_level) throws Exception {
+    	List managerList = null;
+    	try {
+    		con = ds.getConnection();
+    		sql = "SELECT mm_name,mm_id,mm_level FROM member WHERE mm_level > ?";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, mm_level);
+    		rs = pstmt.executeQuery();
+    		
+    		managerList = new ArrayList();
+    		while (rs.next()) {
+    			MemberBean member = new MemberBean();
+    			
+    			member.setMm_name(rs.getString("mm_name"));
+    			member.setMm_manager_id(rs.getString("mm_id"));
+    			member.setMm_level(rs.getString("mm_level"));
+    			
+    			managerList.add(member);
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	
+    	return managerList;
+    }
 }

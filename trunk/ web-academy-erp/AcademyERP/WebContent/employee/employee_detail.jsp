@@ -242,22 +242,13 @@
 										<td>
 											<div class="item">
 												<select name="ep_subject_name">
+													<option value="" <%if (employee.getEp_subject_name().equals("")) %> selected>없음</option>
 													<option value="국어" <%if (employee.getEp_subject_name().equals("국어")) %> selected>국어</option>
 													<option value="영어" <%if (employee.getEp_subject_name().equals("영어")) %> selected>영어</option>
 													<option value="수학" <%if (employee.getEp_subject_name().equals("수학")) %> selected>수학</option>
 													<option value="사회" <%if (employee.getEp_subject_name().equals("사회")) %> selected>사회</option>
 													<option value="과학" <%if (employee.getEp_subject_name().equals("과학")) %> selected>과학</option>
 												</select>
-											</div>
-										</td>
-									</tr>
-
-									<tr>
-										<th scope="row">담당학급</th>
-										<td>
-											<div class="item">
-												<input type="text" name="ep_group_id" title="담당학급"
-													class="i_text" value="<%=employee.getEp_group_id()%>">
 											</div>
 										</td>
 									</tr>

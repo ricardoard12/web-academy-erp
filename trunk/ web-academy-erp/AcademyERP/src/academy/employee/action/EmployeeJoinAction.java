@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.employee.db.EmployeeBean;
 import academy.employee.db.EmployeeDAO;
 
-public class EmployeeAddAction implements Action {
+public class EmployeeJoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

@@ -1,3 +1,6 @@
+<%@page import="academy.member.db.MemberBean"%>
+<%@page import="academy.groups.db.GroupsBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,9 +58,19 @@
 			return false;
 		}
 	}
+	
+	function selManager(value) {
+		location.href="./EmployeeJoin.em?mm_level=" + value;
+		return null;
+	}
 </script>
 <title>Insert title here</title>
 </head>
+<%
+	request.setCharacterEncoding("UTF-8");
+	List managerList = (List)request.getAttribute("managerList"); 
+	String level = (String) request.getAttribute("level");
+%>
 <body>
 	<!-- UI Object -->
 	<div id="wrap">
@@ -79,7 +92,7 @@
 
 				<!-- 직원 회원가입시작 -->
 
-				<form action="./EmployeeAddAction.em" method="post"
+				<form action="./EmployeeJoinAction.em" method="post"
 					name="joinEmployeeForm" onsubmit="return checkForm()">
 					<fieldset>
 						<legend>직원 회원가입</legend>
@@ -221,9 +234,10 @@
 										<th scope="row">회원 등급</th>
 										<td>
 											<div class="item">
-												<select name="mm_level">
-													<option value="3">3(강사)</option>
-													<option value="4">4(관리자)</option>
+												<select name="mm_level" onchange="selManager(value)">
+													<option value="">선택하세요</option>
+													<option value="3" <%if (level == "3") {%> selected <%} %>>3(강사)</option>
+													<option value="4" <%if (level == "4") {%> selected <%} %>>4(관리자)</option>
 												</select>
 											</div>
 										</td>
@@ -233,7 +247,14 @@
 										<th scope="row">상위 관리자 ID</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_manager_id" title="상위 관리자 ID" class="i_text">
+											<select name="mm_manager_id">
+											<option value="없음">선택하세요</option>
+											<%for (int i = 0; i < managerList.size(); i++)  {
+												MemberBean member = (MemberBean) managerList.get(i);
+											%>
+												<option value="<%=member.getMm_manager_id()%>"><%=member.getMm_name() %>(<%=member.getMm_manager_id()%>)</option>
+											<%} %>
+											</select>
 											</div>
 										</td>
 									</tr>
@@ -242,8 +263,12 @@
 										<th scope="row">담당부서</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_department" title="담당부서"
-													class="i_text">
+												<select name="ep_department"  title="담당부서" class="i_text">
+													<option value="없음">선택하세요</option>
+													<option value="교육">교육</option>
+													<option value="교육">총무</option>
+													<option value="교육">상담</option>
+												</select>
 											</div>
 										</td>
 									</tr>
@@ -253,8 +278,13 @@
 										<th scope="row">직급</th>
 										<td>
 											<div class="item">
-												<input type="text" name="ep_position" title="직급"
-													class="i_text">
+											<select name="ep_position"  title="직급" class="i_text">
+													<option value="없음">선택하세요</option>
+													<option value="강사">강사</option>
+													<option value="주임">주임</option>
+													<option value="팀장">팀장</option>
+													<option value="실장">실장</option>
+												</select>
 											</div>
 										</td>
 									</tr>
@@ -264,22 +294,13 @@
 										<td>
 											<div class="item">
 												<select name="ep_subject_name">
+													<option value="">없음</option>
 													<option value="국어">국어</option>
 													<option value="영어">영어</option>
 													<option value="수학">수학</option>
 													<option value="사회">사회</option>
 													<option value="과학">과학</option>
 												</select>
-											</div>
-										</td>
-									</tr>
-
-									<tr>
-										<th scope="row">담당학급</th>
-										<td>
-											<div class="item">
-												<input type="text" name="ep_group_id" title="담당학급"
-													class="i_text">
 											</div>
 										</td>
 									</tr>
