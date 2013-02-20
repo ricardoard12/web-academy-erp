@@ -25,6 +25,7 @@ public class BoardDAO {
 		try {
 			Context init=new InitialContext();
 			ds=(DataSource)init.lookup("java:comp/env/jdbc/aca");
+			System.out.println("BoardDB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,6 +36,7 @@ public class BoardDAO {
 		int num=0;
 		String sql="";
 		try {
+			System.out.println("BoardInsert start");
 			con=ds.getConnection();
 			sql="select max(board_num) from board";
 			pstmt=con.prepareStatement(sql);
@@ -61,16 +63,20 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 	}
-	
+	private void dbClose(){
+		if(rs!=null)try{rs.close();}catch(SQLException ex){}
+		if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+		if(con!=null)try{con.close();}catch(SQLException ex){}
+		System.out.println("BoardDB Closed");
+	}
 	public int getListCount() throws Exception{
 		String sql="";
 		int x=0;
 		try {
+			System.out.println("getListCount start");
 			con=ds.getConnection();
 			
 			sql="select count(*) from board";
@@ -83,9 +89,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 		return x;
 	}
@@ -96,6 +100,7 @@ public class BoardDAO {
 		String sql = "";
 		int x = 0;
 		try {
+			System.out.println("getReListCount start");
 			con = ds.getConnection();
 			
 			sql = "select count(*) from board";
@@ -109,9 +114,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 		return x;
 		
@@ -122,6 +125,7 @@ public class BoardDAO {
 		List list=null;
 		int startrow=(page-1)*limit+1; //현재페이지 시작행
 		try {
+			System.out.println("getBoardList start");
 			con=ds.getConnection();
 			//3 sql
 			sql="select * from board order by board_re_ref desc, board_re_seq asc limit ?,?";
@@ -148,19 +152,18 @@ public class BoardDAO {
 					list.add(board); //자바빈 -> 한칸
 				}while(rs.next());
 			}
+			System.out.println("getBoardList end");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+		dbClose();
 		}
 		return list;
 	}
 	public void setReadCountUpdate(int num) throws Exception{
 		String sql="";
 		try {
-			
+			System.out.println("setReadCountUpdate start");
 			con=ds.getConnection();
 			
 			sql="update board set board_readcount=board_readcount+1 where board_num=?";
@@ -171,16 +174,14 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 	}
 	public BoardBean getDetail(int num) throws Exception{
 		String sql="";
 		BoardBean boardbean=null;
 		try {
-			
+			System.out.println("getDetail start");
 			con=ds.getConnection();
 			
 			sql="select * from board where board_num=?";
@@ -204,9 +205,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 		return boardbean;
 	}
@@ -214,7 +213,7 @@ public class BoardDAO {
 		String sql="";
 		boolean x=false;
 		try {
-			
+			System.out.println("isBoardWriter start");
 			con=ds.getConnection();
 			
 			sql="select board_pass from board where board_num=? ";
@@ -232,16 +231,14 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 		return x;
 	}
 	public void boardModify(BoardBean boardbean) throws Exception{
 		String sql="";
 		try {
-			
+			System.out.println("boardModify start");
 			con=ds.getConnection();
 			sql="update board set board_file=?, board_subject=?, board_content=? where board_num=?";
 			pstmt=con.prepareStatement(sql);
@@ -253,9 +250,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 	}
 	public boolean boardDelete(String[] num) throws Exception{
@@ -265,6 +260,7 @@ public class BoardDAO {
 		boolean result=false;
 
         try {
+        	System.out.println("boardDelete start");
             con = ds.getConnection();
             for(int i=0; i<num.length; i++){
             	sql="delete from board where board_num="+num[i];
@@ -274,9 +270,7 @@ public class BoardDAO {
             }
             
         } catch (Exception e) {e.printStackTrace();} 
-        finally {if(rs!=null)try{rs.close();}catch(SQLException ex){}
-		if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-		if(con!=null)try{con.close();}catch(SQLException ex){}}
+        finally {dbClose();}
 		return false;
     }
 	public int boardReply(BoardBean boardbean){
@@ -287,7 +281,7 @@ public class BoardDAO {
 		int seq=boardbean.getBoard_re_seq();
 		int num=0;
 		try {
-			
+			System.out.println("BoardReply start");
 			con=ds.getConnection();
 			sql="select max(board_num) from board";
 			pstmt=con.prepareStatement(sql);
@@ -326,9 +320,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			if(rs!=null)try{rs.close();}catch(SQLException ex){}
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			dbClose();
 		}
 		return x;
 	}
