@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import academy.employee.action.EmployeeAttitudeTimeRecordingAction;
+import academy.groups.action.GroupsAttitudeAddMemoAction;
+import academy.groups.action.GroupsAttitudeCancelAction;
+import academy.groups.action.GroupsAttitudeEditTimeAction;
+import academy.groups.action.GroupsAttitudeListAction;
+import academy.groups.action.GroupsAttitudeMemoAction;
+import academy.groups.action.GroupsAttitudeTimeRecordingAction;
 
 public class StudentFrontController extends HttpServlet implements Servlet {
 
@@ -62,14 +68,6 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-        }else if(command.equals("/StudentAttitudeList.st")){ // 출석 현황
-        	action = new StudentAttitudeListAction();
-        	try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
         }else if(command.equals("/StudentOffList.st")){ //휴원생관리
         	action = new StudentOffListAction();
         	try {
@@ -114,60 +112,6 @@ public class StudentFrontController extends HttpServlet implements Servlet {
         	action = new  StudentCounselerAction();
         	try {
 				forward= action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/StudentAttitudeEditTime.st")){ // 출근 시간 등록 폼
-        	forward = new ActionForward();
-        	forward.setRedirect(false);
-			forward.setPath("./student/student_attitude_editTime.jsp");
-        
-        }else if(command.equals("/StudentAttitudeEditTimeAction.st")){
-        	action = new StudentAttitudeEditTimeAction();
-        	try {
-        		forward= action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/StudentAttitudeMemoAction.st")){
-        	action = new StudentAttitudeMemoAction();
-        	try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/StudentAttitudeAddMemoAction.st")){
-        	action = new StudentAttitudeAddMemoAction();
-        	try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/StudentAttitudeCancelAction.st")){
-        	action = new StudentAttitudeCancelAction();
-        	try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/StudentAttitudeTimeRecordingAction.st")){
-        	action = new StudentAttitudeTimeRecordingAction();
-        	
-        	try {
-				forward =action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-        }else if(command.equals("/groupsNmaeList.st")){ // 과목의 총목록을 구해오기 위해서 사용 
-        	action = new groupsNmaeListAction();
-        	try {
-				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

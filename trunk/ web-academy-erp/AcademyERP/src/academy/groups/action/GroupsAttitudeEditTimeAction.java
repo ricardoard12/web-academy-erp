@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.attitude.db.AttitudeBean;
 import academy.attitude.db.AttitudeDAO;
 
-public class StudentAttitudeEditTimeAction implements Action{
+public class GroupsAttitudeEditTimeAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

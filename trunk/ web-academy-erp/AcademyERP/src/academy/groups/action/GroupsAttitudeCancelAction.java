@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.attitude.db.AttitudeBean;
 import academy.attitude.db.AttitudeDAO;
 
-public class StudentAttitudeCancelAction implements Action{
+public class GroupsAttitudeCancelAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -43,7 +43,7 @@ public class StudentAttitudeCancelAction implements Action{
 		
 		request.setAttribute("gp_id", gp_id);
 		forward.setRedirect(false);
-		forward.setPath("./StudentAttitudeList.st");
+		forward.setPath("./GroupsAttitudeList.gp");
 		return forward;
 	}
 

@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.io.PrintWriter;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.attitude.db.AttitudeDAO;
 
-public class StudentAttitudeTimeRecordingAction implements Action{
+public class GroupsAttitudeTimeRecordingAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -52,7 +52,7 @@ public class StudentAttitudeTimeRecordingAction implements Action{
 		request.setAttribute("gp_id", gp_id);
 		System.out.println("GP_id"+gp_id);
 		forward.setRedirect(false);
-		forward.setPath("./StudentAttitudeList.st");
+		forward.setPath("./GroupsAttitudeList.st");
 		return forward;
 	}
 
