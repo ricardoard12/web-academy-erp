@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 public class BoardFrontController extends HttpServlet implements Servlet {
 
     @Override
@@ -67,6 +68,21 @@ public class BoardFrontController extends HttpServlet implements Servlet {
 			forward.setPath("./board/board_delete.jsp");
 		}else if(command.equals("/BoardDeleteAction.bo")){
 			action=new BoardDeleteAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardReply.bo")){
+			//  BoardReplyView()
+			action=new BoardReplyView();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardReplyAction.bo")){
+			action=new BoardReplyAction();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
