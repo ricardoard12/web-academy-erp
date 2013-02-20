@@ -179,10 +179,21 @@
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
 				<!-- 선생님용 메뉴 -->
-<%-- 				<%if(level.equals("3")||level.equals("4") || level.equals("5")){ %> --%>
+
+				
+
+
+
 			<li><a><span>게시판</span><span class="i"></span></a>
+
 				<ul style="display: none;">
-					<li><a href="./BoardNotice.bo?gid=0>"><span>공지사항</span></a></li>
+<!-- 				Level에 따른 열람 제한 설정 -->
+<%-- 					<%if(level.equals("3")||level.equals("4")||level.equals("5")||level.equals("6")){ %> --%>
+					<li><a href="./BoardNotice.bo?level=<%=request.getParameter("level") %>>"><span>공지사항</span></a></li>
+<%-- 					<%}else --%>
+<!-- 							{%> -->
+							<li><span>공지사항</span></li>
+<%-- 							<%} %> --%>
 					<li><a href="#"><span>업무일지</span></a></li>
 					<li><a href="#"><span>강의계획서</span></a></li>
 					<li><a href="#"><span>수업자료실</span></a></li>
@@ -190,7 +201,7 @@
 					<li><a href="#"><span>직원자료실</span></a></li>
 					<li><a href="#"><span>직원게시판</span></a></li>
 				</ul></li>
-<%-- 				<%} %> --%>
+
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./EmployeeAdd.em"><span>신규등록</span></a></li>
