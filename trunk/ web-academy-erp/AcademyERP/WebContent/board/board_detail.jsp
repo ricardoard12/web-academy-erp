@@ -71,6 +71,10 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 <br>
 
 <form action="./BoardReplyAction.bo" method="post">
+<input type="hidden" name="board_num" value="<%=boardbean.getBoard_num()%>">
+<input type="hidden" name="board_re_ref" value="<%=boardbean.getBoard_re_ref()%>">
+<input type="hidden" name="board_re_lev" value="<%=boardbean.getBoard_re_lev()%>">
+<input type="hidden" name="board_re_seq" value="<%=boardbean.getBoard_re_seq()%>">
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>
 	<colgroup>
@@ -80,7 +84,7 @@ BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 	<tbody>
 	<tr class="input_txt">
 	<td><input type="text" title="이름" name="board_name" value="" class="name"></td>
-	<td><textarea cols="65" rows="5" name="board_content" class="comment"></textarea>
+	<td><textarea cols="65" rows="5" name="board_memo" class="comment"></textarea>
 		<input type="submit" title="입력" value="입력" class="submit">
 	</td>
 	</tr>
