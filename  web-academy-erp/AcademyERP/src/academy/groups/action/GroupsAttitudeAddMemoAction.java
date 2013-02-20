@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.io.PrintWriter;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.attitude.db.AttitudeDAO;
 
-public class StudentAttitudeAddMemoAction implements Action{
+public class GroupsAttitudeAddMemoAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

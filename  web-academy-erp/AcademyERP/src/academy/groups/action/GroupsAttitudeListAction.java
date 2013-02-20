@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.groups.db.GroupsDAO;
 import academy.student.db.StudentDAO;
 
-public class StudentAttitudeListAction implements Action{
+public class GroupsAttitudeListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -44,10 +44,10 @@ public class StudentAttitudeListAction implements Action{
 			List StudentAttitudeList = null;
 			StudentAttitudeList = studentdao.getStudentAttitudeList(gp_name);  //DB에서 출석 관련정보를 가져온다.
 			
-			request.setAttribute("StudentAttitudeList", StudentAttitudeList); // 가지고온 StudentAttitudeList 정보를 넘긴다.
+			request.setAttribute("GroupsAttitudeList", StudentAttitudeList); // 가지고온 StudentAttitudeList 정보를 넘긴다.
 			request.setAttribute("gp_name", gp_name);
 			forward.setRedirect(false);
-			forward.setPath("./student/student_attitude_list.jsp");// student_attitude_list 폼으로 이동
+			forward.setPath("./group/group_attitude_list.jsp");// student_attitude_list 폼으로 이동
 			
 		}
 		return forward;

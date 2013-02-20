@@ -1,4 +1,4 @@
-package academy.student.action;
+package academy.groups.action;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.groups.db.GroupsDAO;
 import academy.student.db.StudentDAO;
 
-public class groupsNmaeListAction implements Action{
+public class GroupsNmaeListAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -24,7 +24,7 @@ public class groupsNmaeListAction implements Action{
 		request.setAttribute("Gp_nameList", Gp_nameList); // 가지고온 과목명을 저장후 넘김
 		
 		forward.setRedirect(false);
-		forward.setPath("./student/student_attitude_list.jsp");
+		forward.setPath("./group/group_attitude_list.jsp");
 		return forward;
 	}
 

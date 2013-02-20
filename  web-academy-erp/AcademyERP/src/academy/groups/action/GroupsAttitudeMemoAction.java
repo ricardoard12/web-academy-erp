@@ -1,11 +1,11 @@
-package academy.student.action;
+package academy.groups.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import academy.attitude.db.AttitudeDAO;
 
-public class StudentAttitudeMemoAction implements Action{
+public class GroupsAttitudeMemoAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -24,7 +24,7 @@ public class StudentAttitudeMemoAction implements Action{
 		request.setAttribute("at_memo", at_memo);
 		
 		forward.setRedirect(false);
-		forward.setPath("./student/student_memo.jsp");
+		forward.setPath("./group/group_memo.jsp");
 		return forward;
 	}
 
