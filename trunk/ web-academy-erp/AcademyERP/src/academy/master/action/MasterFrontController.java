@@ -76,6 +76,8 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/CreateClassAction.master")){
+			
 		}
 		// 이동
 		if (forward != null) {
