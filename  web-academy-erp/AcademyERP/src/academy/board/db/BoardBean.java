@@ -13,28 +13,11 @@ public class BoardBean {
     private int board_re_lev;
     private int board_re_seq;
     private int board_readcount;
-    private String board_memo;
-    private String board_re_name;
     private Date board_date;
-   
-    
-//    덧글을 위한 baord_memo, board_re_name 추가 (DB추가 완료)
+
     
     
-    
-    public String getBoard_re_name() {
-		return board_re_name;
-	}
-	public void setBoard_re_name(String board_re_name) {
-		this.board_re_name = board_re_name;
-	}
-	public String getBoard_memo() {
-		return board_memo;
-	}
-	public void setBoard_memo(String board_memo) {
-		this.board_memo = board_memo;
-	}
-	
+    	
 	public int getBoard_num() {
 		return board_num;
 	}
