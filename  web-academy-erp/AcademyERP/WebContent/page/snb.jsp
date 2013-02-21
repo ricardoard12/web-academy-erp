@@ -230,8 +230,7 @@
 						|| level.equals("6")) {
 			%>
 			<li><a><span>게시판</span><span class="i"></span></a>
-				<ul style="display: none;">
-					<!-- Level에 따른 열람 제한 설정 -->
+				<!-- Level에 따른 열람 제한 설정 -->
 
 				<ul style="display: none;">
 					<li><a href="./BoardNotice.bo?level=<%=level %>"><span>공지사항</span></a></li>
