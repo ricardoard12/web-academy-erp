@@ -20,56 +20,75 @@
 	<div id="info_wrap" style="top: 20px; left: 20px; width: 200px">
 		<div id="info_content">
 			<!-- Layer Content -->
-			
+
 			<%
 				//세션으로 id 값 받음
-				String id = (String)session.getAttribute("id");
+				String id = (String) session.getAttribute("id");
 				//세션으로 name값 받음
-				String name = (String)session.getAttribute("name");
+				String name = (String) session.getAttribute("name");
 				//세션으로 level 값 받음
-				String level = (String)session.getAttribute("level");
+				String level = (String) session.getAttribute("level");
 			%>
 			<form action="" method="post">
 				<h4 class="ly_header">회원 로그인</h4>
 				<fieldset>
 					<dl class="ly_body">
-						
-						<% if(name != null){%>
+
+						<%
+							if (name != null) {
+						%>
 						<dt>
-							<strong><%=name %></strong>님 반갑습니다
+							<strong><%=name%></strong>님 반갑습니다
 						</dt>
-						
-							<dt><strong>
-							<% if(level.equals("1")){%>
-								학생
-							<%}else if(level.equals("2")){ %>
-								부모님
-							<%}else if(level.equals("3")){ %>
-								선생님
-							<%}else if(level.equals("4")){ %>
-								중간관리자
-							<%}else if(level.equals("5")){ %>
-								원장님
-							<%}else if(level.equals("6")){ %>
-							 	영호(신)
-							 <%} %>
-							</strong>입니다</dt>
-						
-						<%} %>
-						
-						
+
+						<dt>
+							<strong> <%
+ 	if (level.equals("1")) {
+ %> 학생 <%
+ 	} else if (level.equals("2")) {
+ %> 부모님 <%
+ 	} else if (level.equals("3")) {
+ %> 선생님 <%
+ 	} else if (level.equals("4")) {
+ %> 중간관리자 <%
+ 	} else if (level.equals("5")) {
+ %> 원장님 <%
+ 	} else if (level.equals("6")) {
+ %> 영호(신) <%
+ 	}
+ %>
+							</strong>입니다
+						</dt>
+
+						<%
+							}
+						%>
+
+
 						<dd>
-						<% if(name != null){%>
-							<label> 회원정보수정</label> 
-						<% } %>
-						<% if(name == null){%>
-							<label>반갑습니다 <br> 로그인하세요</label>
-							<label><a href="#login" accesskey="L" title="Accesskey(L)" id="login_anchor" class="login_btn_sml"><span>로그인</span></a></label> 
-						<% }else{ %>		
-								<label><a href="./MemberLogout.me" class="btn_sml"><span onclick="">로그아웃</span></a></label>
-						<%} %>
+							<%
+								if (name != null) {
+							%>
+							<label> 회원정보수정</label>
+							<%
+								}
+							%>
+							<%
+								if (name == null) {
+							%>
+							<label>반갑습니다 <br> 로그인하세요
+							</label> <label><a href="#login" accesskey="L"
+								title="Accesskey(L)" id="login_anchor" class="login_btn_sml"><span>로그인</span></a></label>
+							<%
+								} else {
+							%>
+							<label><a href="./MemberLogout.me" class="btn_sml"><span
+									onclick="">로그아웃</span></a></label>
+							<%
+								}
+							%>
 						</dd>
-						
+
 					</dl>
 
 				</fieldset>
@@ -81,25 +100,32 @@
 				<div class="bg"></div>
 				<div id="login" class="g_login">
 					<a href="#login_anchor" title="로그인 레이어 닫기" class="close">X</a>
-					<form action="./MemberLogin.me" id="g_login" class="g_login" method="post">
+					<form action="./MemberLogin.me" id="g_login" class="g_login"
+						method="post">
 						<fieldset>
 							<legend>Login</legend>
 							<div class="item">
-								<label for="uid" class="i_label" style="position: absolute; visibility: visible;">ID</label>
-								<input name="mm_id" type="text" id="uid" class="i_text uid">
+								<label for="uid" class="i_label"
+									style="position: absolute; visibility: visible;">ID</label> <input
+									name="mm_id" type="text" id="uid" class="i_text uid">
 							</div>
 							<div class="item">
-								<label for="upw" class="i_label" style="position: absolute; visibility: visible;">Password</label>
-								<input name="mm_passwd" type="password" id="upw" class="i_text upw">
+								<label for="upw" class="i_label"
+									style="position: absolute; visibility: visible;">Password</label>
+								<input name="mm_passwd" type="password" id="upw"
+									class="i_text upw">
 							</div>
 							<p class="keeping">
-								<input name="" type="checkbox" value="" id="keepid" class="i_check">
-								<label for="keepid">로그인 유지</label>
+								<input name="" type="checkbox" value="" id="keepid"
+									class="i_check"> <label for="keepid">로그인 유지</label>
 							</p>
-							<p class="warning">브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.<br>
-							로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인을 하실 필요가 없습니다.<br>
-							단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.</p>
-							<span class="btn_login"><input name="" type="submit" value="로그인"></span>
+							<p class="warning">
+								브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.<br> 로그인 유지 기능을 사용할 경우 다음
+								접속부터는 로그인을 하실 필요가 없습니다.<br> 단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가
+								유출될 수 있으니 꼭 로그아웃을 해주세요.
+							</p>
+							<span class="btn_login"><input name="" type="submit"
+								value="로그인"></span>
 							<ul class="help">
 								<li class="first"><a href="#">아이디/비밀번호 찾기</a></li>
 							</ul>
@@ -138,10 +164,16 @@
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
 					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
+
+
+			<li>
+				<!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
+
 	<%}
 		if(level.equals("3")|| level.equals("4") || level.equals("5")|| level.equals("6")){ %>
 			
 			<li><!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
+
 				<ul style="display: none;">
 					<li>
 						<!-- class="active" --> <a href="./StudentJoin.st"><span>신규등록</span></a>
@@ -169,9 +201,16 @@
 				<ul style="display: none;">
 					<li><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
 
+
+					<li><a><span><strong>학교성적관리</strong></span></a></li>
+					<li><a href="#"><span> - 진행중시험</span></a></li>
+
 					<li><a ><span><strong>학원시험관리</strong></span></a></li>
+
 					<li><a href="./GradeAcademyList.gr"><span> - 학원 학생별 리스트</span></a></li>
-					
+					<li><a><span><strong>학원시험관리</strong></span></a></li>
+
+
 					<li><a><span><strong>학교성적관리</strong></span></a></li>
 					<li><a href="./GradeSchoolList.gr"><span> - 학교 학생별 리스트</span></a></li>
 			
@@ -184,16 +223,18 @@
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
-				<!-- 선생님용 메뉴 -->
+			<!-- 선생님용 메뉴 -->
 
-			
+			<%
+				if (level.equals("3") || level.equals("4") || level.equals("5")
+						|| level.equals("6")) {
+			%>
 			<li><a><span>게시판</span><span class="i"></span></a>
+				<ul style="display: none;">
+					<!-- Level에 따른 열람 제한 설정 -->
 
 				<ul style="display: none;">
-					<li><a href="./BoardNotice.bo?level=<%=request.getParameter("level") %>>"><span>공지사항</span></a></li>
-					
-					<li><a href="#"><span>공지사항</span></a></li>
-					
+					<li><a href="./BoardNotice.bo?level=<%=level %>"><span>공지사항</span></a></li>
 					<li><a href="#"><span>업무일지</span></a></li>
 					<li><a href="#"><span>강의계획서</span></a></li>
 					<li><a href="#"><span>수업자료실</span></a></li>
@@ -201,7 +242,9 @@
 					<li><a href="#"><span>직원자료실</span></a></li>
 					<li><a href="#"><span>직원게시판</span></a></li>
 				</ul></li>
-
+			<%
+				}
+			%>
 <%}
 		if(level.equals("4") || level.equals("5")|| level.equals("6")){ %>
 			
@@ -243,8 +286,6 @@
 
 
 	<script type="text/javascript">
-	
-	
 		jQuery(function($) {
 			var loginWindow = $('.mw_login');
 			var login = $('#login');
