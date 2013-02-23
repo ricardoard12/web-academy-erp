@@ -12,14 +12,14 @@
 <title>Insert title here</title>
 <%
 BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
-//Re_BoardBean re_boardbean = (Re_BoardBean) request.getAttribute("re_boardbean");
+Re_BoardBean re_boardbean = (Re_BoardBean) request.getAttribute("re_boardbean");
 
-//List re_boardList=(List)request.getAttribute("re_boardlist");
-// int re_listcount=((Integer)request.getAttribute("relistcount")).intValue();
-// int re_nowpage=((Integer)request.getAttribute("page")).intValue();
-// int re_maxpage=((Integer)request.getAttribute("maxpage")).intValue();
-// int re_startpage=((Integer)request.getAttribute("startpage")).intValue();
-// int re_endpage=((Integer)request.getAttribute("endpage")).intValue();
+List re_boardList=(List)request.getAttribute("re_boardlist");
+// int re_listcount=((Integer)request.getAttribute("re_listcount")).intValue();
+// int re_nowpage=((Integer)request.getAttribute("re_page")).intValue();
+// int re_maxpage=((Integer)request.getAttribute("re_maxpage")).intValue();
+// int re_startpage=((Integer)request.getAttribute("re_startpage")).intValue();
+// int re_endpage=((Integer)request.getAttribute("re_endpage")).intValue();
 
 String level =(String) session.getAttribute("level");
 %>
@@ -90,7 +90,7 @@ String level =(String) session.getAttribute("level");
 <!-- 덧글 전달 값 시작 -->
  <input type="hidden" name="re_board_num" value="<%=boardbean.getBoard_num()%>"> 
 
-<-- 덧글 전달 값 종료 -->
+<!--  덧글 전달 값 종료 -->
 
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>
@@ -106,12 +106,12 @@ String level =(String) session.getAttribute("level");
 	</td>
 	</tr>
 <%-- 	<% if(re_listcount > 0){ --%>
-<!-- // 		for(int i = 0 ; i < re_boardList.size() ; i++){ -->
-<!-- // 		re_boardbean=(Re_BoardBean)re_boardList.get(i); -->
-<%-- 		%> --%>
+<!-- // 		for(int i = 0 ; i < re_boardList.size() ; i++){  -->
+<!-- //  		re_boardbean=(Re_BoardBean)re_boardList.get(i);  -->
+<%--  		%> --%>
 		<tr>
-<%-- 		<td><%=re_boardbean.getRe_board__name() %></td> --%>
-		<td>테스트</td>
+<%-- 		<td><%=re_boardbean.getRe_board_name() %></td> --%>
+<%-- 		<td>테스트<%=re_boardbean.getRe_board_ref() %></td> --%>
 		<td>코멘트를 달아봅니다</td>
 		</tr>
 		<tr>
@@ -119,9 +119,9 @@ String level =(String) session.getAttribute("level");
 		<td>코멘트를 달아봅니다 2 </td>
 		</tr>
 <%-- 		<% --%>
-<!-- // 		} -->
-<!-- // 	} -->
-<%-- 		%> --%>
+<!-- 		} -->
+<!--  	}  -->
+<!--  		%>  -->
 		</tbody>
 		</table>
 		</form>
