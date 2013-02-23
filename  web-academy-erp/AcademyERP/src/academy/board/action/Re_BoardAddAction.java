@@ -23,14 +23,18 @@ public class Re_BoardAddAction implements Action {
 		
 		try{			
 			re_boardbean.setRe_board_num(Integer.parseInt(request.getParameter("re_board_num")));
-			re_boardbean.setRe_board_ref(Integer.parseInt(request.getParameter("re_board_ref")));
-			re_boardbean.setRe_board_lev(Integer.parseInt(request.getParameter("re_board_lev")));
-			re_boardbean.setRe_board_seq(Integer.parseInt(request.getParameter("re_board_seq")));
+			//re_boardbean.setRe_board_ref(Integer.parseInt(request.getParameter("re_board_ref")));
+			//re_boardbean.setRe_board_lev(Integer.parseInt(request.getParameter("re_board_lev")));
+			//re_boardbean.setRe_board_seq(Integer.parseInt(request.getParameter("re_board_seq")));
 			re_boardbean.setRe_board_name(request.getParameter("re_board_name"));
 			re_boardbean.setRe_board_content(request.getParameter("re_board_content"));	
 			re_boarddao.re_boardinsert(re_boardbean);
+			
+			
 			forward.setRedirect(true);
 			forward.setPath("./BoardNotice.bo");
+		
+		
 		}catch(Exception e){
 			e.printStackTrace();
 		}

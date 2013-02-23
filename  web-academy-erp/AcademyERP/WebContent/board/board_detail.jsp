@@ -12,9 +12,9 @@
 <title>Insert title here</title>
 <%
 BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
-Re_BoardBean re_boardbean = (Re_BoardBean) request.getAttribute("re_boardbean");
+//Re_BoardBean re_boardbean = (Re_BoardBean) request.getAttribute("re_boardbean");
 
-List re_boardList=(List)request.getAttribute("re_boardlist");
+//List re_boardList=(List)request.getAttribute("re_boardlist");
 // int re_listcount=((Integer)request.getAttribute("relistcount")).intValue();
 // int re_nowpage=((Integer)request.getAttribute("page")).intValue();
 // int re_maxpage=((Integer)request.getAttribute("maxpage")).intValue();
@@ -88,11 +88,9 @@ String level =(String) session.getAttribute("level");
 <!-- <input type="hidden" name="board_re_lev" value="0"> -->
 <!-- <input type="hidden" name="board_re_seq" value="0"> -->
 <!-- 덧글 전달 값 시작 -->
-<input type="hidden" name="re_board_num" value="<%=boardbean.getBoard_num()%>">
-<input type="hidden" name="re_board_ref" value="<%=re_boardbean.getRe_board_ref()%>">
-<input type="hidden" name="re_board_lev" value="<%=re_boardbean.getRe_board_lev()%>">
-<input type="hidden" name="re_board_seq" value="<%=re_boardbean.getRe_board_seq()%>">
-<!-- 덧글 전달 값 종료 -->
+ <input type="hidden" name="re_board_num" value="<%=boardbean.getBoard_num()%>"> 
+
+<-- 덧글 전달 값 종료 -->
 
 	<table cellspacing="0" border="1" summary="글 내용에 대한 덧글 표시" class="tbl_type_reply">
 	<caption>글에 대한 코멘트</caption>

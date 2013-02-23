@@ -15,6 +15,9 @@ public class BoardDetailAction implements Action {
 		BoardDAO boarddao = new BoardDAO();
 		ActionForward forward=new ActionForward();
 		int num = Integer.parseInt(request.getParameter("num"));
+		System.out.println("diiiiid"+num);
+		
+		
 		boarddao.setReadCountUpdate(num);
 		boardbean = boarddao.getDetail(num);
 		request.setAttribute("boardbean", boardbean);
