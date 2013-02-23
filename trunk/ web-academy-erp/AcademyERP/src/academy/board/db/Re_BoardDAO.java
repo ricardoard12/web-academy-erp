@@ -59,7 +59,7 @@ public class Re_BoardDAO {
 		try {
 			System.out.println("re_boardinsert start");
 			con = ds.getConnection();
-			sql = "select max(re_board_num) FROM re_board ";
+			sql = "select max(re_board_num) FROM re_board where re_board_num = ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, re_boardbean.getRe_board_num());
 			rs = pstmt.executeQuery();
@@ -70,14 +70,14 @@ public class Re_BoardDAO {
 			}else{
 				num = 1;
 			}
-			sql = "insert into re_board(re_board_num, re_board_ref , re_board_lev, re_board_seq , re_board_name , re_board_contetn,) value(?,?,?,?,?)";
+			sql = "insert into re_board(re_board_num, re_board_ref, re_board_name , re_board_content) value(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, re_boardbean.getRe_board_num());
-			pstmt.setInt(2, re_boardbean.getRe_board_ref());
-			pstmt.setInt(3, re_boardbean.getRe_board_lev());
-			pstmt.setInt(4, re_boardbean.getRe_board_seq());
-			pstmt.setString(5, re_boardbean.getRe_board_name());
-			pstmt.setString(6, re_boardbean.getRe_board_content());
+			pstmt.setInt(2, num);
+			//pstmt.setInt(3, re_boardbean.getRe_board_lev());
+			//pstmt.setInt(4, re_boardbean.getRe_board_seq());
+			pstmt.setString(3, re_boardbean.getRe_board_name());
+			pstmt.setString(4, re_boardbean.getRe_board_content());
 			pstmt.executeUpdate();
 			
 			System.out.println("re_boardinsert End");
