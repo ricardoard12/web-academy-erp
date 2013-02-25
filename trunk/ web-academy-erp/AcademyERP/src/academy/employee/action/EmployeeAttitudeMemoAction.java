@@ -1,5 +1,8 @@
 package academy.employee.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,8 +21,14 @@ public class EmployeeAttitudeMemoAction implements Action {
 		
 		String id = request.getParameter("id");
 		String at_memo = request.getParameter("at_memo");
-		String date = request.getParameter("date");
+		String date = null;
+		date = request.getParameter("date");
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		if (date == null || date.equals("")) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
+		}
 		
+		System.out.println("EmployeeAttitudeMemoAction의 Date : " + date);
 		request.setAttribute("id", id);
 		request.setAttribute("at_memo", at_memo);
 		request.setAttribute("date", date);

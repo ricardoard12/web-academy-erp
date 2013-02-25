@@ -33,7 +33,7 @@ public class AttitudeDAO {
 		if (rs != null) try {rs.close();} catch (Exception e) {}
 	}
 	
-	public List getEmployeeAttitudeList(String date) throws Exception { // 직원 출결 현황
+	public List getEmployeeAttitudeList(String date) throws Exception { // 직원 출근 현황
 		List attitudeList = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
@@ -82,6 +82,7 @@ public class AttitudeDAO {
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, rs.getString(1));
 					pstmt.setString(2, date + " 00:00:00");
+//					System.out.println("출근 전인 사람 메모 날짜 : " + date);
 					pstmt.setString(3, date + " 23:59:59");
 					rs3 = pstmt.executeQuery();
 					
@@ -107,7 +108,7 @@ public class AttitudeDAO {
     	int result = 0;
     	ResultSet rs2 = null;
     	try {
-    		System.out.println("기록 준비");
+//    		System.out.println("기록 준비");
     		con = ds.getConnection();
     		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
@@ -130,6 +131,7 @@ public class AttitudeDAO {
     			System.out.println("이전 시간 등록 내역 없음");
     			if (!type.equals("leave")) {
     				sql = "SELECT at_memo,at_memo_date FROM attitude WHERE at_member_id=?AND at_memo_date >= ? AND at_memo_date <= ?";
+    				// 출근 시간 등록 시 기존 메모 기록되어 있는지 확인
     				pstmt = con.prepareStatement(sql);
     				pstmt.setString(1, id);
 					pstmt.setString(2, date + " 00:00:00");
@@ -137,6 +139,7 @@ public class AttitudeDAO {
     				rs2 = pstmt.executeQuery();
     				
     				if (rs2.next()) {
+    					System.out.println("이전 시간 등록 내역 없음 출근시간 등록 Date : " + date);
     					sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ?";
         	    		pstmt = con.prepareStatement(sql);
         	    		pstmt.setString(1, id);
@@ -166,7 +169,7 @@ public class AttitudeDAO {
     public boolean employeeAttitudeAddMemo(String id, String at_memo, String date) throws Exception {
     	boolean result = false;
     	try {
-    		System.out.println(id);
+//    		System.out.println("DAO Date : " + date);
     		con = ds.getConnection();
     		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ?";
     		pstmt = con.prepareStatement(sql);
@@ -175,20 +178,38 @@ public class AttitudeDAO {
 			pstmt.setString(3, date + " 23:59:59");
     		rs = pstmt.executeQuery();
     		
-    		if (rs.next()) {
+    		if (rs.next()) { // 기존 메모 있을 경우
     			System.out.println("메모 추가");
     			sql = "UPDATE attitude SET at_memo=?,at_memo_date=now() WHERE at_idx=?";
     			pstmt = con.prepareStatement(sql);
     			pstmt.setString(1, at_memo);
     			pstmt.setInt(2, rs.getInt("at_idx"));
     			pstmt.executeUpdate();
-    		} else {
-    			System.out.println("새 메모 작성");
-    			sql = "INSERT INTO attitude (at_member_id,at_report_state,at_memo,at_memo_date) VALUES(?,'N',?,now())";
-    			pstmt = con.prepareStatement(sql);
-    			pstmt.setString(1, id);
-    			pstmt.setString(2, at_memo);
-    			pstmt.executeUpdate();
+    		} else { // 기존 메모 없을 경우
+    			System.out.println("기존 메모 없을 경우");
+    			ResultSet rs2 = null;
+    			sql = "SELECT at_idx FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+        		pstmt = con.prepareStatement(sql);
+        		pstmt.setString(1, id);
+    			pstmt.setString(2, date + " 00:00:00");
+    			pstmt.setString(3, date + " 23:59:59");
+        		rs2 = pstmt.executeQuery();
+        		
+        		if (rs2.next()) {
+        				System.out.println("출근 내역 있음");
+        				sql = "UPDATE attitude SET at_memo=?,at_memo_date=now() WHERE at_idx=?";
+        	    		pstmt = con.prepareStatement(sql);
+        	    		pstmt.setString(1, at_memo);
+        	    		pstmt.setInt(2, rs2.getInt("at_idx"));
+        	    		pstmt.executeUpdate();
+        		} else {
+	    			System.out.println("새 메모 작성");
+	    			sql = "INSERT INTO attitude (at_member_id,at_report_state,at_memo,at_memo_date) VALUES(?,'N',?,now())";
+	    			pstmt = con.prepareStatement(sql);
+	    			pstmt.setString(1, id);
+	    			pstmt.setString(2, at_memo);
+	    			pstmt.executeUpdate();
+        		}
     		}
     		result = true;
 		} catch (Exception e) {

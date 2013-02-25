@@ -60,7 +60,7 @@
 	}
 	
 	function selManager(value) {
-		location.href="./EmployeeJoin.em?mm_level=" + value;
+		location.href="./EmployeeJoin.em?level=" + value;
 		return null;
 	}
 </script>

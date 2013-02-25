@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class GroupsBean {
 	private int gp_idx; // 인덱스
-	private String gp_id; // 학급 ID
+	private String gp_room; // 강의실 번호
 	private String gp_name; // 학급명
 	private String ep_id; // 담당강사 ID
 	private String gp_lev; // 학년
@@ -20,11 +20,11 @@ public class GroupsBean {
 	public void setGp_idx(int gp_idx) {
 		this.gp_idx = gp_idx;
 	}
-	public String getGp_id() {
-		return gp_id;
+	public String getGp_room() {
+		return gp_room;
 	}
-	public void setGp_id(String gp_id) {
-		this.gp_id = gp_id;
+	public void setGp_room(String gp_room) {
+		this.gp_room = gp_room;
 	}
 	public String getGp_name() {
 		return gp_name;
