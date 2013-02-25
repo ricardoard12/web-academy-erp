@@ -35,18 +35,15 @@ public class EmployeeDAO {
 		if (con != null)
 			try {
 				con.close();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {	}
 		if (pstmt != null)
 			try {
 				pstmt.close();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {	}
 		if (rs != null)
 			try {
 				rs.close();
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {	}
 		System.out.println("Emp DB Closed");
 	}
 
@@ -108,7 +105,7 @@ public class EmployeeDAO {
 			memberList = new ArrayList();
 			groupsList = new ArrayList();
 			ResultSet rs2 = null;
-			while (rs.next()) {
+			while (rs.next()) { // ep_status = 재직인 사람이 있을 경우
 				EmployeeBean employee = new EmployeeBean();
 				MemberBean member = new MemberBean();
 				GroupsBean groups = new GroupsBean();
@@ -123,19 +120,19 @@ public class EmployeeDAO {
 				pstmt.setString(1, rs.getString("ep_id"));
 				rs2 = pstmt.executeQuery();
 
-				if (rs2.next()) {
-					member.setMm_name(rs2.getString("mm_name"));
+				if (rs2.next()) { // member 테이블의 id와 일치
+					member.setMm_name(rs2.getString("mm_name")); // 회원 이름 가져옴
 				}
 
 				ResultSet rs3 = null;
 				
-				sql = "SELECT gp_id, gp_name FROM groups WHERE ep_id=?";
+				sql = "SELECT gp_room, gp_name FROM groups WHERE ep_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, rs.getString("ep_id"));
 				rs3 = pstmt.executeQuery();
 				
-				if (rs3.next()) {
-					groups.setGp_id(rs3.getString("gp_id"));
+				if (rs3.next()) { // 해당 직원이 담당하는 학급 정보를 가져옴
+					groups.setGp_room(rs3.getString("gp_room"));
 					groups.setGp_name(rs3.getString("gp_name"));
 				}
 				
@@ -156,13 +153,14 @@ public class EmployeeDAO {
 		return vector;
 	}    
 	
-    public Vector getEmployeeDetail(String id) throws Exception {
+    public Vector getEmployeeDetail(String id) throws Exception { // 직원 상세 정보 조회
     	EmployeeBean employee = new EmployeeBean();
     	MemberBean member = new MemberBean();
     	Vector vector = new Vector();
     	try {
     		con = ds.getConnection();
     		sql = "SELECT * FROM member,employee WHERE member.mm_id=? AND employee.ep_id=?";
+    		// member 와 employee 테이블에서 일치하는 아이디가 있는지 확인
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
     		pstmt.setString(2, id);
@@ -203,15 +201,17 @@ public class EmployeeDAO {
     	return vector;
     }
     
-    public void employeeOutgoing(String ep_id) throws Exception {
+    public void employeeOutgoing(String ep_id) throws Exception { // 직원 퇴직 처리
     	try {
     		con = ds.getConnection();
     		sql = "UPDATE employee SET ep_status='퇴직',ep_out_date=now() WHERE ep_id=?";
+    		// 해당 직원의 근무 현황을 '퇴직'으로 바꾸고 퇴사일을 현재 날짜로 설정 
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, ep_id);
     		pstmt.executeUpdate();
     		
     		sql = "UPDATE member SET mm_level=0 WHERE mm_id=?";
+    		// 멤버 레벨을 0으로 설정 (로그인 불가능 하도록)
 			pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, ep_id);
     		pstmt.executeUpdate();
@@ -223,7 +223,7 @@ public class EmployeeDAO {
     	}
     }
     
-    public Vector getEmployeeOutgoingList() throws Exception {
+    public Vector getEmployeeOutgoingList() throws Exception { // 퇴직자 목록
 		List employeeList = null;
 		List memberList = null;
 		Vector vector = new Vector();
@@ -272,11 +272,12 @@ public class EmployeeDAO {
 		return vector;
 	}
     
-    public List getManagerList(String mm_level) throws Exception {
+    public List getManagerList(String mm_level) throws Exception { // 회원 가입 폼에서 상위 관리자 목록 출력
     	List managerList = null;
     	try {
     		con = ds.getConnection();
     		sql = "SELECT mm_name,mm_id,mm_level FROM member WHERE mm_level > ?";
+    		// 설정할 레벨(lv.3 or 4)보다 상위 레벨(lv.4 or 5)의 회원 정보를 가져옴
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, mm_level);
     		rs = pstmt.executeQuery();

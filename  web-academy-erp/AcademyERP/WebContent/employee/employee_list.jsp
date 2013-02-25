@@ -95,7 +95,7 @@
 								<td><%=employee.getEp_department()%></td>
 								<td><%=employee.getEp_position()%></td>
 								<td><%=employee.getEp_subject_name()%></td>
-								<td><%=groups.getGp_name() %>(<%=groups.getGp_id()%>)</td>
+								<td><%if (groups.getGp_name() != null) {%><%=groups.getGp_name() %>(<%=groups.getGp_room()%>)<%} %></td>
 							</tr>
 							<%
 								}

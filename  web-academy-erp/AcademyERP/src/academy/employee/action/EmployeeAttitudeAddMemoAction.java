@@ -28,6 +28,7 @@ public class EmployeeAttitudeAddMemoAction implements Action {
 			date = sdfDate.format(Calendar.getInstance().getTime());
 		}
 		
+		System.out.println("AddMemoAction Date : " + date);
 		boolean result = attitudeDAO.employeeAttitudeAddMemo(id, at_memo, date);
 		
 		if (result == true) {

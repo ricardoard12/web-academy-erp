@@ -11,6 +11,48 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script src="./js/calendar.js"></script>
+<script type="text/javascript">
+	function memoOpen(id, at_memo,date) { // 메모창 열기
+		if (at_memo == "null") at_memo="";
+		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
+	}
+	
+	function timeEditOpen(id, time, type, date) { // 시간 수정창 열기
+// 		var date = document.emAttitudeForm.date.value;
+		window.open("./EmployeeAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date, "timeEdit", "width=350,height=200,scrollbars=no");
+	}
+	
+	function confirmCancel(id, type, date) { // 버튼 클릭 확인
+		if (confirm("결근 처리 하시겠습니까?") == true) {
+// 			var date = document.emAttitudeForm.date.value;
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
+			return null;
+		}
+	}
+	
+	function confirmCancel2(id, type, date) { // 버튼 클릭 확인
+		if (confirm("취소 처리 하시겠습니까?") == true) {
+// 			var date = document.emAttitudeForm.date.value;
+			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
+			return null;
+		}
+	}	
+	
+	function CheckDate() { // 달력 체크
+		var date = document.emAttitudeForm.date.value;
+		if (date == "") {
+			alert('날짜 입력하세요');
+		} else {
+			document.emAttitudeForm.action = "./EmployeeAttitudeListAction.em?date=" + date;
+			document.emAttitudeForm.submit();
+		}
+	}
+
+	function timeRecord(type, id, date) { 
+// 		var date = document.emAttitudeForm.date.value;
+		location.href="./EmployeeAttitudeTimeRecordingAction.em?type=" + type + "&id=" + id + "&date=" + date;
+	}
+</script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -59,7 +101,7 @@
 										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
+										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일<br>
 									</div>
 								</td>
 							</tr>
@@ -92,18 +134,18 @@
 								<td>
 									<%
 										if (attitude.getAt_come_time() != null) { // 출근 시간이 기록되어 있을 경우
-											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
-											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
-										} else { %><input type="button" value="출근" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>">	<%} 
+											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
+											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+										} else { %><input type="button" value="출근" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>')">	<%} 
 									%>	
 								</td>
 								<td>
 									<%
 										if (attitude.getAt_leave_time() != null) { // 퇴근 시간이 기록되어 있을 경우
-											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
-											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
+											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
 										} else { 
-											%><input type="button" value="퇴근" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>')'"><%
+											%><input type="button" value="퇴근" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>','<%=date%>')"><%
 										} 
 									%>	
 								</td>
@@ -111,20 +153,20 @@
 									<%
 										if (attitude.getAt_memo() != null) { // 메모가 기록되어 있을 경우
 											if (attitude.getAt_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
-												%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+												%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
 											} else {
 												if (attitude.getAt_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
-													%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%
+													%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%
 												} else {
-													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>')"><%=attitude.getAt_memo()%></a><%
+													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo()%></a><%
 												}
 											} 
 										} else { // 메모 없을 경우
-											%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null')"><%
+											%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null','<%=date%>')"><%
 										}%>
 								</td>
 								<td>
-									<input type="button" value="결근처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all')">
+									<input type="button" value="결근처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all','<%=date%>')">
 								</td>
 							</tr>
 						<%
@@ -160,47 +202,4 @@
 	<!-- //UI Object -->
 
 </body>
-<script type="text/javascript">
-	function memoOpen(id, at_memo) { // 메모창 열기
-		var date = document.emAttitudeForm.date.value;
-		if (at_memo == "null") at_memo="";
-		window.open("./EmployeeAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
-	}
-	
-	function timeEditOpen(id, time, type) { // 시간 수정창 열기
-		var date = document.emAttitudeForm.date.value;
-		window.open("./EmployeeAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date, "timeEdit", "width=350,height=200,scrollbars=no");
-	}
-	
-	function confirmCancel(id, type) { // 버튼 클릭 확인
-		if (confirm("결근 처리 하시겠습니까?") == true) {
-			var date = document.emAttitudeForm.date.value;
-			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
-			return null;
-		}
-	}
-	
-	function confirmCancel2(id, type) { // 버튼 클릭 확인
-		if (confirm("취소 처리 하시겠습니까?") == true) {
-			var date = document.emAttitudeForm.date.value;
-			location.href="./EmployeeAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
-			return null;
-		}
-	}	
-	
-	function CheckDate() { // 달력 체크
-		var date = document.emAttitudeForm.date.value;
-		if (date == '') {
-			alert('날짜 입력하세요');
-		} else {
-			document.emAttitudeForm.action = "./EmployeeAttitudeListAction.em?date=" + date;
-			document.emAttitudeForm.submit();
-		}
-	}
-
-	function timeRecord(type, id) { 
-		var date = document.emAttitudeForm.date.value;
-		location.href="./EmployeeAttitudeTimeRecordAction.em?type=" + type + "&id=" + id + "&date=" + date;
-	}
-</script>
 </html>
