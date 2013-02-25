@@ -6,12 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String id = (String)request.getAttribute("id");
-%>
 <body>
-	<form action="./GradeIdSearch.gr?id=<%=id %>" method="post">
+	<form action="" method="post">
 		<table>
 			<tr><th>메모</th></tr>
 			<tr>
