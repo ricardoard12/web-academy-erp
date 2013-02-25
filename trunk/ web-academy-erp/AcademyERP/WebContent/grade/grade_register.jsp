@@ -53,7 +53,7 @@
 		<td>
 			<div class="item">
 				<input type="text" name="mm_id" title="학생ID" class="i_text">
-				<input type="button" value="아이디찾기" onclick="windowopen()">
+				<input type="button" value="아이디찾기" onclick="searchopen()">
 			</div>
 		</td>
 		</tr>
@@ -191,6 +191,16 @@
 <script src="./js/calendar.js"></script>
 
 <script type="text/javascript">
+
+function searchopen(){
+	id = document.grade.mm_id.value;
+	if(id.length==0){
+		alert("아이디를 입력하세요");
+		document.grade.mm_id.focus();
+		return false;
+	}
+	window.open('GradeStudentSearch.gr?id='+id, '_blank', 'height=200, width=400');
+}
 
 jQuery(document).ready(function() {
 	
