@@ -166,8 +166,6 @@
 				</ul></li>
 
 
-			<li>
-				<!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
 
 	<%}
 		if(level.equals("3")|| level.equals("4") || level.equals("5")|| level.equals("6")){ %>
