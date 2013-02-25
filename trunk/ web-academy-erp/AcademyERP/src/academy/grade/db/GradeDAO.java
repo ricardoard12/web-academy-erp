@@ -3,6 +3,7 @@ package academy.grade.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -117,5 +118,28 @@ public class GradeDAO {
             
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
         return gradeSchoolList;
+    }
+    
+    public List IDSearch(String id){
+        List searchlist = null;
+        String sql = "";
+        
+        try {
+            con = ds.getConnection();
+            sql = "select mm_name, mm_id from member where mm_name = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                searchlist = new ArrayList();
+                do{
+                    
+                    
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+       
+        return searchlist;
     }
 }
