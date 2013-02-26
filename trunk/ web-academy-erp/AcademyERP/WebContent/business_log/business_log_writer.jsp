@@ -52,9 +52,9 @@
 
 							</tr>
 							<tr height="40px" align="center">
-								<td><input type="radio" name="check"></td>
-								<td><input type="radio" name="check"></td>
-								<td><input type="radio" name="check"></td>
+								<td><input type="button" name="check" value="확인"></td>
+								<td><input type="button" name="check" value="확인"></td>
+								<td><input type="button" name="check" value="확인"></td>
 
 
 							</tr>
@@ -68,7 +68,7 @@
 
 						<legend> 2.상담 업무</legend>
 
-						<table border="1" align="center">
+						<table border="1" align="center" width="100%">
 							<tr align="center">
 								<td>성 명</td>
 								<td>반 명</td>
@@ -77,7 +77,7 @@
 							</tr>
 
 							<tr align="center">
-								<!-- 							학생명과 반명은 각기 DB에서 출력시킬것 -->
+								<!-- 학생명과 반명은 각기 DB에서 출력시킬것 -->
 								<td><input type="text" name="student_name" size="5"></td>
 								<td><input type="text" name="class_name" size="5"></td>
 								<!--담당자 부분은 세션값으로 처리 (강사명) -->
