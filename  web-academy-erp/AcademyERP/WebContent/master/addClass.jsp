@@ -22,16 +22,6 @@
 <script src="./js/calendar.js"></script>
 <title>반 생성</title>
 <script>
-	$('#classForm').submit(function() {
-		alert();
-		subject = $('#subject_sel').val();
-		teacher = $('#teacher_sel').val();
-		return false;
-		if (subject == "x" && teacher == "x") {
-			alert("담당 교사를 선택하세요!!");
-			$('#subject_sel').focus();
-		}
-	});
 	function sub_change(val) {
 		location.href = "./CreateClass.master?subject_sel=" + val;
 	}
@@ -55,7 +45,8 @@
 			<!-- //snb -->
 			<!-- content -->
 			<div id="content">
-				<form action="createClassAction.master" id="classForm" method="post">
+				<form action="./createClassAction.master" id="classForm"
+					method="post">
 					<table>
 						<tr>
 							<td>과목 :<select id="subject_sel" name="sub_sel"
@@ -91,6 +82,28 @@
 							<td>종료일<input type="text" name="enddate" readonly="readonly"
 								onclick="datePicker(event,'enddate',0)"> <!--  문자열 잘라서 날짜 비 -->
 							</td>
+						</tr>
+						<tr>
+							<td><select name="level" onchange="sch_change(value);">
+									<option>레벨 선택</option>
+									<option value="e">초등</option>
+									<option value="m">중</option>
+									<option value="h">고등</option>
+							</select>학교</td>
+							<td><select name="level2" id="lev">
+									<option>학년을 선택하세요.</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4" id="hide">4</option>
+									<option value="5" id="hide">5</option>
+									<option value="6" id="hide">6</option>
+							</select></td>
+							<td><select name="half">
+									<option>학기를 선택하세요</option>
+									<option value="first">1학기</option>
+									<option value="second">2학기</option>
+							</select></td>
 						</tr>
 						<tr>
 							<td><input type="submit"><input type="reset"
