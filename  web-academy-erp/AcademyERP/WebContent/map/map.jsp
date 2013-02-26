@@ -23,6 +23,7 @@ body {
 </style>
 <script type="text/javascript"
 	src="http://apis.daum.net/maps/maps3.js?apikey=793624e33269f57b434a6fcb35ba61ab2b5c1780"></script>
+	<script 	src="http://apis.daum.net/maps/maps3.js?apikey=7f6b85bb05a363f8a2699d7eb7f8ab9da93811b6"></script>
 <script type="text/javascript">
 	window.onload = function() {
 
