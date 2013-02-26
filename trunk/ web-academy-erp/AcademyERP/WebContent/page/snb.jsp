@@ -186,7 +186,7 @@
 				
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li><a href="#"><span>학급별시간표</span></a></li>
+					<li><a href="./ClassList.master"><span>학급생성</span></a></li>
 					<li><a href="#"><span>학급정보</span></a></li>
 					<li><a href="#"><span>학급별시험정보</span></a></li>
 					<li><a href="./groupsNmaeList.st"><span>학급별출결현황</span></a></li>
