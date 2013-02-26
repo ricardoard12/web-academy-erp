@@ -140,6 +140,7 @@ public class MasterDAO {
 			if (rs.next()) {
 				x = rs.getInt(1);
 			}
+			System.out.println("학급갯수는 : " + x);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -155,8 +156,8 @@ public class MasterDAO {
 		try {
 			System.out.println("->");
 			con = ds.getConnection();
-			String sql = "select gp_idx,gp_name,groups.ep_id,member.mm_name,gp_lev,gp_half,gp_ea,gp_status,gp_startdate,gp_enddate from groups,member where groups.ep_id=member.mm_id "
-					+ "order by gp_idx desc limit ?,?";
+			String sql = "select * from groups "
+					+ "order by groups.gp_idx desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startrow - 1);
 			pstmt.setInt(2, limit);
@@ -182,13 +183,15 @@ public class MasterDAO {
 		list.add(rs.getInt("gp_idx"));
 		list.add(rs.getString("gp_name"));
 		list.add(rs.getString("ep_id"));
-		list.add(rs.getString("mm_name"));
+		//list.add(rs.getString("mm_name"));
 		list.add(rs.getString("gp_lev"));
 		list.add(rs.getString("gp_half"));
 		list.add(rs.getInt("gp_ea"));
 		list.add(rs.getString("gp_status"));
 		list.add(rs.getDate("gp_startdate"));
 		list.add(rs.getDate("gp_enddate"));
+		list.add(rs.getString("gp_room"));
+		System.out.println(list.get(0));
 		return list;
 	}
 
@@ -222,21 +225,22 @@ public class MasterDAO {
 
 	public List getTeachserList() {
 		List tList = null;
-		String str="재직";
+		String str = "재직";
 		try {
 			con = ds.getConnection();
-			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name " +
-					"from employee,member " +
-					"where mm_id=ep_id AND ep_status='"+str+"'";
+			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name "
+					+ "from employee,member "
+					+ "where mm_id=ep_id AND ep_status='" + str + "'";
 			System.out.println("선생 리스트 ->");
-			rs=con.prepareStatement(sql).executeQuery();
-			if(rs.next()){
-				tList=new ArrayList();
-				do{
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				tList = new ArrayList();
+				do {
 					tList.add(getTeacherInfo());
-					
-				}while(rs.next());
-			}System.out.println("<-선생 리스트");
+
+				} while (rs.next());
+			}
+			System.out.println("<-선생 리스트");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -245,8 +249,8 @@ public class MasterDAO {
 		return tList;
 	}
 
-	private List getTeacherInfo() throws Exception{
-		List list =new ArrayList();
+	private List getTeacherInfo() throws Exception {
+		List list = new ArrayList();
 		list.add(rs.getString("ep_id"));
 		list.add(rs.getString("mm_name"));
 		list.add(rs.getString("ep_subject_name"));
