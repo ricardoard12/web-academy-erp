@@ -20,7 +20,7 @@ public class classListAction implements Action {
 		 * session 처리 로그인 객체확인후 진행
 		 */
 
-		List classlist = new ArrayList();
+		List classlist=null;
 		MasterDAO master = new MasterDAO();
 		int page = 1;
 		int limit = 10;
@@ -36,10 +36,14 @@ public class classListAction implements Action {
 		int endpage = startpage + pageBlock - 1;
 		if (endpage > maxpage)
 			endpage = maxpage;
-		request.setAttribute("ListPackage", new ListPackage(page, maxpage,
-				startpage, endpage, listcount, classlist));
+		ListPackage pack = new ListPackage(page, maxpage, startpage, endpage,
+				listcount, classlist);
+		System.out.println(page+","+maxpage+","+startpage+","+endpage+","+listcount);
+		System.out.println("ClassListAcion Finished");
+		request.setAttribute("ListPackage", pack);
 		forward.setPath("./master/createClass.jsp");
 		forward.setRedirect(false);
+
 		return forward;
 	}
 }
