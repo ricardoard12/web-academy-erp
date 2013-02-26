@@ -17,8 +17,7 @@ public class GradeIDSearchAction implements Action{
         
         String id = "";
         //학생 이름 or 선생 이름 값 받기
-        id = request.getParameter("mm_id");
-        id = request.getParameter("ep_id");
+        id = request.getParameter("id");
         
         GradeDAO gradedao = new GradeDAO();
         List searchlist = gradedao.IDSearch(id);

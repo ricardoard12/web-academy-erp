@@ -53,7 +53,7 @@
 		<td>
 			<div class="item">
 				<input type="text" name="mm_id" title="학생ID" class="i_text">
-				<input type="button" value="아이디찾기" onclick="searchopen(0)">
+				<input type="button" value="아이디찾기" onclick="searchopen('s')">
 			</div>
 		</td>
 		</tr>
@@ -109,7 +109,7 @@
 		<td>
 			<div class="item">
 				<input type="text" name="ep_id" title="" class="i_text">
-				<input type="button" value="강사찾기" onclick="searchopen(1)">
+				<input type="button" value="강사찾기" onclick="searchopen('t')">
 			</div>
 		</td>
 		</tr>
@@ -192,82 +192,78 @@
 
 <script type="text/javascript">
 
-function searchopen(num){
+function searchopen(name){
 	
-	if(num == 0){
+	if (name == "s") {
 		id = document.grade.mm_id.value;
-		if(mm_id.length==0){
+		if (id.length == 0) {
 			alert("학생 이름를 입력하세요");
 			document.grade.mm_id.focus();
 			return false;
 		}
-		
-	}else{
+	}else if(name == "t"){
 		id = document.grade.ep_id.value;
-		if(ep_id.length==0){
-			alert("강사 이름을 입력하세요");
+		if (id.length == 0) {
+			alert("강사 이름를 입력하세요");
 			document.grade.ep_id.focus();
 			return false;
 		}
 	}
 	
-	window.open('GradeIDSearch.gr?id='+id, '_blank', 'height=200, width=400');
+	window.open('GradeIDSearch.gr?id=' + id, '_blank', 'height=200, width=400');
+		
 }
-
-
-jQuery(document).ready(function() {
 	
-	/* 클래스 academy, school 폼 변환*/
-	if(jQuery("#academy").is(":checked") ) {
-        jQuery(".school").hide();
-        jQuery(".academy").show();
-	}
-    
-     jQuery("#academy").click(function() {
-        if(jQuery(this).is(":checked") ) {
-            jQuery(".school").hide();
-    	}
-        jQuery(".academy").show();
-    });
-    
-    jQuery("#school").click(function() {
-        if(jQuery(this).is(":checked") ) {
-            jQuery(".academy").hide();
-    	}
-        jQuery(".school").show();
-    });
-	        
-});
 	
 
-jQuery(function(){
-	// Help Toggle
-	$('.item>.i_help').click(function(){
-		$(this).parent('.item').find('.i_dsc').toggleClass('hide');
+	jQuery(document).ready(function() {
+
+		/* 클래스 academy, school 폼 변환*/
+		if (jQuery("#academy").is(":checked")) {
+			jQuery(".school").hide();
+			jQuery(".academy").show();
+		}
+
+		jQuery("#academy").click(function() {
+			if (jQuery(this).is(":checked")) {
+				jQuery(".school").hide();
+			}
+			jQuery(".academy").show();
+		});
+
+		jQuery("#school").click(function() {
+			if (jQuery(this).is(":checked")) {
+				jQuery(".academy").hide();
+			}
+			jQuery(".school").show();
+		});
+
 	});
-	// Input Clear
-	var i_text = $('.item>.i_label').next('.i_text');
-	$('.item>.i_label').css('position','absolute');
-	i_text
-		.focus(function(){
-			$(this).prev('.i_label').css('visibility','hidden');
-		})
-		.blur(function(){
-			if($(this).val() == ''){
-				$(this).prev('.i_label').css('visibility','visible');
+
+	jQuery(function() {
+		// Help Toggle
+		$('.item>.i_help').click(function() {
+			$(this).parent('.item').find('.i_dsc').toggleClass('hide');
+		});
+		// Input Clear
+		var i_text = $('.item>.i_label').next('.i_text');
+		$('.item>.i_label').css('position', 'absolute');
+		i_text.focus(function() {
+			$(this).prev('.i_label').css('visibility', 'hidden');
+		}).blur(function() {
+			if ($(this).val() == '') {
+				$(this).prev('.i_label').css('visibility', 'visible');
 			} else {
-				$(this).prev('.i_label').css('visibility','hidden');
+				$(this).prev('.i_label').css('visibility', 'hidden');
 			}
-		})
-		.change(function(){
-			if($(this).val() == ''){
-				$(this).prev('.i_label').css('visibility','visible');
+		}).change(function() {
+			if ($(this).val() == '') {
+				$(this).prev('.i_label').css('visibility', 'visible');
 			} else {
-				$(this).prev('.i_label').css('visibility','hidden');
+				$(this).prev('.i_label').css('visibility', 'hidden');
 			}
-		})
-		.blur();
-});
+		}).blur();
+	});
 </script>
 </body>
 </html>

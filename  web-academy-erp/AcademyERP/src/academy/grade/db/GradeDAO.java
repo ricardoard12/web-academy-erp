@@ -126,7 +126,7 @@ public class GradeDAO {
         
         try {
             con = ds.getConnection();
-            sql = "select mm_name, mm_id from member where mm_name = ?";
+            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2, from member where mm_name = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
