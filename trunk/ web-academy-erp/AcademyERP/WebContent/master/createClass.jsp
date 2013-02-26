@@ -63,23 +63,24 @@
 						class="tbl_type_list">
 						<caption>직원 목록</caption>
 						<colgroup>
-							<col width="12%">
+							<col width="8%">
 							<col>
-							<col width="12%" span="8">
+							<col width="8%" span="8">
 						</colgroup>
 						<thead>
 							<tr>
 								<th scope="col"></th>
 								<th scope="col">ID</th>
-								<th scope="col">이름</th>
+								<th scope="col">학급 이름</th>
+								<th scope="col">강의실</th>
 								<th scope="col">담당교사ID</th>
-								<th scope="col">담당교사</th>
 								<th scope="col">학년</th>
 								<th scope="col">학기</th>
 								<th scope="col">인원</th>
 								<th scope="col">상태</th>
 								<th scope="col">시작일</th>
 								<th scope="col">종강일</th>
+
 							</tr>
 						</thead>
 						<tbody>
@@ -94,23 +95,31 @@
 									value="<%=list.get(0)%>"></td>
 								<td><%=list.get(0)%></td>
 								<td><%=list.get(1)%></td>
+								<td>
+									<%
+										if (list.get(9) == null) {
+									%><a href="#">강의실 넣기</a> <%
+ 	} else {
+ %> <%=list.get(9)%> <%
+ 	}
+ %>
+								</td>
 								<td><%=list.get(2)%></td>
 								<td><%=list.get(3)%></td>
 								<td><%=list.get(4)%></td>
 								<td><%=list.get(5)%></td>
-								<td><%=list.get(6)%></td>
 								<td><select id="status"
 									onchange="statusChange('<%=list.get(0)%>','<%=nowpage%>',value)">
 										<option value="x">현재 상태 선택</option>
-										<option value="0" <%if (list.get(7).equals("0")) {%> selected
+										<option value="0" <%if (list.get(6).equals("0")) {%> selected
 											<%}%>>개설</option>
-										<option value="1" <%if (list.get(7).equals("1")) {%> selected
+										<option value="1" <%if (list.get(6).equals("1")) {%> selected
 											<%}%>>개강중</option>
-										<option value="2" <%if (list.get(7).equals("2")) {%> selected
+										<option value="2" <%if (list.get(6).equals("2")) {%> selected
 											<%}%>>폐강</option>
 										<%=status%></select></td>
+								<td><%=list.get(7)%></td>
 								<td><%=list.get(8)%></td>
-								<td><%=list.get(9)%></td>
 							</tr>
 							<%
 								}
