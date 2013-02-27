@@ -1,56 +1,69 @@
 package academy.groups.action;
 
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import academy.groups.db.GroupsDAO;
+import academy.attitude.db.AttitudeBean;
+import academy.attitude.db.AttitudeDAO;
+import academy.employee.db.EmployeeDAO;
+import academy.master.db.ListPackage;
 import academy.student.db.StudentDAO;
 
-public class GroupsAttitudeListAction implements Action{
+public class GroupsAttitudeListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// 직원 출결 현황
+		System.out.println("GroupsAttitudeListAction");
 		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
-		StudentDAO studentdao = new StudentDAO();
-		GroupsDAO groupsdao = new GroupsDAO(); // 계설된 과목의 리스트를 가지고오기 위해 선언
+		AttitudeBean attitude = new AttitudeBean();
+		AttitudeDAO attitudeDAO = new AttitudeDAO();
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 		
-		List Gp_nameList = null;
-		Gp_nameList = groupsdao.getGpList();
-		request.setAttribute("Gp_nameList", Gp_nameList); // 가지고온 과목명을 저장후 넘김
 		
-		String gp_name="";
-		
-		if(request.getAttribute("gp_id")!=null){
-			 gp_name = (String)request.getAttribute("gp_id");
-		}else{
-			 gp_name = request.getParameter("gp_name");
-			System.out.println(gp_name);
-				
+		String date = request.getParameter("date");
+		if (date == null) {
+			date = sdfDate.format(Calendar.getInstance().getTime());
 		}
-		
-		System.out.println("gp_name"+gp_name);
-		
-		if(request.getParameter("gp_name")!= null){
-			
-			List StudentAttitudeList = null;
-			StudentAttitudeList = studentdao.getStudentAttitudeList(gp_name);  //DB에서 출석 관련정보를 가져온다.
-			
-			request.setAttribute("GroupsAttitudeList", StudentAttitudeList); // 가지고온 StudentAttitudeList 정보를 넘긴다.
-			request.setAttribute("gp_name", gp_name);
-			forward.setRedirect(false);
-			forward.setPath("./group/group_attitude_list.jsp");// student_attitude_list 폼으로 이동
-			
+//		System.out.println(date);
+
+		int page = 1;
+		int limit = 10;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
 		}
+		int listCount = attitudeDAO.getStudentCount();
+		int maxPage = (int) ((double) listCount / limit + 0.95);
+		int pageBlock = 10;
+		int startPage = (((int) ((double) page / pageBlock + 0.9)) - 1)	* pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		if (endPage > maxPage) endPage = maxPage;
+		
+		List attitudeList = new ArrayList();
+		String gp_name = request.getParameter("gp_name");
+//		attitudeList = attitudeDAO.getStudentAttitudeList(gp_name, date);
+		attitudeList = attitudeDAO.getStudentAttitudeList(date, page, limit);
+		
+		request.setAttribute("attitudeList", attitudeList);
+		request.setAttribute("date", date);
+		
+		request.setAttribute("page", page);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		
+		forward.setRedirect(false);
+		forward.setPath("./groups/groups_attitude_list.jsp");
 		return forward;
 	}
-
+	
 }
