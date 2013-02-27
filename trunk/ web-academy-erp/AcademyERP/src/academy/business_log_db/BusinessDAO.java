@@ -154,7 +154,7 @@ public class BusinessDAO {
 		
 			if(rs.next()){
 				BusinessBean beusinessbean =new BusinessBean();//자바빈객체
-//				businessbean.setBusiness_num(rs.getInt("business_num"));
+				businessbean.setBusiness_num(rs.getInt("business_num"));
 				businessbean.setBusiness_name(rs.getString("business_name"));
 				beusinessbean.setBusiness_subject(rs.getString("business_subject"));
 				beusinessbean.setBusiness_today(rs.getString("business_today"));
