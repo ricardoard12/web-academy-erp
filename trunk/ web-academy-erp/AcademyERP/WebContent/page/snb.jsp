@@ -232,7 +232,7 @@
 
 				<ul style="display: none;">
 					<li><a href="./BoardNotice.bo?level=<%=level %>"><span>공지사항</span></a></li>
-					<li><a href="#"><span>업무일지</span></a></li>
+					<li><a href="./BusinessNotice.bo?level=<%=level%>"><span>업무일지</span></a></li>
 					<li><a href="#"><span>강의계획서</span></a></li>
 					<li><a href="#"><span>수업자료실</span></a></li>
 
