@@ -1,4 +1,3 @@
-<%@page import="academy.business_log_db.BusinessBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,12 +10,6 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-<%
-BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
-String level =(String) session.getAttribute("level");
-
-%>
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -38,113 +31,156 @@ String level =(String) session.getAttribute("level");
 			<!-- content -->
 			<div id="content">
 
-				<body>
-				<form action="BusinessAddAction.bo" method="post">
-					<table width="50%" border="1" align="center">
-						<tr align="center">
-							<td rowspan="2" width="60%">학원 로고 및 이미지</td>
-							<td rowspan="2">결재</td>
-							<td>담당자</td>
-							<td>관리자</td>
-							<td>학원장</td>
-						</tr>
-						<tr align="center">
-							<td><input type="button" name="btn1" value="확인"></td>
-							<td><input type="button" name="btn2" value="확인"></td>
-							<td><input type="button" name="btn3" value="확인"></td>
-						</tr>
-						<tr>
-							<td colspan="5"><br>1. 오늘의 주요 업무 사항</td>
-						</tr>
-						<tr>
-							<td colspan="5"><textarea  name="today" cols="100" rows="10"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="5">2. 상담 내역</td>
-						</tr>
-						<tr>
-							<td colspan="5"><textarea name="counsel" cols="100"	rows="10" ></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="5">3. 기타 및 건의사항</td>
-						</tr>
-						<tr>
-							<td colspan="5"><textarea name="etc" cols="100"	rows="10"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="5" align="center">
-							<input type="submit" value="등록">&nbsp; 
-							<input type="reset" value="다시작성">&nbsp;
-							<input type="button" value="취소">&nbsp;
-							</td>
-						</tr>
-					</table>
-					</form>
+				<!-- 게시판 글쓰기 시작 -->
+
+				<form action="./BusinessAddAction.bl" method="get">
+					<fieldset>
+						<legend>업무일지 입력 FORM</legend>
+						<div class="form_table">
+							<table border="1" cellspacing="0" summary="회원가입">
+								<tbody>
+
+
+									<tr>
+									<th align="right" colspan="2" >|		담당자		|		관리자		|		학원장		|	</th>
+									
+									
+									
+									</tr>
+									
+									<tr>
+									<th colspan="2">|	<input type="button" value="결재">|	<input type="button" value="결재">|	<input type="button" value="결재">|</th>
+									
+												
+									
+									</tr>
+
+									<tr>
+										<th scope="row" colspan="2">1. 오늘의 주요 업무 사항</th>
+										
+									</tr>
+									<tr>
+										<th scope="row">내용</th>
+										<td>
+											<div class="item">
+												<textarea name="business_today" cols="100" rows="10"
+													title="레이블 텍스트" id="contents" class="i_text"
+													style="display: none;"></textarea>
+											</div>
+										</td>
+									</tr>
+									
+								
+									
+									<tr>
+										<th scope="row" colspan="2">2. 상담 내역</th>
+										
+									</tr>
+									<tr>
+										<th scope="row">내용</th>
+										<td>
+											<textarea name="business_counsel" cols="100" rows="10"
+													title="레이블 텍스트"></textarea>
+										</td>
+									</tr>
+									
+									<tr>
+										<th scope="row" colspan="2">3. 기타 및 건의사항</th>
+										
+									</tr>
+									<tr>
+										<th scope="row">내용</th>
+										<td>
+											
+												<textarea name="business_etc" cols="100" rows="10"
+													title="레이블 텍스트"></textarea>
+											
+										</td>
+									</tr>
+									
+									
+
+									
+									<!--  글쓰기버튼 -->
+									<tr align="center">
+										<td></td>
+										<td align="center">
+											<div class="item">
+												<input type="submit" value="등록" onclick="submitContents(this)">
+													 
+													<input type="button" name="" value="취소" onclick="location.href='./BusinessNotice.bo'">
+											</div>
+										</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+					</fieldset>
+				</form>
+				<script type="text/javascript">
+					var oEditors = [];
+					nhn.husky.EZCreator
+							.createInIFrame({
+								oAppRef : oEditors,
+								elPlaceHolder : "contents",
+								sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
+								htParams : {
+									bUseToolbar : true,
+									fOnBeforeUnload : function() {
+										//alert("아싸!");	
+									}
+								}, //boolean
+								fOnAppLoad : function() {
+									//예제 코드
+									//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+								},
+								fCreator : "createSEditor2"
+							});
+
+					function pasteHTML() {
+						var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+						oEditors.getById["contents"].exec("PASTE_HTML",
+								[ sHTML ]);
+					}
+
+					function showHTML() {
+						var sHTML = oEditors.getById["contents"].getIR();
+						alert(sHTML);
+					}
+
+					function submitContents(elClickedObj) {
+						oEditors.getById["contents"].exec(
+								"UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+
+						// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+
+						try {
+							elClickedObj.form.submit();
+						} catch (e) {
+						}
+					}
+
+					function setDefaultFont() {
+						var sDefaultFont = '궁서';
+						var nFontSize = 24;
+						oEditors.getById["contents"].setDefaultFont(
+								sDefaultFont, nFontSize);
+					}
+				</script>
+				<!-- 회원가입 끝 -->
+
 			</div>
+			<!-- //content -->
 		</div>
+		<!-- //container -->
+		<!-- footer -->
+		<div id="footer">
+			<jsp:include page="../page/footer.jsp"></jsp:include>
+		</div>
+		<!-- //footer -->
 	</div>
-
-</body>
-
-
-<script type="text/javascript">
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef : oEditors,
-		elPlaceHolder : "contents",
-		sSkinURI : "./board/SE2.2.1.O9186/SmartEditor2Skin.html",
-		htParams : {
-			bUseToolbar : true,
-			fOnBeforeUnload : function() {
-				//alert("아싸!");	
-			}
-		}, //boolean
-		fOnAppLoad : function() {
-			//예제 코드
-			//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-		},
-		fCreator : "createSEditor2"
-	});
-
-	function pasteHTML() {
-		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-		oEditors.getById["contents"].exec("PASTE_HTML", [ sHTML ]);
-	}
-
-	function showHTML() {
-		var sHTML = oEditors.getById["contents"].getIR();
-		alert(sHTML);
-	}
-
-	function submitContents(elClickedObj) {
-		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
-
-		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
-
-		try {
-			elClickedObj.form.submit();
-		} catch (e) {
-		}
-	}
-
-	function setDefaultFont() {
-		var sDefaultFont = '궁서';
-		var nFontSize = 24;
-		oEditors.getById["contents"].setDefaultFont(sDefaultFont, nFontSize);
-	}
-</script>
-<!-- 회원가입 끝 -->
-
-</div>
-<!-- //content -->
-</div>
-<!-- //container -->
-<!-- footer -->
-<div id="footer">
-	<jsp:include page="../page/footer.jsp"></jsp:include>
-</div>
-<!-- //footer -->
-</div>
 
 
 </body>
