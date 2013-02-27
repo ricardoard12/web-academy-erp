@@ -22,7 +22,7 @@ public class StudentBean {
     // 학생 단독 항목
     private String st_school_name; // 학교명
     private String st_school_grade; // 학년
-    private String gp_id; // 소속 학급(학원)
+    private String gp_name; // 소속 학급(학원)
     private String st_parent_name; // 학부모 이름
     private String st_parent_mobile; // 학부모 연락처
     private String st_parent_id; // 학부모 아이디
@@ -148,11 +148,11 @@ public class StudentBean {
     public void setSt_school_grade(String st_school_grade) {
         this.st_school_grade = st_school_grade;
     }
-    public String getGp_id() {
-        return gp_id;
+    public String getGp_name() {
+        return gp_name;
     }
-    public void setGp_id(String gp_id) {
-        this.gp_id = gp_id;
+    public void setGp_name(String gp_name) {
+        this.gp_name = gp_name;
     }
     public String getSt_parent_name() {
         return st_parent_name;

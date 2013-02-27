@@ -76,6 +76,7 @@ public class CounselerDAO {
 						counselbean.setCc_content(rs.getString("cc_content"));
 						counselbean.setCc_date(rs.getDate("cc_date"));
 						counselbean.setCc_subject(rs.getString("cc_subject"));
+						counselbean.setGp_id(rs.getString("gp_id"));
 						counselbean.setEp_id(rs.getString("ep_id"));
 						counselbean.setIdx(rs.getInt("idx"));
 						counselbean.setMm_id(rs.getString("mm_id"));
