@@ -22,10 +22,9 @@ public class BusinessDetailAction implements Action {
 		
 		businessbean = businessdao.getDetail(num);
 		request.setAttribute("businessbean", businessbean);
+		
 		forward.setRedirect(false);
-
 		forward.setPath("./business_log/business_detail.jsp");
-
 		return forward;
 	}
 

@@ -48,10 +48,10 @@
         
             <!-- 게시판 시작 -->
             <!-- UI Object -->
-<form method="post" action="./businessDeleteAction.bo">
+<form method="post" action="BusinessDeleteAction.bl">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 <!-- level세션값 전달 -->
-<input type="hidden" name="level" value=<%=session.getAttribute("level")%>>
+<%-- <input type="hidden" name="level" value=<%=session.getAttribute("level")%>> --%>
 
 <caption>업무일지 리스트</caption>
 <colgroup>
@@ -77,10 +77,10 @@
     		businessbean=(BusinessBean)businessList.get(i);
     		%>
     		<tr>
-    		<td class="frm"><input type="checkbox" name="board_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
+    		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
-    		<td class="title"><a href="./BusinessDetailAction.bo?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
-    		<td><a href="#"><%=name %></a></td>
+    		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
+    		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
     		<td class="date"><%=businessbean.getBusiness_date() %></td>
     		
     		</tr>
@@ -97,8 +97,8 @@
 </table>
 <div align="right">
 <%-- <% if(level.equals("5")){ %> --%>
-<input type="button" name="board_write" value="글쓰기" onclick="location.href='./BusinessWrite.bl?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
-<input type="submit" name="board_delete" value="삭제">
+<input type="button" name="business_write" value="글쓰기" onclick="location.href='./BusinessWrite.bl?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
+<input type="submit" name="business_delete" value="삭제">
 </form>
 </div>
 <%-- <%}else{}%> --%>
