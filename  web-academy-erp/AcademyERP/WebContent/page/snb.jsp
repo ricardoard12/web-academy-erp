@@ -146,13 +146,16 @@
 	<!-- Vertical navigation -->
 	<div id="menu_v" class="menu_v">
 		<ul>
-		<% if(name != null){ /*로그인 안하면 메뉴 안보임 시작  */
-		    
-		/* 로그인후 레벨에 따라 메뉴 보임 시작 */
-	if(level.equals("1") || level.equals("2") || level.equals("3")|| level.equals("4")
-				        || level.equals("5")|| level.equals("6")){%>
-		
-			
+			<%
+				if (name != null) { /*로그인 안하면 메뉴 안보임 시작  */
+
+					/* 로그인후 레벨에 따라 메뉴 보임 시작 */
+					if (level.equals("1") || level.equals("2") || level.equals("3")
+							|| level.equals("4") || level.equals("5")
+							|| level.equals("6")) {
+			%>
+
+
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>학생정보조회</span></a></li>
@@ -167,10 +170,14 @@
 
 
 
-	<%}
-		if(level.equals("3")|| level.equals("4") || level.equals("5")|| level.equals("6")){ %>
-			
-			<li><!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
+			<%
+				}
+					if (level.equals("3") || level.equals("4") || level.equals("5")
+							|| level.equals("6")) {
+			%>
+
+			<li>
+				<!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
 
 				<ul style="display: none;">
 					<li>
@@ -182,8 +189,10 @@
 
 				</ul>
 			</li>
-			
-				
+
+			<%
+				if (level.equals("4") || level.equals("5")) {
+			%>
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./ClassList.master"><span>학급생성</span></a></li>
@@ -193,8 +202,10 @@
 					<li><a href="#"><span>학급별상담내역</span></a></li>
 					<li><a href="#"><span>학급진도관리</span></a></li>
 				</ul></li>
+			<%
+				}
+			%>
 
-			
 			<li><a><span>성적관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
@@ -203,17 +214,19 @@
 					<li><a><span><strong>학교성적관리</strong></span></a></li>
 					<li><a href="#"><span> - 진행중시험</span></a></li>
 
-					<li><a ><span><strong>학원시험관리</strong></span></a></li>
+					<li><a><span><strong>학원시험관리</strong></span></a></li>
 
-					<li><a href="./GradeAcademyList.gr"><span> - 학원 학생별 리스트</span></a></li>
+					<li><a href="./GradeAcademyList.gr"><span> - 학원 학생별
+								리스트</span></a></li>
 					<li><a><span><strong>학원시험관리</strong></span></a></li>
 
 
 					<li><a><span><strong>학교성적관리</strong></span></a></li>
-					<li><a href="./GradeSchoolList.gr"><span> - 학교 학생별 리스트</span></a></li>
-			
+					<li><a href="./GradeSchoolList.gr"><span> - 학교 학생별
+								리스트</span></a></li>
+
 				</ul></li>
-			
+
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="#"><span>전체시간표</span></a></li>
@@ -224,14 +237,13 @@
 			<!-- 선생님용 메뉴 -->
 
 			<%
-				if (level.equals("3") || level.equals("4") || level.equals("5")
-						|| level.equals("6")) {
+				if (level.equals("3") || level.equals("4")
+								|| level.equals("5") || level.equals("6")) {
 			%>
-			<li><a><span>게시판</span><span class="i"></span></a>
-				<!-- Level에 따른 열람 제한 설정 -->
+			<li><a><span>게시판</span><span class="i"></span></a> <!-- Level에 따른 열람 제한 설정 -->
 
 				<ul style="display: none;">
-					<li><a href="./BoardNotice.bo?level=<%=level %>"><span>공지사항</span></a></li>
+					<li><a href="./BoardNotice.bo?level=<%=level%>"><span>공지사항</span></a></li>
 					<li><a href="./BusinessNotice.bo?level=<%=level%>"><span>업무일지</span></a></li>
 					<li><a href="#"><span>강의계획서</span></a></li>
 					<li><a href="#"><span>수업자료실</span></a></li>
@@ -242,9 +254,11 @@
 			<%
 				}
 			%>
-<%}
-		if(level.equals("4") || level.equals("5")|| level.equals("6")){ %>
-			
+			<%
+				}
+					if (level.equals("4") || level.equals("5") || level.equals("6")) {
+			%>
+
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./EmployeeJoin.em"><span>신규등록</span></a></li>
@@ -254,9 +268,11 @@
 					<li><a href="#"><span>급여관리</span></a></li>
 					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
-				
-<%}
-	if(level.equals("5")|| level.equals("6")){ %>		        
+
+			<%
+				}
+					if (level.equals("5") || level.equals("6")) {
+			%>
 			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
@@ -266,16 +282,21 @@
 					<li><a href="#"><span>계좌관리</span></a></li>
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
-				
-				
+
+
 			<li><a><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
 					<li><a href="#"><span>공지사항 관리</span></a></li>
 					<li><a href="./AllMemberList.master"><span>전체 회원 관리</span></a></li>
 				</ul></li>
-<%} %> <!--레벨별 메뉴 설정 끝  -->			
-		<%} %><!--로그인 안하면 아무것도 안보임 끝  -->
+			<%
+				}
+			%>
+			<!--레벨별 메뉴 설정 끝  -->
+			<%
+				}
+			%><!--로그인 안하면 아무것도 안보임 끝  -->
 		</ul>
 	</div>
 	<!-- //Vertical navigation  -->
