@@ -38,12 +38,12 @@
 		}
 	}	
 	
-	function CheckDate() { // 달력 체크
+	function CheckDate(gp_name) { // 달력 체크
 		var date = document.stAttitudeForm.date.value;
 		if (date == "") {
 			alert('날짜 입력하세요');
 		} else {
-			document.stAttitudeForm.action = "./GroupsAttitudeListAction.em?date=" + date;
+			document.stAttitudeForm.action = "./GroupsAttitudeListAction.em?date=" + date + "&gp_name=" + gp_name;
 			document.stAttitudeForm.submit();
 		}
 	}
@@ -52,12 +52,18 @@
 // 		var date = document.emAttitudeForm.date.value;
 		location.href="./GroupsAttitudeTimeRecordingAction.em?type=" + type + "&id=" + id + "&date=" + date;
 	}
+	
+	function selGroups(date, gp_name) { // 학급 선택
+		location.href="./GroupsAttitudeListAction.em?date=" + date + "&gp_name=" + gp_name;
+	}
+// 	selGroups(value)
 </script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
 	String date = (String) request.getAttribute("date");
+	String gp_name = (String)request.getAttribute("gp_name");
 	SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 	
 	int nowPage = ((Integer)request.getAttribute("page")).intValue();
@@ -104,20 +110,20 @@
 								<td colspan="7" align="left">
 									<div class="item">
 										<input type="text" name="date"> 
-										<input type="button" value="검색" onclick="CheckDate()">
+										<input type="button" value="검색" onclick="CheckDate('<%=gp_name%>')">
 										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										학급 : 
-										<select name="selGroups" onchange="selGroups(value)">
-											<option value="1학년A반">1A</option>
-											<option value="1학년B반">1B</option>
-											<option value="2학년A반">2A</option>
-											<option value="2학년B반">2B</option>
-											<option value="3학년A반">3A</option>
-											<option value="3학년B반">3B</option>
+										<select name="gp_name" onchange="selGroups(value, '<%=date%>')">
+											<%if (gp_name.equals("1A")) { %> <option value="1A" selected>1A</option> <%} else {%><option value="1A">1A</option><%} %>
+											<%if (gp_name.equals("1B")) { %> <option value="1B" selected>1B</option> <%} else {%><option value="1B">1B</option><%} %>
+											<%if (gp_name.equals("2A")) { %> <option value="2A" selected>2A</option> <%} else {%><option value="2A">2A</option><%} %>
+											<%if (gp_name.equals("2B")) { %> <option value="2B" selected>2B</option> <%} else {%><option value="2B">2B</option><%} %>
+											<%if (gp_name.equals("3A")) { %> <option value="3A" selected>3A</option> <%} else {%><option value="3A">3A</option><%} %>
+											<%if (gp_name.equals("3B")) { %> <option value="3B" selected>3B</option> <%} else {%><option value="3B">3B</option><%} %>
 										</select> 
 									</div>
 								</td>
