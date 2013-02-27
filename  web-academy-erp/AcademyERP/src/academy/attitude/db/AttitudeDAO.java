@@ -302,6 +302,110 @@ public class AttitudeDAO {
     	
     	return result;
     }
+    
+    
+    
+    
+    // 여기서부터 Student
+    public List getStudentAttitudeList(String date, int page, int limit) throws Exception { // 학급 출석 현황
+		List attitudeList = null;
+		ResultSet rs2 = null;
+		ResultSet rs3 = null;
+		
+		int startRow = (page - 1) * limit + 1;
+		
+		try {
+			con = ds.getConnection();
+			sql = "SELECT student.mm_id, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' LIMIT ?,?"; 
+			// 학급 명단(아이디, 이름) 조회
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+
+			attitudeList = new ArrayList();
+			while (rs.next()) {
+				sql = "SELECT * FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ? LIMIT ?,?";
+				// 검색한 날짜의 출석 시간(00:00:00부터 23:59:59까지) 데이터 중 아이디 일치 여부 확인
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("mm_id"));
+				pstmt.setString(2, date + " 00:00:00");
+				pstmt.setString(3, date + " 23:59:59");
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, limit);
+				rs2 = pstmt.executeQuery();
+				
+				if (rs2.next()) { // 출근 데이터가 있을 경우
+					do { // 해당 출 퇴근 시간 전달
+						AttitudeBean attitude = new AttitudeBean();
+						
+						attitude.setMm_name(rs.getString("mm_name")); // 학급 명단 조회 결과 중 이름 저장
+						attitude.setAt_member_id(rs2.getString("at_member_id"));
+						attitude.setAt_report_state(rs2.getString("at_report_state"));
+						attitude.setAt_come_time(rs2.getTimestamp("at_come_time"));
+						attitude.setAt_leave_time(rs2.getTimestamp("at_leave_time"));
+						attitude.setAt_memo(rs2.getString("at_memo"));
+						attitude.setAt_idx(rs2.getInt("at_idx"));
+						
+						attitudeList.add(attitude);
+					} while (rs2.next());
+				} else { // 출근 데이터가 없을 경우
+					AttitudeBean attitude = new AttitudeBean();
+					
+					attitude.setMm_name(rs.getString("mm_name"));
+					attitude.setAt_member_id(rs.getString(1)); // ID 받아옴
+					attitude.setAt_report_state("N"); // 출근 상태 N(미출근) 으로 설정
+					
+					sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ? LIMIT ?,?";
+					// 미출근 상태에서 해당 날짜(00:00:00부터 23:59:59까지)의 메모(사유)가 있는지 확인
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, rs.getString(1));
+					pstmt.setString(2, date + " 00:00:00");
+//					System.out.println("출근 전인 사람 메모 날짜 : " + date);
+					pstmt.setString(3, date + " 23:59:59");
+					pstmt.setInt(4, startRow);
+					pstmt.setInt(5, limit);
+					rs3 = pstmt.executeQuery();
+					
+					if (rs3.next()) { // 메모(사유)가 있을 경우
+						attitude.setAt_memo(rs3.getString("at_memo"));
+					} 
+					
+					// 메모조차 없으면 전부 자동으로 NULL로 설정됨
+					
+					attitudeList.add(attitude);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+		
+		return attitudeList;
+	}
+    
+    public int getStudentCount() {
+    	int listCount = 0;
+    	try {
+    		con = ds.getConnection();
+    		sql = "SELECT COUNT(st_idx) FROM student WHERE student.st_status='재학'";
+    		pstmt = con.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		if (rs.next()) {
+    			listCount = rs.getInt(1);
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+		
+		return listCount;
+    }
+    
+    
     public boolean StudentAttitudeEditTime(String id,String editTime,String type){
     	boolean result = false;
     	try {
@@ -321,6 +425,8 @@ public class AttitudeDAO {
     	return result;
     	
     }
+    
+    
     public boolean studentAttitudeAddMemo(String id, String at_memo) throws Exception {
     	boolean result = false;
     	try {
@@ -407,6 +513,7 @@ public class AttitudeDAO {
     	System.out.println(result);
     	return result;
     }
+    
     public boolean studentAttitudeCancel(String id, String type) throws Exception {
     	boolean result = false;
     	try {
