@@ -16,18 +16,16 @@ public class BusinessAddAction implements Action{
 		BusinessBean businessbean = new BusinessBean();
 		BusinessDAO businessdao = new BusinessDAO();
 		ActionForward forward = new ActionForward();
-		
-		try {
-			
-			businessbean.setBusiness_num(Integer.parseInt(request.getParameter("business_num")));
+		try{
 			businessbean.setBusiness_today(request.getParameter("business_today"));
 			businessbean.setBusiness_counsel(request.getParameter("business_counsel"));
 			businessbean.setBusiness_etc(request.getParameter("business_etc"));
+			
 			businessdao.businessinsert(businessbean);
 			forward.setRedirect(true);
 			forward.setPath("./BusinessNotice.bl");
-			
-		} catch (Exception e) {
+		}
+		catch(Exception e){
 			e.printStackTrace();
 		}
 		
