@@ -63,6 +63,12 @@
 									<option value="과학" <%if (subject.equals("과학")) {%> selected
 										<%}%>>과학</option>
 							</select></td>
+							<td><select name="sub_name">
+									<option value="x">반 이름을 선택하세</option>
+									<option value="A">A</option>
+									<option value="B">B</option>
+									<option value="C">C</option>
+							</select></td>
 							<td>담당 선생 선택 : <select id="teacher_sel" name="teacher_sel">
 									<option value="x">선택하세요.</option>
 									<%
@@ -101,8 +107,8 @@
 							</select></td>
 							<td><select name="half">
 									<option>학기를 선택하세요</option>
-									<option value="first">1학기</option>
-									<option value="second">2학기</option>
+									<option value="1">1학기</option>
+									<option value="2">2학기</option>
 							</select></td>
 						</tr>
 						<tr>
