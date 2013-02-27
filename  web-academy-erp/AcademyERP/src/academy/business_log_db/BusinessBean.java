@@ -5,12 +5,19 @@ import java.sql.Date;
 public class BusinessBean {
 
 	private int business_num;
+	private String business_subject;
 	private String business_today;
 	private String business_counsel;
 	private String business_etc;
 	private Date business_date;
 	
 	
+	public String getBusiness_subject() {
+		return business_subject;
+	}
+	public void setBusiness_subject(String business_subject) {
+		this.business_subject = business_subject;
+	}
 	public Date getBusiness_date() {
 		return business_date;
 	}
