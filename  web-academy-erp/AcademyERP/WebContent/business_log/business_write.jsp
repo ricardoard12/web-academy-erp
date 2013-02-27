@@ -1,3 +1,4 @@
+<%@page import="academy.business_log_db.BusinessBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,6 +11,11 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
+<%
+BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
+String level =(String) session.getAttribute("level");
+
+%>
 
 <title>Insert title here</title>
 </head>
@@ -33,6 +39,7 @@
 			<div id="content">
 
 				<body>
+				<form action="BusinessAddAction.bo" method="post">
 					<table width="50%" border="1" align="center">
 						<tr align="center">
 							<td rowspan="2" width="60%">학원 로고 및 이미지</td>
@@ -50,28 +57,29 @@
 							<td colspan="5"><br>1. 오늘의 주요 업무 사항</td>
 						</tr>
 						<tr>
-							<td colspan="5"><textarea cols="100" rows="10"></textarea></td>
+							<td colspan="5"><textarea  name="today" cols="100" rows="10"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="5">2. 상담 내역</td>
 						</tr>
 						<tr>
-							<td colspan="5"><textarea name="textarea" cols="100"
-									rows="10"></textarea></td>
+							<td colspan="5"><textarea name="counsel" cols="100"	rows="10" ></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="5">3. 기타 및 건의사항</td>
 						</tr>
 						<tr>
-							<td colspan="5"><textarea name="textarea2" cols="100"
-									rows="10"></textarea></td>
+							<td colspan="5"><textarea name="etc" cols="100"	rows="10"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="5" align="center"><input type="submit"
-								value="등록">&nbsp; <input type="reset" value="다시작성">&nbsp;
-								<input type="button" value="취소">&nbsp;</td>
+							<td colspan="5" align="center">
+							<input type="submit" value="등록">&nbsp; 
+							<input type="reset" value="다시작성">&nbsp;
+							<input type="button" value="취소">&nbsp;
+							</td>
 						</tr>
 					</table>
+					</form>
 			</div>
 		</div>
 	</div>
