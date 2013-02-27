@@ -127,4 +127,13 @@
 		<servlet-name>MasterFrontController</servlet-name>
 		<url-pattern>*.master</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>BusinessFrontController</servlet-name>
+		<servlet-class>academy.business_log_action.BusinessFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BusinessFrontController</servlet-name>
+		<url-pattern>*.bl</url-pattern>
+	</servlet-mapping>
 </web-app>
