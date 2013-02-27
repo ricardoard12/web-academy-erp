@@ -1,3 +1,4 @@
+<%@page import="academy.business_log_db.BusinessBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,7 +11,10 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-<title>Insert title here</title>
+	<title>Insert title here</title>
+	<%
+	int business_num = 1;
+	%>
 </head>
 <body>
 	<!-- UI Object -->
@@ -33,7 +37,7 @@
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./BusinessAddAction.bl" method="get">
+				<form action="./BusinessAddAction.bl" method="post">
 					<fieldset>
 						<legend>업무일지 입력 FORM</legend>
 						<div class="form_table">
