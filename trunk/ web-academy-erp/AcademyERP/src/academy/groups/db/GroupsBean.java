@@ -11,8 +11,8 @@ public class GroupsBean {
 	private String gp_half; // 학기
 	private int gp_ea; // 총 인원
 	private String gp_status; // 개설 여부
-	private Date gp_startdate; // 시작일
-	private Date gp_enddate; // 종료일
+	private String gp_startdate; // 시작일
+	private String gp_enddate; // 종료일
 	
 	public int getGp_idx() {
 		return gp_idx;
@@ -62,16 +62,16 @@ public class GroupsBean {
 	public void setGp_status(String gp_status) {
 		this.gp_status = gp_status;
 	}
-	public Date getGp_startdate() {
+	public String getGp_startdate() {
 		return gp_startdate;
 	}
-	public void setGp_startdate(Date gp_startdate) {
+	public void setGp_startdate(String gp_startdate) {
 		this.gp_startdate = gp_startdate;
 	}
-	public Date getGp_enddate() {
+	public String getGp_enddate() {
 		return gp_enddate;
 	}
-	public void setGp_enddate(Date gp_enddate) {
+	public void setGp_enddate(String gp_enddate) {
 		this.gp_enddate = gp_enddate;
 	}
 	
