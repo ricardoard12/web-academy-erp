@@ -1,7 +1,6 @@
 <%@page import="academy.business_log_db.BusinessBean"%>
 <%@page import="academy.member.db.MemberBean"%>
 <%@page import="java.util.List"%>
-<%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
@@ -13,7 +12,7 @@
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
    
-  //세션으로 id 값 받음
+  	//세션으로 id 값 받음
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
 	String name = (String) session.getAttribute("name");
@@ -80,7 +79,7 @@
     		<tr>
     		<td class="frm"><input type="checkbox" name="board_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
-    		<td class="title"><a href="./BoardDetailAction.bo?num=<%=businessbean.getBusiness_num()%>"></a></td>
+    		<td class="title"><a href="./BusinessDetailAction.bo?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
     		<td><a href="#"><%=name %></a></td>
     		<td class="date"><%=businessbean.getBusiness_date() %></td>
     		
@@ -98,7 +97,7 @@
 </table>
 <div align="right">
 <%-- <% if(level.equals("5")){ %> --%>
-<input type="button" name="board_write" value="글쓰기" onclick="location.href='./BusinessWrite.bo?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
+<input type="button" name="board_write" value="글쓰기" onclick="location.href='./BusinessWrite.bl?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
 <input type="submit" name="board_delete" value="삭제">
 </form>
 </div>
@@ -115,7 +114,7 @@ if(nowpage<=1){
 	<%
 }else{
 	%>
-	<a href="./BoardNotice.bo?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
+	<a href="./business_notice.bl?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
@@ -124,7 +123,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./BoardNotice.bo?page=<%=a%>"><%=a %></a><%
+		%><a href="./business_notice.bl?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
@@ -132,7 +131,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./BoardNotice.bo?page=<%=nowpage+1%>" class="direction next">다음 </a><%
+	%><a href="./business_notice.bl?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>

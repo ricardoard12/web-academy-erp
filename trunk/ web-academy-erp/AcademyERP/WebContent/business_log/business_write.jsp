@@ -58,7 +58,17 @@
 												
 									
 									</tr>
-
+									
+									<tr>
+										<th scope="row">제목</th>
+										<td>
+											<div class="item">
+												<input type="text" name="business_subject" id="temp_input"
+													class="i_text" style="width: 300px">
+											</div>
+										</td>
+									</tr>
+									
 									<tr>
 										<th scope="row" colspan="2">1. 오늘의 주요 업무 사항</th>
 										
