@@ -76,7 +76,7 @@ function Out(){
 						</tr>
 					</thead>
 					<tbody>
-					<%
+					<% if(request.getAttribute("StudentOutList")!=null){
 							List StudentOutList = (List)request.getAttribute("StudentOutList");
 							for(int i = 0; i< StudentOutList.size(); i++){
 							StudentBean studentBean = (StudentBean)StudentOutList.get(i);
@@ -90,14 +90,15 @@ function Out(){
 							<td><%=studentBean.getMm_name() %></td>
 							<td><%=studentBean.getSt_school_name() %></td>
 							<td><%=studentBean.getSt_school_grade()%></td>
-							<td><%=studentBean.getGp_id() %></td>
+							<td><%=studentBean.getGp_name() %></td>
 							<td><%=studentBean.getSt_tuition_state() %></td>
 						</tr>
 					<%
 					}
+					}else{
 					%>
-	
-
+						<tr><td colspan="7">정보없음</td></tr>
+					<%} %>
 
 					</tbody>
 				</table>
