@@ -112,33 +112,7 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 		</td>
 		</tr>-->
 
-									<tr>
-										<th scope="row">전화번호</th>
-										<td>
-											<div class="item">
-													<%=studentbean.getMm_tel().split("-")[0]%>-<%=studentbean.getMm_tel().split("-")[1]%>-<%=studentbean.getMm_tel().split("-")[2] %>
-											</div>
-										</td>
-									</tr>
-
-									<tr>
-										<th scope="row">휴대폰번호</th>
-										<td>
-											<div class="item">
-									<%=studentbean.getMm_phone().split("-")[0]%>-<%=studentbean.getMm_phone().split("-")[1]%>-<%=studentbean.getMm_phone().split("-")[2]%>
-											</div>
-										</td>
-									</tr>
-
-									<tr>
-										<th scope="row">이메일 주소</th>
-										<td>
-											<div class="item">
-													<%=studentbean.getMm_email().split("@")[0]%>@<%=studentbean.getMm_email().split("@")[1]%>
-											</div>
-										</td>
-									</tr>
-
+							
 									<tr>
 										<th scope="row">학교명</th>
 										<td>
@@ -166,15 +140,7 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 										</td>
 									</tr>
 
-									<tr>
-										<th scope="row">학부모 연락처</th>
-										<td>
-											<div class="item">
-												<%=studentbean.getSt_parent_mobile().split("-")[0] %>-<%=studentbean.getSt_parent_mobile().split("-")[1]%>-<%=studentbean.getSt_parent_mobile().split("-")[2]%>
-											</div>
-										</td>
-									</tr>
-
+									
 	                               <tr>
 										<th scope="row">재학상태</th>
 										<td>
@@ -187,7 +153,7 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 										<th scope="row">소속학급</th>
 										<td>
 											<div class="item">
-												<%=studentbean.getGp_id()%>
+												<%=studentbean.getGp_name()%>
 											</div>
 										</td>
 									</tr>
@@ -312,13 +278,13 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 							<th scope="col">글번호</th>
 							<th scope="col">상담제목</th>
 							<th scope="col">소속학급</th>
-							<th scope="col">담임이름</th>
+							<th scope="col">상담자 이름</th>
 							<th scope="col">날짜</th>
 						<th scope="col">상담내역</th>
 						</tr>
 					</thead>
 					<tbody>
-					<%
+					<%	if(request.getAttribute("counselList")!=null){
 							List counselList = (List)request.getAttribute("counselList");
 							for(int i = 0; i< counselList.size(); i++){
 							CounselerBean counselerbean = (CounselerBean)counselList.get(i);
@@ -336,10 +302,11 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 						
 						
 					<%
-					}
+						}
+					}else{
 					%>
-					
-					
+					<tr><td colspan="6">상담내역없음</td></tr>
+					<%} %>
 					
 						<!-- 버튼 -->
 										<tr>
@@ -381,9 +348,10 @@ if(nowpage>=maxpage){
 						<tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
+									<%if(request.getAttribute("counselList")!=null){ %><input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
 									<input type="button" value="원생 휴원" onclick="Off()">
-									<input type="button" value="원생 퇴출" onclick="Out()">
+									<input type="button" value="원생 퇴출" onclick="Out()"><%} %>
+									<input type="button" value="상담" onclick="">
 								</div>
 						</tr>
 

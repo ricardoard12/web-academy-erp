@@ -92,7 +92,7 @@ function Out(){
 							<td><%=studentBean.getMm_name() %></td>
 							<td><%=studentBean.getSt_school_name() %></td>
 							<td><%=studentBean.getSt_school_grade()%></td>
-							<td><%=studentBean.getGp_id() %></td>
+							<td><%=studentBean.getGp_name() %></td>
 							<td><%=studentBean.getSt_tuition_state() %></td>
 							<td><input type="button" value="상담"  onclick="location.href='./StudentCounsel.st?id=<%=studentBean.getMm_id()%>'"></td>
 						</tr>

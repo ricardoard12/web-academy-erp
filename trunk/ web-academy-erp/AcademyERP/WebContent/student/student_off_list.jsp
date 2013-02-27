@@ -77,6 +77,7 @@ function Out(){
 					</thead>
 					<tbody>
 					<%
+						if(request.getAttribute("StudentOffList")!=null){
 							List StudentOffList = (List)request.getAttribute("StudentOffList");
 							for(int i = 0; i< StudentOffList.size(); i++){
 							StudentBean studentBean = (StudentBean)StudentOffList.get(i);
@@ -90,11 +91,12 @@ function Out(){
 							<td><%=studentBean.getMm_name() %></td>
 							<td><%=studentBean.getSt_school_name() %></td>
 							<td><%=studentBean.getSt_school_grade()%></td>
-							<td><%=studentBean.getGp_id() %></td>
+							<td><%=studentBean.getGp_name() %></td>
 							<td><%=studentBean.getSt_tuition_state() %></td>
 						</tr>
 					<%
 					}
+				
 					%>
 						<!-- 버튼 -->
 						<tr align="right">
@@ -104,8 +106,9 @@ function Out(){
 									<input type="button" value="원생 퇴출" onclick="Out()">
 								</div>
 						</tr>
-
-
+					<%} else {%>
+					<tr><td colspan="7">정보 없음</td></tr>
+					<%} %>
 					</tbody>
 				</table>
 				<!-- //UI Object -->
