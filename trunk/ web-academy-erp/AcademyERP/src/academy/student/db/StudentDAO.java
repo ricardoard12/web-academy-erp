@@ -96,7 +96,7 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학'";
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학'";
 			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -109,7 +109,7 @@ public class StudentDAO {
 					studentbean.setMm_id(rs.getString("mm_id"));
 					studentbean.setSt_school_name(rs.getString("st_school_name"));
 					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
-					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setGp_name(rs.getString("gp_name"));
 					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
 					studentList.add(studentbean);
 				}while(rs.next());
@@ -186,7 +186,7 @@ public class StudentDAO {
 		String sql="";
 		try {
 			con = ds.getConnection();
-			sql = "SELECT s.mm_id,m.mm_name FROM student AS s,member AS m WHERE s.mm_id = m.mm_id AND st_status = '재학' and gp_id =?"; 
+			sql = "SELECT s.mm_id,m.mm_name FROM student AS s,member AS m WHERE s.mm_id = m.mm_id AND st_status = '재학' and gp_name =?"; 
 			// 학생 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, gp_name);
@@ -252,7 +252,7 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'"; 
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'"; 
 			// 휴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -266,7 +266,7 @@ public class StudentDAO {
 					studentbean.setMm_id(rs.getString("mm_id"));
 					studentbean.setSt_school_name(rs.getString("st_school_name"));
 					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
-					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setGp_name(rs.getString("gp_name"));
 					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
 					studentbean.setSt_status(rs.getString("st_status"));
 					StudentOffList.add(studentbean);
@@ -291,7 +291,7 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_id,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학'"; 
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학'"; 
 			// 퇴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -305,7 +305,7 @@ public class StudentDAO {
 					studentbean.setMm_id(rs.getString("mm_id"));
 					studentbean.setSt_school_name(rs.getString("st_school_name"));
 					studentbean.setSt_school_grade(rs.getString("st_school_grade"));
-					studentbean.setGp_id(rs.getString("gp_id"));
+					studentbean.setGp_name(rs.getString("gp_name"));
 					studentbean.setSt_tuition_state(rs.getString("st_tuition_state"));
 					studentbean.setSt_status(rs.getString("st_status"));
 					studentoutlist.add(studentbean);
@@ -353,7 +353,7 @@ public class StudentDAO {
 			con= ds.getConnection();
 			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1," +
 					"m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name," +
-					"s.st_school_grade,s.gp_id,s.st_parent_id,s.st_parent_name,s.st_tuition," +
+					"s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition," +
 					"s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id " +
 					"FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
 			
@@ -373,7 +373,7 @@ public class StudentDAO {
 				studentbean.setMm_addr2(rs.getString("mm_addr2"));
 				studentbean.setMm_zipcode(rs.getString("mm_zipcode"));
 				studentbean.setMm_email(rs.getString("mm_email"));
-				studentbean.setGp_id(rs.getString("gp_id"));
+				studentbean.setGp_name(rs.getString("gp_name"));
 				studentbean.setSt_school_name(rs.getString("st_school_name"));
 				studentbean.setSt_school_grade(rs.getString("st_school_grade"));
 				studentbean.setSt_parent_id(rs.getString("st_parent_id"));
@@ -461,7 +461,7 @@ public class StudentDAO {
 		StudentBean studentbean=null;
 		try {
 			con= ds.getConnection();
-			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_id,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_id=g.gp_name and s.st_status='재학' and m.mm_id=?";
+			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_name,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_name=g.gp_name and s.st_status='재학' and m.mm_id=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -480,7 +480,7 @@ public class StudentDAO {
 				studentbean.setSt_school_grade(rs.getString("st_school_grade")); // 학년
 				studentbean.setSt_status(rs.getString("st_status")); //상태
 				studentbean.setEp_id(rs.getString("ep_id")); //담임
-				studentbean.setGp_id(rs.getString("gp_id")); // 소속학과
+				studentbean.setGp_name(rs.getString("gp_name")); // 소속학과
 			}
 			
 		} catch (SQLException e) {
