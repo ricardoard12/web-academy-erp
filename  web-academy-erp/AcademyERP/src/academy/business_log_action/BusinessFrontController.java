@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import academy.board.action.Action;
 import academy.board.action.ActionForward;
 import academy.board.action.BoardAddAction;
+import academy.board.action.BoardNoticeAction;
 
 public class BusinessFrontController extends HttpServlet implements Servlet {
 
@@ -23,12 +24,19 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 	        ActionForward forward = null;
 	        Action action = null;
 	        
-	        if (command.equals("/BusinessLog.bo")) {
+	        if (command.equals("/BusinessWrite.bo")) {
 	            forward = new ActionForward();
 	            forward.setRedirect(false);
-	            forward.setPath("./board/business_log_write.jsp");
+	            forward.setPath("./business_log/business_write.jsp");
 	        }else if(command.equals("/BusinessAddAction.bo")){
 				action = new BoardAddAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(command.equals("/BusinessNotice.bo")){
+				action = new BoardNoticeAction();
 				try {
 					forward=action.execute(request, response);
 				} catch (Exception e) {
