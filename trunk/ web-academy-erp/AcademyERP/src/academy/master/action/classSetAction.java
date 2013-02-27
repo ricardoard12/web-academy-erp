@@ -28,8 +28,8 @@ public class classSetAction implements Action {
 		groups.setGp_lev(request.getParameter("level")
 				+ request.getParameter("level2"));
 		groups.setGp_half(request.getParameter("half"));
-		groups.setGp_status("1");
-		groups.setGp_name(request.getParameter("sub_sel")+request.getParameter("sub_name"));
+		groups.setGp_status("0");
+		groups.setGp_name(request.getParameter("sub_name"));
 		new MasterDAO().setClass(groups);
 		forward.setPath("./ClassList.master");
 		forward.setRedirect(true);
