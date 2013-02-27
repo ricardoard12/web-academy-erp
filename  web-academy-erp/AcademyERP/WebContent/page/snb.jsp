@@ -189,7 +189,7 @@
 					<li><a href="./ClassList.master"><span>학급생성</span></a></li>
 					<li><a href="#"><span>학급정보</span></a></li>
 					<li><a href="#"><span>학급별시험정보</span></a></li>
-					<li><a href="./groupsNmaeList.st"><span>학급별출결현황</span></a></li>
+					<li><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
 					<li><a href="#"><span>학급별상담내역</span></a></li>
 					<li><a href="#"><span>학급진도관리</span></a></li>
 				</ul></li>
