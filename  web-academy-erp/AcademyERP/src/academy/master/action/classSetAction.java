@@ -25,15 +25,13 @@ public class classSetAction implements Action {
 
 		groups.setGp_startdate(request.getParameter("startdate"));
 		groups.setGp_enddate(request.getParameter("enddate"));
-		groups.setGp_lev(request.getParameter("level")
-				+ request.getParameter("level2"));
+		groups.setGp_lev(request.getParameter("level"));
 		groups.setGp_half(request.getParameter("half"));
 		groups.setGp_status("0");
-		groups.setGp_name(request.getParameter("sub_name"));
+		groups.setGp_name(request.getParameter("level2")+request.getParameter("sub_name"));
 		new MasterDAO().setClass(groups);
 		forward.setPath("./ClassList.master");
 		forward.setRedirect(true);
 		return forward;
 	}
-
 }
