@@ -86,6 +86,13 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		} else if (command.equals("/ClassInfo.gp")) {
+			action = new GroupsListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		// 이동
