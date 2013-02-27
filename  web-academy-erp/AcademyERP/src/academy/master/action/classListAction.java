@@ -41,7 +41,7 @@ public class classListAction implements Action {
 		System.out.println(page+","+maxpage+","+startpage+","+endpage+","+listcount);
 		System.out.println("ClassListAcion Finished");
 		request.setAttribute("ListPackage", pack);
-		forward.setPath("./master/createClass.jsp");
+		forward.setPath("./master/ListClass.jsp");
 		forward.setRedirect(false);
 
 		return forward;
