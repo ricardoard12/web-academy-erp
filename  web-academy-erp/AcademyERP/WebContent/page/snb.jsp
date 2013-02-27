@@ -191,11 +191,18 @@
 			</li>
 
 			<%
-				if (level.equals("4") || level.equals("5")) {
+				int lev = Integer.parseInt(level);
+						if (lev >= 3) {
 			%>
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
+					<%
+						if (lev>=4) {
+					%>
 					<li><a href="./ClassList.master"><span>학급생성</span></a></li>
+					<%
+						}
+					%>
 					<li><a href="#"><span>학급정보</span></a></li>
 					<li><a href="#"><span>학급별시험정보</span></a></li>
 					<li><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
