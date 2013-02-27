@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import academy.board.action.Action;
-import academy.board.action.ActionForward;
-import academy.board.action.BoardAddAction;
 import academy.board.action.BoardNoticeAction;
 
 public class BusinessFrontController extends HttpServlet implements Servlet {
@@ -32,20 +29,21 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 	            forward.setPath("./business_log/business_write.jsp");
 	        //업무일지 입력 기능
 	        }else if(command.equals("/BusinessAddAction.bl")){
-				action = new BoardAddAction();
-				try {
-					forward=action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}else if(command.equals("/BusinessNotice.bl")){
-				action = new BoardNoticeAction();
+				action = new BusinessAddAction();
 				try {
 					forward=action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+//	        else if(command.equals("/BusinessNotice.bl")){
+//				action = new BoardNoticeAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 	        
 	//이동
 	if (forward != null) {
