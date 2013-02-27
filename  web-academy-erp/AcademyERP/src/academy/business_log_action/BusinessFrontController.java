@@ -41,7 +41,7 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/BusinessDetailAction.bl")){
+			}else if(command.equals("/BusinessDetail.bl")){
 				action = new BusinessDetailAction();
 				try {
 					forward=action.execute(request, response);
