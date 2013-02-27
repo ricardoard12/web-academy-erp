@@ -307,20 +307,21 @@ public class AttitudeDAO {
     
     
     // 여기서부터 Student
-    public List getStudentAttitudeList(String date, int page, int limit) throws Exception { // 학급 출석 현황
+    public List getGroupsStudentAttitudeList(String date, int page, int limit, String gp_name) throws Exception { // 학급 출석 현황
 		List attitudeList = null;
 		ResultSet rs2 = null;
 		ResultSet rs3 = null;
 		
-		int startRow = (page - 1) * limit + 1;
+		int startRow = (page - 1) * limit;
 		
 		try {
 			con = ds.getConnection();
-			sql = "SELECT student.mm_id, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' LIMIT ?,?"; 
+			sql = "SELECT student.mm_id, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' AND gp_name=? LIMIT ?,?"; 
 			// 학급 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, gp_name);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 
 			attitudeList = new ArrayList();
@@ -386,12 +387,13 @@ public class AttitudeDAO {
 		return attitudeList;
 	}
     
-    public int getStudentCount() {
+    public int getGroupsStudentCount(String gp_name) throws Exception {
     	int listCount = 0;
     	try {
     		con = ds.getConnection();
-    		sql = "SELECT COUNT(st_idx) FROM student WHERE student.st_status='재학'";
+    		sql = "SELECT COUNT(st_idx) FROM student WHERE gp_name = ? AND st_status='재학'";
     		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, gp_name);
     		rs = pstmt.executeQuery();
     		if (rs.next()) {
     			listCount = rs.getInt(1);
