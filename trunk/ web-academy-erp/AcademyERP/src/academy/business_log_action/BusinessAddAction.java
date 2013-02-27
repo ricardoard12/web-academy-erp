@@ -17,6 +17,7 @@ public class BusinessAddAction implements Action{
 		BusinessDAO businessdao = new BusinessDAO();
 		ActionForward forward = new ActionForward();
 		try{
+			businessbean.setBusiness_subject(request.getParameter("business_subject"));
 			businessbean.setBusiness_today(request.getParameter("business_today"));
 			businessbean.setBusiness_counsel(request.getParameter("business_counsel"));
 			businessbean.setBusiness_etc(request.getParameter("business_etc"));

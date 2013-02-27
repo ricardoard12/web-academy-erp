@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import academy.board.action.BoardNoticeAction;
 
 public class BusinessFrontController extends HttpServlet implements Servlet {
 
@@ -35,14 +34,48 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else if(command.equals("/BusinessNotice.bl")){
+				action = new BusinessNoticeAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-//	        else if(command.equals("/BusinessNotice.bl")){
-//				action = new BoardNoticeAction();
+			else if(command.equals("/BusinessDetailAction.bo")){
+				action = new BusinessDetailAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+//	        else if(command.equals("/BusinessModify.bo")){
+//				action=new BusinessModifyView();
 //				try {
 //					forward=action.execute(request, response);
 //				} catch (Exception e) {
 //					e.printStackTrace();
 //				}
+//			}else if(command.equals("/BusinessModifyAction.bo")){
+//				action=new BusinessModifyAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}else if(command.equals("/BusinessDelete.bo")){
+//				forward=new ActionForward();
+//				forward.setRedirect(false);
+//				forward.setPath("./business_log/business_delete.jsp");
+//			}else if(command.equals("/BusinessDeleteAction.bo")){
+//				action=new BusinessDeleteAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//
 //			}
 	        
 	//이동
