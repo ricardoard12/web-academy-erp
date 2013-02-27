@@ -13,7 +13,12 @@
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
 	<title>Insert title here</title>
 	<%
-	int business_num = 1;
+		//세션으로 id 값 받음
+		String id = (String) session.getAttribute("id");
+		//세션으로 name값 받음
+		String business_name = (String) session.getAttribute("name");
+		//세션으로 level 값 받음
+		String level = (String) session.getAttribute("level");
 	%>
 </head>
 <body>
@@ -42,6 +47,7 @@
 						<legend>업무일지 입력 FORM</legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
+							<input type="hidden" name="business_name" value="<%=business_name%>">
 								<tbody>
 
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,13 +59,14 @@ public class BusinessDAO {
 				num = 1;
 			}
 			
-			sql = "insert into business_log(business_num,business_subject,business_today,business_counsel,business_etc ,business_date) values(?,?,?,?,?,now())";
+			sql = "insert into business_log(business_num,business_name,business_subject,business_today,business_counsel,business_etc ,business_date) values(?,?,?,?,?,?,now())";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, businessbean.getBusiness_subject());
-			pstmt.setString(3, businessbean.getBusiness_today());
-			pstmt.setString(4, businessbean.getBusiness_counsel());
-			pstmt.setString(5, businessbean.getBusiness_etc());
+			pstmt.setString(2, businessbean.getBusiness_name());
+			pstmt.setString(3, businessbean.getBusiness_subject());
+			pstmt.setString(4, businessbean.getBusiness_today());
+			pstmt.setString(5, businessbean.getBusiness_counsel());
+			pstmt.setString(6, businessbean.getBusiness_etc());
 			pstmt.executeUpdate();
 			
 			System.out.println("BusinessInsert End");
@@ -95,6 +97,7 @@ public class BusinessDAO {
 				do{
 					BusinessBean Business=new BusinessBean();//자바빈객체
 					Business.setBusiness_num(rs.getInt("business_num"));
+					Business.setBusiness_name(rs.getString("business_name"));
 					Business.setBusiness_subject(rs.getString("business_subject"));
 					Business.setBusiness_today(rs.getString("business_today"));
 					Business.setBusiness_counsel(rs.getString("business_counsel"));
@@ -150,12 +153,14 @@ public class BusinessDAO {
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()){
-				BusinessBean Business=new BusinessBean();//자바빈객체
-				Business.setBusiness_subject(rs.getString("business_subject"));
-				Business.setBusiness_today(rs.getString("business_today"));
-				Business.setBusiness_counsel(rs.getString("business_counsel"));
-				Business.setBusiness_etc(rs.getString("business_etc"));
-				Business.setBusiness_date(rs.getDate("business_date"));
+				BusinessBean beusinessbean =new BusinessBean();//자바빈객체
+//				businessbean.setBusiness_num(rs.getInt("business_num"));
+				businessbean.setBusiness_name(rs.getString("business_name"));
+				beusinessbean.setBusiness_subject(rs.getString("business_subject"));
+				beusinessbean.setBusiness_today(rs.getString("business_today"));
+				beusinessbean.setBusiness_counsel(rs.getString("business_counsel"));
+				beusinessbean.setBusiness_etc(rs.getString("business_etc"));
+				beusinessbean.setBusiness_date(rs.getDate("business_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -164,6 +169,27 @@ public class BusinessDAO {
 		}
 		return businessbean;
 	}
+
+	public boolean busienssDelete(String[] num) throws Exception{
+		String sql="";
+		Statement stmt =null;
+		boolean result = false;
+
+        try {
+        	System.out.println("businessDelete start");
+            con = ds.getConnection();
+            for(int i=0; i<num.length; i++){
+            	sql="delete from business_log where business_num="+num[i];
+            	stmt=con.createStatement();
+            	stmt.executeUpdate(sql);	
+            	result = true;
+            	System.out.println("businessDelete end");
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} 
+        finally {dbClose();}
+		return false;
+    }
 	
 
 }

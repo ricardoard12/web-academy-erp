@@ -14,11 +14,11 @@
 <%
 BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
 
-List re_boardList=(List)request.getAttribute("re_boardlist");
+List businessList=(List)request.getAttribute("businesslist");
 
-String level =(String) session.getAttribute("level");
-String name= (String)session.getAttribute("name");
-String id = (String)session.getAttribute("id");
+// String level =(String) session.getAttribute("level");
+// String name= (String)session.getAttribute("name");
+// String id = (String)session.getAttribute("id");
 
 %>
 </head>
@@ -57,7 +57,7 @@ String id = (String)session.getAttribute("id");
 <tbody>
 <tr>
 <th scope="row">작성자</th>
-<td><%=name %></td>
+<td><%=businessbean.getBusiness_name()%></td>
 <th scope="row">작성일</th>
 <td><%=businessbean.getBusiness_date() %></td>
 </tr>
@@ -71,8 +71,8 @@ String id = (String)session.getAttribute("id");
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
-<input type="button" name="business_modify" value="수정" onclick="location.href='BusinessModify.bo?num=<%=businessbean.getBusiness_num()%>'">
-<input type="button" name="" value="목록" onclick="location.href='BusinessNotice.bo'">
+<input type="button" name="business_modify" value="수정" onclick="location.href='BusinessModify.bl?num=<%=businessbean.getBusiness_num()%>'">
+<input type="button" name="" value="목록" onclick="location.href='BusinessNotice.bl'">
 </div>
 <br>
             
