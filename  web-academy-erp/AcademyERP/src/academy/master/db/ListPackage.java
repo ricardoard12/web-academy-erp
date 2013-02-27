@@ -10,6 +10,7 @@ public class ListPackage {
 	private int listcount;
 	private List classlist;
 
+	// 생성자에 저장
 	public ListPackage(int page, int maxpage, int startpage, int endpage,
 			int listcount, List classlist) {
 		this.page = page;
