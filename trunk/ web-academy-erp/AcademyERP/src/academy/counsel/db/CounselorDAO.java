@@ -11,12 +11,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class CounselerDAO {
+import academy.student.db.StudentBean;
+
+public class CounselorDAO {
 	  Connection con=null;
 	    PreparedStatement pstmt=null;
 	    ResultSet rs=null;
 	    DataSource ds;
-	    public CounselerDAO() {
+	    public CounselorDAO() {
 	        try {
 	            Context init=new InitialContext();
 	            ds=(DataSource)init.lookup("java:comp/env/jdbc/aca");
@@ -97,6 +99,24 @@ public class CounselerDAO {
 			}
 	    	
 	    	return counselList;
+	    	
+	    }
+	    public StudentBean getstudentinfor(String mm_id){
+			String sql="";
+			
+			try {
+				con=ds.getConnection();
+				sql="select m.mm_name,m.mm_id,s.st_parent_name,s.gp_name from member as m INNER JOIN student as s where s.mm_id=? and m.mm_id=s.mm_id";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, mm_id);
+				rs=pstmt.executeQuery();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	return null;
 	    	
 	    }
 }

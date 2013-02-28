@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import academy.counsel.db.CounselerDAO;
+import academy.counsel.db.CounselorDAO;
 import academy.student.db.StudentBean;
 import academy.student.db.StudentDAO;
 
@@ -23,7 +23,7 @@ public class StudentCounselerAction implements Action{
 		
 		StudentDAO studentdao = new StudentDAO(); // 학생 정보 조회
 		
-		CounselerDAO counseldao = new CounselerDAO(); // 
+		CounselorDAO counseldao = new CounselorDAO(); // 
 		
 		String id = (String)request.getParameter("id"); // 학생 아뒤를 가지고 온다.
 		
