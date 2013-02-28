@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import academy.student.db.StudentBean;
+
 public class GroupsDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -98,6 +100,42 @@ public class GroupsDAO {
 		return list;
 	}
 
+	public List getAddStudentList() throws Exception {
+		List studentList = null;
+		
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT mm_id, st_school_name, st_school_grade FROM student WHERE gp_name IS NULL";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			studentList = new ArrayList();
+			while (rs.next()) {
+				StudentBean student = new StudentBean();
+				ResultSet rs2 = null;
+				sql = "SELECT mm_name FROM member WHERE mm_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("mm_id"));
+				rs2 = pstmt.executeQuery();
+				
+				if (rs2.next()) {
+					student.setMm_name(rs2.getString("mm_name"));
+				}
+				student.setMm_id(rs.getString("mm_id"));
+				student.setSt_school_name(rs.getString("st_school_name"));
+				student.setSt_school_grade(rs.getString("st_school_grade"));
+				
+				studentList.add(student);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return studentList;
+	}
+	
 	private List insertList() throws Exception {
 		List list = new ArrayList();
 		list.add(rs.getInt("gp_idx"));// 0
@@ -112,7 +150,7 @@ public class GroupsDAO {
 		list.add(rs.getString("gp_room"));// 9
 		return list;
 	}
-
+	
 	private void dbClose() {
 		if (rs != null)
 			try {

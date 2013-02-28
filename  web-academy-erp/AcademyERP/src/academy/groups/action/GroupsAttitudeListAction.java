@@ -10,16 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.attitude.db.AttitudeBean;
 import academy.attitude.db.AttitudeDAO;
-import academy.employee.db.EmployeeDAO;
-import academy.master.db.ListPackage;
-import academy.student.db.StudentDAO;
 
 public class GroupsAttitudeListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 직원 출결 현황
+		// 학생 출결 현황
 		System.out.println("GroupsAttitudeListAction");
 		request.setCharacterEncoding("UTF-8");
 		
@@ -41,6 +38,9 @@ public class GroupsAttitudeListAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		String gp_name = request.getParameter("gp_name"); // 학급 이름
+//		if (gp_name == null) {
+//			gp_name = "2C";
+//		}
 		int listCount = attitudeDAO.getGroupsStudentCount(gp_name); // 학생 수
 		int maxPage = (int) ((double) listCount / limit + 0.95); // 최대 페이지
 		int pageBlock = 10; // 한 블록당 페이지 수
@@ -60,6 +60,8 @@ public class GroupsAttitudeListAction implements Action {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("gp_name", gp_name);
+		
+		System.out.println("리스트 넘어간다");
 		
 		forward.setRedirect(false);
 		forward.setPath("./groups/groups_attitude_list.jsp");
