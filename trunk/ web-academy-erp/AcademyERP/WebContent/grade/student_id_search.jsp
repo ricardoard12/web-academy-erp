@@ -1,3 +1,4 @@
+<%@page import="academy.grade.db.GradeBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 </head>
 <%
@@ -13,25 +15,47 @@
 %>
 <body>
 	<form action="./GradeSearch.gr" method="post">
-		<table>
-			<tr><th>리스트</th></tr>
-			
-			<% if(searchlist == null){%>
-				<tr><td>다시 입력해주세요</td></tr>
-			<%} %>
-			
-			<tr>
-				<td></td>
-			</tr>
-			
-			
-			<tr>
-				<td align="center">
-					<input type="submit" value="입력">
-					<input type="button" value="취소" onclick="window.close()">
-				</td>
-			</tr>
-		</table>
+	
+	<table cellspacing="0" border="1" summary="목록" class="tbl_type_list">
+					<caption>목록</caption>
+					<colgroup>
+						<col width="33%" span="3">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">이름</th>
+							<th scope="col">ID</th>
+							<th scope="col">주민등록번호</th>
+						</tr>
+					</thead>
+					
+					
+					<tbody>
+					
+					<% if(searchlist == null){%>
+						<tr><td colspan="3"><h1>다시 입력해주세요</h1></td></tr>
+					<%}else{			
+
+						for(int i=0; i<searchlist.size(); i++){
+					    	GradeBean gradebean = (GradeBean)searchlist.get(i);%>
+						<tr>
+							<td><%=gradebean.getMm_name() %></td><td><%=gradebean.getMm_id() %></td>
+							<td><%=gradebean.getMm_jumin1() %> - <%=gradebean.getMm_jumin1() %></td>
+						</tr>
+					<% 		}
+						}		%>
+						<!-- 버튼 -->
+						<tr align="right">
+							<td align="center" colspan="3">
+								<div class="item">
+									<input type="submit" value="입력">
+									<input type="button" value="취소" onclick="window.close()">
+								</div>
+						</tr>
+					</tbody>
+				</table>
+				
+				
 	</form>
 </body>
 </html>
