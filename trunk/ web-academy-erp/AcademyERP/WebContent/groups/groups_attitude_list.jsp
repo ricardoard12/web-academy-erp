@@ -14,18 +14,18 @@
 <script type="text/javascript">
 	function memoOpen(id, at_memo,date) { // 메모창 열기
 		if (at_memo == "null") at_memo="";
-		window.open("./GroupsAttitudeMemoAction.em?id=" + id + "&at_memo=" + at_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
+		window.open("./GroupsAttitudeMemoAction.gp?id=" + id + "&at_memo=" + at_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
 	}
 	
 	function timeEditOpen(id, time, type, date) { // 시간 수정창 열기
 // 		var date = document.emAttitudeForm.date.value;
-		window.open("./GroupsAttitudeEditTime.em?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date, "timeEdit", "width=350,height=200,scrollbars=no");
+		window.open("./GroupsAttitudeEditTime.gp?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date, "timeEdit", "width=350,height=200,scrollbars=no");
 	}
 	
 	function confirmCancel(id, type, date) { // 버튼 클릭 확인
 		if (confirm("결석 처리 하시겠습니까?") == true) {
 // 			var date = document.emAttitudeForm.date.value;
-			location.href="./GroupsAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
+			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date;
 			return null;
 		}
 	}
@@ -33,7 +33,7 @@
 	function confirmCancel2(id, type, date) { // 버튼 클릭 확인
 		if (confirm("취소 처리 하시겠습니까?") == true) {
 // 			var date = document.emAttitudeForm.date.value;
-			location.href="./GroupsAttitudeCancelAction.em?id=" + id + "&type=" + type + "&date=" + date;
+			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date;
 			return null;
 		}
 	}	
@@ -43,27 +43,39 @@
 		if (date == "") {
 			alert('날짜 입력하세요');
 		} else {
-			document.stAttitudeForm.action = "./GroupsAttitudeListAction.em?date=" + date + "&gp_name=" + gp_name;
+			document.stAttitudeForm.action = "./GroupsAttitudeListAction.gp?date=" + date + "&gp_name=" + gp_name;
 			document.stAttitudeForm.submit();
 		}
 	}
 
 	function timeRecord(type, id, date) { 
 // 		var date = document.emAttitudeForm.date.value;
-		location.href="./GroupsAttitudeTimeRecordingAction.em?type=" + type + "&id=" + id + "&date=" + date;
+		location.href="./GroupsAttitudeTimeRecordingAction.gp?type=" + type + "&id=" + id + "&date=" + date;
 	}
 	
-	function selGroups(date, gp_name) { // 학급 선택
-		location.href="./GroupsAttitudeListAction.em?date=" + date + "&gp_name=" + gp_name;
+	function selGroups(gp_name, date) { // 학급 선택
+		location.href="./GroupsAttitudeListAction.gp?date=" + date + "&gp_name=" + gp_name;
 	}
-// 	selGroups(value)
+
+	function addStudent(gp_name) { // 학급 학생 추가
+		if (gp_name == "") {
+			alert('학급을 선택하세요.');
+		} else {
+			window.open("./GroupsAddStudent.gp?gp_name=" + gp_name, "addStudent", "width=400,height=500,scrollbars=yes");
+		}
+	}
+	
 </script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
 	String date = (String) request.getAttribute("date");
-	String gp_name = (String)request.getAttribute("gp_name");
+	String gp_name = "";
+	if (request.getAttribute("gp_name") != null) {
+		gp_name = (String)request.getAttribute("gp_name");
+	}
+	
 	SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 	
 	int nowPage = ((Integer)request.getAttribute("page")).intValue();
@@ -118,6 +130,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										학급 : 
 										<select name="gp_name" onchange="selGroups(value, '<%=date%>')">
+											<option value="">학급 선택</option>
 											<%if (gp_name.equals("1A")) { %> <option value="1A" selected>1A</option> <%} else {%><option value="1A">1A</option><%} %>
 											<%if (gp_name.equals("1B")) { %> <option value="1B" selected>1B</option> <%} else {%><option value="1B">1B</option><%} %>
 											<%if (gp_name.equals("2A")) { %> <option value="2A" selected>2A</option> <%} else {%><option value="2A">2A</option><%} %>
@@ -143,71 +156,76 @@
 						</thead>
 						<tbody>
 						<%
-						for (int i = 0; i < attitudeList.size(); i++) {
-							AttitudeBean attitude = (AttitudeBean)attitudeList.get(i);
-						%>
-							<tr>
-								<td><input name="studentSelect" type="checkbox" id="a1"
-									class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
-								<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
-								<td>
-									<%
-										// at_report_state Y : 출근, N : 미출근
-										if (attitude.getAt_report_state().equals("Y")) {%>출근<%	} 
-										else {%>미출근<%} 
-									%>
-								</td>
-								<td>
-									<%
-										if (attitude.getAt_come_time() != null) { // 출근 시간이 기록되어 있을 경우
-											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
-											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
-										} else { %><input type="button" value="출석" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>')">	<%} 
-									%>	
-								</td>
-								<td>
-									<%
-										if (attitude.getAt_leave_time() != null) { // 퇴근 시간이 기록되어 있을 경우
-											%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
-											<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
-										} else { 
-											%><input type="button" value="퇴실" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>','<%=date%>')"><%
-										} 
-									%>	
-								</td>
-								<td>
-									<%
-										if (attitude.getAt_memo() != null) { // 메모가 기록되어 있을 경우
-											if (attitude.getAt_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
-												%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
-											} else {
-												if (attitude.getAt_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
-													%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%
-												} else {
-													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo()%></a><%
-												}
+						if (attitudeList.size() == 0) {
+						%><tr><td colspan="7">선택하신 학급 학생이 없습니다. </td></tr><%	
+						} else {
+							for (int i = 0; i < attitudeList.size(); i++) {
+								AttitudeBean attitude = (AttitudeBean)attitudeList.get(i);
+							%>
+								<tr>
+									<td><input name="studentSelect" type="checkbox" id="a1"
+										class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
+									<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
+									<td>
+										<%
+											// at_report_state Y : 출근, N : 미출근
+											if (attitude.getAt_report_state().equals("Y")) {%>출근<%	} 
+											else {%>미출근<%} 
+										%>
+									</td>
+									<td>
+										<%
+											if (attitude.getAt_come_time() != null) { // 출근 시간이 기록되어 있을 경우
+												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
+												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+											} else { %><input type="button" value="출석" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>')">	<%} 
+										%>	
+									</td>
+									<td>
+										<%
+											if (attitude.getAt_leave_time() != null) { // 퇴근 시간이 기록되어 있을 경우
+												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
+												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+											} else { 
+												%><input type="button" value="퇴실" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>','<%=date%>')"><%
 											} 
-										} else { // 메모 없을 경우
-											%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null','<%=date%>')"><%
-										}%>
-								</td>
-								<td>
-									<input type="button" value="결석처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all','<%=date%>')">
-								</td>
-							</tr>
-						<%
-						} // for문 종료
+										%>	
+									</td>
+									<td>
+										<%
+											if (attitude.getAt_memo() != null) { // 메모가 기록되어 있을 경우
+												if (attitude.getAt_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
+													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+												} else {
+													if (attitude.getAt_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
+														%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%
+													} else {
+														%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo()%></a><%
+													}
+												} 
+											} else { // 메모 없을 경우
+												%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null','<%=date%>')"><%
+											}%>
+									</td>
+									<td>
+										<input type="button" value="결석처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all','<%=date%>')">
+									</td>
+								</tr>
+							<%
+							} // for문 종료
+						}
 						%>
+						
 							<!-- 버튼 -->
-<!-- 							<tr align="right"> -->
-<!-- 								<td align="center" colspan="7"> -->
-<!-- 									<div class="item"> -->
-<!-- 										<input type="button" value="선택 출근" onclick="checkForm(btnCome)">  -->
-<!-- 										<input type="button" value="선택 퇴근" onclick="checkForm(btnLeave)">  -->
-<!-- 										<input type="button" value="선택 결근" onclick="checkForm(btnAbsence)"> -->
-<!-- 										<input type="button" value="선택 문자 발송"> -->
-<!-- 									</div> -->
-<!-- 							</tr> -->
+							<tr align="right">
+								<td align="center" colspan="7">
+									<div class="item">
+										<input type="button" value="학생 추가" onclick="addStudent('<%=gp_name%>')"> 
+										<input type="button" value="학급 이동" onclick="moveStudent()"> 
+										<input type="button" value="학생 제외" onclick="checkForm('<%=gp_name%>')">
+										<input type="button" value="선택 문자 발송" onclick="">
+									</div>
+							</tr>
 						</tbody>
 					</table>
 				</form>

@@ -29,6 +29,14 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		} else if (command.equals("/GroupsAddStudent.gp")) { // 학급 학생 추가
+			action = new GroupsAddStudent();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 			// }else if(command.equals("/GroupsAttitudeEditTime.gp")){ // 출근 시간
 			// 등록 폼
 			// forward = new ActionForward();
@@ -78,7 +86,6 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			// e.printStackTrace();
 			// }
 		} else if (command.equals("/GroupsNameList.gp")) { // 과목의 총목록을 구해오기 위해서
-															// 사용
 			action = new GroupsNameListAction();
 			try {
 				forward = action.execute(request, response);
