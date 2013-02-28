@@ -51,7 +51,11 @@ public class GradeDAO {
             pstmt.setString(5, gradebean.getEp_id());
             pstmt.setString(6, gradebean.getGr_place());
             pstmt.setString(7, gradebean.getGr_period());
-            pstmt.setString(8, "N"); //무조건 시험진행중 N 시험완료 Y
+            if(gradebean.getGr_place().equals("학원")){
+                pstmt.setString(8, "N"); //무조건 시험진행중 N 시험완료 Y
+            }else{
+                pstmt.setString(8, ""); //무조건 시험진행중 N 시험완료 Y
+            }
             
             pstmt.executeUpdate();
             result = true;
@@ -59,16 +63,17 @@ public class GradeDAO {
         return result;
     }
     
-    public List gradeAcademyTesting(){
+    //시험중 자료
+    public List gradeAcademyTest(String status){
         List gradeAcademyList = null;
         GradeBean gradebean = null;
         String sql="";
-        
         try {
             con=ds.getConnection();
             sql = "select gr_code, gr_subject, gr_memo, gr_exam_date, ep_id" +
-            		" from grade where gr_place = '학원'";
+            		" from grade where gr_place = '학원' and gr_status=? ";
             pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, status);
             rs = pstmt.executeQuery();
             if(rs.next()){
                 gradeAcademyList = new ArrayList();
@@ -86,6 +91,28 @@ public class GradeDAO {
             
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
         return gradeAcademyList;
+    }
+    
+    public void gradeAcademyMoveTested(String[] check){
+        StringBuffer sql = new StringBuffer("update grade set gr_status='Y' where gr_code in (");
+        // 기본 쿼리문만을 StringBuffer로 생성한다.
+        for(int i=0; i<check.length; i++){
+            sql.append("'"+check[i]+"'");
+            if(i<check.length-1){   
+              //만약 check의 길이가 i보다 크다면 ,를 붙인다.
+                sql.append(",");
+            }else if(i==check.length-1){    
+              //위의조건 만족시 만약 i와 check가 같다면 ) 으로써 쿼리를 완성한다
+                sql.append(")");
+            }
+        }
+        
+        try {
+            con=ds.getConnection();
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
     }
     
     public List gradeSchoolList(){

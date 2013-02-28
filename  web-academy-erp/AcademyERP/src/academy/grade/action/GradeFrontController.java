@@ -25,23 +25,42 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             forward = new ActionForward();
             forward.setRedirect(false);
             forward.setPath("./grade/grade_register.jsp");
+            
+            //학교/학원 정보등록
         }else if(command.equals("/GradeJoinAction.gr")) {
             action = new GradeJoinAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
-        }else if(command.equals("/GradeAcademyTesting.gr")) {
-            action = new GradeAcademyTestingAction();
-            try {forward = action.execute(request, response);
-            } catch (Exception e) {e.printStackTrace();}
-        }else if(command.equals("/GradeSchoolTested.gr")) {
-            action = new GradeSchoolTestedAction();
-            try {forward = action.execute(request, response);
-            } catch (Exception e) {e.printStackTrace();}
+         
         }else if(command.equals("/GradeIDSearch.gr")) {
             action = new GradeIDSearchAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
+            
+            //학원 시험중인 정보
+        }else if(command.equals("/GradeAcademyTesting.gr")) {
+            action = new GradeAcademyTestingAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+            
+            //학원 시험완료된 정보            
+        }else if(command.equals("/GradeAcademyTested.gr")) {
+            action = new GradeAcademyTestedAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+            
+            //학원 시험중인 정보 완료변경
+        }else if(command.equals("/GradeMoveTested.gr")) {
+            action = new GradeMoveTestedAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+            
+        }else if(command.equals("/GradeSchoolTested.gr")) {
+            action = new GradeSchoolTestedAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
         }
+        
         
         // 이동
         if (forward != null) {

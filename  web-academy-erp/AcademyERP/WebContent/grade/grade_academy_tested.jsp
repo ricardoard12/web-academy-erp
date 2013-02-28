@@ -34,8 +34,10 @@
 				<!-- UI Object -->
 
 				<%
-				    List gradeAcademyList = (List)request.getAttribute("gradeAcademyList");
+				    List gradeAcademyTested = (List)request.getAttribute("gradeAcademyTested");
 				%>
+				<legend>학원 시험완료</legend>
+				<form name="grCheck" method="post" >
 				<table cellspacing="0" border="1" summary="학원 시험 목록" class="tbl_type_list">
 					<caption>학원 시험 목록</caption>
 					<colgroup>
@@ -45,7 +47,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">선택</th>
+							<th scope="col">전체선택<br><input type="checkbox" name="all" onclick="CheckAll()"></th>
 							<th scope="col">과목ID</th>
 							<th scope="col">과목명</th>
 							<th scope="col">과목설명</th>
@@ -55,11 +57,10 @@
 					</thead>
 					<tbody>
 
-					<% for(int i=0; i<gradeAcademyList.size(); i++){
-						GradeBean gradebean = (GradeBean)gradeAcademyList.get(i);%>
+					<% for(int i=0; i<gradeAcademyTested.size(); i++){
+						GradeBean gradebean = (GradeBean)gradeAcademyTested.get(i);%>
 						<tr>
-							<td><input name="" type="checkbox" value="" id="a1" class="i_check">
-							<label for="a1"></label></td>
+							<td><input type="checkbox" name="check" value="<%=gradebean.getGr_code() %>"></td>
 							<td><a href=""><%=gradebean.getGr_code() %></a></td>
 							<td><%=gradebean.getGr_subject() %></td>
 							<td><%=gradebean.getGr_memo() %></td>
@@ -71,15 +72,34 @@
 						<tr align="right">
 							<td align="center" colspan="6">
 								<div class="item">
-									<input type="submit" value="선택 삭제">
+									<input type="submit" value="시험완료">
 								</div>
 						</tr>
 
-
 					</tbody>
 				</table>
+				</form>
+				
 				<!-- //UI Object -->
-
+				
+<script type="text/javascript">
+	function CheckAll() {
+		if (document.grCheck.all.checked == true) { // 체크가 되었다면
+			for ( var x = 0; x < grCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+				document.grCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
+			}
+		} else {
+			for ( var x = 0; x < grCheck.check.length; x++) { // 모두 해제 시킨다..
+				document.grCheck.check[x].checked = false;
+			}
+		}
+	}
+	
+	function MoveTested() {
+		document.grCheck.action = "./GradeMoveTested.gr";
+		document.grCheck.submit();
+	}
+</script>
 				<!-- //수강생 관리 끝 -->
 
 			</div>

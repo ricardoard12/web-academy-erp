@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.grade.db.GradeDAO;
 
-public class GradeAcademyTestingAction implements Action{
+public class GradeAcademyTestedAction implements Action{
 
     @Override
     public ActionForward execute(HttpServletRequest request,
@@ -15,13 +15,13 @@ public class GradeAcademyTestingAction implements Action{
         ActionForward forward = new ActionForward();
         GradeDAO gradedao = new GradeDAO();
         
-        //학원 시험중인 자료가져오는 기준
-        String status = "N";
-        List gradeAcademyTesting = gradedao.gradeAcademyTest(status);
+        //학원 시험 완료된 자료가져오는 기준
+        String status = "Y";
+        List gradeAcademyTested = gradedao.gradeAcademyTest(status);
         
-        request.setAttribute("gradeAcademyTesting", gradeAcademyTesting);
+        request.setAttribute("gradeAcademyTested", gradeAcademyTested);
         forward.setRedirect(false);
-        forward.setPath("./grade/grade_academy_testing.jsp");
+        forward.setPath("./grade/grade_academy_tested.jsp");
         return forward;
     }
 
