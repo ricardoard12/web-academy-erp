@@ -104,6 +104,18 @@
 	}
 	
 	function MoveTested() {
+		count = 0;
+		for ( var x = 0; x < grCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+			if(document.grCheck.check[x].checked == true){
+				count++;
+			} //for문을 사용하여 모두 체크 시킨다.
+		}
+		
+		if(count<=0){
+			alert("PlZ One more");
+			return false;
+		}
+		
 		if(confirm("시험 완료 하시겠습니까?") == true){
 			document.grCheck.action = "./GradeMoveTested.gr";
 			document.grCheck.submit();
