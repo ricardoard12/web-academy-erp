@@ -217,20 +217,11 @@
 				<ul style="display: none;">
 					<li><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
 
+					<li><a href="./GradeAcademyTesting.gr"><span> - 학원 시험진행</span></a></li>
+					
+					<li><a href="./GradeAcademyTested.gr"><span> - 학원 시험완료</span></a></li>
 
-					<li><a><span><strong>학교성적관리</strong></span></a></li>
-					<li><a href="#"><span> - 진행중시험</span></a></li>
-
-					<li><a><span><strong>학원시험관리</strong></span></a></li>
-
-					<li><a href="./GradeAcademyList.gr"><span> - 학원 학생별
-								리스트</span></a></li>
-					<li><a><span><strong>학원시험관리</strong></span></a></li>
-
-
-					<li><a><span><strong>학교성적관리</strong></span></a></li>
-					<li><a href="./GradeSchoolList.gr"><span> - 학교 학생별
-								리스트</span></a></li>
+					<li><a href="./GradeSchoolTested.gr"><span> - 학교 성적 </span></a></li>
 
 				</ul></li>
 

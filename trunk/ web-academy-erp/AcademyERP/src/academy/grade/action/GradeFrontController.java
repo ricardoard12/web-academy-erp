@@ -29,12 +29,12 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             action = new GradeJoinAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
-        }else if(command.equals("/GradeAcademyList.gr")) {
-            action = new GradeAcademyListAction();
+        }else if(command.equals("/GradeAcademyTesting.gr")) {
+            action = new GradeAcademyTestingAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
-        }else if(command.equals("/GradeSchoolList.gr")) {
-            action = new GradeSchoolListAction();
+        }else if(command.equals("/GradeSchoolTested.gr")) {
+            action = new GradeSchoolTestedAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
         }else if(command.equals("/GradeIDSearch.gr")) {

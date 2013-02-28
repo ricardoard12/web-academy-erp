@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.grade.db.GradeDAO;
 
-public class GradeAcademyListAction implements Action{
+public class GradeSchoolTestedAction implements Action{
 
     @Override
     public ActionForward execute(HttpServletRequest request,
@@ -15,11 +15,11 @@ public class GradeAcademyListAction implements Action{
         ActionForward forward = new ActionForward();
         GradeDAO gradedao = new GradeDAO();
         
-        List gradeAcademyList = gradedao.gradeAcademyList();
+        List gradeSchoolList = gradedao.gradeSchoolList();
         
-        request.setAttribute("gradeAcademyList", gradeAcademyList);
+        request.setAttribute("gradeSchoolList", gradeSchoolList);
         forward.setRedirect(false);
-        forward.setPath("./grade/grade_academy_list.jsp");
+        forward.setPath("./grade/grade_school_list.jsp");
         return forward;
     }
 
