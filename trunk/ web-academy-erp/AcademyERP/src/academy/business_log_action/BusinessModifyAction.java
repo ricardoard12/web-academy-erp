@@ -18,7 +18,7 @@ public class BusinessModifyAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		BusinessBean businessbean = new BusinessBean();
-		businessbean.setBusiness_num(Integer.parseInt("business_num"));
+		businessbean.setBusiness_num(Integer.parseInt(request.getParameter("business_num")));
 		businessbean.setBusiness_name(request.getParameter("business_name"));
 		businessbean.setBusiness_subject(request.getParameter("business_subject"));
 		businessbean.setBusiness_today(request.getParameter("business_today"));
@@ -31,7 +31,7 @@ public class BusinessModifyAction implements Action{
 		forward.setRedirect(true);
 		
 		
-		forward.setPath("./BusinessNotice.bl");
+		forward.setPath("./business_log/business_modify.jsp");
 		return forward;
 	}
 

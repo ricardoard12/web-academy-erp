@@ -64,7 +64,7 @@
 <th scope="col">No</th>
 <th scope="col">제목</th>
 <th scope="col">글쓴이</th>
-<th scope="col">날짜</th>
+<th scope="col"colspan="2">날짜</th>
 
 </tr>
 </thead>
@@ -82,7 +82,7 @@
     		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
 <%-- 			<td class="title"><a href="./BusinessDetailAction.bl"><%=businessbean.getBusiness_subject() %></a></td> --%>
     		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
-    		<td class="date"><%=businessbean.getBusiness_date() %></td>
+    		<td class="date" colspan="2"><%=businessbean.getBusiness_date() %></td>
     		
     		</tr>
     		

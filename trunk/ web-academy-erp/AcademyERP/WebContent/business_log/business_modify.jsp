@@ -46,7 +46,7 @@
 
 				<form action="./BusinessModifyAction.bl" method="post">
 					<input type="hidden" name="business_num" value="<%=businessbean.getBusiness_num()%>">
-					<input type="hidden" name="business_name" value="<%=name%>">
+					
 					<fieldset>
 						<legend>업무일지 수정</legend>
 						<div class="form_table">
@@ -126,7 +126,7 @@
 												<input type="submit" value="수정"
 													onclick="submitContents(this)"> <input
 													type="button" name="" value="취소"
-													onclick="location.href='./BusinessNotice.bo'">
+													onclick="location.href='./BusinessNotice.bl'">
 											</div>
 										</td>
 									</tr>
