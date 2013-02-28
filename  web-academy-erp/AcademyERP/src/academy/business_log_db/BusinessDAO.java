@@ -142,7 +142,7 @@ public class BusinessDAO {
 
 	public BusinessBean getDetail(int num) throws Exception{
 		String sql="";
-		BusinessBean businessbean = null;
+		BusinessBean businessbean = new BusinessBean();//자바빈객체
 		try {
 			System.out.println("getDetail start");
 			con=ds.getConnection();
@@ -153,15 +153,15 @@ public class BusinessDAO {
 			rs=pstmt.executeQuery();
 		
 			if(rs.next()){
-				BusinessBean beusinessbean =new BusinessBean();//자바빈객체
 				businessbean.setBusiness_num(rs.getInt("business_num"));
 				businessbean.setBusiness_name(rs.getString("business_name"));
-				beusinessbean.setBusiness_subject(rs.getString("business_subject"));
-				beusinessbean.setBusiness_today(rs.getString("business_today"));
-				beusinessbean.setBusiness_counsel(rs.getString("business_counsel"));
-				beusinessbean.setBusiness_etc(rs.getString("business_etc"));
-				beusinessbean.setBusiness_date(rs.getDate("business_date"));
+				businessbean.setBusiness_subject(rs.getString("business_subject"));
+				businessbean.setBusiness_today(rs.getString("business_today"));
+				businessbean.setBusiness_counsel(rs.getString("business_counsel"));
+				businessbean.setBusiness_etc(rs.getString("business_etc"));
+				businessbean.setBusiness_date(rs.getDate("business_date"));
 			}
+			System.out.println("getDetail End");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -190,6 +190,55 @@ public class BusinessDAO {
         finally {dbClose();}
 		return false;
     }
+	
+	public boolean isBoardWriter(int num , String name){
+		String sql="";
+		boolean x = false;
+		try {
+			System.out.println("isBoardWriter start");
+			con=ds.getConnection();
+			
+			sql="select business_name from board where business_num=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				String dbName=rs.getString("business_name");
+				if(name.equals(dbName)){
+					x=true;
+				}
+			}
+			System.out.println("isBoardWriter End");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}
+		return x;
+	}
+
+	public void businessModify(BusinessBean businessbean) throws Exception{
+		String sql="";
+		try {
+			System.out.println("businessModify start");
+			con=ds.getConnection();
+			sql="update business_log set business_subject=? , business_today=? , business_counsel=?, business_etc=? where business_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, businessbean.getBusiness_subject());
+			pstmt.setString(2, businessbean.getBusiness_today());
+			pstmt.setString(3, businessbean.getBusiness_counsel());
+			pstmt.setString(4, businessbean.getBusiness_etc());
+			pstmt.setInt(5, businessbean.getBusiness_num());
+			pstmt.executeUpdate();
+			System.out.println("businessModify End");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}
+	}
 	
 
 }
