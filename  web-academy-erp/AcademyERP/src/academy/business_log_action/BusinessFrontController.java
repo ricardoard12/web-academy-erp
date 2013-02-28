@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import academy.board.action.ActionForward;
+import academy.board.action.BoardDeleteAction;
+
 
 public class BusinessFrontController extends HttpServlet implements Servlet {
 
@@ -55,7 +58,17 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}else if(command.equals("/BusinessDelete.bo")){
+				forward=new ActionForward();
+				forward.setRedirect(false);
+				forward.setPath("./business_log/business_delete.jsp");
+			}else if(command.equals("/BusinessDeleteAction.bl")){
+				action=new BusinessDeleteAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	      
 	        
 	//이동

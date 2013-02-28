@@ -40,8 +40,9 @@ String id = (String)session.getAttribute("id");
         <div id="content">
         
 <!-- detail 게시판 시작 -->
-<form action="BusinessModifyAction.bl" method="post">
+<form action="./BusinessModifyAction.bl" method="post">
 <table cellspacing="0" border="1" summary="글 내용을 표시" class="tbl_type_notice">
+<input type="hidden" name="business_num" value="<%=request.getParameter("num")%>">
 <caption>글 읽기</caption>
 <colgroup>
 <col width="80"><col><col width="80">
@@ -64,29 +65,33 @@ String id = (String)session.getAttribute("id");
 </tr>
 <!-- 금일업무 데이터 출력 -->
 <tr>
+<th scope="row" colspan="6">1. 금일 업무 사항</th></tr><tr>
 <td colspan="6" class="cont">
 <%=businessbean.getBusiness_today() %>
 </td>
 </tr>
 <!-- 상담내역 출력 -->
 <tr>
+<th scope="row" colspan="6">2. 금일 상담 내역</th></tr><tr>
 <td colspan="6" class="cont">
 <%=businessbean.getBusiness_counsel() %>
 </tr>
 <!-- 기타사항 출력 -->
 <tr>
+<th scope="row" colspan="6">2. 금일 기타사항</th></tr><tr>
 <td colspan="6" class="cont">
 <%=businessbean.getBusiness_etc() %>
 </tr>
 </tbody>
 </table>
-</form>
+
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
 <input type="submit" name="business_modify" value="수정">
 <input type="button" name="" value="목록" onclick="location.href='BusinessNotice.bl'">
 </div>
+</form>
 <br>
             
 <!-- //dtail 게시판 끝 -->
