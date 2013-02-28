@@ -13,9 +13,7 @@
 <title>Insert title here</title>
 <%
 BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
-
 List businessList=(List)request.getAttribute("businesslist");
-
 String level =(String) session.getAttribute("level");
 String name= (String)session.getAttribute("name");
 String id = (String)session.getAttribute("id");
@@ -42,6 +40,7 @@ String id = (String)session.getAttribute("id");
         <div id="content">
         
 <!-- detail 게시판 시작 -->
+<form action="BusinessModifyAction.bl" method="post">
 <table cellspacing="0" border="1" summary="글 내용을 표시" class="tbl_type_notice">
 <caption>글 읽기</caption>
 <colgroup>
@@ -81,10 +80,11 @@ String id = (String)session.getAttribute("id");
 </tr>
 </tbody>
 </table>
+</form>
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
-<input type="button" name="business_modify" value="수정" onclick="location.href='BusinessModify.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>'">
+<input type="submit" name="business_modify" value="수정">
 <input type="button" name="" value="목록" onclick="location.href='BusinessNotice.bl'">
 </div>
 <br>

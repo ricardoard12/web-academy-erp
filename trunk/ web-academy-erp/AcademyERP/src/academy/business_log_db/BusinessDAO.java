@@ -224,13 +224,14 @@ public class BusinessDAO {
 		try {
 			System.out.println("businessModify start");
 			con=ds.getConnection();
-			sql="update business_log set business_subject=? , business_today=? , business_counsel=?, business_etc=? where business_num=?";
+			sql="update business_log set business_name=?,business_subject=? , business_today=? , business_counsel=?, business_etc=? where business_num=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, businessbean.getBusiness_subject());
-			pstmt.setString(2, businessbean.getBusiness_today());
-			pstmt.setString(3, businessbean.getBusiness_counsel());
-			pstmt.setString(4, businessbean.getBusiness_etc());
-			pstmt.setInt(5, businessbean.getBusiness_num());
+			pstmt.setString(1, businessbean.getBusiness_name());
+			pstmt.setString(2, businessbean.getBusiness_subject());
+			pstmt.setString(3, businessbean.getBusiness_today());
+			pstmt.setString(4, businessbean.getBusiness_counsel());
+			pstmt.setString(5, businessbean.getBusiness_etc());
+			pstmt.setInt(6, businessbean.getBusiness_num());
 			pstmt.executeUpdate();
 			System.out.println("businessModify End");
 		} catch (Exception e) {
