@@ -34,6 +34,26 @@
 		}
 		return null;
 	}
+	///* 강의실 넣기 대화상자 부분시작*///
+	$(function() {
+		$("#insertClassDialog-form").dialog({
+			autoOpen : false,
+			height : 300,
+			width : 350,
+			modal : true,
+			button : {
+				"OK" : function() {
+				}
+			},
+			Cancel : function() {
+				$(this).dialog("close");
+			}
+		});
+		$("#insertClass").button().click(function(){
+			$("#insertClassDialog-form").dialog("open");
+		});		
+	});
+	///* 강의실 넣기 대화상자 부분종료*///
 </script>
 </head>
 <body>
@@ -99,7 +119,8 @@
 								<td>
 									<%
 										if (list.get(9) == null) {
-									%><a href="#">강의실 넣기</a> <%
+									%><input type="button" id="insertClass"
+									style="text-decoration: none;" value="강의실 넣기"> <%
  	} else {
  %> <%=list.get(9)%> <%
  	}
@@ -171,6 +192,7 @@
 					%>
 				</div>
 				<!-- //수강생 관리 끝 -->
+				<div id="insertClassDialog-form" title="강의실을 넣으세요."></div>
 			</div>
 			<!-- //content -->
 		</div>
