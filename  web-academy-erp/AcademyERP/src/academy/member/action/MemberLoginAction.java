@@ -30,7 +30,7 @@ public class MemberLoginAction implements Action{
         Vector vector = memberdao.isMember(memberbean);
         
         //벡터로 가져와서 검사
-        int result = (int)vector.get(0);
+        int result =(Integer) vector.get(0);
         
         if(result == 0){
             //비밀번호 틀림
