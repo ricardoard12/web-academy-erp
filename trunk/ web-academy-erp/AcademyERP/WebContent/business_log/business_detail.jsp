@@ -16,9 +16,9 @@ BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
 
 List businessList=(List)request.getAttribute("businesslist");
 
-// String level =(String) session.getAttribute("level");
-// String name= (String)session.getAttribute("name");
-// String id = (String)session.getAttribute("id");
+String level =(String) session.getAttribute("level");
+String name= (String)session.getAttribute("name");
+String id = (String)session.getAttribute("id");
 
 %>
 </head>
@@ -51,27 +51,40 @@ List businessList=(List)request.getAttribute("businesslist");
 <thead>
 <tr>
 <th scope="row">제목</th>
-<td colspan="5"><%=businessbean.getBusiness_subject() %></td>
+<td colspan="5" align="left"><%=businessbean.getBusiness_subject() %></td>
 </tr>
 </thead>
 <tbody>
 <tr>
 <th scope="row">작성자</th>
-<td><%=businessbean.getBusiness_name()%></td>
-<th scope="row">작성일</th>
-<td><%=businessbean.getBusiness_date() %></td>
+<td colspan="5"><%=businessbean.getBusiness_name()%></td>
 </tr>
+<tr>
+<th scope="row">작성일</th>
+<td colspan="5"><%=businessbean.getBusiness_date() %></td>
+</tr>
+<!-- 금일업무 데이터 출력 -->
 <tr>
 <td colspan="6" class="cont">
 <%=businessbean.getBusiness_today() %>
 </td>
+</tr>
+<!-- 상담내역 출력 -->
+<tr>
+<td colspan="6" class="cont">
+<%=businessbean.getBusiness_counsel() %>
+</tr>
+<!-- 기타사항 출력 -->
+<tr>
+<td colspan="6" class="cont">
+<%=businessbean.getBusiness_etc() %>
 </tr>
 </tbody>
 </table>
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
-<input type="button" name="business_modify" value="수정" onclick="location.href='BusinessModify.bl?num=<%=businessbean.getBusiness_num()%>'">
+<input type="button" name="business_modify" value="수정" onclick="location.href='BusinessModify.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>'">
 <input type="button" name="" value="목록" onclick="location.href='BusinessNotice.bl'">
 </div>
 <br>
