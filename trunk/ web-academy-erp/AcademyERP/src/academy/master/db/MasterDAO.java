@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import academy.groups.db.GroupsBean;
 import academy.member.db.MemberBean;
 
 public class MasterDAO {
@@ -255,5 +256,28 @@ public class MasterDAO {
 		list.add(rs.getString("mm_name"));
 		list.add(rs.getString("ep_subject_name"));
 		return list;
+	}
+	// 반생
+	public void setClass(GroupsBean groups) {
+		 try{
+			 con=ds.getConnection();
+			 String sql="insert into groups (gp_name,ep_id,gp_lev,gp_half,gp_status,gp_startdate,gp_enddate) values(?,?,?,?,?,?,?)";
+			 System.out.println("학급삽입 --->");
+			 pstmt=con.prepareStatement(sql);
+			 pstmt.setString(1, groups.getGp_name());
+			 pstmt.setString(2, groups.getEp_id());
+			 pstmt.setString(3,groups.getGp_lev());
+			 pstmt.setString(4,groups.getGp_half());
+			 pstmt.setString(5, groups.getGp_status());
+			 pstmt.setString(6,groups.getGp_startdate());
+			 pstmt.setString(7,groups.getGp_enddate());
+			 pstmt.executeUpdate();
+			 System.out.println("학급 삽입 완료 --->");
+		 }catch(Exception e){
+			 e.printStackTrace();
+			 System.out.println("!!!!!!!!!!!!학급 삽입 실패!!!!!!!!!!!!");
+		 }finally{
+			 dbClose();
+		 }
 	}
 }
