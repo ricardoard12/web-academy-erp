@@ -124,12 +124,11 @@ public class GradeDAO {
         List searchlist = null;
         String sql = "";
         GradeBean gradebean = null;
-        
         try {
             con=ds.getConnection();
-            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like '%?%' ";
+            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, "%"+id+"%");
             rs = pstmt.executeQuery();
             if(rs.next()){
                 searchlist = new ArrayList();
