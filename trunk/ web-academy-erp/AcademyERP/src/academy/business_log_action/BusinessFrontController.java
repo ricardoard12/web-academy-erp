@@ -41,37 +41,30 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/BusinessDetail.bl")){
+			}else if(command.equals("/BusinessDetailAction.bl")){
 				action = new BusinessDetailAction();
 				try {
 					forward=action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/BusinessDeleteAction.bl")){
-				action=new BusinessDeleteAction();
+			}
+	        else if(command.equals("/BusinessModify.bl")){
+				action=new BusinessModifyView();
 				try {
 					forward=action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
-//	        else if(command.equals("/BusinessModify.bo")){
-//				action=new BusinessModifyView();
-//				try {
-//					forward=action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}else if(command.equals("/BusinessModifyAction.bo")){
-//				action=new BusinessModifyAction();
-//				try {
-//					forward=action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
+	        else if(command.equals("/BusinessModifyAction.bl")){
+				action=new BusinessModifyAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 	      
 	        
 	//이동

@@ -18,7 +18,7 @@ public class BusinessDetailAction implements Action {
 		
 		ActionForward forward=new ActionForward();
 		int num = Integer.parseInt(request.getParameter("num"));
-		System.out.println("diiiiid"+num);
+		System.out.println("현재 num값 : "+num);
 		
 		businessbean = businessdao.getDetail(num);
 		request.setAttribute("businessbean", businessbean);
