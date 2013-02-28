@@ -80,6 +80,7 @@
     		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
     		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
+<%-- 			<td class="title"><a href="./BusinessDetailAction.bl"><%=businessbean.getBusiness_subject() %></a></td> --%>
     		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
     		<td class="date"><%=businessbean.getBusiness_date() %></td>
     		
