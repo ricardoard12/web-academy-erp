@@ -351,7 +351,7 @@ if(nowpage>=maxpage){
 									<%if(request.getAttribute("counselList")!=null){ %><input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
 									<input type="button" value="원생 휴원" onclick="Off()">
 									<input type="button" value="원생 퇴출" onclick="Out()"><%} %>
-									<input type="button" value="상담" onclick="">
+									<input type="button" value="상담" onclick="location.href='./CounselAdd.cc?mm_id=<%=studentbean.getMm_name()%>">
 								</div>
 						</tr>
 
