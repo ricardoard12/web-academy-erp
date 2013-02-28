@@ -21,8 +21,6 @@ public class GradeJoinAction implements Action{
         String gr_code = null; // 과목 코드
         String gr_subject = null; // 과목명
         String gr_memo = null; // 시험내용
-        String mm_id = null; // 학생ID
-        int gr_score; // 과목 점수
         Date gr_exam_date = null; // 시험 일자
         String ep_id = null; // 담당 강사
         String gr_place = null; // 시험 장소 분류(학교 or 학원)
@@ -44,10 +42,6 @@ public class GradeJoinAction implements Action{
         //공통
         gr_subject = request.getParameter("gr_subject");
         gr_memo = request.getParameter("gr_memo");
-        mm_id = request.getParameter("mm_id");
-        gr_score = Integer.parseInt(request.getParameter("gr_score"));
-        
-        
         
         //bean 저장 , 학원*학교에 따라 저장 다름
         GradeBean gradebean = new GradeBean();
@@ -59,10 +53,8 @@ public class GradeJoinAction implements Action{
             gradebean.setGr_period(gr_period);
         }
 
-        gradebean.setMm_id(mm_id);
         gradebean.setGr_memo(gr_memo);
         gradebean.setGr_place(gr_place);
-        gradebean.setGr_score(gr_score);
         gradebean.setGr_subject(gr_subject);
        
         
@@ -83,7 +75,7 @@ public class GradeJoinAction implements Action{
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('실패하였습니다');");
-            out.println("history.go(-1);");
+            out.println("history.back();");
             out.println("</script>");
             out.close();
         }

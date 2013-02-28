@@ -41,19 +41,17 @@ public class GradeDAO {
         
         try {
             con=ds.getConnection();
-            sql = "insert into grade(gr_code, gr_subject, gr_memo, mm_id, gr_score, gr_exam_date, ep_id, gr_place, gr_period)" +
-                    "values(?,?,?,?,?,?,?,?,?)";
+            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status)" +
+                    "values(?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, gradebean.getGr_code());
             pstmt.setString(2, gradebean.getGr_subject());
             pstmt.setString(3, gradebean.getGr_memo());
-            pstmt.setString(4, gradebean.getMm_id());
-            pstmt.setInt(5, gradebean.getGr_score());
-            pstmt.setDate(6, gradebean.getGr_exam_date());
-            pstmt.setString(7, gradebean.getEp_id());
-            pstmt.setString(8, gradebean.getGr_place());
-            pstmt.setString(9, gradebean.getGr_period());
-            
+            pstmt.setDate(4, gradebean.getGr_exam_date());
+            pstmt.setString(5, gradebean.getEp_id());
+            pstmt.setString(6, gradebean.getGr_place());
+            pstmt.setString(7, gradebean.getGr_period());
+            pstmt.setString(8, "N"); //무조건 시험진행중 N 시험완료 Y
             
             pstmt.executeUpdate();
             result = true;
@@ -61,14 +59,14 @@ public class GradeDAO {
         return result;
     }
     
-    public List gradeAcademyList(){
+    public List gradeAcademyTesting(){
         List gradeAcademyList = null;
         GradeBean gradebean = null;
         String sql="";
         
         try {
             con=ds.getConnection();
-            sql = "select gr_code, gr_subject, gr_memo, gr_exam_date, mm_id, gr_score, ep_id" +
+            sql = "select gr_code, gr_subject, gr_memo, gr_exam_date, ep_id" +
             		" from grade where gr_place = '학원'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -80,8 +78,6 @@ public class GradeDAO {
                     gradebean.setGr_subject(rs.getString("gr_subject"));
                     gradebean.setGr_memo(rs.getString("gr_memo"));
                     gradebean.setGr_exam_date(rs.getDate("gr_exam_date"));
-                    gradebean.setMm_id(rs.getString("mm_id"));
-                    gradebean.setGr_score(rs.getInt("gr_score"));
                     gradebean.setEp_id(rs.getString("ep_id"));
                     
                     gradeAcademyList.add(gradebean);

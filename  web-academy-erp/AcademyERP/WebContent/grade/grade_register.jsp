@@ -48,15 +48,7 @@
 		</td>
 		</tr>
 		
-		<tr> 
-		<th scope="row">학생ID</th>
-		<td>
-			<div class="item">
-				<input type="text" name="mm_id" title="학생ID" class="i_text">
-				<input type="button" value="아이디찾기" onclick="searchopen('s')">
-			</div>
-		</td>
-		</tr>
+		
 		<!-- tr태그의 school 클래스 academy클래스 폼 구별 -->
 		<tr class="school"> 
 		<th scope="row">학교명</th>
@@ -85,15 +77,7 @@
 		</td>
 		</tr>
 		
-		<tr> 
-		<th scope="row">과목점수</th>
-		<td>
-			<div class="item">
-				<input type="text" name="gr_score" title="" class="i_text">
-			</div>
-		</td>
-		</tr>
-		
+				
 		<tr> 
 		<th scope="row">과목 설명</th>
 		<td>
@@ -109,7 +93,7 @@
 		<td>
 			<div class="item">
 				<input type="text" name="ep_id" title="" class="i_text">
-				<input type="button" value="강사찾기" onclick="searchopen('t')">
+				<input type="button" value="강사찾기" onclick="searchopen()">
 			</div>
 		</td>
 		</tr>
@@ -192,25 +176,16 @@
 
 <script type="text/javascript">
 
-function searchopen(name){
+function searchopen(){
 	
-	if (name == "s") {
-		id = document.grade.mm_id.value;
-		if (id.length == 0) {
-			alert("학생 이름를 입력하세요");
-			document.grade.mm_id.focus();
-			return false;
-		}
-	}else if(name == "t"){
 		id = document.grade.ep_id.value;
 		if (id.length == 0) {
 			alert("강사 이름를 입력하세요");
 			document.grade.ep_id.focus();
 			return false;
 		}
-	}
 	
-	window.open('GradeIDSearch.gr?id=' + id, '_blank', 'height=200, width=400');
+	window.open('GradeTSearch.gr?id=' + id, '_blank', 'height=200, width=400');
 		
 }
 	
