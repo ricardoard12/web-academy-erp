@@ -136,4 +136,13 @@
 		<servlet-name>BusinessFrontController</servlet-name>
 		<url-pattern>*.bl</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CounselerFrontController</servlet-name>
+		<servlet-class>academy.counsel.action.CounselerFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CounselerFrontController</servlet-name>
+		<url-pattern>*.cc</url-pattern>
+	</servlet-mapping>
 </web-app>
