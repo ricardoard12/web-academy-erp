@@ -142,10 +142,22 @@
 	}
 
 	function Del() {
-		document.acCheck.action = "./AccountingDelete.ac";
-		document.acCheck.submit();
+		count = 0;
+		for ( var x = 0; x < acCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+			if(document.acCheck.check[x].checked == true){
+				count++;
+			} //for문을 사용하여 모두 체크 시킨다.
+		}
+		
+		if(count<=0){
+			alert("한 개이상 선택하세요");
+			return false;
+		}else if(confirm("삭제 하시겠습니까?") == true){
+			document.acCheck.action = "./AccountingDelete.ac";
+			document.acCheck.submit();
+		}
 	}
-
+	
 	function CheckDate() {
 		var date = document.acCheck.date.value;
 		if(date == ''){

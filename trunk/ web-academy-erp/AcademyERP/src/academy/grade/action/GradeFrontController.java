@@ -32,8 +32,8 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
          
-        }else if(command.equals("/GradeIDSearch.gr")) {
-            action = new GradeIDSearchAction();
+        }else if(command.equals("/GradeTsearch.gr")) {
+            action = new GradeTsearchAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
             

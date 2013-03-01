@@ -41,8 +41,8 @@ public class GradeDAO {
         
         try {
             con=ds.getConnection();
-            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status)" +
-                    "values(?,?,?,?,?,?,?,?)";
+            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status, gr_school_name)" +
+                    "values(?,?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, gradebean.getGr_code());
             pstmt.setString(2, gradebean.getGr_subject());
@@ -51,11 +51,15 @@ public class GradeDAO {
             pstmt.setString(5, gradebean.getEp_id());
             pstmt.setString(6, gradebean.getGr_place());
             pstmt.setString(7, gradebean.getGr_period());
+            
             if(gradebean.getGr_place().equals("학원")){
                 pstmt.setString(8, "N"); //무조건 시험진행중 N 시험완료 Y
             }else{
                 pstmt.setString(8, ""); //무조건 시험진행중 N 시험완료 Y
             }
+            
+            pstmt.setString(9, gradebean.getGr_school_name());
+            
             
             pstmt.executeUpdate();
             result = true;
@@ -63,6 +67,34 @@ public class GradeDAO {
         return result;
     }
     
+    public List gradeTsearch(String ep_id){
+        List gradeTsearch = null;
+        String sql = "";
+        GradeBean gradebean = null;
+        try {
+            con=ds.getConnection();
+            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ? and mm_id like 't%'";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "%"+ep_id+"%");
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                gradeTsearch = new ArrayList();
+                do{
+                    gradebean = new GradeBean();
+                    gradebean.setMm_name(rs.getString("mm_name"));
+                    gradebean.setMm_id(rs.getString("mm_id"));
+                    gradebean.setMm_jumin1(rs.getString("mm_jumin1"));
+                    gradebean.setMm_jumin2(rs.getString("mm_jumin2"));
+                    
+                    gradeTsearch.add(gradebean);
+                    
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+       
+        return gradeTsearch;
+    }
     //시험중 자료
     public List gradeAcademyTest(String status){
         List gradeAcademyList = null;
@@ -143,32 +175,4 @@ public class GradeDAO {
         return gradeSchoolList;
     }
     
-    public List IDSearch(String id){
-        List searchlist = null;
-        String sql = "";
-        GradeBean gradebean = null;
-        try {
-            con=ds.getConnection();
-            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, "%"+id+"%");
-            rs = pstmt.executeQuery();
-            if(rs.next()){
-                searchlist = new ArrayList();
-                do{
-                    gradebean = new GradeBean();
-                    gradebean.setMm_name(rs.getString("mm_name"));
-                    gradebean.setMm_id(rs.getString("mm_id"));
-                    gradebean.setMm_jumin1(rs.getString("mm_jumin1"));
-                    gradebean.setMm_jumin2(rs.getString("mm_jumin2"));
-                    
-                    searchlist.add(gradebean);
-                    
-                }while(rs.next());
-            }
-            
-        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
-       
-        return searchlist;
-    }
 }

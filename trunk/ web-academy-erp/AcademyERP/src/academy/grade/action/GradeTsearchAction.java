@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.grade.db.GradeDAO;
 
-public class GradeIDSearchAction implements Action{
+public class GradeTsearchAction implements Action{
 
     @Override
     public ActionForward execute(HttpServletRequest request,
@@ -17,16 +17,15 @@ public class GradeIDSearchAction implements Action{
         
         request.setCharacterEncoding("UTF-8");
         
-        String id = "";
-        //학생 이름 or 선생 이름 값 받기
-        id = request.getParameter("id");
+        //선생 이름 값 받기
+        String ep_id = request.getParameter("ep_id");
         GradeDAO gradedao = new GradeDAO();
-        List searchlist = gradedao.IDSearch(id);
+        List gradeTsearch = gradedao.gradeTsearch(ep_id);
         
-        request.setAttribute("searchlist", searchlist);
+        request.setAttribute("gradeTsearch", gradeTsearch);
         
         forward.setRedirect(false);
-        forward.setPath("./grade/student_id_search.jsp");
+        forward.setPath("./grade/teacher_search.jsp");
         return forward;
     }
 
