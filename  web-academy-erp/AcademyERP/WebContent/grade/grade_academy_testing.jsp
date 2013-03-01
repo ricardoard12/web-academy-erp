@@ -112,11 +112,9 @@
 		}
 		
 		if(count<=0){
-			alert("PlZ One more");
+			alert("한 개이상 선택하세요");
 			return false;
-		}
-		
-		if(confirm("시험 완료 하시겠습니까?") == true){
+		}else if(confirm("시험 완료 하시겠습니까?") == true){
 			document.grCheck.action = "./GradeMoveTested.gr";
 			document.grCheck.submit();
 		}

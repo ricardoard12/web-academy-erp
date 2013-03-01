@@ -54,7 +54,7 @@
 		<th scope="row">학교명</th>
 		<td>
 			<div class="item">
-				아이디에서 학교명만 가져와서 보여주기 입력은 안해도 되
+				<input type="text" name="gr_school_name" title="" class="i_text">
 			</div>
 		</td>
 		</tr>
@@ -178,19 +178,18 @@
 
 function searchopen(){
 	
-		id = document.grade.ep_id.value;
-		if (id.length == 0) {
+		ep_id = document.grade.ep_id.value;
+		if (ep_id.length == 0) {
 			alert("강사 이름를 입력하세요");
 			document.grade.ep_id.focus();
 			return false;
 		}
 	
-	window.open('GradeTSearch.gr?id=' + id, '_blank', 'height=200, width=400');
+	window.open('GradeTsearch.gr?ep_id=' + ep_id, '_blank', 'height=200, width=400');
 		
 }
 	
 	
-
 	jQuery(document).ready(function() {
 
 		/* 클래스 academy, school 폼 변환*/

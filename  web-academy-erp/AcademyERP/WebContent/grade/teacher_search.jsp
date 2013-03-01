@@ -11,10 +11,10 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
-	List searchlist = (List)request.getAttribute("searchlist");
+	List gradeTsearch = (List)request.getAttribute("gradeTsearch");
 %>
 <body>
-	<form action="./GradeSearch.gr" method="post">
+	<form action="" name="tSearch" method="post">
 	
 	<table cellspacing="0" border="1" summary="목록" class="tbl_type_list">
 					<caption>목록</caption>
@@ -29,17 +29,17 @@
 						</tr>
 					</thead>
 					
-					
 					<tbody>
 					
-					<% if(searchlist == null){%>
+					<% if(gradeTsearch == null){%>
 						<tr><td colspan="3"><h1>다시 입력해주세요</h1></td></tr>
 					<%}else{			
 
-						for(int i=0; i<searchlist.size(); i++){
-					    	GradeBean gradebean = (GradeBean)searchlist.get(i);%>
+						for(int i=0; i<gradeTsearch.size(); i++){
+					    	GradeBean gradebean = (GradeBean)gradeTsearch.get(i);%>
 						<tr>
-							<td><%=gradebean.getMm_name() %></td><td><%=gradebean.getMm_id() %></td>
+							<td><%=gradebean.getMm_name() %></td>
+							<td onclick="windowclose('<%=gradebean.getMm_id() %>')"><a href=""><%=gradebean.getMm_id() %></a></td>
 							<td><%=gradebean.getMm_jumin1() %> - <%=gradebean.getMm_jumin1() %></td>
 						</tr>
 					<% 		}
@@ -48,14 +48,19 @@
 						<tr align="right">
 							<td align="center" colspan="3">
 								<div class="item">
-									<input type="submit" value="입력">
 									<input type="button" value="취소" onclick="window.close()">
 								</div>
 						</tr>
 					</tbody>
 				</table>
-				
-				
 	</form>
+	
+	<script type="text/javascript">
+	function windowclose(mm_id){
+		opener.document.grade.ep_id.value = mm_id;
+		window.close();
+	}
+	</script>
+	
 </body>
 </html>
