@@ -20,8 +20,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <title>권한 설정</title>
+<script src="./js/jquery-1.9.1.js"></script>
+<script src="./js/jquery.ui.dialog.js"></script>
+
 <script>
+	///* 강의실 넣기 대화상자 부분시작*///
+	$(function() {
+		var $dialog = $("#dialog").dialog({
+			autoOpen:false,
+			modal : true,
+			height : 300
+		});
+		$("#insertClass").click(function() {			
+			alert();
+			$dialog.dialog("open");
+		});
+	});
+	///* 강의실 넣기 대화상자 부분종료*///
+
 	function statusChange(id, page, value) {
 		//var str="#status"+;
 		if (value == "x") {
@@ -32,26 +51,6 @@
 		}
 		return null;
 	}
-	///* 강의실 넣기 대화상자 부분시작*///
-	$(function() {
-		$("#insertClassDialog-form").dialog({
-			autoOpen : false,
-			height : 300,
-			width : 350,
-			modal : true,
-			button : {
-				"OK" : function() {
-				}
-			},
-			Cancel : function() {
-				$(this).dialog("close");
-			}
-		});
-		$("#insertClass").button().click(function(){
-			$("#insertClassDialog-form").dialog("open");
-		});		
-	});
-	///* 강의실 넣기 대화상자 부분종료*///
 </script>
 </head>
 <body>
@@ -72,7 +71,7 @@
 			<!-- //snb -->
 			<!-- content -->
 			<div id="content">
-
+				<div id="dialog">이부분은 대화상자 영역입니다.</div>
 				<!-- 직원 목록 시작 -->
 
 				<!-- UI Object -->
@@ -117,8 +116,8 @@
 								<td>
 									<%
 										if (list.get(9) == null) {
-									%><input type="button" id="insertClass"
-									style="text-decoration: none;" value="강의실 넣기"> <%
+									%><div id="insertClass" style="text-decoration: none;">강의실
+										넣기</div> <%
  	} else {
  %> <%=list.get(9)%> <%
  	}
