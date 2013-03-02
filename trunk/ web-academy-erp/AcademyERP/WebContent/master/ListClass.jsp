@@ -1,3 +1,4 @@
+
 <%@page import="academy.master.db.ListPackage"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -79,7 +80,7 @@
 					<input type="hidden" name="page" value="<%=nowpage%>">
 					<table cellspacing="0" border="1" summary="직원리스트"
 						class="tbl_type_list">
-						<caption>직원 목록</caption>
+						<caption>학급 목록</caption>
 						<colgroup>
 							<col width="8%">
 							<col>

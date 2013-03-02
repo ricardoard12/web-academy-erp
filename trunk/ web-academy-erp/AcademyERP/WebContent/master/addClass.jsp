@@ -8,10 +8,12 @@
 	if (teacherlist == null) {
 		response.sendRedirect("./index.jsp");
 	}
+	System.out.println("오류 검증 1");
 	String subject = "x";
 	if ((String) request.getAttribute("sub") != null) {
 		subject = (String) request.getAttribute("sub");
 	}
+	System.out.println("오류 검증 2");
 %>
 <!DOCTYPE>
 <html>
@@ -49,20 +51,7 @@
 					method="post">
 					<table>
 						<tr>
-							<td>과목 :<select id="subject_sel" name="sub_sel"
-								onchange="sub_change(value)">
-									<option value="x">과목을 선택하세요.</option>
-									<option value="국어" <%if (subject.equals("국어")) {%> selected
-										<%}%>>국어</option>
-									<option value="영어" <%if (subject.equals("영어")) {%> selected
-										<%}%>>영어</option>
-									<option value="수학" <%if (subject.equals("수학")) {%> selected
-										<%}%>>수학</option>
-									<option value="사회" <%if (subject.equals("사회")) {%> selected
-										<%}%>>사회</option>
-									<option value="과학" <%if (subject.equals("과학")) {%> selected
-										<%}%>>과학</option>
-							</select></td>
+							<td></td>
 							<td><select name="sub_name">
 									<option value="x">반 이름을 선택하세</option>
 									<option value="A">A</option>
@@ -74,11 +63,9 @@
 									<%
 										for (int i = 0; i < teacherlist.size(); i++) {
 											List tList = (List) teacherlist.get(i);
-											if (tList.get(2).equals(subject)) {
 									%>
 									<option value="<%=tList.get(0)%>"><%=tList.get(1)%></option>
 									<%
-										}
 										}
 									%>
 							</select></td>
