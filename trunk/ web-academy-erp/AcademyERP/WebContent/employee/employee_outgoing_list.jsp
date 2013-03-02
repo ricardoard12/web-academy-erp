@@ -10,6 +10,12 @@
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function memoOpen(id, ep_memo,date) { // 메모창 열기
+		if (ep_memo == "null") ep_memo="";
+		window.open("./EmployeeOutgoingMemoAction.em?id=" + id + "&ep_memo=" + ep_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
+	}
+</script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -76,14 +82,18 @@
 								<td><%=employee.getEp_out_date()%></td>
 								<td>
 									<%
-										if (employee.getEp_memo() != null) {
-											if (employee.getEp_memo().length() > 10) {
-												%><a href="#"><%=employee.getEp_memo().substring(0,10) + "..."%></a><%
+										if (employee.getEp_memo() != null) { // 메모가 기록되어 있을 경우
+											if (employee.getEp_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
+												%><a href="#" onclick="memoOpen('<%=employee.getEp_id() %>','<%=employee.getEp_memo()%>')"><%=employee.getEp_memo().substring(0,10) + "..."%></a><%
 											} else {
-												%><a href="#"><%=employee.getEp_memo()%></a><%
+												if (employee.getEp_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
+													%><input type="button" value="입력" onclick="memoOpen('<%=employee.getEp_id() %>','<%=employee.getEp_memo()%>')"><%
+												} else {
+													%><a href="#" onclick="memoOpen('<%=employee.getEp_id() %>','<%=employee.getEp_memo()%>')"><%=employee.getEp_memo()%></a><%
+												}
 											} 
-										} else {
-											%><input type="button" value="입력" onclick="#"><%
+										} else { // 메모 없을 경우
+											%><input type="button" value="입력" onclick="memoOpen('<%=employee.getEp_id() %>','null')"><%
 										}%>
 								</td>
 							</tr>

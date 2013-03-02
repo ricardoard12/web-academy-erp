@@ -1,5 +1,8 @@
 package academy.employee.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,14 +18,19 @@ public class EmployeeOutgoingAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		EmployeeDAO employeeDAO = new EmployeeDAO();
-
+		List outgoingList = new ArrayList();
+		
 		String[] ep_id = (String[])request.getParameterValues("employeeSelect");
 		for (int i = 0; i < ep_id.length; i++) {
-			employeeDAO.employeeOutgoing(ep_id[i]);
+			System.out.println("EP_ID 넣기. ep_id : " + ep_id[i]);
+//			employeeDAO.employeeOutgoing(ep_id[i]);
+			outgoingList.add(ep_id[i]);
 		}
 		
+		employeeDAO.employeeOutgoing(outgoingList);
+		
 		forward.setRedirect(true);
-		forward.setPath("./EmployeeListAction.em");
+		forward.setPath("./EmployeeOutgoingListAction.em");
 		return forward;
 	}
 
