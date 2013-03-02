@@ -49,6 +49,20 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/GroupsMoveStudent.gp")) { // 학급 이동 폼
+			action = new GroupsMoveStudent();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/GroupsMoveStudentAction.gp")) { // 학급 이동
+			action = new GroupsMoveStudentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			// }else if(command.equals("/GroupsAttitudeEditTime.gp")){ // 출근 시간
 			// 등록 폼
 			// forward = new ActionForward();
