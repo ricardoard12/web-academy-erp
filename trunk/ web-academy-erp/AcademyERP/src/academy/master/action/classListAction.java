@@ -38,8 +38,10 @@ public class classListAction implements Action {
 			endpage = maxpage;
 		ListPackage pack = new ListPackage(page, maxpage, startpage, endpage,
 				listcount, classlist);
+		List roomlist=master.getRoomList();
 		System.out.println(page+","+maxpage+","+startpage+","+endpage+","+listcount);
 		System.out.println("ClassListAcion Finished");
+		request.setAttribute("roomlist", roomlist);
 		request.setAttribute("ListPackage", pack);
 		forward.setPath("./master/ListClass.jsp");
 		forward.setRedirect(false);
