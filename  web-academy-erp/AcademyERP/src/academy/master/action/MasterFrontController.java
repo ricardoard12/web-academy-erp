@@ -84,6 +84,13 @@ public class MasterFrontController extends HttpServlet implements Servlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/roomUpdate.master")){
+			action=new roomUpdateAction();
+			try{
+			forward=action.execute(request, response);	
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		// 이동
 		if (forward != null) {
