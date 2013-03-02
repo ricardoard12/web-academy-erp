@@ -13,6 +13,7 @@
 	int maxpage = Pack.getMaxpage();
 	int startpage = Pack.getStartpage();
 	int endpage = Pack.getEndpage();
+	List roomlist = (List) request.getAttribute("roomlist");
 %>
 <!DOCTYPE>
 <html>
@@ -20,26 +21,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
+<link href="./css/demos.css" rel="stylesheet">
+
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-<title>권한 설정</title>
+<title>학급 설정</title>
 <script src="./js/jquery-1.9.1.js"></script>
-<script src="./js/jquery.ui.dialog.js"></script>
-
+<script src="./js/jquery-ui.custom.js"></script>
 <script>
-	///* 강의실 넣기 대화상자 부분시작*///
-	var $dialog = $("#dialog").dialog({
-		autoOpen : false,
-		modal : true,
-		height : 300
-	});
-	$("#insertClass").click(function() {
-		alert();
-		//$(this).bind();
-		//$dialog.dialog("open");
-	});
-	///* 강의실 넣기 대화상자 부분종료*///
+	///* 강의실 넣기 대화상자 부분시작*///	
 
+	///* 강의실 넣기 대화상자 부분종료*///
+	function roomChange(id, page, value) {
+		if (value == "x") {
+			location.reload();
+		} else {
+			var roominfo = value.split(",");
+			var roomidx = roominfo[0];
+			var ea = roominfo[1];
+			location.href = "./roomUpdate.master?id=" + id + "&page=" + page
+					+ "&room=" + roomidx + "&ea=" + ea;
+		}
+		return null;
+
+	}
 	function statusChange(id, page, value) {
 		//var str="#status"+;
 		if (value == "x") {
@@ -70,10 +75,10 @@
 			<!-- //snb -->
 			<!-- content -->
 			<div id="content">
-				<div id="dialog">이부분은 대화상자 영역입니다.</div>
 				<!-- 직원 목록 시작 -->
 
 				<!-- UI Object -->
+				<div id="dialog"></div>
 				<form action="./DeleteClass.master" method="post">
 					<input type="hidden" name="page" value="<%=nowpage%>">
 					<table cellspacing="0" border="1" summary="직원리스트"
@@ -112,16 +117,21 @@
 									value="<%=list.get(0)%>"></td>
 								<td><%=list.get(0)%></td>
 								<td><%=list.get(1)%></td>
-								<td>
-									<%
-										if (list.get(9) == null) {
-									%><div id="insertClass" style="text-decoration: none;">강의실
-										넣기</div> <%
- 	} else {
- %> <%=list.get(9)%> <%
- 	}
- %>
-								</td>
+								<td><select name="room_sel"
+									onchange="roomChange('<%=list.get(0)%>','<%=nowpage%>',value)"><option
+											value="x">강의실을 선택하세요.</option>
+										<%
+											for (int j = 0; j < roomlist.size(); j++) {
+														List rList = (List) roomlist.get(j);
+														if ((Integer)rList.get(2)==1) {
+										%>
+										<option value="<%=rList.get(0)%>,<%=rList.get(3)%>" <%if(list.get(9)==rList.get(0)){ %>selected<%} %>><%=rList.get(1)%>호(정원:<%=rList.get(3)%>명)
+										</option>
+										<%
+											}
+													}
+										%>
+								</select></td>
 								<td><%=list.get(2)%></td>
 								<td><%=list.get(3)%></td>
 								<td><%=list.get(4)%></td>
