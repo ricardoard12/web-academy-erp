@@ -1,6 +1,4 @@
 <%@page import="academy.master.db.ListPackage"%>
-<%@page import="java.util.Vector"%>
-<%@page import="academy.employee.db.EmployeeBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,7 +6,10 @@
 	request.setCharacterEncoding("utf-8");
 	ListPackage Pack = (ListPackage) request
 			.getAttribute("ListPackage");
-	List classlist = Pack.getClasslist();
+	List classlist=null;
+	if (Pack.getClasslist() != null) {
+		 classlist= Pack.getClasslist();
+	}
 	int listcount = Pack.getListcount();
 	int nowpage = Pack.getPage();
 	int maxpage = Pack.getMaxpage();
