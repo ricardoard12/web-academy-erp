@@ -1,7 +1,4 @@
-
 <%@page import="academy.master.db.ListPackage"%>
-<%@page import="java.util.Vector"%>
-<%@page import="academy.employee.db.EmployeeBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
