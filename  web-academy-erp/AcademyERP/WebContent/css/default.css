@@ -170,4 +170,9 @@
 #footer address .logo_v1{position:relative;top:-2px}
 /* //footer */
 
+.insertClass:HOVER {
+	cursor:pointer;
+	color:orange;
+}
+
 
