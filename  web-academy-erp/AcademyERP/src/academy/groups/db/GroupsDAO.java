@@ -67,7 +67,7 @@ public class GroupsDAO {
 			if (rs.next()) {
 				x = rs.getInt(1);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -79,10 +79,12 @@ public class GroupsDAO {
 	// 해당 선생의 담당 학급 가져오기
 	public List getGroupsList(int page, int limit, String ep_id) throws Exception {
 		List list = null;
-		int startrow=(page-1)*limit+1;
+		int startrow = (page - 1) * limit + 1;
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT * FROM groups where ep_id='" + ep_id + "' order by gp_idx desc limit "+(startrow-1)+","+limit;
+			String sql = "SELECT * FROM groups where ep_id='" + ep_id
+					+ "' order by gp_idx desc limit " + (startrow - 1) + ","
+					+ limit;
 			System.out.println("getlist Start-->");
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {
@@ -102,13 +104,13 @@ public class GroupsDAO {
 
 	public List getAddStudentList() throws Exception {
 		List studentList = null;
-		
+
 		try {
 			con = ds.getConnection();
 			String sql = "SELECT mm_id, st_school_name, st_school_grade FROM student WHERE gp_name IS NULL"; // 학급에 소속되어 있지 않은 학생만 검색
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			studentList = new ArrayList();
 			while (rs.next()) {
 				StudentBean student = new StudentBean();
@@ -117,14 +119,14 @@ public class GroupsDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, rs.getString("mm_id"));
 				rs2 = pstmt.executeQuery();
-				
+
 				if (rs2.next()) {
 					student.setMm_name(rs2.getString("mm_name"));
 				}
 				student.setMm_id(rs.getString("mm_id"));
 				student.setSt_school_name(rs.getString("st_school_name"));
 				student.setSt_school_grade(rs.getString("st_school_grade"));
-				
+
 				studentList.add(student);
 			}
 		} catch (Exception e) {
@@ -132,10 +134,10 @@ public class GroupsDAO {
 		} finally {
 			dbClose();
 		}
-		
+
 		return studentList;
 	}
-	
+
 	public boolean groupsAddStudent(String gp_name, List studentList) throws Exception { // 학급 학생 추가
 		boolean result = false;
 		try {
@@ -242,7 +244,7 @@ public class GroupsDAO {
 		list.add(rs.getString("gp_room"));// 9
 		return list;
 	}
-	
+
 	private void dbClose() {
 		if (rs != null)
 			try {
@@ -260,6 +262,35 @@ public class GroupsDAO {
 			} catch (SQLException ex) {
 			}
 		System.out.println("Groups DB Closed");
+	}
+
+	public List getRoomList() {
+		List list = null;
+		try {
+			con = ds.getConnection();
+			String sql = "select * from room_list where room_status=1";
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				list = new ArrayList();
+				do {
+					list.add(insertRoomList());
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return list;
+	}
+
+	private List insertRoomList() throws Exception {
+		List list = new ArrayList();
+		list.add(rs.getInt("room_list_idx"));// 0
+		list.add(rs.getInt("room_list_name"));// 1
+		list.add(rs.getInt("room_status"));// 2
+		list.add(rs.getInt("room_ea"));// 3
+		return list;
 	}
 
 }
