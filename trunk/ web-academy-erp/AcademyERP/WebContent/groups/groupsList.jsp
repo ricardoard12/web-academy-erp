@@ -6,10 +6,7 @@
 	request.setCharacterEncoding("utf-8");
 	ListPackage Pack = (ListPackage) request
 			.getAttribute("ListPackage");
-	List classlist=null;
-	if (Pack.getClasslist() != null) {
-		 classlist= Pack.getClasslist();
-	}
+	List classlist = Pack.getClasslist();
 	int listcount = Pack.getListcount();
 	int nowpage = Pack.getPage();
 	int maxpage = Pack.getMaxpage();
@@ -56,8 +53,14 @@
 						<caption>담당 학급 목록</caption>
 						<colgroup>
 							<col width="8%">
-							<col>
-							<col width="8%" span="8">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
+							<col width="8%">
 						</colgroup>
 						<thead>
 							<tr>
@@ -82,18 +85,45 @@
 							<tr>
 								<td><%=list.get(0)%></td>
 								<td><%=list.get(1)%></td>
-								<td><%=list.get(9)%></td>
+								<td>
+									<%
+										if (list.get(9) == null) {
+									%> 미정 <%
+										} else {
+									%><%=list.get(9)%> <%
+ 	}
+ %>
+								</td>
 								<td><%=list.get(3)%></td>
 								<td><%=list.get(4)%></td>
 								<td><%=list.get(5)%></td>
-								<td><%=list.get(6)%></td>
+								<td>
+									<%
+										if (list.get(6).equals("0")) {
+									%> 개설 <%
+										} else if (list.get(6).equals("1")) {
+									%> 개설중 <%
+										} else {
+									%> 폐강 <%
+										}
+									%>
+								</td>
 								<td><%=list.get(7)%></td>
 								<td><%=list.get(8)%></td>
 							</tr>
 							<%
 								}
-								}
+								} else {
 							%>
+							<tr>
+								<td colspan="10">
+									<div align="center">
+										<h1>현재 맡은 학급이 없습니다.</h1>
+									</div> <%
+ 	}
+ %>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 
