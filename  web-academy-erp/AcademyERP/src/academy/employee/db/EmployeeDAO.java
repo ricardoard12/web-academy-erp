@@ -47,7 +47,7 @@ public class EmployeeDAO {
 		System.out.println("Emp DB Closed");
 	}
 
-	public boolean employeeInsert(EmployeeBean employee) throws Exception {
+	public boolean employeeInsert(EmployeeBean employee) throws Exception { // 직원 등록
 		boolean result = false;
 		try {
 			con = ds.getConnection();
@@ -201,20 +201,24 @@ public class EmployeeDAO {
     	return vector;
     }
     
-    public void employeeOutgoing(String ep_id) throws Exception { // 직원 퇴직 처리
+    public void employeeOutgoing(List outgoingList) throws Exception { // 직원 퇴직 처리
     	try {
     		con = ds.getConnection();
-    		sql = "UPDATE employee SET ep_status='퇴직',ep_out_date=now() WHERE ep_id=?";
-    		// 해당 직원의 근무 현황을 '퇴직'으로 바꾸고 퇴사일을 현재 날짜로 설정 
-    		pstmt = con.prepareStatement(sql);
-    		pstmt.setString(1, ep_id);
-    		pstmt.executeUpdate();
     		
-    		sql = "UPDATE member SET mm_level=0 WHERE mm_id=?";
-    		// 멤버 레벨을 0으로 설정 (로그인 불가능 하도록)
-			pstmt = con.prepareStatement(sql);
-    		pstmt.setString(1, ep_id);
-    		pstmt.executeUpdate();
+    		for (int i = 0; i < outgoingList.size(); i++) {
+    			String ep_id = (String) outgoingList.get(i);
+	    		sql = "UPDATE employee SET ep_status='퇴직',ep_out_date=now() WHERE ep_id=?";
+	    		// 해당 직원의 근무 현황을 '퇴직'으로 바꾸고 퇴사일을 현재 날짜로 설정 
+	    		pstmt = con.prepareStatement(sql);
+	    		pstmt.setString(1, ep_id);
+	    		pstmt.executeUpdate();
+	    		
+	    		sql = "UPDATE member SET mm_level=0 WHERE mm_id=?";
+	    		// 멤버 레벨을 0으로 설정 (로그인 불가능 하도록)
+				pstmt = con.prepareStatement(sql);
+	    		pstmt.setString(1, ep_id);
+	    		pstmt.executeUpdate();
+    		}
     		
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -229,14 +233,14 @@ public class EmployeeDAO {
 		Vector vector = new Vector();
 		try {
 			con = ds.getConnection();
-			sql = "SELECT * FROM employee WHERE ep_status='퇴직'";
+			sql = "SELECT * FROM employee WHERE ep_status='퇴직'"; // '퇴직'인 사람 조회
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			employeeList = new ArrayList();
 			memberList = new ArrayList();
 			ResultSet rs2 = null;
-			while (rs.next()) {
+			while (rs.next()) { // 해당 회원 정보 저장
 				EmployeeBean employee = new EmployeeBean();
 				MemberBean member = new MemberBean();
 
@@ -299,5 +303,25 @@ public class EmployeeDAO {
 		}
     	
     	return managerList;
+    }
+    
+    public boolean employeeOutgoingAddMemo(String id, String ep_memo) throws Exception {
+    	boolean result = false;
+    	try {
+    		con = ds.getConnection();
+			sql = "UPDATE employee SET ep_memo=? WHERE ep_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ep_memo);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+
+			result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closingDB();
+		}
+    	
+    	return result;
     }
 }
