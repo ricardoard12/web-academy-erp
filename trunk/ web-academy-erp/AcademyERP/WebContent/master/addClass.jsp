@@ -8,12 +8,10 @@
 	if (teacherlist == null) {
 		response.sendRedirect("./index.jsp");
 	}
-	System.out.println("오류 검증 1");
 	String subject = "x";
 	if ((String) request.getAttribute("sub") != null) {
 		subject = (String) request.getAttribute("sub");
 	}
-	System.out.println("오류 검증 2");
 %>
 <!DOCTYPE>
 <html>
