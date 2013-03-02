@@ -13,20 +13,22 @@ public class classaddaction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ActionForward forward =new ActionForward();
+		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
-		HttpSession session=request.getSession();
-		int level=(Integer)session.getAttribute("level");
-		/*세션 검증 부분*/
-		if(level<4){
-			//뒤로 보넴
+		HttpSession session = request.getSession();
+		String sel = request.getParameter("subject_sel");
+		int level = (Integer.parseInt((String) session.getAttribute("level")));
+		/* 세션 검증 부분 */
+		if (level < 4) {
+			// 뒤로 보넴
 		}
-		MasterDAO master=new MasterDAO();
-		List tlist =master.getTeachserList();		
+		MasterDAO master = new MasterDAO();
+		List tlist = master.getTeachserList();
 		request.setAttribute("tList", tlist);
-		request.setAttribute("sub", request.getParameter("subject_sel"));
+		request.setAttribute("sub", sel);
 		forward.setPath("./master/addClass.jsp");
 		forward.setRedirect(false);
+		System.out.println("****");
 		return forward;
 	}
 }
