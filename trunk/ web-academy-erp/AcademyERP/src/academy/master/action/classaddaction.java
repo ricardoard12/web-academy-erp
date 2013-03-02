@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.master.db.MasterDAO;
 
@@ -14,10 +15,12 @@ public class classaddaction implements Action {
 			HttpServletResponse response) throws Exception {
 		ActionForward forward =new ActionForward();
 		request.setCharacterEncoding("utf-8");
-		
-		/*
-		 * 세션 설정 
-		 * */
+		HttpSession session=request.getSession();
+		int level=(Integer)session.getAttribute("level");
+		/*세션 검증 부분*/
+		if(level<4){
+			//뒤로 보넴
+		}
 		MasterDAO master=new MasterDAO();
 		List tlist =master.getTeachserList();		
 		request.setAttribute("tList", tlist);
@@ -26,5 +29,4 @@ public class classaddaction implements Action {
 		forward.setRedirect(false);
 		return forward;
 	}
-
 }
