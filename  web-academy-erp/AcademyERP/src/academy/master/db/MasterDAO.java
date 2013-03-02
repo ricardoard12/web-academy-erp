@@ -184,14 +184,14 @@ public class MasterDAO {
 		list.add(rs.getInt("gp_idx"));
 		list.add(rs.getString("gp_name"));
 		list.add(rs.getString("ep_id"));
-		//list.add(rs.getString("mm_name"));
+		// list.add(rs.getString("mm_name"));
 		list.add(rs.getString("gp_lev"));
 		list.add(rs.getString("gp_half"));
 		list.add(rs.getInt("gp_ea"));
 		list.add(rs.getString("gp_status"));
 		list.add(rs.getDate("gp_startdate"));
 		list.add(rs.getDate("gp_enddate"));
-		list.add(rs.getString("gp_room"));
+		list.add(rs.getInt("gp_room"));
 		System.out.println(list.get(0));
 		return list;
 	}
@@ -257,27 +257,68 @@ public class MasterDAO {
 		list.add(rs.getString("ep_subject_name"));
 		return list;
 	}
+
 	// 반생
 	public void setClass(GroupsBean groups) {
-		 try{
-			 con=ds.getConnection();
-			 String sql="insert into groups (gp_name,ep_id,gp_lev,gp_half,gp_status,gp_startdate,gp_enddate) values(?,?,?,?,?,?,?)";
-			 System.out.println("학급삽입 --->");
-			 pstmt=con.prepareStatement(sql);
-			 pstmt.setString(1, groups.getGp_name());
-			 pstmt.setString(2, groups.getEp_id());
-			 pstmt.setString(3,groups.getGp_lev());
-			 pstmt.setString(4,groups.getGp_half());
-			 pstmt.setString(5, groups.getGp_status());
-			 pstmt.setString(6,groups.getGp_startdate());
-			 pstmt.setString(7,groups.getGp_enddate());
-			 pstmt.executeUpdate();
-			 System.out.println("학급 삽입 완료 --->");
-		 }catch(Exception e){
-			 e.printStackTrace();
-			 System.out.println("!!!!!!!!!!!!학급 삽입 실패!!!!!!!!!!!!");
-		 }finally{
-			 dbClose();
-		 }
+		try {
+			con = ds.getConnection();
+			String sql = "insert into groups (gp_name,ep_id,gp_lev,gp_half,gp_status,gp_startdate,gp_enddate) values(?,?,?,?,?,?,?)";
+			System.out.println("학급삽입 --->");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, groups.getGp_name());
+			pstmt.setString(2, groups.getEp_id());
+			pstmt.setString(3, groups.getGp_lev());
+			pstmt.setString(4, groups.getGp_half());
+			pstmt.setString(5, groups.getGp_status());
+			pstmt.setString(6, groups.getGp_startdate());
+			pstmt.setString(7, groups.getGp_enddate());
+			pstmt.executeUpdate();
+			System.out.println("학급 삽입 완료 --->");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("!!!!!!!!!!!!학급 삽입 실패!!!!!!!!!!!!");
+		} finally {
+			dbClose();
+		}
+	}
+
+	public void updateRoom(String id, String room,int ea) {
+		try {
+			con = ds.getConnection();
+			String sql = "update groups SET groups.gp_room='" + room
+					+ "',groups.gp_ea="+ea+" where gp_idx=" + Integer.parseInt(id);
+			con.prepareStatement(sql).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}
+
+	public List getRoomList() {
+		List list = null;
+		try {
+			con=ds.getConnection();
+			String sql="select * from room_list";
+			rs=con.prepareStatement(sql).executeQuery();
+			list=new ArrayList();
+			while(rs.next()){
+				list.add(getRoomInfo());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+			return list;
+		}
+	}
+// 방정보 가져오기
+	private List getRoomInfo() throws Exception{
+		List list=new ArrayList();
+		list.add(rs.getInt(1));
+		list.add(rs.getInt(2));
+		list.add(rs.getInt(3));
+		list.add(rs.getInt(4));
+		return list;
 	}
 }
