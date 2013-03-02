@@ -28,16 +28,15 @@
 
 <script>
 	///* 강의실 넣기 대화상자 부분시작*///
-	$(function() {
-		var $dialog = $("#dialog").dialog({
-			autoOpen:false,
-			modal : true,
-			height : 300
-		});
-		$("#insertClass").click(function() {			
-			alert();
-			$dialog.dialog("open");
-		});
+	var $dialog = $("#dialog").dialog({
+		autoOpen : false,
+		modal : true,
+		height : 300
+	});
+	$("#insertClass").click(function() {
+		alert();
+		//$(this).bind();
+		//$dialog.dialog("open");
 	});
 	///* 강의실 넣기 대화상자 부분종료*///
 
