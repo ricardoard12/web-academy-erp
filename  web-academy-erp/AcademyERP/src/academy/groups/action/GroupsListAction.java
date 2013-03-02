@@ -24,14 +24,14 @@ public class GroupsListAction implements Action {
 			// 레벨보다 낮으면 접근 금지
 
 		}
-		GroupsDAO groups=new GroupsDAO();
-		int page=1;
-		int limit=10;
-		if(request.getParameter("page")!=null){
-			page=Integer.parseInt(request.getParameter("page"));
+		GroupsDAO groups = new GroupsDAO();
+		int page = 1;
+		int limit = 10;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int listcount=groups.getCount(id);
-		List groupslist=groups.getGroupsList(page,limit,id);
+		int listcount = groups.getCount(id);
+		List classlist = groups.getGroupsList(page, limit, id);
 		int maxpage = (int) ((double) listcount / limit + 0.95);
 		int pageBlock = 10;
 		int startpage = (((int) ((double) page / pageBlock + 0.9)) - 1)
@@ -40,10 +40,12 @@ public class GroupsListAction implements Action {
 		if (endpage > maxpage)
 			endpage = maxpage;
 		ListPackage pack = new ListPackage(page, maxpage, startpage, endpage,
-				listcount, groupslist);
-		System.out.println(page+","+maxpage+","+startpage+","+endpage+","+listcount);
+				listcount, classlist);
+		System.out.println(page + "," + maxpage + "," + startpage + ","
+				+ endpage + "," + listcount);
+		System.out.println("GroupsListAcion Finished");
 
-		request.setAttribute("groupslist", pack);
+		request.setAttribute("ListPackage", pack);
 
 		forward.setPath("./groups/groupsList.jsp");
 		forward.setRedirect(false);
