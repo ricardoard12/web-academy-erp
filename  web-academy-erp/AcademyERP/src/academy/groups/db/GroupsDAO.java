@@ -29,7 +29,7 @@ public class GroupsDAO {
 		}
 	}
 
-	public List getGpList() { // 전체 과목 가지고오기
+	public List getGpList() throws Exception { // 전체 과목 가지고오기
 		List gpList = null;
 		String sql = "";
 		try {
@@ -57,7 +57,7 @@ public class GroupsDAO {
 	}
 
 	// 해당 선생의 총 담당 학급수
-	public int getCount(String ep_id) {
+	public int getCount(String ep_id) throws Exception {
 		int x = 0;
 		try {
 			con = ds.getConnection();
@@ -77,7 +77,7 @@ public class GroupsDAO {
 	}
 
 	// 해당 선생의 담당 학급 가져오기
-	public List getGroupsList(int page, int limit, String ep_id) {
+	public List getGroupsList(int page, int limit, String ep_id) throws Exception {
 		List list = null;
 		int startrow=(page-1)*limit+1;
 		try {
@@ -134,6 +134,52 @@ public class GroupsDAO {
 		}
 		
 		return studentList;
+	}
+	
+	public boolean groupsAddStudent(String gp_name, List studentList) throws Exception { // 학급 학생 추가
+		boolean result = false;
+		try {
+			con = ds.getConnection();
+			for (int i = 0; i < studentList.size(); i++) {
+				String mm_id = (String) studentList.get(i);
+				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, gp_name);
+				pstmt.setString(2, mm_id);
+				pstmt.executeUpdate();
+				
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return result;
+	}
+	
+	public boolean groupsDelStudent(List studentList) throws Exception { // 학급 학생 제외
+		boolean result = false;
+		try {
+			con = ds.getConnection();
+			for (int i = 0; i < studentList.size(); i++) {
+				String mm_id = (String) studentList.get(i);
+				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, null);
+				pstmt.setString(2, mm_id);
+				pstmt.executeUpdate();
+				
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return result;
 	}
 	
 	private List insertList() throws Exception {

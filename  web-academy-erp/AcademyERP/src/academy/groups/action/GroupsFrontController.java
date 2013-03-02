@@ -26,7 +26,6 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		} else if (command.equals("/GroupsAddStudent.gp")) { // 학급 학생 추가
@@ -34,7 +33,20 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} else if (command.equals("/GroupsAddStudentAction.gp")) { // 학급 학생 추가
+			action = new GroupsAddStudentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/GroupsDelStudentAction.gp")) { // 학급 학생 삭제
+			action = new GroupsDelStudentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			// }else if(command.equals("/GroupsAttitudeEditTime.gp")){ // 출근 시간
@@ -90,7 +102,6 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		} else if (command.equals("/ClassInfo.gp")) { //담당 학급 리스트를 불러온다.
@@ -107,8 +118,7 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher(forward.getPath());
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
 			}
 		}

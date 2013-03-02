@@ -22,9 +22,7 @@ public class EmployeeOutgoingAction implements Action {
 		
 		String[] ep_id = (String[])request.getParameterValues("employeeSelect");
 		for (int i = 0; i < ep_id.length; i++) {
-			System.out.println("EP_ID 넣기. ep_id : " + ep_id[i]);
-//			employeeDAO.employeeOutgoing(ep_id[i]);
-			outgoingList.add(ep_id[i]);
+			outgoingList.add(ep_id[i]); // 체크 박스 값 받아와서 리스트에 저장
 		}
 		
 		employeeDAO.employeeOutgoing(outgoingList);

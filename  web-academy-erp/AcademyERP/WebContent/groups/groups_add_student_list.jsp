@@ -7,6 +7,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function allChecked(check) 
+	{
+	    var chkStudent = document.getElementsByName('chkStudent');
+	 
+	    if (check) {
+	        for (var i=0; i<chkStudent.length; i++) {
+	        	chkStudent[i].checked = true;
+	        }
+	    } else {
+	        for (var i=0; i<chkItem.length; i++) {
+	        	chkStudent[i].checked = false;
+	        }
+	    }
+	}
+
+</script>
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -15,9 +32,10 @@
 %>
 <body>
 	<form action="./GroupsAddStudentAction.gp" method="post">
+		<input type="hidden" name="gp_name"	value="<%=gp_name %>">
 		<table border="1">
 			<tr><th colspan="3"><h1>학급 학생 추가</h1></th></tr>
-			<tr><th>선택</th><th>이름(아이디)</th><th>학교명(학년)</th>
+			<tr><th>선택 <input type=checkbox onclick="allChecked(this.checked)"></th><th>이름(아이디)</th><th>학교명(학년)</th>
 			<%if (studentList.size() == 0) {%>
 			<tr><td colspan="3">학급에 새로 추가할 학생이 없습니다.</td></tr>
 			<%} else {
@@ -25,7 +43,7 @@
 					StudentBean student = (StudentBean)studentList.get(i);
 			%>
 			<tr>
-				<td><input name="studentSelect" type="checkbox" id="a1"
+				<td><input name="chkStudent" type="checkbox" id="a1"
 						class="i_check" value="<%=student.getMm_id()%>"><label for="a1"></label></td>
 				<td>
 					<%=student.getMm_name() %>(<%=student.getMm_id() %>)	
