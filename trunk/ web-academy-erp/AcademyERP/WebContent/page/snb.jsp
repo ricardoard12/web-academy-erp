@@ -203,7 +203,7 @@
 					<%
 						}
 					%>
-					<li><a href="#"><span>학급정보</span></a></li>
+					<li><a href="./ClassInfo.gp"><span>학급정보</span></a></li>
 					<li><a href="#"><span>학급별시험정보</span></a></li>
 					<li><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
 					<li><a href="#"><span>학급별상담내역</span></a></li>
