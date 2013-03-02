@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import academy.groups.db.GroupsDAO;
 import academy.master.db.ListPackage;
 import academy.master.db.MasterDAO;
 
@@ -38,7 +39,7 @@ public class classListAction implements Action {
 			endpage = maxpage;
 		ListPackage pack = new ListPackage(page, maxpage, startpage, endpage,
 				listcount, classlist);
-		List roomlist=master.getRoomList();
+		List roomlist=new GroupsDAO().getRoomList();
 		System.out.println(page+","+maxpage+","+startpage+","+endpage+","+listcount);
 		System.out.println("ClassListAcion Finished");
 		request.setAttribute("roomlist", roomlist);
