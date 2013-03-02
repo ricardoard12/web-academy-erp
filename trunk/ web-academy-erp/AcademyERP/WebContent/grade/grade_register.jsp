@@ -54,7 +54,7 @@
 		<th scope="row">학교명</th>
 		<td>
 			<div class="item">
-				<input type="text" name="gr_school_name" title="" class="i_text">
+				<input type="text" name="st_school_name" title="" class="i_text">
 			</div>
 		</td>
 		</tr>

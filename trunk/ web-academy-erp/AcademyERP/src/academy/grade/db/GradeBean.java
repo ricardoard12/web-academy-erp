@@ -7,44 +7,16 @@ public class GradeBean {
     private String gr_subject; // 과목명
     private String gr_memo; // 시험내용
     private String mm_id; // 학생ID
-    private int gr_score; // 과목 점수
+    private String gr_score; // 과목 점수
     private Date gr_exam_date; // 시험 일자
     private String ep_id; // 담당 강사
     private String gr_place; // 시험 장소 분류(학교 or 학원)
     private String gr_period;  //학교시험종류
-    private String gr_school_name; //학교
+    private String st_school_name; //학교
     
-    private String mm_name; //학생 선생 검색시 이름값 가져오기
-    private String mm_jumin1; //학생 선생 검색시 주민값 가져오기
-    private String mm_jumin2; //학생 선생 검색시 주민값 가져오기
-    
-    
-    public String getGr_school_name() {
-        return gr_school_name;
-    }
-    public void setGr_school_name(String gr_school_name) {
-        this.gr_school_name = gr_school_name;
-    }
-    public String getMm_name() {
-        return mm_name;
-    }
-    public void setMm_name(String mm_name) {
-        this.mm_name = mm_name;
-    }
-    public String getMm_jumin1() {
-        return mm_jumin1;
-    }
-    public void setMm_jumin1(String mm_jumin1) {
-        this.mm_jumin1 = mm_jumin1;
-    }
-    public String getMm_jumin2() {
-        return mm_jumin2;
-    }
-    public void setMm_jumin2(String mm_jumin2) {
-        this.mm_jumin2 = mm_jumin2;
-    }
-    
-    /////////////////////////////////////////////////
+    private String mm_name; //선생 검색시 이름값 가져오기
+    private String mm_jumin1; //선생검색시 주민값 가져오기
+    private String mm_jumin2; //선생검색시 주민값 가져오기
     public String getGr_code() {
         return gr_code;
     }
@@ -69,10 +41,10 @@ public class GradeBean {
     public void setMm_id(String mm_id) {
         this.mm_id = mm_id;
     }
-    public int getGr_score() {
+    public String getGr_score() {
         return gr_score;
     }
-    public void setGr_score(int gr_score) {
+    public void setGr_score(String gr_score) {
         this.gr_score = gr_score;
     }
     public Date getGr_exam_date() {
@@ -98,6 +70,30 @@ public class GradeBean {
     }
     public void setGr_period(String gr_period) {
         this.gr_period = gr_period;
+    }
+    public String getSt_school_name() {
+        return st_school_name;
+    }
+    public void setSt_school_name(String st_school_name) {
+        this.st_school_name = st_school_name;
+    }
+    public String getMm_name() {
+        return mm_name;
+    }
+    public void setMm_name(String mm_name) {
+        this.mm_name = mm_name;
+    }
+    public String getMm_jumin1() {
+        return mm_jumin1;
+    }
+    public void setMm_jumin1(String mm_jumin1) {
+        this.mm_jumin1 = mm_jumin1;
+    }
+    public String getMm_jumin2() {
+        return mm_jumin2;
+    }
+    public void setMm_jumin2(String mm_jumin2) {
+        this.mm_jumin2 = mm_jumin2;
     }
     
 }
