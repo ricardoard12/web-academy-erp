@@ -65,6 +65,38 @@
 		}
 	}
 	
+	function allChecked() { // 전체 선택
+		var chk = document.getElementsByName("chkStudent");
+		
+		if (document.stAttitudeForm.allCheck.checked == true) {
+			for (var i = 0; i < chk.length; i++) {
+				chk[i].checked = true;
+			}
+		} else {
+			for (var i = 0; i < chk.length; i++) {
+				chk[i].checked = false;
+			}
+		}
+	}
+	
+	function delStudent() { // 학급 학생 제외
+		var count = 0;
+		var chk = document.getElementsByName("chkStudent");
+		
+		for (var i = 0; i < chk.length; i++) {
+			if (chk[i].checked == true) {
+				count++;
+			} 
+		}
+		
+		if (count <= 0){
+			alert("제외할 학생을 선택하세요");
+			return false;
+		} else if(confirm("선택 학생을 학급에서 제외하시겠습니까?") == true) {
+			document.stAttitudeForm.action = "./GroupsDelStudentAction.gp";
+			document.stAttitudeForm.submit();
+		}
+	}
 </script>
 </head>
 <%
@@ -104,6 +136,8 @@
 			<div id="content">
 			<form action="" name="stAttitudeForm" method="post">
 			<input type="hidden" name="page" value="<%=nowPage%>">
+			<input type="hidden" name="gp_name" value="<%=gp_name%>">
+			<input type="hidden" name="date" value="<%=date%>">
 				<!-- 직원 출근 현황 시작 -->
 
 				<!-- UI Object -->
@@ -145,7 +179,7 @@
 						
 						<thead>
 							<tr>
-								<th scope="col">선택</th>
+								<th scope="col">선택 <input type=checkbox name="allCheck" onclick="allChecked()"></th>
 								<th scope="col">이름(아이디)</th>
 								<th scope="col">출결상황</th>
 								<th scope="col">입실시간</th>
@@ -163,19 +197,19 @@
 								AttitudeBean attitude = (AttitudeBean)attitudeList.get(i);
 							%>
 								<tr>
-									<td><input name="studentSelect" type="checkbox" id="a1"
+									<td><input name="chkStudent" type="checkbox" id="a1"
 										class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
 									<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
 									<td>
 										<%
-											// at_report_state Y : 출근, N : 미출근
-											if (attitude.getAt_report_state().equals("Y")) {%>출근<%	} 
-											else {%>미출근<%} 
+											// at_report_state Y : 출석, N : 결석
+											if (attitude.getAt_report_state().equals("Y")) {%>출석<%	} 
+											else {%>결석<%} 
 										%>
 									</td>
 									<td>
 										<%
-											if (attitude.getAt_come_time() != null) { // 출근 시간이 기록되어 있을 경우
+											if (attitude.getAt_come_time() != null) { // 입실 시간이 기록되어 있을 경우
 												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
 												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
 											} else { %><input type="button" value="출석" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>')">	<%} 
@@ -183,7 +217,7 @@
 									</td>
 									<td>
 										<%
-											if (attitude.getAt_leave_time() != null) { // 퇴근 시간이 기록되어 있을 경우
+											if (attitude.getAt_leave_time() != null) { // 퇴실 시간이 기록되어 있을 경우
 												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
 												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
 											} else { 
@@ -222,9 +256,10 @@
 									<div class="item">
 										<input type="button" value="학생 추가" onclick="addStudent('<%=gp_name%>')"> 
 										<input type="button" value="학급 이동" onclick="moveStudent()"> 
-										<input type="button" value="학생 제외" onclick="checkForm('<%=gp_name%>')">
+										<input type="button" value="학생 제외" onclick="delStudent()">
 										<input type="button" value="선택 문자 발송" onclick="">
 									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
