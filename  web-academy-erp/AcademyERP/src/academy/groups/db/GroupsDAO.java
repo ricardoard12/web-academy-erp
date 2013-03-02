@@ -105,7 +105,7 @@ public class GroupsDAO {
 		
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT mm_id, st_school_name, st_school_grade FROM student WHERE gp_name IS NULL";
+			String sql = "SELECT mm_id, st_school_name, st_school_grade FROM student WHERE gp_name IS NULL"; // 학급에 소속되어 있지 않은 학생만 검색
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -113,7 +113,7 @@ public class GroupsDAO {
 			while (rs.next()) {
 				StudentBean student = new StudentBean();
 				ResultSet rs2 = null;
-				sql = "SELECT mm_name FROM member WHERE mm_id=?";
+				sql = "SELECT mm_name FROM member WHERE mm_id=?"; // 해당 ㅈ생의 이름 가져오기
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, rs.getString("mm_id"));
 				rs2 = pstmt.executeQuery();
@@ -186,7 +186,7 @@ public class GroupsDAO {
 		List groupsList = null;
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT gp_name FROM groups WHERE gp_status=1 ORDER BY gp_name ASC";
+			String sql = "SELECT gp_name FROM groups WHERE gp_status=1 ORDER BY gp_name ASC"; // gp_status=1(개강중)인 학급 목록만 대상에 추가
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
