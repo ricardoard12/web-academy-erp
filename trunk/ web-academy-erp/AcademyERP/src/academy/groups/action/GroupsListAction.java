@@ -44,9 +44,9 @@ public class GroupsListAction implements Action {
 		System.out.println(page + "," + maxpage + "," + startpage + ","
 				+ endpage + "," + listcount);
 		System.out.println("GroupsListAcion Finished");
-
+		List roomlist = groups.getRoomList();
 		request.setAttribute("ListPackage", pack);
-
+		request.setAttribute("roomlist", roomlist);
 		forward.setPath("./groups/groupsList.jsp");
 		forward.setRedirect(false);
 		return forward;
