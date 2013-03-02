@@ -93,7 +93,7 @@ public class GroupsFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		} else if (command.equals("/ClassInfo.gp")) {
+		} else if (command.equals("/ClassInfo.gp")) { //담당 학급 리스트를 불러온다.
 			action = new GroupsListAction();
 			try {
 				forward = action.execute(request, response);
