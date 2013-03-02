@@ -1,4 +1,3 @@
-
 <%@page import="academy.master.db.ListPackage"%>
 <%@page import="java.util.Vector"%>
 <%@page import="academy.employee.db.EmployeeBean"%>
