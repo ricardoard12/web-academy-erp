@@ -97,6 +97,27 @@
 			document.stAttitudeForm.submit();
 		}
 	}
+	
+	function moveStudent(gp_name) { // 학급 학생 제외
+		var count = 0;
+		var chk = document.getElementsByName("chkStudent");
+		var chkValue = "";
+		
+		for (var i = 0; i < chk.length; i++) { // 체크박스 값 받아서 문자열 결합
+			if (chk[i].checked == true) {
+				count++;
+				chkValue += chk[i].value;
+				chkValue += ","; // split 에서 구분자로 사용할 문자 삽입
+			} 
+		}
+		
+		if (count <= 0){
+			alert("이동시킬 학생을 선택하세요");
+			return false;
+		} else {
+			window.open("./GroupsMoveStudent.gp?gp_name=" + gp_name + "&chkValue=" + chkValue, "moveStudent", "width=400,height=500,scrollbars=yes");
+		}
+	}
 </script>
 </head>
 <%
@@ -255,7 +276,7 @@
 								<td align="center" colspan="7">
 									<div class="item">
 										<input type="button" value="학생 추가" onclick="addStudent('<%=gp_name%>')"> 
-										<input type="button" value="학급 이동" onclick="moveStudent()"> 
+										<input type="button" value="학급 이동" onclick="moveStudent('<%=gp_name%>')"> 
 										<input type="button" value="학생 제외" onclick="delStudent()">
 										<input type="button" value="선택 문자 발송" onclick="">
 									</div>

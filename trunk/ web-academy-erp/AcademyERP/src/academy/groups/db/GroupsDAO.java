@@ -182,6 +182,52 @@ public class GroupsDAO {
 		return result;
 	}
 	
+	public List getGroupsMoveList() throws Exception { // 이동시킬 학급 목록 가져오기
+		List groupsList = null;
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT gp_name FROM groups WHERE gp_status=1 ORDER BY gp_name ASC";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			groupsList = new ArrayList();
+			while(rs.next()) {
+				groupsList.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return groupsList;
+	}
+	
+	public boolean groupsMoveStudent(String gp_name, String[] studentList) throws Exception { // 학급 학생 이동
+		boolean result = false;
+		try {
+			con = ds.getConnection();
+			
+			for (int i = 0; i < studentList.length; i++) { // 배열 크기만큼 반복
+				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, gp_name);
+				pstmt.setString(2, studentList[i]);
+				pstmt.executeUpdate();
+				
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return result;
+	}
+	 
+	
+	
 	private List insertList() throws Exception {
 		List list = new ArrayList();
 		list.add(rs.getInt("gp_idx"));// 0
