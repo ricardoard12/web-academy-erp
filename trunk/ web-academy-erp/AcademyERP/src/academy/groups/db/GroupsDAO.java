@@ -268,7 +268,7 @@ public class GroupsDAO {
 		List list = null;
 		try {
 			con = ds.getConnection();
-			String sql = "select * from room_list where room_status=1";
+			String sql = "select * from room_list";
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {
 				list = new ArrayList();
