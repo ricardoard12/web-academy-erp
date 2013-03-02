@@ -295,30 +295,5 @@ public class MasterDAO {
 		}
 	}
 
-	public List getRoomList() {
-		List list = null;
-		try {
-			con=ds.getConnection();
-			String sql="select * from room_list";
-			rs=con.prepareStatement(sql).executeQuery();
-			list=new ArrayList();
-			while(rs.next()){
-				list.add(getRoomInfo());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dbClose();
-			return list;
-		}
-	}
-// 방정보 가져오기
-	private List getRoomInfo() throws Exception{
-		List list=new ArrayList();
-		list.add(rs.getInt(1));
-		list.add(rs.getInt(2));
-		list.add(rs.getInt(3));
-		list.add(rs.getInt(4));
-		return list;
-	}
+	
 }
