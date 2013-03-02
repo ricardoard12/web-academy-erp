@@ -41,7 +41,9 @@ public class GradeDAO {
         
         try {
             con=ds.getConnection();
-            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status, gr_school_name)" +
+            
+            // 성적테이블 생성
+            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status, st_school_name)" +
                     "values(?,?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, gradebean.getGr_code());
@@ -58,9 +60,7 @@ public class GradeDAO {
                 pstmt.setString(8, ""); //무조건 시험진행중 N 시험완료 Y
             }
             
-            pstmt.setString(9, gradebean.getGr_school_name());
-            
-            
+            pstmt.setString(9, gradebean.getSt_school_name());
             pstmt.executeUpdate();
             result = true;
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
@@ -125,6 +125,36 @@ public class GradeDAO {
         return gradeAcademyList;
     }
     
+    //시험에 추가할 학생정보 찾기
+    public List gradeSsearch(String mm_name){
+        List gradeSsearch = null;
+        String sql = "";
+        GradeBean gradebean = null;
+        try {
+            con=ds.getConnection();
+            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ? and mm_id like 's%'";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "%"+mm_name+"%");
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                gradeSsearch = new ArrayList();
+                do{
+                    gradebean = new GradeBean();
+                    gradebean.setMm_name(rs.getString("mm_name"));
+                    gradebean.setMm_id(rs.getString("mm_id"));
+                    gradebean.setMm_jumin1(rs.getString("mm_jumin1"));
+                    gradebean.setMm_jumin2(rs.getString("mm_jumin2"));
+                    
+                    gradeSsearch.add(gradebean);
+                    
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+       
+        return gradeSsearch;
+    }
+    
     public void gradeAcademyMoveTested(String[] check){
         StringBuffer sql = new StringBuffer("update grade set gr_status='Y' where gr_code in (");
         // 기본 쿼리문만을 StringBuffer로 생성한다.
@@ -147,6 +177,35 @@ public class GradeDAO {
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
     }
     
+    
+    public List gradeAcademyTestingStudentList(String gr_code){
+        List gradeAcademyTestingStudentList = null;
+        GradeBean gradebean = null;
+        String sql="";
+        
+        try {
+            con=ds.getConnection();
+            sql = "select gr_code, mm_id, gr_score from exam where gr_code = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, gr_code);
+            rs = pstmt.executeQuery();
+            
+            if(rs.next()){
+                gradeAcademyTestingStudentList = new ArrayList();
+                do{
+                    gradebean = new GradeBean();
+                    gradebean.setGr_code(rs.getString("gr_code"));
+                    gradebean.setMm_id(rs.getString("mm_id"));
+                    gradebean.setGr_score(rs.getString("gr_score"));
+                    
+                    gradeAcademyTestingStudentList.add(gradebean);
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return gradeAcademyTestingStudentList;
+    }
+    
     public List gradeSchoolList(){
         List gradeSchoolList = null;
         GradeBean gradebean = null;
@@ -165,7 +224,7 @@ public class GradeDAO {
                     gradebean.setGr_subject(rs.getString("gr_subject"));
                     gradebean.setGr_memo(rs.getString("gr_memo"));
                     gradebean.setMm_id(rs.getString("mm_id"));
-                    gradebean.setGr_score(rs.getInt("gr_score"));
+                    gradebean.setGr_score(rs.getString("gr_score"));
                     
                     gradeSchoolList.add(gradebean);
                 }while(rs.next());

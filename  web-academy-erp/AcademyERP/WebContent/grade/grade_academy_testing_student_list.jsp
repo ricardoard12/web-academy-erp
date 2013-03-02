@@ -34,12 +34,12 @@
 				<!-- UI Object -->
 
 				<%
-				    List gradeAcademyTesting = (List)request.getAttribute("gradeAcademyTesting");
+				    List gradeAcademyTestingStudentList = (List)request.getAttribute("gradeAcademyTestingStudentList");
 				%>
-				<legend>학원 시험중</legend>
-				<form name="grCheck" method="post" >
-				<table cellspacing="0" border="1" summary="학원 시험 목록" class="tbl_type_list">
-					<caption>학원 시험 목록</caption>
+				<legend>학원 시험중 학생리스트</legend>
+				<form action="./GradeAcademyTesting.gr" name="grAddCheck" method="post" >
+				<table cellspacing="0" border="1" summary="학원 시험중 학생리스트" class="tbl_type_list">
+					<caption>학원 시험중 학생리스트</caption>
 					<colgroup>
 						<col width="12%">
 						<col>
@@ -48,31 +48,32 @@
 					<thead>
 						<tr>
 							<th scope="col">전체선택<br><input type="checkbox" name="all" onclick="CheckAll()"></th>
-							<th scope="col">과목ID</th>
-							<th scope="col">과목명</th>
-							<th scope="col">과목설명</th>
-							<th scope="col">담당강사</th>
-							<th scope="col">응시날짜</th>
+							<th scope="col">학생아이디</th>
+							<th scope="col">학생성적</th>
 						</tr>
 					</thead>
 					<tbody>
 
-					<% for(int i=0; i<gradeAcademyTesting.size(); i++){
-						GradeBean gradebean = (GradeBean)gradeAcademyTesting.get(i);%>
+					<%	if(gradeAcademyTestingStudentList == null){ %>
+						<tr><td colspan="3"><h1>학생추가하세요</h1></td></tr>	    
+					<% }else{ %>
+					
+					<% for(int i=0; i<gradeAcademyTestingStudentList.size(); i++){
+						GradeBean gradebean = (GradeBean)gradeAcademyTestingStudentList.get(i);%>
 						<tr>
 							<td><input type="checkbox" name="check" value="<%=gradebean.getGr_code() %>"></td>
-							<td><a href="./GradeAcademyTestingStudentList.gr?gr_code=<%=gradebean.getGr_code() %>"><%=gradebean.getGr_code() %></a></td>
-							<td><%=gradebean.getGr_subject() %></td>
-							<td><%=gradebean.getGr_memo() %></td>
-							<td><%=gradebean.getEp_id() %></td>
-							<td><%=gradebean.getGr_exam_date() %></td>
+							<td><%=gradebean.getMm_id() %></td>
+							<td><%=gradebean.getGr_score() %></td>
 						</tr>
-					<% }%>
+					<% }
+					}	%>
 						<!-- 버튼 -->
 						<tr align="right">
 							<td align="center" colspan="6">
 								<div class="item">
-									<input type="button" value="시험완료" onclick="MoveTested()">
+									<input type="text" name="mm_name">
+			 						<input type="button" value="학생추가" onclick="addStduent()">
+									<input type="submit" value="시험목록">
 								</div>
 						</tr>
 
@@ -84,33 +85,27 @@
 				
 <script type="text/javascript">
 	function CheckAll() {
-		if (document.grCheck.all.checked == true) { // 체크가 되었다면
-			for ( var x = 0; x < grCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
-				document.grCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
+		if (document.grAddCheck.all.checked == true) { // 체크가 되었다면
+			for ( var x = 0; x < grAddCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+				document.grAddCheck.check[x].checked = true; //for문을 사용하여 모두 체크 시킨다.
 			}
 		} else {
-			for ( var x = 0; x < grCheck.check.length; x++) { // 모두 해제 시킨다..
-				document.grCheck.check[x].checked = false;
+			for ( var x = 0; x < grAddCheck.check.length; x++) { // 모두 해제 시킨다..
+				document.grAddCheck.check[x].checked = false;
 			}
 		}
 	}
 	
-	function MoveTested() {
-		count = 0;
-		for ( var x = 0; x < grCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
-			if(document.grCheck.check[x].checked == true){
-				count++;
-			} //for문을 사용하여 모두 체크 시킨다.
-		}
-		
-		if(count<=0){
-			alert("한 개이상 선택하세요");
+	function addStduent(num) {
+
+		mm_name = document.grAddCheck.mm_name.value;
+		if (mm_name.length == 0) {
+			alert("학생 이름를 입력하세요");
+			document.grAddCheck.mm_name.focus();
 			return false;
-		}else if(confirm("시험 완료 하시겠습니까?") == true){
-			document.grCheck.action = "./GradeMoveTested.gr";
-			document.grCheck.submit();
 		}
-	}
+		window.open('./GradeSsearch.gr?mm_name=' + mm_name, '_blank', 'height=200, width=400');
+}
 </script>
 				<!-- //수강생 관리 끝 -->
 

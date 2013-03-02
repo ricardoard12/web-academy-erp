@@ -43,6 +43,18 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
             
+            //과목별 학생 리스트
+        }else if(command.equals("/GradeAcademyTestingStudentList.gr")) {
+            action = new GradeAcademyTestingStudentListAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+            
+            //과목별 학생 찾기
+        }else if(command.equals("/GradeSsearch.gr")) {
+            action = new GradeSsearchAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}    
+            
             //학원 시험완료된 정보            
         }else if(command.equals("/GradeAcademyTested.gr")) {
             action = new GradeAcademyTestedAction();
