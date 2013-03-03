@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import academy.board.action.ActionForward;
-import academy.board.action.BoardDeleteAction;
+
 
 
 public class BusinessFrontController extends HttpServlet implements Servlet {
@@ -51,7 +50,8 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/BusinessModifyAction.bl")){
+			}
+			else if(command.equals("/BusinessModifyAction.bl")){
 				action=new BusinessModifyAction();
 				try {
 					forward=action.execute(request, response);
@@ -69,7 +69,7 @@ public class BusinessFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-	      
+			}
 	        
 	//이동
 	if (forward != null) {
