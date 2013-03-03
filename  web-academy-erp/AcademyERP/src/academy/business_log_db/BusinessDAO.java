@@ -240,6 +240,33 @@ public class BusinessDAO {
 			dbClose();
 		}
 	}
+
+	public boolean userchk(int num , String name) throws Exception {
+		String sql = "";
+		boolean x = false;
+		try {
+			System.out.println("UsetCheck start");
+			con = ds.getConnection();
+			sql = "SELECT business_name FROM business_log WHERE business_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeQuery();
+			
+			if(rs.next()){
+				String dbName = rs.getString("business_name");
+				if(name.equals("dbName")){
+					x = true;
+				}
+			}
+			System.out.println("UserCheck End");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}
+		return x;
+	}
+
 	
 
 }
