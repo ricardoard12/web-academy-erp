@@ -51,19 +51,6 @@
 								<tbody>
 
 
-									<tr>
-									<th align="right" colspan="2" >|		담당자		|		관리자		|		학원장		|	</th>
-									
-									
-									
-									</tr>
-									
-									<tr>
-									<th colspan="2">|	<input type="button" value="결재">|	<input type="button" value="결재">|	<input type="button" value="결재">|</th>
-									
-												
-									
-									</tr>
 									
 									<tr>
 										<th scope="row">제목</th>

@@ -224,7 +224,7 @@ public class BusinessDAO {
 		try {
 			System.out.println("businessModify start");
 			con=ds.getConnection();
-			sql="update business_log set business_name=?,business_subject=? , business_today=? , business_counsel=?, business_etc=? where business_num=?";
+			sql = "UPDATE business_log SET business_name=?,business_subject=? , business_today=? , business_counsel=?, business_etc=? WHERE business_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, businessbean.getBusiness_name());
 			pstmt.setString(2, businessbean.getBusiness_subject());
