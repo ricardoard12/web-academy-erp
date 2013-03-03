@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
+       
+    request.setCharacterEncoding("utf-8");
+       
+    
     BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
     List businessList=(List)request.getAttribute("businesslist");
     int listcount=((Integer)request.getAttribute("listcount")).intValue();
@@ -12,6 +16,7 @@
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
    
+    
   	//세션으로 id 값 받음
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
@@ -80,7 +85,7 @@
     		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
     		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
-<%-- 			<td class="title"><a href="./BusinessDetailAction.bl"><%=businessbean.getBusiness_subject() %></a></td> --%>
+<%--     		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>"><%=businessbean.getBusiness_subject() %></a></td> --%>
     		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
     		<td class="date" colspan="2"><%=businessbean.getBusiness_date() %></td>
     		
@@ -99,7 +104,9 @@
 <div align="right">
 <%-- <% if(level.equals("5")){ %> --%>
 <input type="button" name="business_write" value="글쓰기" onclick="location.href='./BusinessWrite.bl?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
+<%if(level.equals("5")){ %>
 <input type="submit" name="business_delete" value="삭제">
+<%} %>
 </form>
 </div>
 <%-- <%}else{}%> --%>
