@@ -197,7 +197,7 @@
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<%
-						if (lev>=4) {
+						if (lev >= 4) {
 					%>
 					<li><a href="./ClassList.master"><span>학급생성</span></a></li>
 					<%
@@ -217,17 +217,20 @@
 				<ul style="display: none;">
 					<li><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
 
-					<li><a href="./GradeAcademyTesting.gr"><span> - 학원 시험진행</span></a></li>
-					
-					<li><a href="./GradeAcademyTested.gr"><span> - 학원 시험완료</span></a></li>
+					<li><a href="./GradeAcademyTesting.gr"><span> - 학원
+								시험진행</span></a></li>
 
-					<li><a href="./GradeSchoolTested.gr"><span> - 학교 성적 </span></a></li>
+					<li><a href="./GradeAcademyTested.gr"><span> - 학원
+								시험완료</span></a></li>
+
+					<li><a href="./GradeSchoolTested.gr"><span> - 학교 성적
+						</span></a></li>
 
 				</ul></li>
 
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li><a href="#"><span>전체시간표</span></a></li>
+					<li><a href="./timetable/timetableset.jsp"><span>전체시간표</span></a></li>
 					<li><a href="#"><span>강사별시간표</span></a></li>
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
@@ -241,13 +244,18 @@
 			<li><a><span>게시판</span><span class="i"></span></a> <!-- Level에 따른 열람 제한 설정 -->
 
 				<ul style="display: none;">
-					<li><a href="./BoardNotice.bo?level=<%=level%>"><span>공지사항</span></a></li>
-					<li><a href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
-					<li><a href="#"><span>강의계획서</span></a></li>
-					<li><a href="#"><span>수업자료실</span></a></li>
-
-					<li><a href="#"><span>직원자료실</span></a></li>
-					<li><a href="#"><span>직원게시판</span></a></li>
+					<!-- 공지사항은 계시판 10 -->
+					<li><a href="./BoardNotice.bo?gid=10&level=<%=level%>"><span>공지사항</span></a></li>
+					<!-- 업무일지는 11 -->
+					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>업무일지</span></a></li>
+					<!-- 강의계획서는 12 -->
+					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>강의계획서</span></a></li>
+					<!-- 수업자료실 13 -->
+					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>수업자료실</span></a></li>
+					<!-- 직원 자료실은 14 -->
+					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>직원자료실</span></a></li>
+					<!-- 직원 계시판은 15 -->
+					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>직원게시판</span></a></li>
 				</ul></li>
 			<%
 				}
