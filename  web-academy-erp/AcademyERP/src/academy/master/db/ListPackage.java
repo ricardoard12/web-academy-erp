@@ -9,6 +9,19 @@ public class ListPackage {
 	private int endpage;
 	private int listcount;
 	private List classlist;
+	private String level;
+	private String gid;
+	public String getGid() {
+		return gid;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public void setGid(String gid) {
+		this.gid = gid;
+	}
 
 	// 생성자에 저장
 	public ListPackage(int page, int maxpage, int startpage, int endpage,
