@@ -245,17 +245,17 @@
 
 				<ul style="display: none;">
 					<!-- 공지사항은 계시판 10 -->
-					<li><a href="./BoardNotice.bo?gid=10&level=<%=level%>"><span>공지사항</span></a></li>
+					<li><a href="./BoardNotice.bo?gid=10"><span>공지사항</span></a></li>
 					<!-- 업무일지는 11 -->
-					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>업무일지</span></a></li>
+					<li><a href="./BoardNotice.bl?gid=11"><span>업무일지</span></a></li>
 					<!-- 강의계획서는 12 -->
-					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>강의계획서</span></a></li>
+					<li><a href="./BoardNotice.bl?gid=11"><span>강의계획서</span></a></li>
 					<!-- 수업자료실 13 -->
-					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>수업자료실</span></a></li>
+					<li><a href="./BoardNotice.bl?gid=11"><span>수업자료실</span></a></li>
 					<!-- 직원 자료실은 14 -->
-					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>직원자료실</span></a></li>
+					<li><a href="./BoardNotice.bl?gid=11"><span>직원자료실</span></a></li>
 					<!-- 직원 계시판은 15 -->
-					<li><a href="./BoardNotice.bl?gid=11&level=<%=level%>"><span>직원게시판</span></a></li>
+					<li><a href="./BoardNotice.bl?gid=11"><span>직원게시판</span></a></li>
 				</ul></li>
 			<%
 				}
