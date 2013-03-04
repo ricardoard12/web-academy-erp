@@ -12,28 +12,28 @@
 <title>Insert title here</title>
 <script src="./js/calendar.js"></script>
 <script type="text/javascript">
-	function memoOpen(id, at_memo,date) { // 메모창 열기
+	function memoOpen(id, at_memo, date, gp_name) { // 메모창 열기
 		if (at_memo == "null") at_memo="";
-		window.open("./GroupsAttitudeMemoAction.gp?id=" + id + "&at_memo=" + at_memo + "&date=" + date, "memo", "width=350,height=200,scrollbars=no");
+		window.open("./GroupsAttitudeMemoAction.gp?id=" + id + "&at_memo=" + at_memo + "&date=" + date + "&gp_name=" + gp_name, "memo", "width=350,height=200,scrollbars=no");
 	}
 	
-	function timeEditOpen(id, time, type, date) { // 시간 수정창 열기
+	function timeEditOpen(id, time, type, date, gp_name) { // 시간 수정창 열기
 // 		var date = document.emAttitudeForm.date.value;
-		window.open("./GroupsAttitudeEditTime.gp?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date, "timeEdit", "width=350,height=200,scrollbars=no");
+		window.open("./GroupsAttitudeEditTime.gp?id=" + id + "&time=" + time + "&type=" + type + "&date=" + date + "&gp_name=" + gp_name, "timeEdit", "width=350,height=200,scrollbars=no");
 	}
 	
-	function confirmCancel(id, type, date) { // 버튼 클릭 확인
+	function confirmCancel(id, type, date, gp_name) { // 버튼 클릭 확인
 		if (confirm("결석 처리 하시겠습니까?") == true) {
 // 			var date = document.emAttitudeForm.date.value;
-			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date;
+			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date + "&gp_name=" + gp_name;
 			return null;
 		}
 	}
 	
-	function confirmCancel2(id, type, date) { // 버튼 클릭 확인
+	function confirmCancel2(id, type, date, gp_name) { // 버튼 클릭 확인
 		if (confirm("취소 처리 하시겠습니까?") == true) {
 // 			var date = document.emAttitudeForm.date.value;
-			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date;
+			location.href="./GroupsAttitudeCancelAction.gp?id=" + id + "&type=" + type + "&date=" + date + "&gp_name=" + gp_name;
 			return null;
 		}
 	}	
@@ -43,14 +43,14 @@
 		if (date == "") {
 			alert('날짜 입력하세요');
 		} else {
-			document.stAttitudeForm.action = "./GroupsAttitudeListAction.gp?date=" + date + "&gp_name=" + gp_name;
+			document.stAttitudeForm.action = "./GroupsAttitudeListAction.gp?date=" + date;
 			document.stAttitudeForm.submit();
 		}
 	}
 
-	function timeRecord(type, id, date) { 
+	function timeRecord(type, id, date, gp_name) { 
 // 		var date = document.emAttitudeForm.date.value;
-		location.href="./GroupsAttitudeTimeRecordingAction.gp?type=" + type + "&id=" + id + "&date=" + date;
+		location.href="./GroupsAttitudeTimeRecordingAction.gp?type=" + type + "&id=" + id + "&date=" + date + "&gp_name=" + gp_name;
 	}
 	
 	function selGroups(gp_name, date) { // 학급 선택
@@ -231,18 +231,18 @@
 									<td>
 										<%
 											if (attitude.getAt_come_time() != null) { // 입실 시간이 기록되어 있을 경우
-												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
-												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
-											} else { %><input type="button" value="출석" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>')">	<%} 
+												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_come_time()) %>','come','<%=date%>','<%=gp_name%>')"><%=sdfTime.format(attitude.getAt_come_time()) %></a>&nbsp;
+												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','come','<%=date%>','<%=gp_name%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+											} else { %><input type="button" value="출석" onclick="timeRecord('come', '<%=attitude.getAt_member_id() %>','<%=date%>','<%=gp_name%>')">	<%} 
 										%>	
 									</td>
 									<td>
 										<%
 											if (attitude.getAt_leave_time() != null) { // 퇴실 시간이 기록되어 있을 경우
-												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
-												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
+												%><a href="#" onclick="timeEditOpen('<%=attitude.getAt_member_id() %>','<%=sdfTime.format(attitude.getAt_leave_time()) %>','leave','<%=date%>','<%=gp_name%>')"><%=sdfTime.format(attitude.getAt_leave_time()) %></a>&nbsp;
+												<a href="#" onclick="confirmCancel2('<%=attitude.getAt_member_id() %>','leave','<%=date%>','<%=gp_name%>')"><img src="./img/icon_cancel.gif" width="10" height="10"></a><%
 											} else { 
-												%><input type="button" value="퇴실" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>','<%=date%>')"><%
+												%><input type="button" value="퇴실" onclick="timeRecord('leave', '<%=attitude.getAt_member_id() %>','<%=date%>','<%=gp_name%>')"><%
 											} 
 										%>	
 									</td>
@@ -250,20 +250,20 @@
 										<%
 											if (attitude.getAt_memo() != null) { // 메모가 기록되어 있을 경우
 												if (attitude.getAt_memo().length() > 10) { // 메모가 10글자를 넘으면 축약
-													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
+													%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>','<%=gp_name%>')"><%=attitude.getAt_memo().substring(0,10) + "..."%></a><%
 												} else {
 													if (attitude.getAt_memo().length() == 0) { // 메모 편집 시 글자 다 지우고 완료 시(문자 길이 0일 때) 입력버튼 표시
-														%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%
+														%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>','<%=gp_name%>')"><%
 													} else {
-														%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>')"><%=attitude.getAt_memo()%></a><%
+														%><a href="#" onclick="memoOpen('<%=attitude.getAt_member_id() %>','<%=attitude.getAt_memo()%>','<%=date%>','<%=gp_name%>')"><%=attitude.getAt_memo()%></a><%
 													}
 												} 
 											} else { // 메모 없을 경우
-												%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null','<%=date%>')"><%
+												%><input type="button" value="입력" onclick="memoOpen('<%=attitude.getAt_member_id() %>','null','<%=date%>','<%=gp_name%>')"><%
 											}%>
 									</td>
 									<td>
-										<input type="button" value="결석처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all','<%=date%>')">
+										<input type="button" value="결석처리" onclick="confirmCancel('<%=attitude.getAt_member_id() %>','all','<%=date%>','<%=gp_name%>')">
 									</td>
 								</tr>
 							<%

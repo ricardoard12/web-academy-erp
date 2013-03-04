@@ -13,12 +13,15 @@
 	String id = request.getParameter("id");
  	String time = request.getParameter("time");
 	String type = request.getParameter("type");
+	String date = request.getParameter("date");
+	String gp_name = request.getParameter("gp_name");
 %>
 <body>
 	<form action="./GroupsAttitudeEditTimeAction.gp" method="post">
 		<input type="hidden" name="id" value="<%=id %>">
 		<input type="hidden" name="type" value="<%=type%>">
-<%-- 		<input type="hidden" name="time" value="<%=time %>"> --%>
+		<input type="hidden" name="type" value="<%=date%>">
+		<input type="hidden" name="type" value="<%=gp_name%>">
 		<table>
 		<%if (type.equals("come")) {%>
 			<tr><th>출근 시간 변경</th></tr>
