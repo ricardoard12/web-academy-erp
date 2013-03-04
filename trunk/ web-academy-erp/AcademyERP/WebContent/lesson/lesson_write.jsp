@@ -44,7 +44,7 @@
 
 				<form action="./LessonAddAction.le" method="post">
 					<fieldset>
-						<legend>업무일지 입력 FORM</legend>
+						<legend><b>강의계획서 입력 FORM</b></legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
 							
@@ -107,24 +107,27 @@
 									<tr>
 										<th scope="row">강의목표</th>
 										<td>
-											<div class="item">
-												<textarea name="lesson_goal" cols="100" rows="10"
-													title="레이블 텍스트" id="lesson_goal" class="i_text"
-													style="display: none;"></textarea>
+<!-- 											<div class="item"> -->
+<!-- 												<textarea name="lesson_goal" cols="100" rows="10" -->
+<!-- 													title="레이블 텍스트" id="lesson_goal" class="i_text" -->
+<!-- 													style="display: none;"></textarea> -->
 
 													
-											</div>
+<!-- 											</div> -->
+												<textarea rows="10" cols="150" name="lesson_goal">
+												</textarea>
 										</td>
 									</tr>
 									
 									<tr>
 										<th scope="row">강의내용</th>
 										<td>
-											<div class="item">
-												<textarea name="lesson_content" cols="100" rows="10"
-													title="레이블 텍스트" id="lesson_content" class="i_text"
-													style="display: none;"></textarea>
-											</div>
+<!-- 											<div class="item"> -->
+<!-- 												<textarea name="lesson_content" cols="100" rows="10" -->
+<!-- 													title="레이블 텍스트" id="lesson_content" class="i_text" -->
+<!-- 													style="display: none;"></textarea> -->
+<!-- 											</div> -->
+												<textarea rows="10" cols="150" name="lesson_content"></textarea>
 										</td>
 									</tr>
 								
@@ -148,110 +151,110 @@
 				</form>
 				
 				<!-- 				강의목표 부분 스마트 에디터 적용 시작 -->
-				<script type="text/javascript">
-					var oEditors = [];
-					nhn.husky.EZCreator
-							.createInIFrame({
-								oAppRef : oEditors,
-								elPlaceHolder : "lesson_goal",
-								sSkinURI : "./lesson/SE2.2.1.O9186/SmartEditor2Skin.html",
-								htParams : {
-									bUseToolbar : true,
-									fOnBeforeUnload : function() {
-										//alert("아싸!");	
-									}
-								}, //boolean
-								fOnAppLoad : function() {
-									//예제 코드
-									//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-								},
-								fCreator : "createSEditor2"
-							});
+<!-- 				<script type="text/javascript"> -->
+<!-- 					var oEditors = []; -->
+<!-- 					nhn.husky.EZCreator -->
+<!-- 							.createInIFrame({ -->
+<!-- 								oAppRef : oEditors, -->
+<!-- 								elPlaceHolder : "lesson_goal", -->
+<!-- 								sSkinURI : "./lesson/SE2.2.1.O9186/SmartEditor2Skin.html", -->
+<!-- 								htParams : { -->
+<!-- 									bUseToolbar : true, -->
+<!-- 									fOnBeforeUnload : function() { -->
+<!-- 										//alert("아싸!");	 -->
+<!-- 									} -->
+<!-- 								}, //boolean -->
+<!-- 								fOnAppLoad : function() { -->
+<!-- 									//예제 코드 -->
+<!-- 									//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]); -->
+<!-- 								}, -->
+<!-- 								fCreator : "createSEditor2" -->
+<!-- 							}); -->
 
-					function pasteHTML() {
-						var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-						oEditors.getById["lesson_goal"].exec("PASTE_HTML",
-								[ sHTML ]);
-					}
+<!-- 					function pasteHTML() { -->
+<!-- 						var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>"; -->
+<!-- 						oEditors.getById["lesson_goal"].exec("PASTE_HTML", -->
+<!-- 								[ sHTML ]); -->
+<!-- 					} -->
 
-					function showHTML() {
-						var sHTML = oEditors.getById["lesson_goal"].getIR();
-						alert(sHTML);
-					}
+<!-- 					function showHTML() { -->
+<!-- 						var sHTML = oEditors.getById["lesson_goal"].getIR(); -->
+<!-- 						alert(sHTML); -->
+<!-- 					} -->
 
-					function submitContents(elClickedObj) {
-						oEditors.getById["lesson_goal"].exec(
-								"UPDATE_LESSON_GOAL_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+<!-- 					function submitContents(elClickedObj) { -->
+<!-- 						oEditors.getById["lesson_goal"].exec( -->
+<!-- 								"UPDATE_LESSON_GOAL_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다. -->
 
-						// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+<!-- 						// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다. -->
 
-						try {
-							elClickedObj.form.submit();
-						} catch (e) {
-						}
-					}
+<!-- 						try { -->
+<!-- 							elClickedObj.form.submit(); -->
+<!-- 						} catch (e) { -->
+<!-- 						} -->
+<!-- 					} -->
 
-					function setDefaultFont() {
-						var sDefaultFont = '궁서';
-						var nFontSize = 24;
-						oEditors.getById["lesson_goal"].setDefaultFont(
-								sDefaultFont, nFontSize);
-					}
-				</script>
+<!-- 					function setDefaultFont() { -->
+<!-- 						var sDefaultFont = '궁서'; -->
+<!-- 						var nFontSize = 24; -->
+<!-- 						oEditors.getById["lesson_goal"].setDefaultFont( -->
+<!-- 								sDefaultFont, nFontSize); -->
+<!-- 					} -->
+<!-- 				</script> -->
 <!-- 				강의목표 부분 스마트 에디터 적용 종료 -->
 
 <!-- 				강의내용 부분 스마트 에디터 적용 시작 -->
 
-	<script type="text/javascript">
-					var oEditors = [];
-					nhn.husky.EZCreator
-							.createInIFrame({
-								oAppRef : oEditors,
-								elPlaceHolder : "lesson_content",
-								sSkinURI : "./lesson/SE2.2.1.O9186/SmartEditor2Skin.html",
-								htParams : {
-									bUseToolbar : true,
-									fOnBeforeUnload : function() {
-										//alert("아싸!");	
-									}
-								}, //boolean
-								fOnAppLoad : function() {
-									//예제 코드
-									//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-								},
-								fCreator : "createSEditor2"
-							});
+<!-- 	<script type="text/javascript"> -->
+<!-- 					var oEditors = []; -->
+<!-- 					nhn.husky.EZCreator -->
+<!-- 							.createInIFrame({ -->
+<!-- 								oAppRef : oEditors, -->
+<!-- 								elPlaceHolder : "lesson_content", -->
+<!-- 								sSkinURI : "./lesson/SE2.2.1.O9186/SmartEditor2Skin.html", -->
+<!-- 								htParams : { -->
+<!-- 									bUseToolbar : true, -->
+<!-- 									fOnBeforeUnload : function() { -->
+<!-- 										//alert("아싸!");	 -->
+<!-- 									} -->
+<!-- 								}, //boolean -->
+<!-- 								fOnAppLoad : function() { -->
+<!-- 									//예제 코드 -->
+<!-- 									//oEditors.getById["contents"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]); -->
+<!-- 								}, -->
+<!-- 								fCreator : "createSEditor2" -->
+<!-- 							}); -->
 
-					function pasteHTML() {
-						var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-						oEditors.getById["lesson_content"].exec("PASTE_HTML",
-								[ sHTML ]);
-					}
+<!-- 					function pasteHTML() { -->
+<!-- 						var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>"; -->
+<!-- 						oEditors.getById["lesson_content"].exec("PASTE_HTML", -->
+<!-- 								[ sHTML ]); -->
+<!-- 					} -->
 
-					function showHTML() {
-						var sHTML = oEditors.getById["lesson_content"].getIR();
-						alert(sHTML);
-					}
+<!-- 					function showHTML() { -->
+<!-- 						var sHTML = oEditors.getById["lesson_content"].getIR(); -->
+<!-- 						alert(sHTML); -->
+<!-- 					} -->
 
-					function submitContents(elClickedObj) {
-						oEditors.getById["lesson_content"].exec(
-								"UPDATE_LESSON_CONTENT_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+<!-- 					function submitContents(elClickedObj) { -->
+<!-- 						oEditors.getById["lesson_content"].exec( -->
+<!-- 								"UPDATE_LESSON_CONTENT_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다. -->
 
-						// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
+<!-- 						// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다. -->
 
-						try {
-							elClickedObj.form.submit();
-						} catch (e) {
-						}
-					}
+<!-- 						try { -->
+<!-- 							elClickedObj.form.submit(); -->
+<!-- 						} catch (e) { -->
+<!-- 						} -->
+<!-- 					} -->
 
-					function setDefaultFont() {
-						var sDefaultFont = '궁서';
-						var nFontSize = 24;
-						oEditors.getById["lesson_content"].setDefaultFont(
-								sDefaultFont, nFontSize);
-					}
-				</script>
+<!-- 					function setDefaultFont() { -->
+<!-- 						var sDefaultFont = '궁서'; -->
+<!-- 						var nFontSize = 24; -->
+<!-- 						oEditors.getById["lesson_content"].setDefaultFont( -->
+<!-- 								sDefaultFont, nFontSize); -->
+<!-- 					} -->
+<!-- 				</script> -->
 			<!-- 강의 내용 부분 스마트에디터 적용 종료 -->
 
 	
