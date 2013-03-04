@@ -63,6 +63,18 @@
 		location.href="./EmployeeJoin.em?level=" + value;
 		return null;
 	}
+	
+	function openZipcode() {
+	        url = "./Zipcode.me";
+	        window.open(url, "", "width=700, height=400, scrollbars=yes");
+        }
+	
+	function setZipcode(zip1, zip2, addr) {
+	        opener.document.joinEmployeeForm.mm_zipcode1.value = zip1;
+	        opener.document.joinEmployeeForm.mm_zipcode2.value = zip2;
+	        opener.document.joinEmployeeForm.mm_addr1.value = addr;
+	        window.close();
+        }
 </script>
 <title>Insert title here</title>
 </head>
@@ -189,7 +201,8 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text"> - 
-													<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="button" value="우편번호 찾기" onclick="openZipcode()">
 											</div>
 										</td>
 									</tr>
