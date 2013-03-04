@@ -130,7 +130,7 @@
 	
 	<servlet>
 		<servlet-name>BusinessFrontController</servlet-name>
-		<servlet-class>academy.business_log_action.BusinessFrontController</servlet-class>
+		<servlet-class>academy.business_log.action.BusinessFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BusinessFrontController</servlet-name>
@@ -144,5 +144,14 @@
 	<servlet-mapping>
 		<servlet-name>CounselerFrontController</servlet-name>
 		<url-pattern>*.cc</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LessonFrontController</servlet-name>
+		<servlet-class>academy.lesson_plan.action.LessonFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LessonFrontController</servlet-name>
+		<url-pattern>*.le</url-pattern>
 	</servlet-mapping>
 </web-app>
