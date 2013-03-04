@@ -34,7 +34,41 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-	        }
+	        }else if(command.equals("/LessonListAction.le")){
+				action = new LessonNoticeAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+//	        else if(command.equals("/BusinessDetailAction.bl")){
+//				action = new BusinessDetailAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			else if(command.equals("/BusinessModifyAction.bl")){
+//				action=new BusinessModifyAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}else if(command.equals("/BusinessDelete.bo")){
+//				forward=new ActionForward();
+//				forward.setRedirect(false);
+//				forward.setPath("./business_log/business_delete.jsp");
+//			}else if(command.equals("/BusinessDeleteAction.bl")){
+//				action=new BusinessDeleteAction();
+//				try {
+//					forward=action.execute(request, response);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 	        
 	//이동
 	if (forward != null) {
