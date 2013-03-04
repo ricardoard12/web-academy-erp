@@ -407,15 +407,16 @@ public class AttitudeDAO {
 		return listCount;
     }
     
-    
-    public boolean StudentAttitudeEditTime(String id,String editTime,String type){
+    public boolean studentAttitudeEditTime(String id, String editTime, String type, String date) throws Exception { // 학생 출결 시간 수정
     	boolean result = false;
     	try {
     		con = ds.getConnection();
-    		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, editTime);
     		pstmt.setString(2, id);
+			pstmt.setString(3, date + " 00:00:00");
+			pstmt.setString(4, date + " 23:59:59");
     		pstmt.executeUpdate();
     		
     		result = true;
@@ -424,10 +425,9 @@ public class AttitudeDAO {
 		} finally {
 			closingDB();
 		}
-    	return result;
     	
+    	return result;
     }
-    
     
     public boolean studentAttitudeAddMemo(String id, String at_memo) throws Exception {
     	boolean result = false;
@@ -462,99 +462,161 @@ public class AttitudeDAO {
 		}
     	return result;
     }
-    public int studentAttitudeTimeRecording(String id, String type) throws Exception {
-    	int result = 0;
-    	ResultSet rs2 = null;
-    	
-    	try {
-    		System.out.println("기록 준비");
-    		con = ds.getConnection();
-    		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time > current_date()";
-    		pstmt = con.prepareStatement(sql);
-    		pstmt.setString(1, id);
-    		rs = pstmt.executeQuery();
-    		System.out.println(type);
-    		if (rs.next()) {
-    			System.out.println("이전 시간 등록 내역 있음");
-    				System.out.println("출근 내역 있음");
-    				sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time > current_date()";
-    	    		pstmt = con.prepareStatement(sql);
-    	    		pstmt.setString(1, id);
-    	    		pstmt.executeUpdate();
-    	    		result = 1;
-    		} else {
-    			System.out.println("이전 시간 등록 내역 없음");
-    			if (!type.equals("leave")) {
-    				sql = "SELECT at_memo,at_memo_date FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
-    				pstmt = con.prepareStatement(sql);
-    				pstmt.setString(1, id);
-    				rs2 = pstmt.executeQuery();
-    				
-    				if (rs2.next()) {
-    					sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_memo_date > current_date()";
+    public int studentAttitudeTimeRecording(String id, String type, String date) throws Exception { // 학생 출결 시간 기록
+        	int result = 0;
+        	ResultSet rs2 = null;
+        	try {
+//        		System.out.println("기록 준비");
+        		con = ds.getConnection();
+        		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+        		pstmt = con.prepareStatement(sql);
+        		pstmt.setString(1, id);
+    			pstmt.setString(2, date + " 00:00:00");
+    			pstmt.setString(3, date + " 23:59:59");
+        		rs = pstmt.executeQuery();
+        		
+        		if (rs.next()) {
+//        			System.out.println("이전 시간 등록 내역 있음");
+//        				System.out.println("출근 내역 있음");
+        				sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
         	    		pstmt = con.prepareStatement(sql);
         	    		pstmt.setString(1, id);
+    					pstmt.setString(2, date + " 00:00:00");
+    					pstmt.setString(3, date + " 23:59:59");
         	    		pstmt.executeUpdate();
-			    		result = 1;
-    				} else {
-    					sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
-		    			pstmt = con.prepareStatement(sql);
-			    		pstmt.setString(1, id);
-			    		pstmt.executeUpdate();
         	    		result = 1;
-    				}
-    			} else {
-    				result = -1;
-    			}
+        		} else {
+//        			System.out.println("이전 시간 등록 내역 없음");
+        			if (!type.equals("leave")) {
+        				sql = "SELECT at_memo,at_memo_date FROM attitude WHERE at_member_id=?AND at_memo_date >= ? AND at_memo_date <= ?";
+        				// 출근 시간 등록 시 기존 메모 기록되어 있는지 확인
+        				pstmt = con.prepareStatement(sql);
+        				pstmt.setString(1, id);
+    					pstmt.setString(2, date + " 00:00:00");
+    					pstmt.setString(3, date + " 23:59:59");
+        				rs2 = pstmt.executeQuery();
+        				
+        				if (rs2.next()) {
+//        					System.out.println("이전 시간 등록 내역 없음 메모 있음");
+        					sql = "UPDATE attitude SET at_report_state='Y',at_" + type + "_time=now() WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ?";
+            	    		pstmt = con.prepareStatement(sql);
+            	    		pstmt.setString(1, id);
+        					pstmt.setString(2, date + " 00:00:00");
+        					pstmt.setString(3, date + " 23:59:59");
+            	    		pstmt.executeUpdate();
+    			    		result = 1;
+        				} else {
+//        					System.out.println("이전 시간 등록 내역 없음 메모 없음");
+        					sql = "INSERT INTO attitude (at_member_id, at_report_state, at_" + type + "_time) VALUES(?,'Y',now())";
+    		    			pstmt = con.prepareStatement(sql);
+    			    		pstmt.setString(1, id);
+    			    		pstmt.executeUpdate();
+            	    		result = 1;
+        				}
+        			} else {
+        				System.out.println("type = leave");
+        				result = -1;
+        			}
+        		}
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		} finally {
+    			closingDB();
     		}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closingDB();
-		}
-    	System.out.println(result);
-    	return result;
+        	return result;
     }
     
-    public boolean studentAttitudeCancel(String id, String type) throws Exception {
+    public boolean studentAttitudeCancel(String id, String type, String date) throws Exception {
     	boolean result = false;
     	try {
     		con = ds.getConnection();
-    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
+			pstmt.setString(2, date + " 00:00:00");
+			pstmt.setString(3, date + " 23:59:59");
     		rs = pstmt.executeQuery();
 	    		
     		if (rs.next()) { // 메모 있을 경우
+    			System.out.println("메모 있음");
     			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
-		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				System.out.println("결근 처리 or 출근 시간 취소 버튼 클릭 시");
+		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_idx=?";
 		    		pstmt = con.prepareStatement(sql);
 		    		pstmt.setDate(1, null);
 		    		pstmt.setDate(2, null);
 		    		pstmt.setString(3, "N");
-		    		pstmt.setString(4, id);
+		    		pstmt.setInt(4, rs.getInt("at_idx"));
 		    		pstmt.executeUpdate();
     			} else if (type.equals("leave")) { // 퇴근 시간 취소 버튼 클릭시
-    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				System.out.println("퇴근 시간 취소 버튼 클릭 시");
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_idx=?";
     				pstmt = con.prepareStatement(sql);
     				pstmt.setDate(1, null);
-    				pstmt.setString(2, id);
+		    		pstmt.setInt(4, rs.getInt("at_idx"));
     				pstmt.executeUpdate();
     			}
     		} else { // 메모 없을 경우
+    			System.out.println("메모 없음");
     			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
-	    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
+    				System.out.println("결근 처리 or 출근 시간 취소 버튼 클릭 시");
+	    			sql = "DELETE FROM attitude WHERE at_idx=?";
 	    			pstmt = con.prepareStatement(sql);
-	    			pstmt.setString(1, id);
+		    		pstmt.setInt(4, rs.getInt("at_idx"));
 	    			pstmt.executeUpdate();
     			} else { // 퇴근 시간 취소 버튼 클릭시
-    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+    				System.out.println("퇴근 시간 취소 버튼 클릭 시");
+    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_idx=?";
     				pstmt = con.prepareStatement(sql);
     				pstmt.setDate(1, null);
-    				pstmt.setString(2, id);
+		    		pstmt.setInt(4, rs.getInt("at_idx"));
 	    			pstmt.executeUpdate();
     			}
     		}
+//    		if (rs.next()) { // 메모 있을 경우
+//    			System.out.println("메모 있음");
+//    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+//    				System.out.println("결근 처리 or 출근 시간 취소 버튼 클릭 시");
+//		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+//		    		pstmt = con.prepareStatement(sql);
+//		    		pstmt.setDate(1, null);
+//		    		pstmt.setDate(2, null);
+//		    		pstmt.setString(3, "N");
+//		    		pstmt.setString(4, id);
+//					pstmt.setString(5, date + " 00:00:00");
+//					pstmt.setString(6, date + " 23:59:59");
+//		    		pstmt.executeUpdate();
+//    			} else if (type.equals("leave")) { // 퇴근 시간 취소 버튼 클릭시
+//    				System.out.println("퇴근 시간 취소 버튼 클릭 시");
+//    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+//    				pstmt = con.prepareStatement(sql);
+//    				pstmt.setDate(1, null);
+//    				pstmt.setString(2, id);
+//    				pstmt.setString(3, date + " 00:00:00");
+//					pstmt.setString(4, date + " 23:59:59");
+//    				pstmt.executeUpdate();
+//    			}
+//    		} else { // 메모 없을 경우
+//    			System.out.println("메모 있음");
+//    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+//    				System.out.println("결근 처리 or 출근 시간 취소 버튼 클릭 시");
+//	    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+//	    			pstmt = con.prepareStatement(sql);
+//	    			pstmt.setString(1, id);
+//	    			pstmt.setString(2, date + " 00:00:00");
+//					pstmt.setString(3, date + " 23:59:59");
+//	    			pstmt.executeUpdate();
+//    			} else { // 퇴근 시간 취소 버튼 클릭시
+//    				System.out.println("퇴근 시간 취소 버튼 클릭 시");
+//    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+//    				pstmt = con.prepareStatement(sql);
+//    				pstmt.setDate(1, null);
+//    				pstmt.setString(2, id);
+//					pstmt.setString(3, date + " 00:00:00");
+//					pstmt.setString(4, date + " 23:59:59");
+//	    			pstmt.executeUpdate();
+//    			}
+//    		}
     		
     		result = true;
 		} catch (Exception e) {
@@ -565,6 +627,56 @@ public class AttitudeDAO {
     	
     	return result;
     }
+//    public boolean studentAttitudeCancel(String id, String type) throws Exception {
+//    	boolean result = false;
+//    	try {
+//    		con = ds.getConnection();
+//    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
+//    		pstmt = con.prepareStatement(sql);
+//    		pstmt.setString(1, id);
+//    		rs = pstmt.executeQuery();
+//	    		
+//    		if (rs.next()) { // 메모 있을 경우
+//    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+//		    		sql = "UPDATE attitude SET at_come_time=?, at_leave_time=?,at_report_state=? WHERE at_member_id=? AND at_come_time > current_date()";
+//		    		pstmt = con.prepareStatement(sql);
+//		    		pstmt.setDate(1, null);
+//		    		pstmt.setDate(2, null);
+//		    		pstmt.setString(3, "N");
+//		    		pstmt.setString(4, id);
+//		    		pstmt.executeUpdate();
+//    			} else if (type.equals("leave")) { // 퇴근 시간 취소 버튼 클릭시
+//    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+//    				pstmt = con.prepareStatement(sql);
+//    				pstmt.setDate(1, null);
+//    				pstmt.setString(2, id);
+//    				pstmt.executeUpdate();
+//    			}
+//    		} else { // 메모 없을 경우
+//    			if (type.equals("all") || type.equals("come")) { // 결근 처리 or 출근 시간 취소 버튼 클릭 시
+//	    			sql = "DELETE FROM attitude WHERE  at_member_id=? AND at_come_time > current_date()";
+//	    			pstmt = con.prepareStatement(sql);
+//	    			pstmt.setString(1, id);
+//	    			pstmt.executeUpdate();
+//    			} else { // 퇴근 시간 취소 버튼 클릭시
+//    				sql = "UPDATE attitude SET at_leave_time=? WHERE at_member_id=? AND at_come_time > current_date()";
+//    				pstmt = con.prepareStatement(sql);
+//    				pstmt.setDate(1, null);
+//    				pstmt.setString(2, id);
+//	    			pstmt.executeUpdate();
+//    			}
+//    		}
+//    		
+//    		result = true;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			closingDB();
+//		}
+//    	
+//    	return result;
+//    }
+    
     public String getstudentAttitudeGpid(String id){
     	String sql="";
 		String gp_id=null;
