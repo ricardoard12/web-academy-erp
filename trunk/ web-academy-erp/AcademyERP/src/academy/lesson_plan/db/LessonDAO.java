@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+
 
 public class LessonDAO {
 	Connection con = null;
@@ -73,5 +77,70 @@ public class LessonDAO {
 		}
 		
 	}
+
+	public List getLessonList(int page, int limit) {
+	String sql="";
+	List list=null;
+	int startrow=(page-1)*limit+1; //현재페이지 시작행
+	try {
+		System.out.println("getLessonList start");
+		con=ds.getConnection();
+		//3 sql
+		sql="select * from lesson_plan order by lesson_num desc limit ?,?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, startrow-1); //시작위치-1
+		pstmt.setInt(2, limit); //개수
+		//4 저장 = 실행
+		rs=pstmt.executeQuery();
+		//5 rs => 자바빈 저장
+		if(rs.next()){
+			list=new ArrayList(limit);//ArrayList객체생성
+			do{
+				LessonBean lessonbean = new LessonBean();
+				
+				lessonbean.setLesson_num(rs.getInt("lesson_num"));
+				lessonbean.setLesson_teacher(rs.getString("lesson_teacher"));
+				lessonbean.setLesson_subject(rs.getString("lesson_subject"));
+				lessonbean.setLesson_goal(rs.getString("lesson_goal"));
+				lessonbean.setLesson_cost(rs.getString("lesson_cost"));
+				lessonbean.setLesson_book(rs.getString("lesson_book"));
+				lessonbean.setLesson_content(rs.getString("lesson_content"));
+				lessonbean.setLesson_time(rs.getString("lesson_time"));
+				lessonbean.setLesson_date(rs.getString("lesson_date"));
+				list.add(lessonbean); //자바빈 -> 한칸
+			}while(rs.next());
+		}
+		System.out.println("getlessonList end");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+	dbClose();
+	}
+	return list;
+}
+
+public int getListCount() throws Exception{
+	String sql = "";
+	int x = 0;
+	try {
+		System.out.println("getLessonListCount start");
+		con = ds.getConnection();
+		
+		sql = "select count(*) from lesson_plan";
+		pstmt = con.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()){
+			x = rs.getInt(1);
+		}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally{
+		dbClose();
+	}
+	return x;
+	
+}
 	
 }
