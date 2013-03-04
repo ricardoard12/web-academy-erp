@@ -50,7 +50,7 @@
 						class="tbl_type_notice">
 						<!-- level세션값 전달 -->
 						<input type="hidden" name="level"
-							value=<%=session.getAttribute("level")%>>
+							value="<%=session.getAttribute("level")%>">
 
 						<caption>게시판 리스트</caption>
 						<colgroup>
@@ -85,7 +85,7 @@
 									for="chk_sel">선택</label></td>
 								<td class="num"><%=boardbean.getBoard_num()%></td>
 								<td class="title"><a
-									href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>"><%=boardbean.getBoard_subject()%></a></td>
+									href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>&?gid=<%=gid%>'"><%=boardbean.getBoard_subject()%></a></td>
 								<td><a href="#"><%=boardbean.getBoard_name()%></a></td>
 								<td class="date"><%=boardbean.getBoard_date()%></td>
 								<td class="hit"><%=boardbean.getBoard_readcount()%></td>
@@ -133,7 +133,7 @@
 				<%
 					} else {
 				%>
-				<a href="./BoardNotice.bo?page=<%=nowpage - 1%>"
+				<a href="./BoardNotice.bo?page=<%=nowpage - 1%>&?gid=<%=gid%>'"
 					class="direction prev"><span></span>이전</a>
 				<%
 					}
@@ -143,7 +143,7 @@
 						if (a == nowpage) {
 				%><strong><%=a%></strong>&nbsp;<%
 					} else {
-				%><a href="./BoardNotice.bo?page=<%=a%>"><%=a%></a>
+				%><a href="./BoardNotice.bo?page=<%=a%>&?gid=<%=gid%>'"><%=a%></a>
 				<%
 					}
 					}
@@ -153,7 +153,7 @@
 				%><a href="#" class="direction next">끝<span></span><span></span></a>
 				<%
 					} else {
-				%><a href="./BoardNotice.bo?page=<%=nowpage + 1%>" class="direction next">다음
+				%><a href="./BoardNotice.bo?page=<%=nowpage + 1%>&?gid=<%=gid%>'" class="direction next">다음
 				</a>
 				<%
 					}
