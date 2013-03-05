@@ -64,19 +64,16 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 					e.printStackTrace();
 				}
 			}
-	
-//			else if(command.equals("/BusinessModifyAction.bl")){
-//				action=new BusinessModifyAction();
+//	
+//			else if(command.equals("/LessonModifyAction.le")){
+//				action=new LessonModifyAction();
 //				try {
 //					forward=action.execute(request, response);
 //				} catch (Exception e) {
 //					e.printStackTrace();
 //				}
-//			}else if(command.equals("/BusinessDelete.bo")){
-//				forward=new ActionForward();
-//				forward.setRedirect(false);
-//				forward.setPath("./business_log/business_delete.jsp");
 //			}
+
 	        
 	//이동
 	if (forward != null) {
