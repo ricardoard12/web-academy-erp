@@ -35,7 +35,18 @@ public class MemberFrontController extends HttpServlet implements Servlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+		} else if (command.equals("/Zipcode.me")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./member/zipcode.jsp");
+		} else if (command.equals("/ZipcodeAction.me")) {
+			action = new ZipcodeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
         
         // 이동
         if (forward != null) {
