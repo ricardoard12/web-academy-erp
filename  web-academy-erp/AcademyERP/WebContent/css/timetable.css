@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.timetable {
+	width: 660px;
+	table-layout: fixed;
+	word-wrap: break-word;
+	border-top: 2px solid #aaa;
+	border-collapse: collapse;
+}
+
+.timetable th,.timetable td {
+	border: 1px solid #d2d2d2;
+	padding: 4px;
+}
+
+.timetable th {
+	background-color: #f7f7f7;
+	height: 36px;
+	vertical-align: middle;
+	color: black;
+}
+
+.timetable .timetablehead th {
+	border-top: none;
+}
+
+.timetable td:HOVER {
+	background-color: #FFE08C;
+}
