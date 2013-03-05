@@ -14,13 +14,16 @@
 <script src="./js/jquery-1.9.1.js"></script>
 <title>시간표 작성</title>
 <script>
-// 	$(function() {
-		// 	$(".timetable td").bind("click", function() {
-		// 			alert($(".timetable td").);
-		// 		});
-		function popup(row, col) {
-			alert(row + "," + col);
-		}
+	// 	$(function() {
+	// 	$(".timetable td").bind("click", function() {
+	// 			alert($(".timetable td").);
+	// 		});
+	function popup(row, col) {
+		window
+				.open("./InsertSubject.time?day="+col+"&lesson="+row, "",
+						"height=400,width=300,toolbar=no,status=no,linemenubar=no,scrollbars=no");
+		return false;
+	}
 
 	// 	});
 </script>
