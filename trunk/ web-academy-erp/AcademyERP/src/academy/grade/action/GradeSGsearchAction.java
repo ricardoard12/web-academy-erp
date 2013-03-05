@@ -7,22 +7,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.grade.db.GradeDAO;
 
-public class GradeAcademyTestingAction implements Action{
+public class GradeSGsearchAction implements Action{
 
     @Override
     public ActionForward execute(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
+        
         ActionForward forward = new ActionForward();
+        
+        request.setCharacterEncoding("UTF-8");
+        
+        //학생 이름 값 받기
+        String mm_name = request.getParameter("mm_name");
         GradeDAO gradedao = new GradeDAO();
+        List gradeSGsearch = gradedao.gradeSGsearch(mm_name);
         
-        //학원 시험중인 자료가져오는 기준
-        String status = "N";
-        String gp_name = request.getParameter("gp_name");
-        List gradeAcademyTesting = gradedao.gradeAcademyTest(status);
+        request.setAttribute("gradeSGsearch", gradeSGsearch);
         
-        request.setAttribute("gradeAcademyTesting", gradeAcademyTesting);
         forward.setRedirect(false);
-        forward.setPath("./grade/grade_academy_testing.jsp");
+        forward.setPath("./grade/student_search.jsp");
         return forward;
     }
 

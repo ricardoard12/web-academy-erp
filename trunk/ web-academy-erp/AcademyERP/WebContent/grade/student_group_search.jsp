@@ -11,10 +11,10 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
-	List gradeTsearch = (List)request.getAttribute("gradeTsearch");
+	List gradeSsearch = (List)request.getAttribute("gradeSsearch");
 %>
 <body>
-	<form action="" name="tSearch" method="post">
+	<form action="" name="sSearch" method="post">
 	
 	<table cellspacing="0" border="1" summary="목록" class="tbl_type_list">
 					<caption>목록</caption>
@@ -31,15 +31,15 @@
 					
 					<tbody>
 					
-					<% if(gradeTsearch == null){%>
+					<% if(gradeSsearch == null){%>
 						<tr><td colspan="3"><h1>다시 입력해주세요</h1></td></tr>
 					<%}else{			
 
-						for(int i=0; i<gradeTsearch.size(); i++){
-					    	GradeBean gradebean = (GradeBean)gradeTsearch.get(i);%>
+						for(int i=0; i<gradeSsearch.size(); i++){
+					    	GradeBean gradebean = (GradeBean)gradeSsearch.get(i);%>
 						<tr>
 							<td><%=gradebean.getMm_name() %></td>
-							<td onclick="windowclose('<%=gradebean.getEp_id() %>')"><a href=""><%=gradebean.getEp_id() %></a></td>
+							<td onclick="windowclose('<%=gradebean.getMm_id() %>')"><a href=""><%=gradebean.getMm_id() %></a></td>
 							<td><%=gradebean.getMm_jumin1() %> - <%=gradebean.getMm_jumin1() %></td>
 						</tr>
 					<% 		}
@@ -57,7 +57,8 @@
 	
 	<script type="text/javascript">
 	function windowclose(mm_id){
-		opener.document.grade.ep_id.value = mm_id;
+		
+		opener.document.grAddCheck.mm_name.value = mm_id;
 		window.close();
 	}
 	</script>

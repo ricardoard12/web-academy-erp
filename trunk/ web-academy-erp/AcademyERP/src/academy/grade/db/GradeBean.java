@@ -6,7 +6,7 @@ public class GradeBean {
     private String gr_code; // 과목 코드
     private String gr_subject; // 과목명
     private String gr_memo; // 시험내용
-    private String mm_id; // 학생ID
+    private String st_id; // 학생ID
     private String gr_score; // 과목 점수
     private Date gr_exam_date; // 시험 일자
     private String ep_id; // 담당 강사
@@ -15,12 +15,20 @@ public class GradeBean {
     private String st_school_name; //학교이름
     private String gr_school; //학교성적
     
-    private String mm_name; //선생 검색시 이름값 가져오기
+    private String gp_name; //그룹이름
+    
+    private String mm_name; //학생, 선생 검색시 이름값 가져오기
     private String mm_jumin1; //선생검색시 주민값 가져오기
     private String mm_jumin2; //선생검색시 주민값 가져오기
     
     
     
+    public String getGp_name() {
+        return gp_name;
+    }
+    public void setGp_name(String gp_name) {
+        this.gp_name = gp_name;
+    }
     public String getGr_school() {
         return gr_school;
     }
@@ -45,11 +53,11 @@ public class GradeBean {
     public void setGr_memo(String gr_memo) {
         this.gr_memo = gr_memo;
     }
-    public String getMm_id() {
-        return mm_id;
+    public String getSt_id() {
+        return st_id;
     }
-    public void setMm_id(String mm_id) {
-        this.mm_id = mm_id;
+    public void setSt_id(String st_id) {
+        this.st_id = st_id;
     }
     public String getGr_score() {
         return gr_score;

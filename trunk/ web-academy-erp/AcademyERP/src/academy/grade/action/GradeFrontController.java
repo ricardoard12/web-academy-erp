@@ -36,6 +36,19 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             action = new GradeTsearchAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
+        
+        // 학생 정보
+        }else if(command.equals("/GradeSsearch.gr")) {
+            action = new GradeSsearchAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+        
+        //반그룹 정보
+        }else if(command.equals("/GradeGsearch.gr")) {
+            action = new GradeGsearchAction();
+            try {forward = action.execute(request, response);
+            } catch (Exception e) {e.printStackTrace();}
+        
             
             //학원 시험중인 정보
         }else if(command.equals("/GradeAcademyTesting.gr")) {
@@ -49,9 +62,9 @@ public class GradeFrontController extends HttpServlet implements Servlet {
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}
             
-            //과목별 학생 찾기
-        }else if(command.equals("/GradeSsearch.gr")) {
-            action = new GradeSsearchAction();
+            //그룹별  학생 찾기
+        }else if(command.equals("/GradeSGsearch.gr")) {
+            action = new GradeSGsearchAction();
             try {forward = action.execute(request, response);
             } catch (Exception e) {e.printStackTrace();}    
             
