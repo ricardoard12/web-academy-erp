@@ -49,12 +49,14 @@ CounselerBean counselor = (CounselerBean)request.getAttribute("counselerbean");
 
 <thead>
 <tr>
-<th scope="row">학생</th>
-<td><%=student.getMm_name() %></td>
+<th scope="row">제목</th>
+<td colspan="11"><%=counselor.getCc_subject() %></td>
 </tr>
 </thead>
 <tbody>
 <tr>
+<th scope="row">학생</th>
+<td><%=student.getMm_id()%></td>
 <th scope="row">부모</th>
 <td><%=student.getSt_parent_name() %></td>
 <th scope="row">학급</th>
@@ -65,8 +67,6 @@ CounselerBean counselor = (CounselerBean)request.getAttribute("counselerbean");
 <td><%=counselor.getEp_id() %></td>
 <th scope="row">상담일자</th>
 <td><%=counselor.getCc_date() %></td>
-<th scope="row">제목</th>
-<td><%=counselor.getCc_subject()%></td>
 </tr>
 <tr>
 <td colspan="6" class="cont">
@@ -79,7 +79,7 @@ CounselerBean counselor = (CounselerBean)request.getAttribute("counselerbean");
 <br>
 <div align="center">
 <input type="button" name="board_modify" value="수정" onclick="location.href='CounselorModify.cc?idx=<%=counselor.getIdx()%>&id=<%=counselor.getMm_id()%>'">
-<input type="button" name="" value="목록" onclick="location.href='BoardNotice.bo'">
+<input type="button" name="" value="목록" onclick="location.href='StudentCounsel.st?id=<%=counselor.getMm_id()%>'">
 </div>
 <br>
 
