@@ -56,16 +56,15 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else if(command.equals("/LessonDetailAction.le")){
+				action = new LessonDetailAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 	
-//	        else if(command.equals("/BusinessDetailAction.bl")){
-//				action = new BusinessDetailAction();
-//				try {
-//					forward=action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
 //			else if(command.equals("/BusinessModifyAction.bl")){
 //				action=new BusinessModifyAction();
 //				try {

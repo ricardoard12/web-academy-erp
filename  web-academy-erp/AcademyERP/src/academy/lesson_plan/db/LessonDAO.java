@@ -12,6 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import academy.business_log.db.BusinessBean;
+
 
 
 public class LessonDAO {
@@ -190,6 +192,38 @@ public boolean isBoardWriter(int num , String name){
 		dbClose();
 	}
 	return x;
+}
+
+public LessonBean getDetail(int num)throws Exception {
+	String sql="";
+	LessonBean lessonbean = new LessonBean();
+	try {
+		System.out.println("getDetail start");
+		con=ds.getConnection();
+		
+		sql="SELECT * FROM lesson_plan WHERE lesson_num=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		rs=pstmt.executeQuery();
+	
+		if(rs.next()){
+			lessonbean.setLesson_num(rs.getInt("lesson_num"));
+			lessonbean.setLesson_teacher(rs.getString("lesson_teacher"));
+			lessonbean.setLesson_subject(rs.getString("lesson_subject"));
+			lessonbean.setLesson_goal(rs.getString("lesson_goal"));
+			lessonbean.setLesson_cost(rs.getString("lesson_cost"));
+			lessonbean.setLesson_book(rs.getString("lesson_book"));
+			lessonbean.setLesson_content(rs.getString("lesson_content"));
+			lessonbean.setLesson_time(rs.getString("lesson_time"));
+			lessonbean.setLesson_date(rs.getString("lesson_date"));
+			}
+		System.out.println("getDetail End");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		dbClose();
+	}
+	return lessonbean;
 }
 	
 }

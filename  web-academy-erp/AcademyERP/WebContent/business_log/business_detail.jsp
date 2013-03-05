@@ -1,4 +1,4 @@
-<%@page import="academy.business_log_db.BusinessBean"%>
+<%@page import="academy.business_log.db.BusinessBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -64,13 +64,17 @@
 									
 									<tr>
 										<th colspan="2">| <input type="button" value="결재">|
-											<%
-											if(level.equals("4") || level.equals("5")){
-										%><input
-											type="button" value="결재">|<%
+<%-- 											<% --%>
+<!-- 											if(level.equals("4") || level.equals("5")){ -->
+<!-- 										%> -->
+										<input
+											type="button" value="결재">|
+<%-- 											<% --%>
 											} if(level.equals("5")) {
-										%>
-											<input type="button" value="결재">|<%} %></th>
+<%-- 										%> --%>
+											<input type="button" value="결재">|
+<%-- 											<%} %> --%>
+											</th>
 
 
 
