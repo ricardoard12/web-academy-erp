@@ -64,15 +64,15 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 					e.printStackTrace();
 				}
 			}
-//	
-//			else if(command.equals("/LessonModifyAction.le")){
-//				action=new LessonModifyAction();
-//				try {
-//					forward=action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
+	
+			else if(command.equals("/LessonModifyAction.le")){
+				action=new LessonModifyAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 
 	        
 	//이동

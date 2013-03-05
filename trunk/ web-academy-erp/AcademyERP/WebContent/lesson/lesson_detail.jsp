@@ -50,6 +50,7 @@
 						<legend><b>강의계획서 입력 FORM</b></legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
+							<input type="hidden" name="lesson_num" value="<%=lessonbean.getLesson_num()%>">
 							
 								<tbody>
 
