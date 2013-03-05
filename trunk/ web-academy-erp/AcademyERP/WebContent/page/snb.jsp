@@ -14,8 +14,6 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-
-
 	<!-- Layer Info -->
 	<div id="info_wrap" style="top: 20px; left: 20px; width: 200px">
 		<div id="info_content">
@@ -147,12 +145,14 @@
 	<div id="menu_v" class="menu_v">
 		<ul>
 			<%
+				int lev = 0;
+				if (level != null) {
+					lev = Integer.parseInt(level);
+				}
 				if (name != null) { /*로그인 안하면 메뉴 안보임 시작  */
 
 					/* 로그인후 레벨에 따라 메뉴 보임 시작 */
-					if (level.equals("1") || level.equals("2") || level.equals("3")
-							|| level.equals("4") || level.equals("5")
-							|| level.equals("6")) {
+					if (lev <= 2) {
 			%>
 
 
@@ -172,8 +172,7 @@
 
 			<%
 				}
-					if (level.equals("3") || level.equals("4") || level.equals("5")
-							|| level.equals("6")) {
+					if (lev >= 3) {
 			%>
 
 			<li>
@@ -189,10 +188,8 @@
 
 				</ul>
 			</li>
-
 			<%
-				int lev = Integer.parseInt(level);
-						if (lev >= 3) {
+				if (lev >= 3) {
 			%>
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -230,7 +227,7 @@
 
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li><a href="./timetable/timetableset.jsp"><span>전체시간표</span></a></li>
+					<li><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
 					<li><a href="#"><span>강사별시간표</span></a></li>
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
@@ -238,8 +235,7 @@
 			<!-- 선생님용 메뉴 -->
 
 			<%
-				if (level.equals("3") || level.equals("4")
-								|| level.equals("5") || level.equals("6")) {
+				if (lev >= 3) {
 			%>
 			<li><a><span>게시판</span><span class="i"></span></a> <!-- Level에 따른 열람 제한 설정 -->
 
@@ -262,7 +258,7 @@
 			%>
 			<%
 				}
-					if (level.equals("4") || level.equals("5") || level.equals("6")) {
+					if (lev >= 4) {
 			%>
 
 			<li><a><span>직원관리</span><span class="i"></span></a>
@@ -277,7 +273,7 @@
 
 			<%
 				}
-					if (level.equals("5") || level.equals("6")) {
+					if (lev >= 5) {
 			%>
 			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
