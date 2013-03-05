@@ -46,7 +46,6 @@
 					<thead>
 						<tr>
 							<th scope="col">선택</th>
-							<th scope="col">학생ID</th>
 							<th scope="col">학교명</th>
 							<th scope="col">과목명</th>
 							<th scope="col">과목성적</th>
@@ -61,10 +60,9 @@
 						<tr>
 							<td><input name="" type="checkbox" value="" id="a1" class="i_check">
 							<label for="a1"></label></td>
-							<td><%=gradebean.getMm_id() %></td>
-							<td><%=gradebean.getGr_school_name() %></td>
+							<td><%=gradebean.getSt_school_name() %></td>
 							<td><%=gradebean.getGr_subject() %></td>
-							<td><%=gradebean.getGr_score() %></td>
+							<td><%=gradebean.getGr_school() %></td>
 							<td><%=gradebean.getGr_memo() %></td>
 							<td><%=gradebean.getGr_period() %></td>
 						</tr>

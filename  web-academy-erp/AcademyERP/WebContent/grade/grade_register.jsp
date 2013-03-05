@@ -50,11 +50,33 @@
 		
 		
 		<!-- tr태그의 school 클래스 academy클래스 폼 구별 -->
+		
+		<tr class="school"> 
+		<th scope="row">아이디</th>
+		<td>
+			<div class="item">
+				<input type="text" name="st_id" title="" class="i_text">
+				<input type="button" value="학생찾기" onclick="searchSopen()">
+			</div>
+		</td>
+		</tr>
+		
 		<tr class="school"> 
 		<th scope="row">학교명</th>
 		<td>
 			<div class="item">
 				<input type="text" name="st_school_name" title="" class="i_text">
+			</div>
+		</td>
+		</tr>
+		
+		
+		<tr class="academy"> 
+		<th scope="row">학급이름</th>
+		<td>
+			<div class="item">
+				<input type="text" name="gp_name" title="" class="i_text">
+				<input type="button" value="학급찾기" onclick="searchGopen()">
 			</div>
 		</td>
 		</tr>
@@ -185,9 +207,15 @@
 <script type="text/javascript">
 
 function searchTopen(){
-	
 	window.open('./GradeTsearch.gr', '_blank', 'height=200, width=400');
-		
+}
+
+function searchSopen(){
+	window.open('./GradeSsearch.gr', '_blank', 'height=200, width=400');
+}
+
+function searchGopen(){
+	window.open('./GradeGsearch.gr', '_blank', 'height=200, width=400');
 }
 	
 	

@@ -37,7 +37,7 @@
 				    List gradeAcademyTestingStudentList = (List)request.getAttribute("gradeAcademyTestingStudentList");
 				%>
 				<legend>학원 시험중 학생리스트</legend>
-				<form action="./GradeAcademyTesting.gr" name="grAddCheck" method="post" >
+				<form action="" name="grAddCheck" method="post" >
 				<table cellspacing="0" border="1" summary="학원 시험중 학생리스트" class="tbl_type_list">
 					<caption>학원 시험중 학생리스트</caption>
 					<colgroup>
@@ -48,22 +48,28 @@
 					<thead>
 						<tr>
 							<th scope="col">전체선택<br><input type="checkbox" name="all" onclick="CheckAll()"></th>
+							<th scope="col">학생이름</th>
 							<th scope="col">학생아이디</th>
-							<th scope="col">학생성적</th>
+							<th scope="col">학교이름</th>
+							<th scope="col">시험성적</th>
+							<th scope="col">학급명</th>
 						</tr>
 					</thead>
 					<tbody>
 
 					<%	if(gradeAcademyTestingStudentList == null){ %>
-						<tr><td colspan="3"><h1>학생추가하세요</h1></td></tr>	    
+						<tr><td colspan="6"><h1>학생추가하세요</h1></td></tr>	    
 					<% }else{ %>
 					
 					<% for(int i=0; i<gradeAcademyTestingStudentList.size(); i++){
 						GradeBean gradebean = (GradeBean)gradeAcademyTestingStudentList.get(i);%>
 						<tr>
 							<td><input type="checkbox" name="check" value="<%=gradebean.getGr_code() %>"></td>
-							<td><%=gradebean.getMm_id() %></td>
-							<td><%=gradebean.getGr_score() %></td>
+							<td><%=gradebean.getMm_name() %></td>
+							<td><%=gradebean.getSt_id() %></td>
+							<td><%=gradebean.getSt_school_name() %></td>
+							<td><input type="text" name="gr_score" value="" size="3"  ></td>
+							<td><%=gradebean.getGp_name() %></td>
 						</tr>
 					<% }
 					}	%>
@@ -71,9 +77,8 @@
 						<tr align="right">
 							<td align="center" colspan="6">
 								<div class="item">
-									<input type="text" name="mm_name">
-			 						<input type="button" value="학생추가" onclick="addStduent()">
-									<input type="submit" value="시험목록">
+									<input type="submit" value="성적입력">
+									<input type="button" value="시험목록" onclick="location.href='./GradeAcademyTesting.gr'">
 								</div>
 						</tr>
 
@@ -96,16 +101,6 @@
 		}
 	}
 	
-	function addStduent(num) {
-
-		mm_name = document.grAddCheck.mm_name.value;
-		if (mm_name.length == 0) {
-			alert("학생 이름를 입력하세요");
-			document.grAddCheck.mm_name.focus();
-			return false;
-		}
-		window.open('./GradeSsearch.gr?mm_name=' + mm_name, '_blank', 'height=200, width=400');
-}
 </script>
 				<!-- //수강생 관리 끝 -->
 

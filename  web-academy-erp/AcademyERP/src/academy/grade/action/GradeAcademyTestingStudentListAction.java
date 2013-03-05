@@ -16,8 +16,8 @@ public class GradeAcademyTestingStudentListAction implements Action {
         ActionForward forward = new ActionForward();
         GradeDAO gradedao = new GradeDAO();
         
-        String gr_code = request.getParameter("gr_code");
-        List gradeAcademyTestingStudentList = gradedao.gradeAcademyTestingStudentList(gr_code);
+        String gp_name = request.getParameter("gp_name");
+        List gradeAcademyTestingStudentList = gradedao.gradeAcademyTestingStudentList(gp_name);
         
         request.setAttribute("gradeAcademyTestingStudentList", gradeAcademyTestingStudentList);
         

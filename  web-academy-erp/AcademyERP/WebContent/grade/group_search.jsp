@@ -11,10 +11,10 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
-	List gradeTsearch = (List)request.getAttribute("gradeTsearch");
+	List gradeGsearch = (List)request.getAttribute("gradeGsearch");
 %>
 <body>
-	<form action="" name="tSearch" method="post">
+	<form action="" name="sSearch" method="post">
 	
 	<table cellspacing="0" border="1" summary="목록" class="tbl_type_list">
 					<caption>목록</caption>
@@ -23,24 +23,25 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">이름</th>
-							<th scope="col">ID</th>
-							<th scope="col">주민등록번호</th>
+							<th scope="col">그룹명</th>
+							<th scope="col">담당선생님</th>
+							<th scope="col">수업명</th>
 						</tr>
 					</thead>
 					
 					<tbody>
 					
-					<% if(gradeTsearch == null){%>
-						<tr><td colspan="3"><h1>다시 입력해주세요</h1></td></tr>
+					<% if(gradeGsearch == null){%>
+						<tr><td colspan="3"><h1>그룹 입력해주세요</h1></td></tr>
 					<%}else{			
 
-						for(int i=0; i<gradeTsearch.size(); i++){
-					    	GradeBean gradebean = (GradeBean)gradeTsearch.get(i);%>
+						for(int i=0; i<gradeGsearch.size(); i++){
+					    	GradeBean gradebean = (GradeBean)gradeGsearch.get(i);%>
 						<tr>
-							<td><%=gradebean.getMm_name() %></td>
-							<td onclick="windowclose('<%=gradebean.getEp_id() %>')"><a href=""><%=gradebean.getEp_id() %></a></td>
-							<td><%=gradebean.getMm_jumin1() %> - <%=gradebean.getMm_jumin1() %></td>
+							<td><%=gradebean.getGp_name() %></td>
+							<td onclick="windowclose('<%=gradebean.getGp_name() %>')">
+							<a href=""><%=gradebean.getMm_name() %></a></td>
+							<td><%=gradebean.getGr_subject() %></td>
 						</tr>
 					<% 		}
 						}		%>
@@ -56,8 +57,8 @@
 	</form>
 	
 	<script type="text/javascript">
-	function windowclose(mm_id){
-		opener.document.grade.ep_id.value = mm_id;
+	function windowclose(gp_name){
+		opener.document.grade.gp_name.value = gp_name;
 		window.close();
 	}
 	</script>

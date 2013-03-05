@@ -27,7 +27,8 @@ public class GradeJoinAction implements Action{
         String gr_period = "";  //학교시험종류
         String st_school_name = ""; //학교이름
         String gr_school = ""; //학교성적
-        
+        String st_id = ""; //학생아이디
+        String gp_name = ""; //그룹반이름
         
         gr_place = request.getParameter("gr_place");
         
@@ -35,12 +36,14 @@ public class GradeJoinAction implements Action{
             gr_code = request.getParameter("gr_code");
             gr_exam_date = Date.valueOf(request.getParameter("gr_exam_date"));
             ep_id = request.getParameter("ep_id");
+            gp_name = request.getParameter("gp_name");
             
         }else{
             //학교
             gr_period = request.getParameter("gr_period");
             st_school_name = request.getParameter("st_school_name");
             gr_school = request.getParameter("gr_school");
+            st_id = request.getParameter("st_id");
         }
         
         //공통
@@ -53,10 +56,12 @@ public class GradeJoinAction implements Action{
             gradebean.setGr_code(gr_code);
             gradebean.setGr_exam_date(gr_exam_date);
             gradebean.setEp_id(ep_id);
+            gradebean.setGp_name(gp_name);
         }else{
             gradebean.setGr_period(gr_period);
             gradebean.setSt_school_name(st_school_name);
             gradebean.setGr_school(gr_school);
+            gradebean.setSt_id(st_id);
         }
 
         gradebean.setGr_memo(gr_memo);

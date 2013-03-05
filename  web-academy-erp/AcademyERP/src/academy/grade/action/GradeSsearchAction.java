@@ -17,10 +17,8 @@ public class GradeSsearchAction implements Action{
         
         request.setCharacterEncoding("UTF-8");
         
-        //학생 이름 값 받기
-        String mm_name = request.getParameter("mm_name");
         GradeDAO gradedao = new GradeDAO();
-        List gradeSsearch = gradedao.gradeSsearch(mm_name);
+        List gradeSsearch = gradedao.gradeSsearch();
         
         request.setAttribute("gradeSsearch", gradeSsearch);
         

@@ -43,12 +43,13 @@
 					<colgroup>
 						<col width="12%">
 						<col>
-						<col width="16%" span="6">
+						<col width="14%" span="7">
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">전체선택<br><input type="checkbox" name="all" onclick="CheckAll()"></th>
-							<th scope="col">과목ID</th>
+							<th scope="col">과목코드</th>
+							<th scope="col">학급명</th>
 							<th scope="col">과목명</th>
 							<th scope="col">과목설명</th>
 							<th scope="col">담당강사</th>
@@ -61,7 +62,9 @@
 						GradeBean gradebean = (GradeBean)gradeAcademyTesting.get(i);%>
 						<tr>
 							<td><input type="checkbox" name="check" value="<%=gradebean.getGr_code() %>"></td>
-							<td><a href="./GradeAcademyTestingStudentList.gr?gr_code=<%=gradebean.getGr_code() %>"><%=gradebean.getGr_code() %></a></td>
+							<td><a href="./GradeAcademyTestingStudentList.gr?gr_code=<%=gradebean.getGr_code() %>&gp_name=<%=gradebean.getGp_name() %>">
+							<%=gradebean.getGr_code() %></a></td>
+							<td><%=gradebean.getGp_name() %></td>
 							<td><%=gradebean.getGr_subject() %></td>
 							<td><%=gradebean.getGr_memo() %></td>
 							<td><%=gradebean.getEp_id() %></td>
