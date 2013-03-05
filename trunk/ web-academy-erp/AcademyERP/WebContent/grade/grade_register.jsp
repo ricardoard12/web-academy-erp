@@ -77,6 +77,14 @@
 		</td>
 		</tr>
 		
+		<tr class="school"> 
+		<th scope="row">학교성적</th>
+		<td>
+			<div class="item">
+				<input type="text" name="gr_school" title="" class="i_text">
+			</div>
+		</td>
+		</tr>
 				
 		<tr> 
 		<th scope="row">과목 설명</th>
