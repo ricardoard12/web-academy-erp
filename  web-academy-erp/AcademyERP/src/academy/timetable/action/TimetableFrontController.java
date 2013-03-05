@@ -9,38 +9,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TimeTableFrontController extends HttpServlet implements Servlet {
+public class TimetableFrontController extends HttpServlet implements Servlet {
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 주소값 가져오기
-        String requestURI = request.getRequestURI();
-        String contextPath = request.getContextPath();
-        String command = requestURI.substring(contextPath.length());
-        ActionForward forward = null;
-        Action action = null;
+	@Override
+	protected void service(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// 주소값 가져오기
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
+		ActionForward forward = null;
+		Action action = null;
 
-        if (command.equals("/TimeTableList.time")) {
-            action=new TimeTableListAction();
-            try {
-				forward=action.execute(request, response);
+		if (command.equals("/TimeTableList.time")) {
+			action = new TimeTableListAction();
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }
-        
-        // 이동
-        if (forward != null) {
-            if (forward.isRedirect()) {
-                response.sendRedirect(forward.getPath());
-            } else {
-                RequestDispatcher dispatcher = request
-                        .getRequestDispatcher(forward.getPath());
-                dispatcher.forward(request, response);
-            }
-        }
-    }
+		} else if (command.equals("/InsertSubject.time")) {
+			action = new InsertSubjectAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		// 이동
+		if (forward != null) {
+			if (forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
+	}
 
 }
