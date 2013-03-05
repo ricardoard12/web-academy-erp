@@ -225,5 +225,30 @@ public LessonBean getDetail(int num)throws Exception {
 	}
 	return lessonbean;
 }
+
+//public void lessonModify(LessonBean lessonbean) throws Exception{
+//	String sql="";
+//	try {
+//		System.out.println("LessonModify start");
+//		con=ds.getConnection();
+//		sql = "UPDATE lesson_plan SET lesson_teacher=?, lesson_subject=? , lesson_goal=? , lesson_book=?, lesson_cost=?, lesson_time=?, lesson_content=? WHERE lesson_num=?";
+//		pstmt=con.prepareStatement(sql);
+//		pstmt.setString(1, lessonbean.getLesson_teacher());
+//		pstmt.setString(2, lessonbean.getLesson_subject());
+//		pstmt.setString(3, lessonbean.getLesson_goal());
+//		pstmt.setString(5, lessonbean.getLesson_book());
+//		pstmt.setString(6, lessonbean.getLesson_cost());
+//		pstmt.setString(7, lessonbean.getLesson_time());
+//		pstmt.setString(8, lessonbean.getLesson_content());
+//		pstmt.setInt(9, lessonbean.getLesson_num());
+//		pstmt.executeUpdate();
+//		System.out.println("businessModify End");
+//	} catch (Exception e) {
+//		e.printStackTrace();
+//	}finally{
+//		dbClose();
+//	}
+//}
 	
 }
+	
