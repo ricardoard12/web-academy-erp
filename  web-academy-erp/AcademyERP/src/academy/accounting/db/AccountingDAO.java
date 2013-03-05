@@ -22,7 +22,7 @@ public class AccountingDAO {
     public AccountingDAO() {
         try {
             Context init=new InitialContext();
-            ds=(DataSource)init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+            ds=(DataSource)init.lookup("java:comp/env/jdbc/aca");
         } catch (Exception e) {e.printStackTrace();}
     }
     
