@@ -24,7 +24,7 @@ public class MasterDAO {
 	public MasterDAO() {
 		try {
 			Context init = new InitialContext();
-			ds = (DataSource) init.lookup("java:comp/env/jdbc/aca");
+			ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Master DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
