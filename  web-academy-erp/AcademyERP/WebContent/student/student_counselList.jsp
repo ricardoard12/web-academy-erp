@@ -316,7 +316,7 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 	<%
 	}else{
 	%>
-		<a href="./BoardList.bo?page=<%=nowpage-1%>">[이전]</a>
+		<a href="./StudentCounsel.st?page=<%=nowpage-1%>&id=<%=studentbean.getMm_id()%>">[이전]</a>
 	<%
 }
 %>
@@ -325,7 +325,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%>[<%=a %>]&nbsp;<%
 	}else{
-		%><a href="./BoardList.bo?page=<%=a%>">[<%=a %>]&nbsp;</a><%
+		%><a href="./StudentCounsel.st?page=<%=a%>&id=<%=studentbean.getMm_id()%>">[<%=a %>]&nbsp;</a><%
 	}
 }
 %>
@@ -333,7 +333,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><%
 }else{
-	%><a href="./BoardList.bo?page=<%=nowpage+1%>">[다음]</a><%
+	%><a href="./StudentCounsel.st?page=<%=nowpage+1%>&id=<%=studentbean.getMm_id()%>">[다음]</a><%
 }
 
 %>
