@@ -142,7 +142,7 @@
 											<div class="item">
 												<input type="submit" value="수정" onclick="submitContents(this)">
 													 
-													<input type="button" name="" value="취소" onclick="location.href='./LessonNotice.le'">
+													<input type="button" name="" value="취소" onclick="location.href='LessonListAction.le'">
 											</div>
 										</td>
 									</tr>
