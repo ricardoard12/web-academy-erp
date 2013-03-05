@@ -18,9 +18,8 @@ public class GradeTsearchAction implements Action{
         request.setCharacterEncoding("UTF-8");
         
         //선생 이름 값 받기
-        String ep_id = request.getParameter("ep_id");
         GradeDAO gradedao = new GradeDAO();
-        List gradeTsearch = gradedao.gradeTsearch(ep_id);
+        List gradeTsearch = gradedao.gradeTsearch();
         
         request.setAttribute("gradeTsearch", gradeTsearch);
         
