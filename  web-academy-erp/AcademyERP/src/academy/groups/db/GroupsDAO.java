@@ -29,12 +29,12 @@ public class GroupsDAO {
 		}
 	}
 
-	public List getGpList() throws Exception { // 전체 과목 가지고오기
+	public List getGpList() throws Exception { // 전체 학급명 가지고오기
 		List gpList = null;
 		String sql = "";
 		try {
 			con = ds.getConnection();
-			sql = "select gp_name from groups"; // 전체 과목조회
+			sql = "select gp_name from groups"; // 전체 학급명 가지고오기
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
