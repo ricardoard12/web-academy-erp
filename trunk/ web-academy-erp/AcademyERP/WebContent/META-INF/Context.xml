@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<Resource name="jdbc/aca"
+<Resource name="jdbc/p4_learntime_kr"
 auth="Container"
 type="javax.sql.DataSource"
 driverClassName="com.mysql.jdbc.Driver"
-username="admin"
-password="1234"
-url="jdbc:mysql://203.241.246.191:3306/aca"
+username="p4.learntime"
+password="0909"
+url="jdbc:mysql://p4.learntime.kr:3306/p4_learntime_kr"
 maxActive="500"
 maxIdle="1000"
 testOnBorrow="true"
