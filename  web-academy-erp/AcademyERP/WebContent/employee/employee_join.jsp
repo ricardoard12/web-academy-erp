@@ -65,7 +65,7 @@
 	}
 	
 	function openZipcode() {
-	        url = "./Zipcode.me";
+	        url = "./Zipcode.me?mType=employee";
 	        window.open(url, "", "width=700, height=400, scrollbars=yes");
         }
 	
@@ -81,7 +81,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List managerList = (List)request.getAttribute("managerList"); 
-	String level = (String) request.getAttribute("level");
+	String level = request.getParameter("level");
 %>
 <body>
 	<!-- UI Object -->

@@ -226,7 +226,7 @@
 								<tr>
 									<td><input name="chkStudent" type="checkbox" id="a1"
 										class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
-									<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
+									<td><a href="./StudentDetail.st?id=<%=attitude.getAt_member_id()%>"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
 									<td>
 										<%
 											// at_report_state Y : 출석, N : 결석

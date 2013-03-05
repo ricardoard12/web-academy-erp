@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -81,6 +82,36 @@ public class MemberDAO {
         
         return vector;
     }
+    
+    public List searchZipcode(String searchDong) throws Exception { // 우편번호 찾기
+		List zipcodeList = new ArrayList();
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT * FROM zipcode WHERE dong LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchDong+"%");
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String zipcode = rs.getString("zipcode");
+				String sido = rs.getString("sido");
+				String gugun = rs.getString("gugun");
+				String dong = rs.getString("dong");
+				String ri = rs.getString("ri");
+				String bunji = rs.getString("bunji");
+				if (ri == null) ri = "";
+				if (bunji == null) bunji = "";
+				String addr = sido + " " + gugun + " " + dong + " " + ri + " " + bunji;
+				zipcodeList.add(zipcode + "," + addr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return zipcodeList;
+	}
     
     /*public List getMemberList(){
         List memberList=null;
