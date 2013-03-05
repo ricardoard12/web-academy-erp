@@ -31,11 +31,13 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		} else if (command.equals("/StudentJoin.st")) { // 회원가입 폼
+		} 
+		else if (command.equals("/StudentJoin.st")) { // 회원가입 폼
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("./student/student_join.jsp");
-		} else if (command.equals("/StudentList.st")) { // 학생 목록
+		} 
+		else if (command.equals("/StudentList.st")) { // 학생 목록
 			action = new StudentListAction();
 
 			try {
@@ -106,6 +108,15 @@ public class StudentFrontController extends HttpServlet implements Servlet {
 			action = new StudentCounselerAction();
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else if(command.equals("/StudentGroups.st")){
+			action = new StudentGroupsAction();
+			
+			try {
+				forward=action.execute(request, response);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
