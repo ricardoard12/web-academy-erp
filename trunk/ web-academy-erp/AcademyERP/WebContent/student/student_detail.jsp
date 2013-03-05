@@ -1,3 +1,5 @@
+<%@page import="academy.groups.db.GroupsBean"%>
+<%@page import="java.util.List"%>
 <%@page import="org.apache.tomcat.jni.Mmap"%>
 <%@page import="academy.student.db.StudentBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -364,7 +366,24 @@
 											</div>
 										</td>
 									</tr>
-
+									<%
+										List groups = (List)request.getAttribute("groups");
+									%>
+										<tr>
+										<th scope="row">소속학급</th>
+										<td>
+											<div class="item">
+												<select name="st_school_groups">
+												<option value="<%=studentbean.getGp_name()%>" ><%=studentbean.getGp_name()%></option>
+													<%for(int i =0; i<groups.size(); i++){ 
+														GroupsBean group=(GroupsBean)groups.get(i);
+													%>
+													<option><%=group.getGp_name()%></option>
+													<%} %>
+												</select>
+											</div>
+										</td>
+									</tr>
 									<tr>
 										<th scope="row">학부모 이름</th>
 										<td>

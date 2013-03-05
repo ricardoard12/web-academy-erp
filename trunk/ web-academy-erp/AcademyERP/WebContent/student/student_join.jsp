@@ -1,3 +1,5 @@
+<%@page import="academy.groups.db.GroupsBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -381,7 +383,24 @@
 											</div>
 										</td>
 									</tr>
-
+									<%
+										List groups = (List)request.getAttribute("groups");
+									%>
+										<tr>
+										<th scope="row">소속학급</th>
+										<td>
+											<div class="item">
+												<select name="st_school_groups">
+												<option>소속학급선택</option>
+													<%for(int i =0; i<groups.size(); i++){ 
+														GroupsBean group=(GroupsBean)groups.get(i);
+													%>
+													<option><%=group.getGp_name()%></option>
+													<%} %>
+												</select>
+											</div>
+										</td>
+									</tr>
 									<tr>
 										<th scope="row">학부모 이름</th>
 										<td>
