@@ -8,7 +8,7 @@ public class CounselerBean {
 			 private String cc_subject;  // 상담제목
 			 private String cc_content; // 상담 내용
 			 private Date cc_date; // 상담 날짜
-			 private String gp_id; // 상담 학생의 학급
+			 private String gp_name; // 상담 학생의 학급
 			 private String ep_id; //  상담한 선생 
 			public String getCc_subject() {
 				return cc_subject;
@@ -47,11 +47,11 @@ public class CounselerBean {
 				this.mm_id = mm_id;
 			}
 
-			public String getGp_id() {
-				return gp_id;
+			public String getGp_name() {
+				return gp_name;
 			}
-			public void setGp_id(String gp_id) {
-				this.gp_id = gp_id;
+			public void setGp_name(String gp_name) {
+				this.gp_name = gp_name;
 			} 
 	
 	
