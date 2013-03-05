@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import academy.attitude.db.AttitudeBean;
+import academy.groups.db.GroupsBean;
 
 public class StudentDAO {
     Connection con=null;
@@ -50,7 +51,7 @@ public class StudentDAO {
 			pstmt.executeUpdate();
 			
 
-			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo,st_status) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo,st_status,gp_name) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, studentbean.getMm_id());  //회원이름 => // 회원ID(mm_id) 로 수정하세요
 			pstmt.setString(2,studentbean.getSt_school_name()); // 학교명
@@ -63,6 +64,7 @@ public class StudentDAO {
 			pstmt.setString(9,studentbean.getSt_tuition_state()); // 회비납부여부
 			pstmt.setString(10,studentbean.getSt_memo()); // 메모
 			pstmt.setString(11, "재학");
+			pstmt.setString(12, studentbean.getGp_name());// 소속학급
 			pstmt.executeUpdate();
 					
 			sql="INSERT INTO member(mm_name,mm_id,mm_passwd,mm_tel,mm_phone,mm_addr1,mm_addr2,mm_zipcode,mm_email,mm_reg_date,mm_level) VALUES(?,?,?,?,?,?,?,?,?,now(),?) ";
@@ -351,11 +353,7 @@ public class StudentDAO {
     	
     	try {
 			con= ds.getConnection();
-			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1," +
-					"m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name," +
-					"s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition," +
-					"s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id " +
-					"FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
+			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -421,7 +419,7 @@ public class StudentDAO {
 			pstmt.setString(11, studentbean.getMm_id()); //회원아이디
 			pstmt.executeUpdate();
 			
-			sql="UPDATE student SET st_school_name=?,st_school_grade=?,st_parent_name=?,st_parent_mobile=?,st_tuition=?,st_tuition_state=?,st_memo=? WHERE mm_id=?";
+			sql="UPDATE student SET st_school_name=?,st_school_grade=?,st_parent_name=?,st_parent_mobile=?,st_tuition=?,st_tuition_state=?,st_memo=?,gp_name=? WHERE mm_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,studentbean.getSt_school_name()); // 학교명
 			pstmt.setString(2,studentbean.getSt_school_grade()); // 학년
@@ -430,7 +428,8 @@ public class StudentDAO {
 			pstmt.setInt(5,studentbean.getSt_tuition()); // 수강료
 			pstmt.setString(6,studentbean.getSt_tuition_state()); // 회비납부여부
 			pstmt.setString(7,studentbean.getSt_memo()); // 메모
-			pstmt.setString(8, studentbean.getMm_id());  //회원ID
+			pstmt.setString(8, studentbean.getGp_name());// 소속학급
+			pstmt.setString(9, studentbean.getMm_id());  //회원ID
 			pstmt.executeUpdate();
 			
 			// 부모 정보 수정된거 업데이트
@@ -494,6 +493,31 @@ public class StudentDAO {
     	
     	
     	return studentbean;
+    	
+    }
+    public List getstudentgroups(){ // 개설된과목 가져옴
+		List groups=null;
+		String sql="";
+		GroupsBean group = null;
+		try {
+			con=ds.getConnection();
+			sql="select gp_name from groups";  //개설된 과목을 가져옴
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				groups = new ArrayList<>();
+				do{
+					group = new GroupsBean();
+					group.setGp_name(rs.getString("gp_name"));
+					groups.add(group);
+				}while(rs.next());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return groups;
     	
     }
     
