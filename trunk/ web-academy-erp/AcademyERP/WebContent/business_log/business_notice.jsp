@@ -1,4 +1,5 @@
-<%@page import="academy.business_log_db.BusinessBean"%>
+<%@page import="academy.business_log.db.BusinessBean"%>
+
 <%@page import="academy.member.db.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
