@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.attitude.db.AttitudeBean;
 import academy.attitude.db.AttitudeDAO;
+import academy.groups.db.GroupsDAO;
 
 public class GroupsAttitudeListAction implements Action {
 
@@ -23,6 +24,7 @@ public class GroupsAttitudeListAction implements Action {
 		ActionForward forward = new ActionForward();
 		AttitudeBean attitude = new AttitudeBean();
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
+		GroupsDAO groupDAO = new GroupsDAO();
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 		
 		
@@ -51,8 +53,10 @@ public class GroupsAttitudeListAction implements Action {
 		List attitudeList = new ArrayList();
 //		attitudeList = attitudeDAO.getStudentAttitudeList(gp_name, date);
 		attitudeList = attitudeDAO.getGroupsStudentAttitudeList(date, page, limit, gp_name);
+		List gpList = groupDAO.getGpList();
 		
 		request.setAttribute("attitudeList", attitudeList);
+		request.setAttribute("gpList", gpList);
 		request.setAttribute("date", date);
 		request.setAttribute("page", page);
 		request.setAttribute("maxPage", maxPage);
