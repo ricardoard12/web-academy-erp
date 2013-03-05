@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,6 +141,55 @@ public int getListCount() throws Exception{
 	}
 	return x;
 	
+}
+
+public boolean lessonDelete(String[] num) throws Exception{
+	String sql="";
+	Statement stmt =null;
+	boolean result = false;
+
+    try {
+    	System.out.println("lessonDelete start");
+        con = ds.getConnection();
+        for(int i=0; i<num.length; i++){
+        	sql="DELETE FROM lesson_plan WHERE lesson_num="+num[i];
+        	stmt=con.createStatement();
+        	stmt.executeUpdate(sql);	
+        	result = true;
+        	System.out.println("lessonDelete end");
+        }
+        
+    } catch (Exception e) {e.printStackTrace();} 
+    finally {dbClose();}
+	return false;
+}
+
+public boolean isBoardWriter(int num , String name){
+	String sql="";
+	boolean x = false;
+	try {
+		System.out.println("isBoardWriter start");
+		con=ds.getConnection();
+		
+		sql="SELECT lesson_teacher FROM lesson_plan WHERE lesson_num=? ";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()){
+			String dbName=rs.getString("lesson_teacher");
+			if(name.equals(dbName)){
+				x=true;
+			}
+		}
+		System.out.println("isBoardWriter End");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		dbClose();
+	}
+	return x;
 }
 	
 }
