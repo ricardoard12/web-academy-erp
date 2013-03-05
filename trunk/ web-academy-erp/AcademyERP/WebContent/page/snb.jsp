@@ -181,7 +181,7 @@
 
 				<ul style="display: none;">
 					<li>
-						<!-- class="active" --> <a href="./StudentJoin.st"><span>신규등록</span></a>
+						<!-- class="active" --> <a href="./StudentGroups.st"><span>신규등록</span></a>
 					</li>
 					<li><a href="./StudentList.st"><span>수강생관리</span></a></li>
 					<li><a href="./StudentOffList.st"><span>휴원생관리</span></a></li>
