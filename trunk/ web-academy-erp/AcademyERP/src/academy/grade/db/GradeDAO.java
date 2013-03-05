@@ -67,22 +67,22 @@ public class GradeDAO {
         return result;
     }
     
-    public List gradeTsearch(String ep_id){
+    public List gradeTsearch(){
         List gradeTsearch = null;
         String sql = "";
         GradeBean gradebean = null;
         try {
             con=ds.getConnection();
-            sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ? and mm_id like 't%'";
+            sql = "select employee.ep_account_name, employee.ep_id, member.mm_jumin1, member.mm_jumin2 " +
+            		"from employee inner join member where employee.ep_id = member.mm_id";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, "%"+ep_id+"%");
             rs = pstmt.executeQuery();
             if(rs.next()){
                 gradeTsearch = new ArrayList();
                 do{
                     gradebean = new GradeBean();
-                    gradebean.setMm_name(rs.getString("mm_name"));
-                    gradebean.setMm_id(rs.getString("mm_id"));
+                    gradebean.setMm_name(rs.getString("ep_account_name"));
+                    gradebean.setMm_id(rs.getString("ep_id"));
                     gradebean.setMm_jumin1(rs.getString("mm_jumin1"));
                     gradebean.setMm_jumin2(rs.getString("mm_jumin2"));
                     

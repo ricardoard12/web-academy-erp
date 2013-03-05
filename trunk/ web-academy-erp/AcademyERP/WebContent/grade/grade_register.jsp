@@ -93,7 +93,7 @@
 		<td>
 			<div class="item">
 				<input type="text" name="ep_id" title="" class="i_text">
-				<input type="button" value="강사찾기" onclick="searchopen()">
+				<input type="button" value="강사찾기" onclick="searchTopen()">
 			</div>
 		</td>
 		</tr>
@@ -176,16 +176,9 @@
 
 <script type="text/javascript">
 
-function searchopen(){
+function searchTopen(){
 	
-		ep_id = document.grade.ep_id.value;
-		if (ep_id.length == 0) {
-			alert("강사 이름를 입력하세요");
-			document.grade.ep_id.focus();
-			return false;
-		}
-	
-	window.open('GradeTsearch.gr?ep_id=' + ep_id, '_blank', 'height=200, width=400');
+	window.open('./GradeTsearch.gr', '_blank', 'height=200, width=400');
 		
 }
 	
