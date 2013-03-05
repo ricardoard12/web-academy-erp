@@ -12,11 +12,21 @@ public class GradeBean {
     private String ep_id; // 담당 강사
     private String gr_place; // 시험 장소 분류(학교 or 학원)
     private String gr_period;  //학교시험종류
-    private String st_school_name; //학교
+    private String st_school_name; //학교이름
+    private String gr_school; //학교성적
     
     private String mm_name; //선생 검색시 이름값 가져오기
     private String mm_jumin1; //선생검색시 주민값 가져오기
     private String mm_jumin2; //선생검색시 주민값 가져오기
+    
+    
+    
+    public String getGr_school() {
+        return gr_school;
+    }
+    public void setGr_school(String gr_school) {
+        this.gr_school = gr_school;
+    }
     public String getGr_code() {
         return gr_code;
     }
