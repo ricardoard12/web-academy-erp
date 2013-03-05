@@ -530,7 +530,7 @@ public class AttitudeDAO {
     	boolean result = false;
     	try {
     		con = ds.getConnection();
-    		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
+    		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
 			pstmt.setString(2, date + " 00:00:00");
@@ -553,7 +553,7 @@ public class AttitudeDAO {
     				sql = "UPDATE attitude SET at_leave_time=? WHERE at_idx=?";
     				pstmt = con.prepareStatement(sql);
     				pstmt.setDate(1, null);
-		    		pstmt.setInt(4, rs.getInt("at_idx"));
+		    		pstmt.setInt(2, rs.getInt("at_idx"));
     				pstmt.executeUpdate();
     			}
     		} else { // 메모 없을 경우
@@ -562,14 +562,14 @@ public class AttitudeDAO {
     				System.out.println("결근 처리 or 출근 시간 취소 버튼 클릭 시");
 	    			sql = "DELETE FROM attitude WHERE at_idx=?";
 	    			pstmt = con.prepareStatement(sql);
-		    		pstmt.setInt(4, rs.getInt("at_idx"));
+		    		pstmt.setInt(1, rs.getInt("at_idx"));
 	    			pstmt.executeUpdate();
     			} else { // 퇴근 시간 취소 버튼 클릭시
     				System.out.println("퇴근 시간 취소 버튼 클릭 시");
     				sql = "UPDATE attitude SET at_leave_time=? WHERE at_idx=?";
     				pstmt = con.prepareStatement(sql);
     				pstmt.setDate(1, null);
-		    		pstmt.setInt(4, rs.getInt("at_idx"));
+		    		pstmt.setInt(2, rs.getInt("at_idx"));
 	    			pstmt.executeUpdate();
     			}
     		}
