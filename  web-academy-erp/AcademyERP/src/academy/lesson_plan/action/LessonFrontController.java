@@ -29,10 +29,12 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 	            forward.setRedirect(false);
 	            forward.setPath("./lesson/lesson_write.jsp");
 	        //강의계획서 입력 기능
+	      
 	        }else if(command.equals("/LessonList.le")){
 	        	forward = new ActionForward();
 	            forward.setRedirect(false);
 	            forward.setPath("./lesson/lesson_list.jsp");
+	        
 	        }else if(command.equals("/LessonAddAction.le")){
 	        	action = new LessonAddAction();
 	        	try {
@@ -47,7 +49,15 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else if(command.equals("/LessonDeleteAction.le")){
+				action=new LessonDeleteAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+	
 //	        else if(command.equals("/BusinessDetailAction.bl")){
 //				action = new BusinessDetailAction();
 //				try {
@@ -67,13 +77,6 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 //				forward=new ActionForward();
 //				forward.setRedirect(false);
 //				forward.setPath("./business_log/business_delete.jsp");
-//			}else if(command.equals("/BusinessDeleteAction.bl")){
-//				action=new BusinessDeleteAction();
-//				try {
-//					forward=action.execute(request, response);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
 //			}
 	        
 	//이동
