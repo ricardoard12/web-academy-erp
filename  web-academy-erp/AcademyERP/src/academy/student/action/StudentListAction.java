@@ -27,6 +27,9 @@ public class StudentListAction implements Action{
 		
 		request.setAttribute("studentList", studentList); // 조회한 학생을 저장한다.
 		
+		if(studentList!=null){
+			System.out.println("1");
+		}
 		forward.setRedirect(false);
 		forward.setPath("./student/student_list.jsp"); //student_list 폼으로 이동
 		

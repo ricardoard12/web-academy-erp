@@ -15,7 +15,7 @@ public class StudentCounselerAction implements Action{
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
+		String id ="";
 		
 		ActionForward forward = new ActionForward();
 		
@@ -25,8 +25,11 @@ public class StudentCounselerAction implements Action{
 		
 		CounselorDAO counseldao = new CounselorDAO(); // 
 		
-		String id = (String)request.getParameter("id"); // 학생 아뒤를 가지고 온다.
-		
+		if(request.getAttribute("id")!=null){
+			id= (String)request.getAttribute("id");
+		}else{
+			 id = (String)request.getParameter("id"); // 학생 아뒤를 가지고 온다.
+		}
 		System.out.println(id);
 		
 		studentbean = studentdao.getStudentinfo(id); // 학생 기본정보를 가지고 온다.
