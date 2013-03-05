@@ -79,14 +79,14 @@ public class LessonDAO {
 	}
 
 	public List getLessonList(int page, int limit) {
-	String sql="";
-	List list=null;
+	String sql = "";
+	List list = null;
 	int startrow=(page-1)*limit+1; //현재페이지 시작행
 	try {
 		System.out.println("getLessonList start");
 		con=ds.getConnection();
 		//3 sql
-		sql="select * from lesson_plan order by lesson_num desc limit ?,?";
+		sql="SELECT * FROM lesson_plan ORDER BY lesson_num DESC LIMIT ?,?";
 		pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, startrow-1); //시작위치-1
 		pstmt.setInt(2, limit); //개수
@@ -94,10 +94,9 @@ public class LessonDAO {
 		rs=pstmt.executeQuery();
 		//5 rs => 자바빈 저장
 		if(rs.next()){
-			list=new ArrayList(limit);//ArrayList객체생성
+			list = new ArrayList(limit);//ArrayList객체생성
 			do{
 				LessonBean lessonbean = new LessonBean();
-				
 				lessonbean.setLesson_num(rs.getInt("lesson_num"));
 				lessonbean.setLesson_teacher(rs.getString("lesson_teacher"));
 				lessonbean.setLesson_subject(rs.getString("lesson_subject"));
