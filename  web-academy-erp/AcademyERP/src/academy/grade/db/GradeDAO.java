@@ -38,13 +38,13 @@ public class GradeDAO {
     public boolean gradeJoin(GradeBean gradebean){
         String sql="";
         boolean result = false;  //정상 성적입력확인 여부
-        
+        System.out.println(gradebean.getGr_school());
         try {
             con=ds.getConnection();
             
             // 성적테이블 생성
-            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status, st_school_name)" +
-                    "values(?,?,?,?,?,?,?,?,?)";
+            sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, gr_period, gr_status, st_school_name, gr_school)" +
+                    "values(?,?,?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, gradebean.getGr_code());
             pstmt.setString(2, gradebean.getGr_subject());
@@ -61,6 +61,8 @@ public class GradeDAO {
             }
             
             pstmt.setString(9, gradebean.getSt_school_name());
+            pstmt.setString(10, gradebean.getGr_school());
+            
             pstmt.executeUpdate();
             result = true;
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
