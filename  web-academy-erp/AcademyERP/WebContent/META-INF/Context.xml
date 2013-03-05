@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<Resource name="jdbc/p4_learntime_kr"
+<Resource name="jdbc/aca"
 auth="Container"
 type="javax.sql.DataSource"
 driverClassName="com.mysql.jdbc.Driver"
