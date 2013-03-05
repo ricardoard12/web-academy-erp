@@ -34,7 +34,7 @@ public class BusinessDAO {
 		//디비연결 이름호출
 		try {
 			Context init=new InitialContext();
-			ds=(DataSource)init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+			ds=(DataSource)init.lookup("java:comp/env/jdbc/aca");
 			System.out.println("Business_Log_DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
