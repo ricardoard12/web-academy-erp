@@ -280,7 +280,6 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 							<th scope="col">소속학급</th>
 							<th scope="col">상담자 이름</th>
 							<th scope="col">날짜</th>
-						<th scope="col">상담내역</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -292,11 +291,10 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 					%>
 						<tr>
 							<td><%=counselerbean.getIdx() %></td>
-							<td><a href="./StudentDetail.st?id=<%=counselerbean.getMm_id()%>&check=1"><%=counselerbean.getCc_subject()%></a></td>
-							<td><%=counselerbean.getGp_id()%></td>
+							<td><a href="./CounselDetail.cc?idx=<%=counselerbean.getIdx()%>&id=<%=studentbean.getMm_id()%>"><%=counselerbean.getCc_subject()%></a></td>
+							<td><%=counselerbean.getGp_name()%></td>
 							<td><%=counselerbean.getEp_id()%></td>
 							<td><%=counselerbean.getCc_date() %></td>
-							<td><input type="button" value="상담"  onclick="location.href='./StudentSounsel.st?id=<%=counselerbean.getMm_id()%>'"></td>
 						</tr>
 						
 						
@@ -351,7 +349,7 @@ if(nowpage>=maxpage){
 									<%if(request.getAttribute("counselList")!=null){ %><input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
 									<input type="button" value="원생 휴원" onclick="Off()">
 									<input type="button" value="원생 퇴출" onclick="Out()"><%} %>
-									<input type="button" value="상담" onclick="location.href='./CounselAdd.cc?mm_id=<%=studentbean.getMm_name()%>">
+									<input type="button" value="상담" onclick="location.href='./CounselAdd.cc?id=<%=studentbean.getMm_id()%>'">
 								</div>
 						</tr>
 
