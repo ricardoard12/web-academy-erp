@@ -15,8 +15,11 @@ public class LessonNoticeAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("BusinessNoticeAction Start");
+		
+		request.setCharacterEncoding("utf-8");
+
 		LessonDAO lessondao = new LessonDAO();
-		List lessonlist = new ArrayList();
+		List lessonList = new ArrayList();
 
 		ActionForward forward = new ActionForward();
 		String level = request.getParameter("level");
@@ -31,7 +34,7 @@ public class LessonNoticeAction implements Action {
 		}
 	
 		int listcount = lessondao.getListCount();
-		lessonlist=lessondao.getLessonList(page,limit);
+		lessonList=lessondao.getLessonList(page,limit);
 		
 		int maxpage=listcount/limit+(listcount%limit==0?0:1);
 		maxpage=(int)((double)listcount/limit+0.95);
@@ -49,10 +52,10 @@ public class LessonNoticeAction implements Action {
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("endpage", endpage);
 		request.setAttribute("listcount", listcount);
-		request.setAttribute("lessonlist", lessonlist);
+		request.setAttribute("lessonList", lessonList);
 		
 		forward.setRedirect(false);
-		forward.setPath("./lesson_plan/lesson_list.jsp");
+		forward.setPath("./lesson/lesson_list.jsp");
 		return forward;
 		
 		

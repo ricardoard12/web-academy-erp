@@ -1,14 +1,14 @@
 <%@page import="academy.lesson_plan.db.LessonBean"%>
-
-
+<%@page import="academy.member.db.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
-       
     request.setCharacterEncoding("utf-8");
-    LessonBean lessonbean = (LessonBean) request.getAttribute("lessonbean");
-    List lessonList=(List)request.getAttribute("lessonList");
+    
+    LessonBean lessonbean = (LessonBean)request.getAttribute("lessonbean");
+    List lessonList = (List)request.getAttribute("lessonList");
+    
     int listcount=((Integer)request.getAttribute("listcount")).intValue();
     int nowpage=((Integer)request.getAttribute("page")).intValue();
     int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
@@ -20,6 +20,7 @@
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
 	String name = (String) session.getAttribute("name");
+// 	String name = 
 	//세션으로 level 값 받음
 	String level = (String) session.getAttribute("level");
     %>
@@ -57,7 +58,7 @@
 <!-- level세션값 전달 -->
 <%-- <input type="hidden" name="level" value=<%=session.getAttribute("level")%>> --%>
 
-<caption>강의계획서 리스트</caption>
+<caption>업무일지 리스트</caption>
 <colgroup>
 <col width="30"><col width="80"><col>
 <col width="115"><col width="85"><col width="60">
@@ -81,11 +82,11 @@
     		lessonbean=(LessonBean)lessonList.get(i);
     		%>
     		<tr>
-    		<td class="frm"><input type="checkbox" name="lesson_check" id="chk_sel" value="<%=lessonbean.getLesson_num()%>"><label for="chk_sel">선택</label></td>
+    		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=lessonbean.getLesson_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=lessonbean.getLesson_num() %></td>
-    		<td class="title"><a href="./LessonDetailAction.bl?num=<%=lessonbean.getLesson_num()%>"><%=lessonbean.getLesson_subject() %></a></td>
+    		<td class="title"><a href="./LessonDetailAction.le?num=<%=lessonbean.getLesson_num()%>"><%=lessonbean.getLesson_subject() %></a></td>
     		<td><a href="#"><%=lessonbean.getLesson_teacher() %></a></td>
-    		<td class="date" colspan="2"><%=lessonbean.getLesson_date() %></td>
+    		<td class="date" colspan="2"><%=lessonbean.getLesson_date()%></td>
     		
     		</tr>
     		
@@ -103,7 +104,7 @@
 <%-- <% if(level.equals("5")){ %> --%>
 <input type="button" name="lesson_write" value="글쓰기" onclick="location.href='./LessonWrite.le?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
 <%if(level.equals("5")){ %>
-<input type="submit" name="lesson_delete" value="삭제">
+<input type="submit" name="business_delete" value="삭제">
 <%} %>
 </form>
 </div>
@@ -120,7 +121,7 @@ if(nowpage<=1){
 	<%
 }else{
 	%>
-	<a href="./LessonList.le?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
+	<a href="./business_notice.bl?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
@@ -129,7 +130,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./LessonList.le?page=<%=a%>"><%=a %></a><%
+		%><a href="./business_notice.bl?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
@@ -137,7 +138,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./LessonList.le?page=<%=nowpage+1%>" class="direction next">다음 </a><%
+	%><a href="./business_notice.bl?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>

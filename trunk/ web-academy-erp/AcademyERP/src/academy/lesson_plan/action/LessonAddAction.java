@@ -27,7 +27,9 @@ public class LessonAddAction implements Action {
 			lessonbean.setLesson_content(request.getParameter("lesson_content"));
 			
 			lessondao.lessoninsert(lessonbean);
-			forward.setPath("./lesson/lesson_write.jsp");
+			forward.setPath("./LessonListAction.le");
+//			path값을 ./lesson/lesson_list.jsp로 할 경우 한글처리 값 또는 name값이 깨져서 출력된다.
+//			그래서 LessonList.le로 FrontController로 돌아가게 했지만 한글은 꺠지지 않으나 물음표로 한글이 처리된다. 
 			forward.setRedirect(false);
 					
 			

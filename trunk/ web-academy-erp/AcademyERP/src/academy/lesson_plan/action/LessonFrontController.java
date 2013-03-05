@@ -15,7 +15,9 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 	String requestURI = request.getRequestURI();
+	
+			request.setCharacterEncoding("utf-8");
+			String requestURI = request.getRequestURI();
 	        String contextPath = request.getContextPath();
 	        String command = requestURI.substring(contextPath.length());
 	        ActionForward forward = null;
@@ -27,6 +29,10 @@ public class LessonFrontController extends HttpServlet implements Servlet {
 	            forward.setRedirect(false);
 	            forward.setPath("./lesson/lesson_write.jsp");
 	        //강의계획서 입력 기능
+	        }else if(command.equals("/LessonList.le")){
+	        	forward = new ActionForward();
+	            forward.setRedirect(false);
+	            forward.setPath("./lesson/lesson_list.jsp");
 	        }else if(command.equals("/LessonAddAction.le")){
 	        	action = new LessonAddAction();
 	        	try {
