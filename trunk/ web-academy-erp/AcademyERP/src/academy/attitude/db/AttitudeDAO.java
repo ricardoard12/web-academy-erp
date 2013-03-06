@@ -704,5 +704,70 @@ public class AttitudeDAO {
     	
     	return gp_id;
     }
-    
+    // 해당아이디의 출석한 갯수를 구한다.
+    public int getAttitudecount(String memberid){
+		String sql="";
+		int attitudecount =0;
+		try {
+			con= ds.getConnection();
+			sql="select count(*) from attitude where at_member_id =?"; // 구해오는 sql문장
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, memberid);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				attitudecount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closingDB();
+		}
+    	return attitudecount;
+    	
+    }
+    public List getAttitudeStudent(String memberid,int page,int limit){
+    	int startrow=(page-1)*limit+1; //현재페이지 시작행
+    	List attitude = null;
+    	String sql="";
+    	String state=""; //상태를 한글로 바꾸기 
+    	try {
+			con=ds.getConnection();
+			sql="select at_report_state,at_come_time,at_leave_time,at_memo from attitude where at_member_id =? order by at_come_time desc limit ?,?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, memberid);
+			pstmt.setInt(2, startrow-1);// 시작계수
+			pstmt.setInt(3, limit);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()){
+				attitude = new ArrayList();
+				do{
+					AttitudeBean attitudebean = new AttitudeBean();
+					if(rs.getString("at_report_state").equals("Y") ||rs.getString("at_report_state").equals("y") ){ //at_report_state상태가 Y이면 출석으로 해준다.
+						state = "출석";
+					}else{
+						state ="결석";
+					}
+					attitudebean.setAt_report_state(state);
+					attitudebean.setAt_come_time(rs.getTimestamp("at_come_time"));
+					attitudebean.setAt_leave_time(rs.getTimestamp("at_leave_time"));
+					attitudebean.setAt_memo(rs.getString("at_memo"));
+					
+					attitude.add(attitudebean);
+					
+				}while(rs.next());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closingDB();
+		}
+    	return attitude;
+    	
+    }
 }
