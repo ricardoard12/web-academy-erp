@@ -273,6 +273,20 @@ public class MasterDAO {
 			pstmt.setString(6, groups.getGp_startdate());
 			pstmt.setString(7, groups.getGp_enddate());
 			pstmt.executeUpdate();
+			sql = "select max(gp_idx) from groups";
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				String gp_idx = rs.getInt(1) + "";
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 7; j++) {
+						sql = "insert into timetable (gp_idx,ti_day,ti_lesson) values('"
+								+ gp_idx + "','"+(i+"")+"','"+(j+"")+"')";
+						con.prepareStatement(sql).executeUpdate();
+					}
+				}
+				
+			}
+
 			System.out.println("학급 삽입 완료 --->");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -282,11 +296,12 @@ public class MasterDAO {
 		}
 	}
 
-	public void updateRoom(String id, String room,int ea) {
+	public void updateRoom(String id, String room, int ea) {
 		try {
 			con = ds.getConnection();
 			String sql = "update groups SET groups.gp_room='" + room
-					+ "',groups.gp_ea="+ea+" where gp_idx=" + Integer.parseInt(id);
+					+ "',groups.gp_ea=" + ea + " where gp_idx="
+					+ Integer.parseInt(id);
 			con.prepareStatement(sql).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -295,5 +310,4 @@ public class MasterDAO {
 		}
 	}
 
-	
 }
