@@ -2,7 +2,20 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+	request.setCharacterEncoding("utf-8");
+	List timetable = (List) request.getAttribute("timetable");
+	List grouplist = (List) request.getAttribute("grouplist");
+	String gp_idx = "";
+	String idx = (String) request.getAttribute("gp_idx");
+	if (idx != null) {
+		gp_idx = idx;
+	}
+	String groupsName = "";
+	if (request.getAttribute("groupsName") != null) {
+		groupsName = (String) request.getAttribute("groupsName");
+	}
+%>
 <!DOCTYPE>
 <html>
 <head>
@@ -18,12 +31,17 @@
 	// 	$(".timetable td").bind("click", function() {
 	// 			alert($(".timetable td").);
 	// 		});
-	function popup(row, col) {
-		window.open("./InsertSubject.time?day=" + col + "&lesson=" + row, "",
+	function popup(row, col, gp_idx) {
+		window
+				.open("./InsertSubject.time?day=" + col + "&lesson=" + row
+						+ "&gp_idx=" + gp_idx, "",
 						"height=400,width=300,toolbar=no,status=no,linemenubar=no,scrollbars=no");
 		return false;
 	}
-
+	function selGp(value) {
+		location.href = "./TimeTableList.time?gp_idx=" + value.split(",")[0]
+				+ "&groupsName=" + value.split(",")[1];
+	}
 	// 	});
 </script>
 <style>
@@ -48,15 +66,45 @@
 			<!-- content -->
 			<div id="content">
 				<div id="classSelectSection" style="min-height: 70">
-					<table>
-						<tr>
-							<td>여기에 원하는 리스트 메뉴 삽입</td>
-						</tr>
-					</table>
+					<form action="TimetableList.time" method="post">
+						<table>
+							<tr>
+								<td><input type="text" placeholder="찾고자하는 반을 적으세요."></td>
+								<td><select onchange="selGp(value)"><option
+											value="x">반을 선택하세요.</option>
+										<%
+											for (int i = 0; i < grouplist.size(); i++) {
+												List groups = (List) grouplist.get(i);
+												String level = "";
+												if (groups.get(6).equals("2") == false) {
+													if (groups.get(3).equals("e")) {
+														level = "초";
+													} else if (groups.get(3).equals("m")) {
+														level = "중";
+													} else if (groups.get(3).equals("h")) {
+														level = "고";
+													}
+										%>
+										<option
+											value="<%=groups.get(0)%>,<%=level%>-<%=groups.get(1)%>(<%=groups.get(7)%>:
+											정원<%=groups.get(5)%>)"
+											<%if (gp_idx.equals(groups.get(0))) {%> selected <%}%>><%=level%>-<%=groups.get(1)%>(<%=groups.get(7)%>:
+											정원<%=groups.get(5)%>)
+										</option>
+										<%
+											}
+											}
+										%>
+								</select></td>
+							</tr>
+						</table>
+					</form>
 				</div>
 				<div id="timetableSection">
+					<div>
+						<h1><%=groupsName%></h1>
+					</div>
 					<table class="timetable">
-
 						<tr class="timetablehead">
 							<th></th>
 							<th>月</th>
@@ -71,12 +119,12 @@
 						%>
 						<tr>
 							<th><%=timeindex%></th>
-							<td onclick="popup('<%=timeindex%>',1)"></td>
-							<td onclick="popup('<%=timeindex%>',2)"></td>
-							<td onclick="popup('<%=timeindex%>',3)"></td>
-							<td onclick="popup('<%=timeindex%>',4)"></td>
-							<td onclick="popup('<%=timeindex%>',5)"></td>
-							<td onclick="popup('<%=timeindex%>',6)"></td>
+							<td onclick="popup('<%=timeindex%>',1,'<%=gp_idx%>')"></td>
+							<td onclick="popup('<%=timeindex%>',2,'<%=gp_idx%>')"></td>
+							<td onclick="popup('<%=timeindex%>',3,'<%=gp_idx%>')"></td>
+							<td onclick="popup('<%=timeindex%>',4,'<%=gp_idx%>')"></td>
+							<td onclick="popup('<%=timeindex%>',5,'<%=gp_idx%>')"></td>
+							<td onclick="popup('<%=timeindex%>',6,'<%=gp_idx%>')"></td>
 						</tr>
 						<%
 							}
