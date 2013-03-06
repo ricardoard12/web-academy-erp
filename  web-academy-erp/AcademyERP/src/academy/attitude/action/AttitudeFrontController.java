@@ -21,8 +21,14 @@ public class AttitudeFrontController extends HttpServlet implements Servlet {
         ActionForward forward = null;
         Action action = null;
 
-        if (command.equals("")) {
-            
+        if (command.equals("/AttitudeStudent.at")) {
+            action = new AttitudeStudentAction();
+            try {
+            	forward =action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
         }
         
         // 이동
