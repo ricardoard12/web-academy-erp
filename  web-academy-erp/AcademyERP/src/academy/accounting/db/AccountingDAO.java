@@ -163,4 +163,59 @@ public class AccountingDAO {
             pstmt.executeUpdate();
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
     }
+    
+    public int getAccountcount(String memberid){ // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
+    	int accountcount =0;
+    	String  sql="";
+    	try {
+			con=ds.getConnection();
+			sql="select count(*) from accounting where mm_id =? and ac_io_type='수강료'"; // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
+			pstmt=con.prepareStatement(sql	);
+			pstmt.setString(1, memberid);
+			rs= pstmt.executeQuery();
+			if(rs.next()){
+				accountcount = rs.getInt(1); // 조회한 값을 accountcount를 집어 넣는다.
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {closingDB();}
+    	
+		return accountcount;
+    	
+    }
+    
+    public List getAccountingStudent(String memberid,int page,int limit){
+		List account = null; //가지고온 정보를 저장할 list를 가지고옴
+		int startrow=(page-1)*limit+1; //현재페이지 시작행
+		String sql="";
+    	
+    	try {
+			con = ds.getConnection();
+			sql="select ac_price,ac_cc_type,ac_date,ac_memo from accounting where mm_id =? and ac_io_type ='수강료' order by ac_date desc limit ?,?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, memberid);
+			pstmt.setInt(2, startrow-1);// 시작계수
+			pstmt.setInt(3, limit);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()){
+				account = new ArrayList();
+				do{
+					AccountingBean accounting = new AccountingBean();
+					accounting.setAc_cc_type(rs.getString("ac_cc_type"));
+					accounting.setAc_price(rs.getInt("ac_price"));
+					accounting.setAc_date(rs.getDate("ac_date"));
+					accounting.setAc_memo(rs.getString("ac_memo"));
+					
+					account.add(accounting);
+				}while(rs.next());
+			}
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {closingDB();}
+    	return account;
+    	
+    }
 }
