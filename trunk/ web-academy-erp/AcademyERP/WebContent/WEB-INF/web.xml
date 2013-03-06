@@ -71,7 +71,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TimetableFrontController</servlet-name>
-		<url-pattern>*.ti</url-pattern>
+		<url-pattern>*.time</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
