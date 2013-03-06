@@ -60,6 +60,7 @@ public class TimetableDAO {
 					list.add(insertTimetableinfo());
 				} while (rs.next());
 			}
+			System.out.println(list.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -75,12 +76,13 @@ public class TimetableDAO {
 			con = ds.getConnection();
 			String sql = "select * from groups";
 			rs = con.prepareStatement(sql).executeQuery();
-			list=new ArrayList();
+			list = new ArrayList();
 			if (rs.next()) {
 				do {
 					list.add(getGpInfo());
 				} while (rs.next());
 			}
+			System.out.println(list.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -90,26 +92,55 @@ public class TimetableDAO {
 	}
 
 	private List getGpInfo() throws Exception {
-		List list=new ArrayList();
-		list.add(rs.getInt("gp_idx"));//0
-		list.add(rs.getString("gp_name"));//1
-		list.add(rs.getString("ep_id"));//2
-		list.add(rs.getString("gp_lev"));//3
-		list.add(rs.getString("gp_half"));//4
-		list.add(rs.getInt("gp_ea"));//5
-		list.add(rs.getString("gp_status"));//6
-		list.add(rs.getInt("gp_room"));//7
+		List list = new ArrayList();
+		list.add(rs.getInt("gp_idx"));// 0
+		list.add(rs.getString("gp_name"));// 1
+		list.add(rs.getString("ep_id"));// 2
+		list.add(rs.getString("gp_lev"));// 3
+		list.add(rs.getString("gp_half"));// 4
+		list.add(rs.getInt("gp_ea"));// 5
+		list.add(rs.getString("gp_status"));// 6
+		list.add(rs.getInt("gp_room"));// 7
 		return list;
 	}
 
 	private List insertTimetableinfo() throws Exception {
 		List list = new ArrayList();
-		list.add(rs.getInt("ti_idx"));//0
-		list.add(rs.getString("ep_id"));//1
-		list.add(rs.getString("gp_idx"));//2
-		list.add(rs.getString("ti_idx"));//3
-		list.add(rs.getString("ti_lesson"));//4
-		list.add(rs.getInt("room_idx"));//5
+		list.add(rs.getInt("ti_idx"));// 0
+		list.add(rs.getString("ep_id"));// 1
+		list.add(rs.getString("gp_idx"));// 2
+		list.add(rs.getString("ti_idx"));// 3
+		list.add(rs.getString("ti_lesson"));// 4
+		list.add(rs.getInt("room_idx"));// 5
+		return list;
+	}
+
+	private List getSbInfo() throws Exception {
+		List list = new ArrayList();
+		list.add(rs.getInt("sub_idx"));
+		list.add(rs.getString("sub_name"));
+		list.add(rs.getString("sub_code"));
+		return list;
+	}
+
+	// 과목 목록 가져가기
+	public List getSubject() {
+		List list = null;
+		try {
+			con = ds.getConnection();
+			String sql = "select * from subject";
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				list = new ArrayList();
+				do {
+					list.add(getSbInfo());
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
 		return list;
 	}
 
