@@ -26,7 +26,6 @@ public class TimetableFrontController extends HttpServlet implements Servlet {
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (command.equals("/InsertSubject.time")) {
@@ -35,6 +34,13 @@ public class TimetableFrontController extends HttpServlet implements Servlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (command.equals("/InsertTimeTable.time")) {
+			action = new InsertTimeTable();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
