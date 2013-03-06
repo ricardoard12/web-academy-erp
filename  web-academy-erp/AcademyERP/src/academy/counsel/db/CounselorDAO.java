@@ -195,7 +195,6 @@ public class CounselorDAO {
 				if(con!=null)try{con.close();}catch(SQLException ex){}
 			}
 	    	
-	    	
 	    	return counseler;
 	    	
 	    }
