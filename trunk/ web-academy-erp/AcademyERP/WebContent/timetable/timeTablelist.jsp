@@ -19,8 +19,7 @@
 	// 			alert($(".timetable td").);
 	// 		});
 	function popup(row, col) {
-		window
-				.open("./InsertSubject.time?day="+col+"&lesson="+row, "",
+		window.open("./InsertSubject.time?day=" + col + "&lesson=" + row, "",
 						"height=400,width=300,toolbar=no,status=no,linemenubar=no,scrollbars=no");
 		return false;
 	}
