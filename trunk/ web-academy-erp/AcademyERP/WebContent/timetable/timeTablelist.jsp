@@ -35,7 +35,7 @@
 		window
 				.open("./InsertSubject.time?day=" + col + "&lesson=" + row
 						+ "&gp_idx=" + gp_idx, "",
-						"height=400,width=300,toolbar=no,status=no,linemenubar=no,scrollbars=no");
+						"height=200,width=500,toolbar=no,status=no,linemenubar=no,scrollbars=no");
 		return false;
 	}
 	function selGp(value) {
@@ -86,10 +86,10 @@
 													}
 										%>
 										<option
-											value="<%=groups.get(0)%>,<%=level%>-<%=groups.get(1)%>(<%=groups.get(7)%>:
-											정원<%=groups.get(5)%>)"
-											<%if (gp_idx.equals(groups.get(0))) {%> selected <%}%>><%=level%>-<%=groups.get(1)%>(<%=groups.get(7)%>:
-											정원<%=groups.get(5)%>)
+											value="<%=groups.get(0)%>,<%=level%><%=groups.get(1)%> (<%=groups.get(7)%>:
+											정원<%=groups.get(5)%>명)"
+											<%if (gp_idx.equals(groups.get(0))) {%> selected <%}%>><%=level%><%=groups.get(1)%>
+											(<%=groups.get(7)%>: 정원<%=groups.get(5)%>)
 										</option>
 										<%
 											}
@@ -105,6 +105,9 @@
 						<h1><%=groupsName%></h1>
 					</div>
 					<table class="timetable">
+						<%
+							if (timetable.size() > 0) {
+						%>
 						<tr class="timetablehead">
 							<th></th>
 							<th>月</th>
@@ -115,18 +118,32 @@
 							<th>土</th>
 						</tr>
 						<%
-							for (int timeindex = 1; timeindex < 8; timeindex++) {
+							for (int timeindex = 0; timeindex < 7; timeindex++) {
 						%>
 						<tr>
-							<th><%=timeindex%></th>
-							<td onclick="popup('<%=timeindex%>',1,'<%=gp_idx%>')"></td>
-							<td onclick="popup('<%=timeindex%>',2,'<%=gp_idx%>')"></td>
-							<td onclick="popup('<%=timeindex%>',3,'<%=gp_idx%>')"></td>
-							<td onclick="popup('<%=timeindex%>',4,'<%=gp_idx%>')"></td>
-							<td onclick="popup('<%=timeindex%>',5,'<%=gp_idx%>')"></td>
-							<td onclick="popup('<%=timeindex%>',6,'<%=gp_idx%>')"></td>
+							<th><%=timeindex + 1%></th>
+							<%
+								for (int dayindex = 0; dayindex < 6; dayindex++) {
+							%><td
+								onclick="popup('<%=timeindex%>',<%=dayindex%>,'<%=gp_idx%>')">
+								<%
+									for (int i = 0; i < timetable.size(); i++) {
+													List table = (List) timetable.get(i);
+													if (table.get(2).equals(dayindex + "")
+															&& table.get(3).equals(timeindex + "")) {
+								%><%=table.get(4)%>:<%=table.get(1)%> <%
+ 	}
+ 				}
+ %>
+							</td>
+
+
+							<%
+								}
+							%>
 						</tr>
 						<%
+							}
 							}
 						%>
 					</table>
