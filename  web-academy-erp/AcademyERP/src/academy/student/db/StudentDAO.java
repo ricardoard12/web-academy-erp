@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 
 import academy.attitude.db.AttitudeBean;
 import academy.groups.db.GroupsBean;
+import academy.member.db.MemberBean;
 
 public class StudentDAO {
     Connection con=null;
@@ -521,4 +523,29 @@ public class StudentDAO {
     	
     }
     
+    public List getSMSReceiverList(String[] studentList) throws Exception {
+    	List receiverList = null;
+    	try {
+    		con = ds.getConnection();
+    		for (int i = 0; i < studentList.length; i++) {
+	    		String sql = "SELECT mm_id, mm_name, mm_phone FROM member WHERE mm_id=?";
+	    		pstmt = con.prepareStatement(sql);
+	    		pstmt.setString(1, studentList[i]);
+	    		rs = pstmt.executeQuery();
+	    		
+	    		receiverList = new ArrayList();
+	    		if (rs.next()) {
+	    			MemberBean member = new MemberBean();
+	    			member.setMm_id(rs.getString("mm_id"));
+	    			member.setMm_name(rs.getString("mm_name"));
+	    			member.setMm_phone(rs.getString("mm_phone"));
+	    			
+	    			receiverList.add(member);
+	    		}
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return receiverList;
+    }
 }

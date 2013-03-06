@@ -154,4 +154,13 @@
 		<servlet-name>LessonFrontController</servlet-name>
 		<url-pattern>*.le</url-pattern>
 	</servlet-mapping>
+	
+       <servlet>
+                <servlet-name>SMSFrontController</servlet-name>
+                <servlet-class>academy.sms.action.SMSFrontController</servlet-class>
+        </servlet>
+        <servlet-mapping>
+                <servlet-name>SMSFrontController</servlet-name>
+                <url-pattern>*.sms</url-pattern>
+        </servlet-mapping>
 </web-app>
