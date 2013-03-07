@@ -11,7 +11,7 @@
 	if (idx != null) {
 		gp_idx = idx;
 	}
-	String groupsName = "";
+	String groupsName = "학급을 선택하세요.";
 	if (request.getAttribute("groupsName") != null) {
 		groupsName = (String) request.getAttribute("groupsName");
 	}
@@ -32,11 +32,15 @@
 	// 			alert($(".timetable td").);
 	// 		});
 	function popup(row, col, gp_idx) {
+		if(gp_idx==""){
+			alert("먼저 학급을 선택하세요.");
+		}else{
 		window
 				.open("./InsertSubject.time?day=" + col + "&lesson=" + row
 						+ "&gp_idx=" + gp_idx, "",
 						"height=200,width=500,toolbar=no,status=no,linemenubar=no,scrollbars=no");
 		return false;
+		}
 	}
 	function selGp(value) {
 		location.href = "./TimeTableList.time?gp_idx=" + value.split(",")[0]
@@ -105,9 +109,6 @@
 						<h1><%=groupsName%></h1>
 					</div>
 					<table class="timetable">
-						<%
-							if (timetable.size() > 0) {
-						%>
 						<tr class="timetablehead">
 							<th></th>
 							<th>月</th>
@@ -128,12 +129,12 @@
 								onclick="popup('<%=timeindex%>',<%=dayindex%>,'<%=gp_idx%>')">
 								<%
 									for (int i = 0; i < timetable.size(); i++) {
-													List table = (List) timetable.get(i);
-													if (table.get(2).equals(dayindex + "")
-															&& table.get(3).equals(timeindex + "")) {
-								%><%=table.get(4)%>:<%=table.get(1)%> <%
+												List table = (List) timetable.get(i);
+												if (table.get(2).equals(dayindex + "")
+														&& table.get(3).equals(timeindex + "")) {
+								%><%=table.get(4)%><br><%=table.get(1)%> <%
  	}
- 				}
+ 			}
  %>
 							</td>
 
@@ -143,7 +144,6 @@
 							%>
 						</tr>
 						<%
-							}
 							}
 						%>
 					</table>

@@ -16,19 +16,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>과목 삽입</title>
 <script>
-	function subChange(value) {
-		sub_name = value.split(",")[1];
-		alert(sub_name);
-		location.href = "./InsertSubject.time?day=" +
+	function subChange(value) {	
+			sub_name = value.split(",")[1];
+			location.href = "./InsertSubject.time?day=" +
 <%=day%>
 	+ "&lesson="
-				+
+					+
 <%=lesson%>
 	+ "&sub_name=" + sub_name + "&gp_idx="
-				+
+					+
 <%=gp_idx%>
 	;
-	}
+		}
+	
 	function check() {
 		ep_id = document.sub_form.ep_id.value;
 		if (ep_id == "") {
@@ -44,7 +44,6 @@
 </script>
 </head>
 <body>
-	이부분이 나오면 성공<%=day%>,<%=lesson%>,<%=gp_idx%>
 	<form action="" method="post" name="sub_form" onsubmit="return check()">
 		<input type="hidden" name="day" value="<%=day%>"><input
 			type="hidden" name="lesson" value="<%=lesson%>"><input
