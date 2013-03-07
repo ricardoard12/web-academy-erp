@@ -136,7 +136,7 @@
                 alert("메세지를 전송할 학생을 선택하세요");
                 return false;
         } else {
-                window.open("./SendSMS.sms?&chkValue=" + chkValue, "sendSMS", "width=400,height=600,scrollbars=no");
+                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=400,height=600,scrollbars=no");
         }
 }
 	

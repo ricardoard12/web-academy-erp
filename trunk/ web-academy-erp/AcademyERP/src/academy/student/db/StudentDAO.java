@@ -518,34 +518,74 @@ public class StudentDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
     	return groups;
     	
     }
     
-    public List getSMSReceiverList(String[] studentList) throws Exception {
+    public List getSMSReceiverList(List studentList) throws Exception { // 문자 발송 대상 전화번호 가져오기
     	List receiverList = null;
     	try {
     		con = ds.getConnection();
-    		for (int i = 0; i < studentList.length; i++) {
+    		receiverList = new ArrayList();
+    		for (int i = 0; i < studentList.size(); i++) {
+    			System.out.println("StudentList Size : " + studentList.size());
 	    		String sql = "SELECT mm_id, mm_name, mm_phone FROM member WHERE mm_id=?";
 	    		pstmt = con.prepareStatement(sql);
-	    		pstmt.setString(1, studentList[i]);
+	    		pstmt.setString(1, (String) studentList.get(i));
 	    		rs = pstmt.executeQuery();
 	    		
-	    		receiverList = new ArrayList();
 	    		if (rs.next()) {
 	    			MemberBean member = new MemberBean();
 	    			member.setMm_id(rs.getString("mm_id"));
 	    			member.setMm_name(rs.getString("mm_name"));
 	    			member.setMm_phone(rs.getString("mm_phone"));
-	    			
+	    			System.out.println("mm_id : " + rs.getString("mm_id"));
 	    			receiverList.add(member);
 	    		}
     		}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
 		}
+    	
     	return receiverList;
+    }
+    
+    public List getReceiverInfo(String id) throws Exception { // 입실, 퇴실 문자 발송용 학생 이름, 학부모 전화번호 가져오기
+    	String studentName = "";
+    	String parentPhone = "";
+    	List receiverInfo = null;
+    	try {
+    		con = ds.getConnection();
+    		String sql = "SELECT member.mm_name, student.st_parent_mobile FROM member, student WHERE member.mm_id=? AND student.mm_id=?";
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setString(1, id);
+    		pstmt.setString(2, id);
+    		rs = pstmt.executeQuery();
+    		
+    		receiverInfo = new ArrayList();
+    		if (rs.next()) {
+    			studentName = rs.getString("mm_name");
+    			parentPhone = rs.getString("st_parent_mobile");
+    			
+    			receiverInfo.add(studentName);
+    			receiverInfo.add(parentPhone);
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(rs!=null)try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)try{con.close();}catch(SQLException ex){}
+		}
+    	return receiverInfo;
     }
 }
