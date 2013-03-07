@@ -10,21 +10,25 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List receiverList = (List) request.getAttribute("receiverList");
-	MemberBean member = (MemberBean)receiverList.get(0);
-	String phone = member.getMm_phone().split("-")[0] + member.getMm_phone().split("-")[1] + member.getMm_phone().split("-")[2];
 %>
 </head>
 <body>
-        <form action="SendSMSAction.sms" method="post">
+        <form action="./SendSmsAction.sms" method="post">
         <div align="center">
-	        <input type="hidden" name="user" value="academytest">
-	        <input type="hidden" name="password" value="5BD6F643BEEA1483574DDE8150488890">
-	        <input type="hidden" name="enc" value="MD5">
 	        <table border="1">
-	                <tr><th>수신자</th><td><input type="text" name="receiverName" value="<%=member.getMm_name()%>"></td></tr>
-	                <tr><th>수신자번호</th><td><input type="text" name="receiverPhone" value="<%=phone%>"></td></tr>
+			<tr><th>송신자번호</th><td><input type="text" name="senderPhone"></td></tr>
 	                <tr><th>내용</th><td><textarea rows="5" cols="14" name="message"></textarea> </td></tr>
-	                <tr><th>송신자번호</th><td><input type="text" name="senderPhone"></td></tr>
+<%-- 	                	<th>수신자</th><td><input type="text" name="receiverName" value="<%=member.getMm_name()%>"></td> --%>
+<%-- 	                	<th>수신자번호</th><td><input type="text" name="receiverPhone" value="<%=phone%>"></td> --%>
+<!-- 			<tr><td colspan="2"><hr width="300"></td> -->
+			<tr><th>수신자</th><th>수신자번호</th></tr>
+			<%	out.println("SIZE : " + receiverList.size());
+				for (int i = 0; i < receiverList.size(); i++) {
+				MemberBean member = (MemberBean)receiverList.get(i);
+				String phone = member.getMm_phone().split("-")[0] + member.getMm_phone().split("-")[1] + member.getMm_phone().split("-")[2];
+			%>
+	                <tr><td><input type="text" name="receiverName" value="<%=member.getMm_name()%>"></td><td><input type="text" name="receiverPhone" value="<%=phone%>"></td></tr>
+	        	<%} %>
 	        </table>
 		<input type="submit" value="문자발송"><input type="button" value="취소" onclick="window.close()">
 	</div>	        
