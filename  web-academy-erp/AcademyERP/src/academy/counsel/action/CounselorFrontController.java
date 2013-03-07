@@ -48,6 +48,22 @@ public class CounselorFrontController extends HttpServlet implements Servlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		}else if(command.equals("/CounselorModify.cc")){
+			action = new CounselorModify();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else if(command.equals("/CounselorModifyAction.cc")){
+			action = new CounselorModifyAction();
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		}
 	
 		// 이동
