@@ -52,8 +52,8 @@ public class TimetableDAO {
 		List list = null;
 		try {
 			con = ds.getConnection();
-			String sql = "select * from timetable,member where gp_idx='" + gp_idx
-					+ "' AND ep_id=mm_id";
+			String sql = "select * from timetable,member where gp_idx='"
+					+ gp_idx + "' AND ep_id=mm_id";
 			rs = con.prepareStatement(sql).executeQuery();
 			list = new ArrayList();
 			if (rs.next()) {
@@ -230,6 +230,39 @@ public class TimetableDAO {
 		} finally {
 			dbClose();
 		}
+	}
+
+	public List getmyTimetable(String id) {
+		List list = null;
+		try {
+			con = ds.getConnection();
+			String sql = "select gp_name,gp_lev,room_list_name,ti_day,ti_lesson "
+					+ "from room_list,groups,timetable "
+					+ "where room_list_idx=groups.gp_room AND timetable.ep_id='"
+					+ id + "'" + "group by ti_day,ti_lesson;";
+			rs = con.prepareStatement(sql).executeQuery();
+			list=new ArrayList();
+			if (rs.next()) {
+				do {
+					list.add(getmyTimeTable());
+				} while (rs.next());
+			}
+			System.out.println(list.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return list;
+	}
+
+	private List<String> getmyTimeTable() throws Exception{
+		List<String> list=new ArrayList<String>();
+		list.add(rs.getString("gp_lev")+rs.getString("gp_name"));//0
+		list.add(rs.getString("room_list.room_list_name"));//1
+		list.add(rs.getString("ti_day"));//2
+		list.add(rs.getString("ti_lesson"));//3
+		return list;
 	}
 
 }
