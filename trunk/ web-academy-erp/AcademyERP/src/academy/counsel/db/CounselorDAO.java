@@ -197,6 +197,35 @@ public class CounselorDAO {
 	    	
 	    	return counseler;
 	    	
+	    }public void setcounselorupdate(CounselerBean counselor){
+	    	System.out.println("DB접속");
+	    	System.out.println(counselor.getEp_id());
+	    	System.out.println(counselor.getIdx());
+	    	System.out.println(counselor.getMm_id());
+	    	
+	    	String sql="";
+	    	try {
+				con=ds.getConnection();
+				sql="update counsel set cc_subject =?,cc_content =?,ep_id =? where idx=? and mm_id =?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, counselor.getCc_subject());
+				pstmt.setString(2, counselor.getCc_content());
+				pstmt.setString(3, counselor.getEp_id());
+				pstmt.setInt(4, counselor.getIdx());
+				pstmt.setString(5, counselor.getMm_id());
+				
+				pstmt.executeUpdate();
+				System.out.println("접속 성공");
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs!=null)try{rs.close();}catch(SQLException ex){}
+				if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
+				if(con!=null)try{con.close();}catch(SQLException ex){}
+			}
+	    	
 	    }
 	    
 }
