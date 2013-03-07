@@ -172,5 +172,4 @@
              <servlet-name>StudentInfoFrontController</servlet-name>
              <url-pattern>*.si</url-pattern>
      </servlet-mapping>
->>>>>>> .r552
 </web-app>
