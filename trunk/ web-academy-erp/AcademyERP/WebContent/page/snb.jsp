@@ -232,7 +232,7 @@
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
-					<li><a href="#"><span>강사별시간표</span></a></li>
+					<li><a href="./TimeTalbeTeacher.time"><span>강사별시간표</span></a></li>
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
