@@ -155,14 +155,14 @@
 		<url-pattern>*.le</url-pattern>
 	</servlet-mapping>
 	
-    <servlet>
-             <servlet-name>SMSFrontController</servlet-name>
-             <servlet-class>academy.sms.action.SMSFrontController</servlet-class>
-     </servlet>
-     <servlet-mapping>
-             <servlet-name>SMSFrontController</servlet-name>
-             <url-pattern>*.sms</url-pattern>
-     </servlet-mapping>
+       <servlet>
+                <servlet-name>SmsFrontController</servlet-name>
+                <servlet-class>academy.sms.action.SmsFrontController</servlet-class>
+        </servlet>
+        <servlet-mapping>
+                <servlet-name>SmsFrontController</servlet-name>
+                <url-pattern>*.sms</url-pattern>
+        </servlet-mapping>
      
       <servlet>
              <servlet-name>StudentInfoFrontController</servlet-name>
@@ -172,4 +172,5 @@
              <servlet-name>StudentInfoFrontController</servlet-name>
              <url-pattern>*.si</url-pattern>
      </servlet-mapping>
+>>>>>>> .r552
 </web-app>
