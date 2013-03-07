@@ -1,3 +1,4 @@
+<%@page import="academy.student.db.StudentBean"%>
 <%@page import="academy.member.db.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -145,6 +146,7 @@
 	<div id="menu_v" class="menu_v">
 		<ul>
 			<%
+			StudentBean studentbean = (StudentBean) request.getAttribute("studentbean");
 				int lev = 0;
 				if (level != null) {
 					lev = Integer.parseInt(level);
@@ -158,12 +160,14 @@
 
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
+<%-- 					<li><a href="./StudentDetail.st?id=<%=studentbean.getMm_id()%>"><span>학생정보조회</span></a></li> --%>
+<%-- 					<li><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=1"><span>학생정보조회</span></a></li> --%>
 					<li><a href="#"><span>학생정보조회</span></a></li>
 					<li><a href="#"><span>회비내역조회</span></a></li>
 					<li><a href="#"><span>시간표조회</span></a></li>
 					<li><a href="#"><span>성적조회</span></a></li>
 					<li><a href="#"><span>출결상황조회</span></a></li>
-					<li><a href="#"><span>강의계획서열람</span></a></li>
+					<li><a href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
 					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
