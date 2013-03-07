@@ -32,7 +32,7 @@ public class StudentInfoAction implements Action {
 		request.setAttribute("check", check);
 		
 		forward.setRedirect(false);
-		forward.setPath("./student/student_detail.jsp");
+		forward.setPath("./studentInfo/student_informaion.jsp");
 		return null;
 	}
 
