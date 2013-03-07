@@ -193,7 +193,7 @@
 
 				<form action="./StudentModifyAction.st" method="post">
 					<fieldset>
-						<legend>학생 상세 정보</legend>
+						<legend>학생 정보조회</legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
 								<tbody>
