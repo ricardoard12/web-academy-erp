@@ -13,7 +13,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import academy.accounting.db.AccountingBean;
 
 public class GradeDAO {
     Connection con=null;
@@ -23,7 +22,7 @@ public class GradeDAO {
     public GradeDAO() {
         try {
             Context init=new InitialContext();
-            ds=(DataSource)init.lookup("java:comp/env/jdbc/aca");
+            ds=(DataSource)init.lookup("java:comp/env/jdbc/p4_learntime_kr");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -240,11 +239,34 @@ public class GradeDAO {
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
     }
     
+    public void insertTestingStudentAdd(List st_id_list, List gr_score_list, String gr_code){
+        String sql = "";
+   
+        try {
+            con = ds.getConnection();
+            
+            for(int i=0; i<st_id_list.size(); i++){
+                    
+                String st_id = (String)st_id_list.get(i);
+                String gr_score = (String)gr_score_list.get(i);
+                
+                sql = "insert into exam(gr_code, st_id, gr_score) values(?,?,?)";
+                pstmt = con.prepareStatement(sql);
+                pstmt.setString(1, gr_code);
+                pstmt.setString(2, st_id);
+                pstmt.setString(3, gr_score);
+                pstmt.executeUpdate();
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+    }
     
-    public List gradeAcademyTestingStudentList(String gp_name){
+    
+    public List gradeAcademyTestingStudentList(String gp_name, String gr_code){
         List gradeAcademyTestingStudentList = null;
         GradeBean gradebean = null;
         String sql="";
+        ResultSet rs2=null;
         
         try {
             con=ds.getConnection();
@@ -259,7 +281,19 @@ public class GradeDAO {
                 do{
                     gradebean = new GradeBean();
                     gradebean.setMm_name(rs.getString("mm_name"));
+                    
                     gradebean.setSt_id(rs.getString("mm_id"));
+                    
+                    sql = "select exam.gr_score from exam where st_id = ? and exam.gr_code=?;";
+                    pstmt = con.prepareStatement(sql);
+                    pstmt.setString(1, rs.getString("mm_id"));
+                    pstmt.setString(2, gr_code);
+                    rs2 = pstmt.executeQuery();
+
+                    if (rs2.next()) { // member 테이블의 id와 일치
+                       gradebean.setGr_score(rs2.getString("gr_score")); // 회원 이름 가져옴
+                    }
+                    
                     gradebean.setSt_school_name(rs.getString("st_school_name"));
                     gradebean.setGp_name(rs.getString("gp_name"));
                     

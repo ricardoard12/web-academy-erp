@@ -17,7 +17,8 @@ public class GradeAcademyTestingStudentListAction implements Action {
         GradeDAO gradedao = new GradeDAO();
         
         String gp_name = request.getParameter("gp_name");
-        List gradeAcademyTestingStudentList = gradedao.gradeAcademyTestingStudentList(gp_name);
+        String gr_code = request.getParameter("gr_code");
+        List gradeAcademyTestingStudentList = gradedao.gradeAcademyTestingStudentList(gp_name, gr_code);
         
         request.setAttribute("gradeAcademyTestingStudentList", gradeAcademyTestingStudentList);
         
