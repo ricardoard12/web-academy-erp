@@ -14,6 +14,7 @@ public class ZipcodeAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("MemberZipcodeAction!");
+		request.setCharacterEncoding("UTF-8");
 		
 		ActionForward forward = new ActionForward();
 		MemberDAO memberDAO = new MemberDAO();
@@ -21,6 +22,7 @@ public class ZipcodeAction implements Action {
 		
 		String searchDong = request.getParameter("dong");
 		
+		System.out.println("Dong : " + searchDong);
 		zipcodeList = memberDAO.searchZipcode(searchDong);
 		
 		request.setAttribute("zipcodeList", zipcodeList);
