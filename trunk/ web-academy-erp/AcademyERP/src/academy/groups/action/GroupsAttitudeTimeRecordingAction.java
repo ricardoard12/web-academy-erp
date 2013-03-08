@@ -58,7 +58,6 @@ public class GroupsAttitudeTimeRecordingAction implements Action {
 		request.setAttribute("type", type);
 
 		
-//		System.out.println("Send로 넘어간다");
 		forward.setRedirect(false);
 		forward.setPath("./SendAttitudeSmsAction.sms");
 		return forward;

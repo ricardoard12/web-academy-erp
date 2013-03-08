@@ -52,6 +52,8 @@
 // 		var date = document.emAttitudeForm.date.value;
 		location.href="./EmployeeAttitudeTimeRecordingAction.em?type=" + type + "&id=" + id + "&date=" + date;
 	}
+	
+}
 </script>
 </head>
 <%
@@ -123,7 +125,7 @@
 							AttitudeBean attitude = (AttitudeBean)attitudeList.get(i);
 						%>
 							<tr>
-								<td><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</td>
+								<td><a href="./EmployeeDetailAction.em?id=<%=attitude.getAt_member_id()%>"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
 								<td>
 									<%
 										// at_report_state Y : 출근, N : 미출근

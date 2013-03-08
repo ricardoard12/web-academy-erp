@@ -120,25 +120,25 @@
 	}
 	
 	function sendSMS() { // 문자 발송
-        var count = 0;
-        var chk = document.getElementsByName("chkStudent");
-        var chkValue = "";
-        
-        for (var i = 0; i < chk.length; i++) { // 체크박스 값 받아서 문자열 결합
-                if (chk[i].checked == true) {
-                        count++;
-                        chkValue += chk[i].value;
-                        chkValue += ","; // split 에서 구분자로 사용할 문자 삽입
-                } 
-        }
-        
-        if (count <= 0){
-                alert("메세지를 전송할 학생을 선택하세요");
-                return false;
-        } else {
-                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=400,height=600,scrollbars=no");
-        }
-}
+	        var count = 0;
+	        var chk = document.getElementsByName("chkStudent");
+	        var chkValue = "";
+	        
+	        for (var i = 0; i < chk.length; i++) { 
+	                if (chk[i].checked == true) {
+	                        count++;
+	                        chkValue += chk[i].value; // 체크된 모든 아이디 문자열 결합
+	                        chkValue += ","; // split 에서 구분자로 사용할 문자 삽입
+	                } 
+	        }
+	        
+	        if (count <= 0){
+	                alert("메세지를 전송할 대상을 선택하세요");
+	                return false;
+	        } else {
+	                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=400,height=600,scrollbars=no");
+	        }
+	}
 	
 </script>
 </head>

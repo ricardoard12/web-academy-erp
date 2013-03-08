@@ -30,12 +30,8 @@
 	String zipcode = "";
 	String zip1 = "";
 	String zip2 = "";
-	String mType = "";
-        if (request.getParameter("mType") != null && request.getParameter("mType").equals("")) {
-        	mType = request.getParameter("mType");
-        } else {
-        	mType = (String) request.getAttribute("mType");
-        }
+	String mType = request.getParameter("mType");
+//         out.println(mType);
 	List zipcodeList = (ArrayList)request.getAttribute("zipcodeList");
 %>
 <body>
@@ -58,8 +54,6 @@
 						StringTokenizer st = new StringTokenizer(data, ",");
 						zipcode = st.nextToken();
 						addr = st.nextToken();
-// 						zip1 = zipcode.split("-")[0];
-// 						zip2 = zipcode.split("-")[1];
 						st = new StringTokenizer(zipcode, "-");
 						zip1 = st.nextToken();
 						zip2 = st.nextToken();
