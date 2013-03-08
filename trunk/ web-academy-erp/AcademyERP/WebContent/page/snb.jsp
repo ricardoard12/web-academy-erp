@@ -2,9 +2,6 @@
 <%@page import="academy.member.db.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	MemberBean member = (MemberBean) session.getAttribute("sMember");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +10,41 @@
 <link href="./css/login.css" rel="stylesheet" type="text/css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$(document).ready(function() {
+		/*위치 정보*/
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+			// successCallback
+			function(position) {
+				alert(position.coord.latitude+","+position.coord.longitude);
+			},
+			// errorCallback
+			function(error) {
+				switch (error.code) {
+				case error.TIMEOUT:
+					alert('시간 초과');
+					break;
+				case error.POSITION_UNAVAILABLE:
+					alert('위치를 사용할 수 없음 (이 오류는 위치 정보 공급자가 응답)');
+					break;
+				case error.PERMISSION_DENIED:
+					alert('권한 거부');
+					break;
+				case error.UNKNOWN_ERROR:
+					alert('알 수 없는 오류');
+					break;
+				default:
+					alert(errro.code);
+				}
+			});
+		} else {
+			alert("이 브라우저는 geolcation API를 지원하지 않습니다");
+		}
+
+		/*위치 정보*/
+	});
+</script>
 </head>
 <body>
 	<!-- Layer Info -->
@@ -123,12 +155,14 @@
 								접속부터는 로그인을 하실 필요가 없습니다.<br> 단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가
 								유출될 수 있으니 꼭 로그아웃을 해주세요.
 							</p>
-							<span class="btn_login"><input name="" type="submit"
+							<span class="btn_login"><input type="hidden"
+								name="position" value="x"><input name="" type="submit"
 								value="로그인"></span>
 							<ul class="help">
 								<li class="first"><a href="#">아이디/비밀번호 찾기</a></li>
 							</ul>
 						</fieldset>
+
 					</form>
 					<a href="#login_anchor" title="로그인 레이어 닫기" class="close">X</a>
 				</div>
@@ -146,7 +180,8 @@
 	<div id="menu_v" class="menu_v">
 		<ul>
 			<%
-			StudentBean studentbean = (StudentBean) request.getAttribute("studentbean");
+				StudentBean studentbean = (StudentBean) request
+						.getAttribute("studentbean");
 				int lev = 0;
 				if (level != null) {
 					lev = Integer.parseInt(level);
@@ -160,14 +195,15 @@
 
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
-<%-- 					<li><a href="./StudentDetail.st?id=<%=studentbean.getMm_id()%>"><span>학생정보조회</span></a></li> --%>
-<%-- 					<li><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=1"><span>학생정보조회</span></a></li> --%>
+					<%-- 					<li><a href="./StudentDetail.st?id=<%=studentbean.getMm_id()%>"><span>학생정보조회</span></a></li> --%>
+					<%-- 					<li><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=1"><span>학생정보조회</span></a></li> --%>
 					<li><a href="#"><span>학생정보조회</span></a></li>
 					<li><a href="#"><span>회비내역조회</span></a></li>
 					<li><a href="#"><span>시간표조회</span></a></li>
 					<li><a href="#"><span>성적조회</span></a></li>
 					<li><a href="#"><span>출결상황조회</span></a></li>
-					<li><a href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
+					<li><a
+						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
 					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
@@ -249,7 +285,8 @@
 					<!-- 업무일지는 11 -->
 					<li><a href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
 					<!-- 강의계획서는 12 -->
-					<li><a href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서</span></a></li>
+					<li><a
+						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서</span></a></li>
 					<!-- 수업자료실 13 -->
 					<li><a href="./BoardNotice.bo?gid=13"><span>수업자료실</span></a></li>
 					<!-- 직원 자료실은 14 -->
@@ -393,7 +430,6 @@
 				return false;
 			});
 		});
-
 		jQuery(function($) {
 
 			// Side Menu
