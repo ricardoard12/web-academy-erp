@@ -257,10 +257,24 @@ public class TimetableDAO {
 
 	private List<String> getmyTimeTable() throws Exception{
 		List<String> list=new ArrayList<String>();
+		String str="";
 		list.add(rs.getString("gp_idx"));//0
 		list.add(rs.getString("ti_room"));//1
 		list.add(rs.getString("ti_day"));//2
 		list.add(rs.getString("ti_lesson"));//3
+		ResultSet rs2=con.prepareStatement("select gp_name,gp_lev from groups where gp_idx="+rs.getString("gp_idx")).executeQuery();
+		if(rs2.next()){
+			String roomName=rs2.getString(2);
+			if(roomName.equals("e")){
+				roomName="초등";
+			}else if(roomName.equals("m")){
+				roomName="중등";
+			}else if(roomName.equals("h")){
+				roomName="고등";
+			}
+			str=roomName+"-"+rs2.getString("gp_name");
+		}
+		list.add(str);//4
 		return list;
 	}
 
