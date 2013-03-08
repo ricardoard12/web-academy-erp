@@ -236,10 +236,9 @@ public class TimetableDAO {
 		List list = null;
 		try {
 			con = ds.getConnection();
-			String sql = "select gp_name,gp_lev,room_list_name,ti_day,ti_lesson "
-					+ "from room_list,groups,timetable "
-					+ "where room_list_idx=groups.gp_room AND timetable.ep_id='"
-					+ id + "'" + "group by ti_day,ti_lesson;";
+			String sql = "select * "
+					+ "from timetable "
+					+ "where timetable.ep_id='"	+ id + "'";
 			rs = con.prepareStatement(sql).executeQuery();
 			list=new ArrayList();
 			if (rs.next()) {
@@ -258,8 +257,8 @@ public class TimetableDAO {
 
 	private List<String> getmyTimeTable() throws Exception{
 		List<String> list=new ArrayList<String>();
-		list.add(rs.getString("gp_lev")+rs.getString("gp_name"));//0
-		list.add(rs.getString("room_list.room_list_name"));//1
+		list.add(rs.getString("gp_idx"));//0
+		list.add(rs.getString("ti_room"));//1
 		list.add(rs.getString("ti_day"));//2
 		list.add(rs.getString("ti_lesson"));//3
 		return list;
