@@ -35,14 +35,16 @@
 
 				<%
 				    List gradeAcademyTestingStudentList = (List)request.getAttribute("gradeAcademyTestingStudentList");
+					String gp_name = request.getParameter("gp_name");
+					String gr_code = request.getParameter("gr_code");
 				%>
 				<legend>학원 시험중 학생리스트</legend>
-				<form action="" name="grAddCheck" method="post" >
+				<form action="./GradeAcademyTestingStudentAdd.gr" name="grAddCheck" method="post" >
+				<input type="hidden" name="gr_code" value="<%=gr_code %>">
+				<input type="hidden" name="gp_name" value="<%=gp_name %>">
 				<table cellspacing="0" border="1" summary="학원 시험중 학생리스트" class="tbl_type_list">
 					<caption>학원 시험중 학생리스트</caption>
 					<colgroup>
-						<col width="12%">
-						<col>
 						<col width="16%" span="6">
 					</colgroup>
 					<thead>
@@ -52,32 +54,32 @@
 							<th scope="col">학생아이디</th>
 							<th scope="col">학교이름</th>
 							<th scope="col">시험성적</th>
-							<th scope="col">학급명</th>
+							<th scope="col">학급명<%=gp_name %></th>
 						</tr>
 					</thead>
 					<tbody>
 
-					<%	if(gradeAcademyTestingStudentList == null){ %>
+                    <%	if(gradeAcademyTestingStudentList == null){ %>
 						<tr><td colspan="6"><h1>학생추가하세요</h1></td></tr>	    
-					<% }else{ %>
-					
-					<% for(int i=0; i<gradeAcademyTestingStudentList.size(); i++){
-						GradeBean gradebean = (GradeBean)gradeAcademyTestingStudentList.get(i);%>
+					<% }else{     
+							for(int i=0; i<gradeAcademyTestingStudentList.size(); i++){
+							GradeBean gradebean = (GradeBean)gradeAcademyTestingStudentList.get(i);%>
 						<tr>
-							<td><input type="checkbox" name="check" value="<%=gradebean.getGr_code() %>"></td>
+							<td><input type="checkbox" name="check" value="<%=gradebean.getSt_id() %>"></td>
 							<td><%=gradebean.getMm_name() %></td>
 							<td><%=gradebean.getSt_id() %></td>
 							<td><%=gradebean.getSt_school_name() %></td>
-							<td><input type="text" name="gr_score" value="" size="3"  ></td>
+							<td><input type="text" name="gr_score" value="<%=gradebean.getGr_score() %>" size="3"  ></td>
 							<td><%=gradebean.getGp_name() %></td>
 						</tr>
 					<% }
 					}	%>
+					
 						<!-- 버튼 -->
 						<tr align="right">
 							<td align="center" colspan="6">
 								<div class="item">
-									<input type="submit" value="성적입력">
+									<input type="submit" value="성적입력" onclick="return oneMore()">
 									<input type="button" value="시험목록" onclick="location.href='./GradeAcademyTesting.gr'">
 								</div>
 						</tr>
@@ -98,6 +100,20 @@
 			for ( var x = 0; x < grAddCheck.check.length; x++) { // 모두 해제 시킨다..
 				document.grAddCheck.check[x].checked = false;
 			}
+		}
+	}
+	
+	function oneMore() {
+		count = 0;
+		for ( var x = 0; x < grAddCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
+			if(document.grAddCheck.check[x].checked == true){
+				count++;
+			} //for문을 사용하여 모두 체크 시킨다.
+		}
+		
+		if(count<=0){
+			alert("한 개이상 선택하세요");
+			return false;
 		}
 	}
 	
