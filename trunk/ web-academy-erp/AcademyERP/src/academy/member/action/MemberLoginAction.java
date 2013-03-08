@@ -21,7 +21,8 @@ public class MemberLoginAction implements Action{
         
         String mm_id = request.getParameter("mm_id");
         String mm_passwd = request.getParameter("mm_passwd");
-        
+        String pos=request.getParameter("position");
+        System.out.println(pos);
         MemberBean memberbean = new MemberBean();
         memberbean.setMm_id(mm_id);
         memberbean.setMm_passwd(mm_passwd);
