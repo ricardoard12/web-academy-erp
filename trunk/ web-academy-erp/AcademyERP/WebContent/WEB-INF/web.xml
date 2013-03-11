@@ -138,11 +138,11 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CounselerFrontController</servlet-name>
-		<servlet-class>academy.counsel.action.CounselerFrontController</servlet-class>
+		<servlet-name>CounselorFrontController</servlet-name>
+		<servlet-class>academy.counsel.action.CounselorFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CounselerFrontController</servlet-name>
+		<servlet-name>CounselorFrontController</servlet-name>
 		<url-pattern>*.cc</url-pattern>
 	</servlet-mapping>
 	
