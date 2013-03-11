@@ -195,9 +195,9 @@
 
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<%-- 					<li><a href="./StudentDetail.st?id=<%=studentbean.getMm_id()%>"><span>학생정보조회</span></a></li> --%>
-					<%-- 					<li><a href="./StudentDetail.st?id=<%=studentBean.getMm_id()%>&check=1"><span>학생정보조회</span></a></li> --%>
-					<li><a href="#"><span>학생정보조회</span></a></li>
+<%-- 					<li><a href="./StudentDetail.st?id=<%=studentbean.getMm_id()%>"><span>학생정보조회</span></a></li> --%>
+					<li><a href="./StudentDetail.st?id=<%=id%>?check=1"><span>학생정보조회</span></a></li>
+<!-- 					<li><a href="#"><span>학생정보조회</span></a></li> -->
 					<li><a href="#"><span>회비내역조회</span></a></li>
 					<li><a href="#"><span>시간표조회</span></a></li>
 					<li><a href="#"><span>성적조회</span></a></li>
