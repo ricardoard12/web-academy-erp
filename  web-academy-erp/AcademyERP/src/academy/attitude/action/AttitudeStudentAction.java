@@ -19,11 +19,10 @@ public class AttitudeStudentAction implements Action{
 		
 		AttitudeDAO attitudedao = new AttitudeDAO(); //db생성
 		
-		//세션갑생성
-		//HttpSession session = request.getSession();
-		//String sid = session.getAttribute("id");
-        //테스트를 위해 sid를 임의로 지정
-		String sid = "S130212001";
+
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("id");
+ 
         String memberid=""; //주소합칠대사용
         String result1=sid.substring(0,1) ; //첫자리 잘라내기
         String result2 =sid.substring(1) ; // 나머지 뒷자리 잘라내기
