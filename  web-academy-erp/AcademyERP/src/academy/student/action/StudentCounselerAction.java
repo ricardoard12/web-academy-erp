@@ -30,7 +30,7 @@ public class StudentCounselerAction implements Action{
 		}else{
 			 id = (String)request.getParameter("id"); // 학생 아뒤를 가지고 온다.
 		}
-		System.out.println(id);
+		System.out.println("3333"+id);
 		
 		studentbean = studentdao.getStudentinfo(id); // 학생 기본정보를 가지고 온다.
 		
@@ -61,6 +61,12 @@ public class StudentCounselerAction implements Action{
 			endpage=maxpage;
 		}
 		//request.setAttribute(이름,값) //정보저장
+		if(counselList!=null){
+			System.out.println("있음");
+		}else{
+			System.out.println("없음");
+		}
+		
 		request.setAttribute("page",page);
 		request.setAttribute("maxpage", maxpage);
 		request.setAttribute("startpage", startpage);
@@ -68,6 +74,7 @@ public class StudentCounselerAction implements Action{
 		request.setAttribute("counselcount", counselcount);
 		request.setAttribute("counselList", counselList);
 		request.setAttribute("studentbean", studentbean); // 학생의 기본정보를 저장
+		
 		//forward 정보 ./board/qna_board_list.jsp
 		forward.setRedirect(false); //값가지고 이동
 		forward.setPath("/student/student_counselList.jsp");
