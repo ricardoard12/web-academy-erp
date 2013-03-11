@@ -5,8 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
-	ListPackage pack=(ListPackage)request.getAttribute("listpack");
+	ListPackage pack = (ListPackage) request.getAttribute("listpack");
 	List boardList = pack.getClasslist();
 	int listcount = pack.getListcount();
 	int nowpage = pack.getPage();
@@ -14,6 +13,12 @@
 	int startpage = pack.getStartpage();
 	int endpage = pack.getEndpage();
 	String gid = pack.getGid();
+	List noticeList = (List) request.getAttribute("noticelist");
+	String level = (String) session.getAttribute("level");
+	int lev = 0;
+	if (level != null) {
+		lev = Integer.parseInt(level);
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,7 +50,7 @@
 				<!-- 게시판 시작 -->
 				<!-- UI Object -->
 				<form method="post" action="./BoardDeleteAction.bo">
-				<input type="hidden" name="gid" value="<%=gid%>">
+					<input type="hidden" name="gid" value="<%=gid%>">
 					<table cellspacing="0" border="1" summary="게시판의 글제목 리스트"
 						class="tbl_type_notice">
 						<!-- level세션값 전달 -->
@@ -54,7 +59,13 @@
 
 						<caption>게시판 리스트</caption>
 						<colgroup>
+							<%
+								if (lev >= 4) {
+							%>
 							<col width="30">
+							<%
+								}
+							%>
 							<col width="80">
 							<col>
 							<col width="115">
@@ -63,7 +74,13 @@
 						</colgroup>
 						<thead>
 							<tr>
+								<%
+									if (lev >= 4) {
+								%>
 								<th scope="col">&nbsp;</th>
+								<%
+									}
+								%>
 								<th scope="col">No</th>
 								<th scope="col">제목</th>
 								<th scope="col">글쓴이</th>
@@ -72,17 +89,44 @@
 							</tr>
 						</thead>
 
-						<tbody>
-
+						<tbody>							
 							<%
-								if (listcount > 0) {
-									for (int i = 0; i < boardList.size(); i++) {
-										boardbean = (BoardBean) boardList.get(i);
+								if (noticeList.size() > 0) {
+									for (int i = 0; i < noticeList.size(); i++) {
+										BoardBean boardbean = (BoardBean) noticeList.get(i);
 							%>
-							<tr>
+							<!-- notice sector -->
+							<tr style="background:#F6F6F6">
 								<td class="frm"><input type="checkbox" name="board_check"
 									id="chk_sel" value="<%=boardbean.getBoard_num()%>"><label
 									for="chk_sel">선택</label></td>
+								<td class="num"><%=boardbean.getBoard_num()%></td>
+								<td class="title"><img src="./img/notice_icon.gif" width="15" height="15"/> <a
+									href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>&?gid=<%=gid%>'"><%=boardbean.getBoard_subject()%></a></td>
+								<td><a href="#"><%=boardbean.getBoard_name()%></a></td>
+								<td class="date"><%=boardbean.getBoard_date()%></td>
+								<td class="hit"><%=boardbean.getBoard_readcount()%></td>
+							</tr>
+							<!-- notice sector -->
+
+							<%
+								}
+								}
+
+								if (listcount > 0) {
+									for (int i = 0; i < boardList.size(); i++) {
+										BoardBean boardbean = (BoardBean) boardList.get(i);
+							%>
+							<tr>
+								<%
+									if (lev >= 4) {
+								%>
+								<td class="frm"><input type="checkbox" name="board_check"
+									id="chk_sel" value="<%=boardbean.getBoard_num()%>"><label
+									for="chk_sel">선택</label></td>
+								<%
+									}
+								%>
 								<td class="num"><%=boardbean.getBoard_num()%></td>
 								<td class="title"><a
 									href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>&?gid=<%=gid%>'"><%=boardbean.getBoard_subject()%></a></td>
@@ -116,8 +160,8 @@
 					<div align="right">
 						<%-- <% if(level.equals("5")){ %> --%>
 						<input type="button" name="board_write" value="글쓰기"
-							onclick="location.href='./BoardWrite.bo?gid=<%=gid%>'">
-						<input type="submit" name="board_delete" value="삭제">
+							onclick="location.href='./BoardWrite.bo?gid=<%=gid%>'"> <input
+							type="submit" name="board_delete" value="삭제">
 				</form>
 			</div>
 			<%-- <%}else{}%> --%>
@@ -153,8 +197,8 @@
 				%><a href="#" class="direction next">끝<span></span><span></span></a>
 				<%
 					} else {
-				%><a href="./BoardNotice.bo?page=<%=nowpage + 1%>&?gid=<%=gid%>'" class="direction next">다음
-				</a>
+				%><a href="./BoardNotice.bo?page=<%=nowpage + 1%>&?gid=<%=gid%>'"
+					class="direction next">다음 </a>
 				<%
 					}
 				%>
