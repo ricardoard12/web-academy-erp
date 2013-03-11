@@ -23,11 +23,10 @@ public class AccountingStuentdAction implements Action{
 		AccountingBean  accountbean = new AccountingBean(); //회비 내역을 가지고온 것을 저장한다.
 		
 		//로그인된 세션값 처리
-		//HttpSession session = request.getSession();
-		//String sid = (String)session.getAttribute("id");
-		//임시로 사용할 사용자 아이뒤 선언
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("id");
 		
-        String sid = "S130212001";
+       
         String memberid="";
         String result1=sid.substring(0,1) ; //첫자리 잘라내기
         String result2 =sid.substring(1) ; // 나머지 뒷자리 잘라내기
