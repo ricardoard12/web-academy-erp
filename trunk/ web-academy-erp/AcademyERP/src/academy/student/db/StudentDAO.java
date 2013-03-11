@@ -507,7 +507,7 @@ public class StudentDAO {
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
-				groups = new ArrayList<>();
+				groups = new ArrayList();
 				do{
 					group = new GroupsBean();
 					group.setGp_name(rs.getString("gp_name"));
