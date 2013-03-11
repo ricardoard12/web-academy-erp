@@ -1,7 +1,5 @@
-
 package academy.sms.action;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,30 +19,36 @@ public class SendSmsAction implements Action {
 		ActionForward forward = new ActionForward();
 		SmsDAO smsDAO = new SmsDAO();
 		
+		String receiverID = request.getParameter("receiverID");
 		String receiverName = request.getParameter("receiverName");
 		String receiverPhone = request.getParameter("receiverPhone");
 		String message = request.getParameter("message");
 		String senderPhone = request.getParameter("senderPhone");
 		
-//		smsDAO.addSMSMessage(receiverName, receiverPhone, senderPhone, message);
+		List receiverIDList = new ArrayList();
+		List receiverNameList = new ArrayList();
+		List receiverPhoneList = new ArrayList();
+		List resultMsgList = new ArrayList();
 		
-		System.out.println("수신자 : " + receiverName);
-		System.out.println("수신번호 : " + receiverPhone);
-		System.out.println("내용 : " + message);
-		System.out.println("발신자 : " + senderPhone);
-		
+		for (int i = 0; i < receiverID.split(",").length; i++) {
+			receiverIDList.add(receiverID.split(",")[i]); // 수신자 회원 ID 분리
+			receiverNameList.add(receiverName.split(",")[i]); // 수신자 이름 분리
+			receiverPhoneList.add(receiverPhone.split(",")[i]); // 수신 번호 분리
+		}
 		
 		SMS sms = new SMS();
-		sms.appversion("Tutorial/1.0");
-		sms.charset("utf8");
-		sms.setuser("academytest", "dkzkepal1234");
+		sms.appversion("Tutorial/1.0"); // 버전 설정. 옵션 사항
+		sms.charset("utf8"); // 캐릭터셋 설정
+		sms.setuser("academytest", "dkzkepal1234"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
 		
-		SmsMessagePdu pdu = new SmsMessagePdu();
-		pdu.type = "SMS";
-		pdu.destinationAddress = receiverPhone; // 수신번호
-		pdu.scAddress = senderPhone; // 발신번호
-		pdu.text = message; // 전송 메세지
-		sms.add(pdu);
+		for (int i = 0; i < receiverPhoneList.size(); i++) {
+			SmsMessagePdu pdu = new SmsMessagePdu();
+			pdu.type = "SMS"; // 문자 전송 타입, SMS or LMS or MMS. 타입별 소스코드가 달라짐
+			pdu.destinationAddress = (String) receiverPhoneList.get(i); // 수신번호
+			pdu.scAddress = senderPhone; // 발신번호
+			pdu.text = message; // 전송 메세지
+			sms.add(pdu); // 메세지 스택에 모든 내용 삽입
+		}
 		
 		try {
 			sms.connect();
@@ -54,36 +58,57 @@ public class SendSmsAction implements Action {
 			e.printStackTrace();
 		}
 		
-//		String result = sms.printr();
 		List getResult = new ArrayList();
-		List result = new ArrayList();
+		List messageIDList = new ArrayList(); // 26자리 MESSAGE-ID. 결과 조회용
 		String resultCode = "";
+		sms.printr(); // 결과 메세지 출력 함수
 		
 		getResult = sms.getr(); // 전송 결과 메세지 받아오기 (List 타입)
-		for (int i = 0; i < getResult.size(); i++) {
-			for (int j = 0; j < getResult.toString().split(",").length; j++) {
-				result.add(getResult.toString().split(",")[j]);
-//				if ()
+		
+		// 전송 결과에 포함된 대괄호[] 없애기
+		int beginIndex = getResult.toString().indexOf("[");
+		int endIndex = getResult.toString().indexOf("]");
+		String resultText[] = getResult.toString().substring(beginIndex + 1, endIndex).split(", ");
+		
+		// 전송 결과 항목 중 RESULT-CODE 찾아서 저장
+		int count = 0;
+		for (int i = 0; i < resultText.length; i++) {
+			if (resultText[i].split("=")[0].equals("RESULT-CODE")) { // 결과항목=내용 형태의 문자열 분리
+				resultCode = resultText[i].split("=")[1]; 
+				
+				// 전송 결과 디비 저장
+				smsDAO.addSendResult(receiverIDList.get(count).toString(), (String)receiverNameList.get(count), (String)receiverPhoneList.get(count), senderPhone, message, resultCode, "N");
+				resultMsgList.add(resultCode); // result code값 저장
+				count++;
 			}
+//			/**
+//			 * STATUS:
+//			 * 0 : 전송대기
+//			 * 1 : 전송 후 기지국
+//			 * 2 : 전송완료
+//			 * 9 : 없는 메시지ID
+//			 *
+//			 * RESULT-CODE:
+//			 * 00 : 정상
+//			 * 20 : 아이디 혹은 패스워드 틀림
+//			 * 21 : 존재하지 않는 메시지 아이디
+//			 * 30 : 사용가능한 문자 잔량이 없음
+//			 * 그외 : 전송결과코드표 참조
+//			 */
 		}
 		
-		for (int i = 0; i < result.size(); i++) {
-			System.out.println(result.get(i));
-			if (result.get(i).toString().split("=")[0].equals("RESULT-CODE")) {
-				if (result.get(i).toString().split("=")[1].equals("20")) {
-					response.setContentType ("text/html;charset=utf-8");
-		            PrintWriter out = response.getWriter();
-		            out.println("<script>");
-		            out.println("alert('SMS 아이디/비밀번호 틀림');");
-		            out.println("history.back();");
-		            out.println("</script>");
-		            out.close();
-				}
-			}
-		}
-		sms.emptyall();
+		sms.emptyall(); // 메세지 스택 비우기(필수!) 비우지 않으면 다음 번 문자 전송 시 이전 문자도 다시 전송됨
 		
-		return null;
+		request.setAttribute("receiverIDList", receiverIDList);
+		request.setAttribute("receiverNameList", receiverNameList);
+		request.setAttribute("receiverPhoneList", receiverPhoneList);
+		request.setAttribute("resultMsgList", resultMsgList);
+		request.setAttribute("senderPhone", senderPhone);
+		request.setAttribute("message", message);
+		
+		forward.setRedirect(false);
+		forward.setPath("./sms/smsSendResult.jsp");
+		return forward;
 	}
 
 }

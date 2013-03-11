@@ -10,6 +10,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List receiverList = (List) request.getAttribute("receiverList");
+	String receiverID = "";
+	String receiverName = "";
+	String receiverPhone = "";
 %>
 </head>
 <body>
@@ -18,17 +21,20 @@
 	        <table border="1">
 			<tr><th>송신자번호</th><td><input type="text" name="senderPhone"></td></tr>
 	                <tr><th>내용</th><td><textarea rows="5" cols="14" name="message"></textarea> </td></tr>
-<%-- 	                	<th>수신자</th><td><input type="text" name="receiverName" value="<%=member.getMm_name()%>"></td> --%>
-<%-- 	                	<th>수신자번호</th><td><input type="text" name="receiverPhone" value="<%=phone%>"></td> --%>
-<!-- 			<tr><td colspan="2"><hr width="300"></td> -->
 			<tr><th>수신자</th><th>수신자번호</th></tr>
-			<%	out.println("SIZE : " + receiverList.size());
+			<%	
 				for (int i = 0; i < receiverList.size(); i++) {
-				MemberBean member = (MemberBean)receiverList.get(i);
-				String phone = member.getMm_phone().split("-")[0] + member.getMm_phone().split("-")[1] + member.getMm_phone().split("-")[2];
+					MemberBean member = (MemberBean)receiverList.get(i);
+					String phone = member.getMm_phone().split("-")[0] + member.getMm_phone().split("-")[1] + member.getMm_phone().split("-")[2];
+					receiverID += member.getMm_id() + ",";
+					receiverName += member.getMm_name() + ",";
+					receiverPhone += phone + ",";
 			%>
-	                <tr><td><input type="text" name="receiverName" value="<%=member.getMm_name()%>"></td><td><input type="text" name="receiverPhone" value="<%=phone%>"></td></tr>
+	                <tr><td><%=member.getMm_name()%></td><td><%=phone%></td></tr>
 	        	<%} %>
+	        	<input type="hidden" name="receiverID" value="<%=receiverID %>">
+		        <input type="hidden" name="receiverName" value="<%=receiverName %>">
+		        <input type="hidden" name="receiverPhone" value="<%=receiverPhone %>">
 	        </table>
 		<input type="submit" value="문자발송"><input type="button" value="취소" onclick="window.close()">
 	</div>	        

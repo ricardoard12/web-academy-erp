@@ -533,7 +533,7 @@ public class StudentDAO {
     		con = ds.getConnection();
     		receiverList = new ArrayList();
     		for (int i = 0; i < studentList.size(); i++) {
-    			System.out.println("StudentList Size : " + studentList.size());
+//    			System.out.println("StudentList Size : " + studentList.size());
 	    		String sql = "SELECT mm_id, mm_name, mm_phone FROM member WHERE mm_id=?";
 	    		pstmt = con.prepareStatement(sql);
 	    		pstmt.setString(1, (String) studentList.get(i));
@@ -544,7 +544,7 @@ public class StudentDAO {
 	    			member.setMm_id(rs.getString("mm_id"));
 	    			member.setMm_name(rs.getString("mm_name"));
 	    			member.setMm_phone(rs.getString("mm_phone"));
-	    			System.out.println("mm_id : " + rs.getString("mm_id"));
+//	    			System.out.println("mm_id : " + rs.getString("mm_id"));
 	    			receiverList.add(member);
 	    		}
     		}

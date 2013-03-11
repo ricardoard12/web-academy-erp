@@ -22,11 +22,11 @@ public class SendSms implements Action {
 		String chkValue = request.getParameter("chkValue"); // 체크박스 값 결합시킨 수신자 목록 문자열 가져오기
 		List studentList = new ArrayList(); // 문자열 자른 후 저장할 배열
 		
-		System.out.println("chkValue : " + chkValue);
+//		System.out.println("chkValue : " + chkValue);
 		if (chkValue != null && !chkValue.equals("")) {
-			System.out.println("Length : " + chkValue.split(",").length);
+//			System.out.println("Length : " + chkValue.split(",").length);
 			for (int i = 0; i < chkValue.split(",").length; i++) {
-				System.out.println("chkValue.split[" + i + "] : " + chkValue.split(",")[i]);
+//				System.out.println("chkValue.split[" + i + "] : " + chkValue.split(",")[i]);
 				studentList.add(chkValue.split(",")[i]);
 			}
 		}
@@ -34,7 +34,6 @@ public class SendSms implements Action {
 		List receiverList = studentDAO.getSMSReceiverList(studentList);
 		
 		request.setAttribute("receiverList", receiverList);
-		System.out.println("receiverList Size : " + receiverList.size());
 		
 		forward.setRedirect(false);
 		forward.setPath("./sms/smsForm.jsp");
