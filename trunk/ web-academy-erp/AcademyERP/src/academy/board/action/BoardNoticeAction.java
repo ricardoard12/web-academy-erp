@@ -43,7 +43,7 @@ public class BoardNoticeAction implements Action {
 		// re_boardlist = re_boarddao.getReBoardList(re_page, re_limit);
 		// 게시판 목록 리스트 출력
 		int listcount = boarddao.getListCount(gid);
-		boardlist = boarddao.getBoardList(page, limit,gid);
+		boardlist = boarddao.getBoardList(page, limit, gid);
 
 		int maxpage = listcount / limit + (listcount % limit == 0 ? 0 : 1);
 		maxpage = (int) ((double) listcount / limit + 0.95);
@@ -68,15 +68,18 @@ public class BoardNoticeAction implements Action {
 		// re_endpage=re_maxpage;
 		// }
 		//
-//		request.setAttribute("page", page);
-//		request.setAttribute("maxpage", maxpage);
-//		request.setAttribute("startpage", startpage);
-//		request.setAttribute("endpage", endpage);
-//		request.setAttribute("listcount", listcount);
-//		request.setAttribute("boardlist", boardlist);
-		ListPackage Pack=new ListPackage(page, maxpage, startpage, endpage, listcount, boardlist);
+		// request.setAttribute("page", page);
+		// request.setAttribute("maxpage", maxpage);
+		// request.setAttribute("startpage", startpage);
+		// request.setAttribute("endpage", endpage);
+		// request.setAttribute("listcount", listcount);
+		// request.setAttribute("boardlist", boardlist);
+		ListPackage Pack = new ListPackage(page, maxpage, startpage, endpage,
+				listcount, boardlist);
 		Pack.setGid(gid);
+		List noticelist=boarddao.getNoticelist();
 		request.setAttribute("listpack", Pack);
+		request.setAttribute("noticelist",noticelist);
 		// request.setAttribute("re_page", re_page);
 		// request.setAttribute("re_maxpage", re_maxpage);
 		// request.setAttribute("re_startpage", re_startpage);
