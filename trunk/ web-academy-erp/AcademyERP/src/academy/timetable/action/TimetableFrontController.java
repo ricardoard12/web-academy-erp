@@ -43,15 +43,22 @@ public class TimetableFrontController extends HttpServlet implements Servlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/TimeTalbeTeacher.time")) {
+		} else if (command.equals("/TimeTableTeacher.time")) {
 			action = new TeachersTimeAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/TimeTableStudent.time")) {
+			action = new StudentTimeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-
+		
 		// 이동
 		if (forward != null) {
 			if (forward.isRedirect()) {
