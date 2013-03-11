@@ -29,7 +29,7 @@ public class BoardDAO {
 		}
 	}// 생성자
 
-	public void boardinsert(BoardBean boardbean) {
+	public void boardinsert(BoardBean boardbean,String gid) {
 		int num = 0;
 		String sql = "";
 		try {
@@ -44,7 +44,7 @@ public class BoardDAO {
 				num = 1;
 			}
 
-			sql = "insert into board(board_num , board_name, board_pass, board_subject , board_content, board_file, board_re_ref , board_re_lev, board_re_seq, board_readcount, board_date) values(?,?,?,?,?,?,?,?,?,?,now())";
+			sql = "insert into board(board_num , board_name, board_pass, board_subject , board_content, board_file, board_re_ref , board_re_lev, board_re_seq, board_readcount, board_date,board_gid) values(?,?,?,?,?,?,?,?,?,?,now(),'"+gid+"')";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, boardbean.getBoard_name());
@@ -150,18 +150,7 @@ public class BoardDAO {
 			if (rs.next()) {
 				list = new ArrayList(limit);// ArrayList객체생성
 				do {
-					BoardBean board = new BoardBean();// 자바빈객체
-					board.setBoard_num(rs.getInt("board_num"));
-					board.setBoard_name(rs.getString("board_name"));
-					board.setBoard_subject(rs.getString("board_subject"));
-					board.setBoard_content(rs.getString("board_content"));
-					board.setBoard_file(rs.getString("board_file"));
-					board.setBoard_re_ref(rs.getInt("board_re_ref"));
-					board.setBoard_re_lev(rs.getInt("board_re_lev"));
-					board.setBoard_re_seq(rs.getInt("board_re_seq"));
-					board.setBoard_readcount(rs.getInt("board_readcount"));
-					board.setBoard_date(rs.getDate("board_date"));					
-					list.add(board); // 자바빈 -> 한칸
+					list.add(getBoardInfo()); // 자바빈 -> 한칸
 				} while (rs.next());
 			}
 			System.out.println("getBoardList end");
@@ -344,6 +333,44 @@ public class BoardDAO {
 			dbClose();
 		}
 		return x;
+	}
+
+	private BoardBean getBoardInfo() throws Exception {
+		BoardBean board = new BoardBean();
+		board.setBoard_num(rs.getInt("board_num"));
+		board.setBoard_name(rs.getString("board_name"));
+		board.setBoard_subject(rs.getString("board_subject"));
+		board.setBoard_content(rs.getString("board_content"));
+		board.setBoard_file(rs.getString("board_file"));
+		board.setBoard_re_ref(rs.getInt("board_re_ref"));
+		board.setBoard_re_lev(rs.getInt("board_re_lev"));
+		board.setBoard_re_seq(rs.getInt("board_re_seq"));
+		board.setBoard_readcount(rs.getInt("board_readcount"));
+		board.setBoard_date(rs.getDate("board_date"));
+		return board;
+	}
+
+	// board 최신공지 5개만 가져오기
+	public List getNoticelist() {
+		List list = null;
+		try {
+			System.out.println("getNoticeList start");
+			con = ds.getConnection();
+			String sql = "select * from board where board_gid='10' order by board_num desc limit 5";
+			rs = con.prepareStatement(sql).executeQuery();
+			if (rs.next()) {
+				list = new ArrayList();// ArrayList객체생성
+				do {
+					list.add(getBoardInfo()); // 자바빈 -> 한칸
+				} while (rs.next());
+			}
+			System.out.println("getNoticeList end");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return list;
 	}
 
 }
