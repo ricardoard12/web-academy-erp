@@ -22,7 +22,7 @@ public class BoardAddAction implements Action {
 		String uploadfolder = "board/board_upload";
 		String realFolder = request.getRealPath(uploadfolder);
 		int fileSize = 5 * 1024 * 1024;
-		
+		String gid="";
 		try{			
 			MultipartRequest multi = null;
 			multi=new MultipartRequest(request,realFolder,fileSize,"utf-8",new DefaultFileRenamePolicy());
@@ -31,9 +31,10 @@ public class BoardAddAction implements Action {
 			boardbean.setBoard_content(multi.getParameter("board_content"));
 			boardbean.setBoard_subject(multi.getParameter("board_subject"));
 			boardbean.setBoard_file(multi.getFilesystemName("board_file"));
-			boarddao.boardinsert(boardbean);
+			gid=multi.getParameter("gid");
+			boarddao.boardinsert(boardbean,gid);
 			forward.setRedirect(true);
-			forward.setPath("./BoardNotice.bo");
+			forward.setPath("./BoardNotice.bo?gid="+gid);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
