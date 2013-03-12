@@ -281,8 +281,20 @@ public class TimetableDAO {
 
 	// gp_idx 를 얻기 위해서...
 	public String getStudentGp_idx(String id) {
-
-		return null;
+		String gp_idx=null;
+		try{
+			con=ds.getConnection();
+			String sql="select gp_idx from student where mm_id='"+id+"'";
+			rs=con.prepareStatement(sql).executeQuery();
+			if(rs.next()){
+				gp_idx=rs.getString(1);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}
+		return gp_idx;
 	}
 
 }
