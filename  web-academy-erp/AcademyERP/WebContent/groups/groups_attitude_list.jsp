@@ -145,7 +145,10 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List attitudeList = (List) request.getAttribute("attitudeList");
-	List gpList = (List) request.getAttribute("gpList");
+	List gpList = null;
+	if (request.getAttribute("gpList") != null) {
+		gpList = (List) request.getAttribute("gpList");
+	}
 	String date = (String) request.getAttribute("date");
 	String gp_name = "";
 	if (request.getAttribute("gp_name") != null) {
@@ -208,18 +211,21 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										학급 : 
 										<select name="gp_name" onchange="selGroups(value, '<%=date%>')">
-											<option value="">학급 선택</option>
-											<%for (int i = 0; i < gpList.size(); i++) {
-											     String gpName = (String)gpList.get(i); 
-											 %>
-											     <%if (gp_name.equals(gpName)) { %> <option value=<%=gpName %> selected><%=gpName %></option> <%} else {%><option value="<%=gpName%>"><%=gpName %></option><%} %>
-<%-- 											<%if (gp_name.equals("1A")) { %> <option value="1A" selected>1A</option> <%} else {%><option value="1A">1A</option><%} %> --%>
-<%-- 											<%if (gp_name.equals("1B")) { %> <option value="1B" selected>1B</option> <%} else {%><option value="1B">1B</option><%} %> --%>
-<%-- 											<%if (gp_name.equals("2A")) { %> <option value="2A" selected>2A</option> <%} else {%><option value="2A">2A</option><%} %> --%>
-<%-- 											<%if (gp_name.equals("2B")) { %> <option value="2B" selected>2B</option> <%} else {%><option value="2B">2B</option><%} %> --%>
-<%-- 											<%if (gp_name.equals("3A")) { %> <option value="3A" selected>3A</option> <%} else {%><option value="3A">3A</option><%} %> --%>
-<%-- 											<%if (gp_name.equals("3B")) { %> <option value="3B" selected>3B</option> <%} else {%><option value="3B">3B</option><%} %> --%>
-                                                                                         <%} %>
+											<%
+											if (gpList != null) {
+												for (int i = 0; i < gpList.size(); i++) {
+													String gpNameList = (String)gpList.get(i);
+													if (gp_name.equals(gpNameList)) { 
+														%><option value="<%=gpNameList%>" selected><%=gpNameList%></option><%
+													} else {
+														%><option value="<%=gpNameList%>"><%=gpNameList%></option><%
+													}
+												}
+											} else if (gp_name.equals("")) {
+												%><option value="">담당 학급 없음</option><%
+											} else { 
+												%> <option value=<%=gp_name %>><%=gp_name %></option> <%}
+											%>
 										</select> 
 									</div>
 								</td>
