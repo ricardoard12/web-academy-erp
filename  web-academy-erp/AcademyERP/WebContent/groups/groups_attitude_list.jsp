@@ -39,12 +39,11 @@
 		}
 	}	
 	
-	function CheckDate(gp_name) { // 달력 체크
-		var date = document.stAttitudeForm.date.value;
-		if (date == "") {
+	function CheckDate(gp_name, selDate) { // 달력 체크
+		if (selDate == "") {
 			alert('날짜 입력하세요');
 		} else {
-			document.stAttitudeForm.action = "./GroupsAttitudeListAction.gp?date=" + date;
+			document.stAttitudeForm.action = "./GroupsAttitudeListAction.gp?date=" + selDate + "&gp_name=" + gp_name;
 			document.stAttitudeForm.submit();
 		}
 	}
@@ -64,6 +63,10 @@
 		} else {
 			window.open("./GroupsAddStudent.gp?gp_name=" + gp_name, "addStudent", "width=400,height=500,scrollbars=yes");
 		}
+	}
+	
+	function stInfo(id) { // 학생 정보
+		window.open("./StudentDetail.st?id=" + id + "&check=view","studentInfo","width=600,height=800,scrollbars=yes");
 	}
 	
 	function allChecked() { // 전체 선택
@@ -206,8 +209,8 @@
 								<th scope="row">검색날짜선택</th>
 								<td colspan="7" align="left">
 									<div class="item">
-										<input type="button" value="검색" onclick="CheckDate('<%=gp_name%>')">
-										<input type="text" name="seldate" value="달력보기" onClick="datePicker(event,'seldate',0)">
+										<input type="button" value="검색" onclick="CheckDate('<%=gp_name%>',seldate.value)">
+										<input type="text" name="seldate" value="" onClick="datePicker(event,'seldate',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
@@ -256,7 +259,7 @@
 								<tr>
 									<td><input name="chkStudent" type="checkbox" id="a1"
 										class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
-									<td><a href="./StudentDetail.st?id=<%=attitude.getAt_member_id()%>"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
+									<td><a href="#" onclick="stInfo('<%=attitude.getAt_member_id() %>')"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
 									<td>
 										<%
 											// at_report_state Y : 출석, N : 결석
