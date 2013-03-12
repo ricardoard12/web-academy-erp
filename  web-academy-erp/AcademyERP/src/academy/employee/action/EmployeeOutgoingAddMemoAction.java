@@ -4,9 +4,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.employee.db.EmployeeDAO;
 
+// 직원 퇴직 사유 기록
 public class EmployeeOutgoingAddMemoAction implements Action {
 
 	@Override
@@ -14,6 +16,20 @@ public class EmployeeOutgoingAddMemoAction implements Action {
 			HttpServletResponse response) throws Exception {
 		System.out.println("EmployeeOutgoingAddMemoAction");
 		request.setCharacterEncoding("UTF-8");
+		
+		/* 권한 확인 */
+		HttpSession session = request.getSession();
+		int level = Integer.parseInt((String) session.getAttribute("level"));
+		if (level < 4) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('권한이 없습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		EmployeeDAO employeeDAO = new EmployeeDAO();
 		
