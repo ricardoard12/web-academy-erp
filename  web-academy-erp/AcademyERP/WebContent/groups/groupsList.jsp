@@ -21,8 +21,16 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title><%=session.getAttribute("name")%>님의 담당 학급</title>
 <script>
-	
+	function goAttitue(value){
+		location.href="./GroupsAttitudeListAction.gp?gp_name="+value;
+	}
 </script>
+<style>
+tbody tr:hover {
+	background: #FAECC5;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- UI Object -->
@@ -82,7 +90,7 @@
 										List list = (List) classlist.get(i);
 										String status = "폐강";
 							%>
-							<tr>
+							<tr onclick="goAttitue('<%=list.get(1)%>')">
 								<td><%=list.get(0)%></td>
 								<td><%=list.get(1)%></td>
 								<td>
