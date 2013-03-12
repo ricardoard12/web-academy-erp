@@ -165,11 +165,11 @@
         </servlet-mapping>
      
       <servlet>
-             <servlet-name>StudentInfoFrontController</servlet-name>
-             <servlet-class>academy.studentInfo.action.StudentInfoFrontController</servlet-class>
+             <servlet-name>FaqBoardFrontController</servlet-name>
+             <servlet-class>academy.board_FAQ.action.FaqBoardFrontController</servlet-class>
      </servlet>
      <servlet-mapping>
-             <servlet-name>StudentInfoFrontController</servlet-name>
-             <url-pattern>*.si</url-pattern>
+             <servlet-name>FaqBoardFrontController</servlet-name>
+             <url-pattern>*.fb</url-pattern>
      </servlet-mapping>
 </web-app>
