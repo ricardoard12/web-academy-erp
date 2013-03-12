@@ -236,11 +236,10 @@ public class TimetableDAO {
 		List list = null;
 		try {
 			con = ds.getConnection();
-			String sql = "select * "
-					+ "from timetable "
-					+ "where timetable.ep_id='"	+ id + "'";
+			String sql = "select * " + "from timetable "
+					+ "where timetable.ep_id='" + id + "'";
 			rs = con.prepareStatement(sql).executeQuery();
-			list=new ArrayList();
+			list = new ArrayList();
 			if (rs.next()) {
 				do {
 					list.add(getmyTimeTable());
@@ -255,27 +254,35 @@ public class TimetableDAO {
 		return list;
 	}
 
-	private List<String> getmyTimeTable() throws Exception{
-		List<String> list=new ArrayList<String>();
-		String str="";
-		list.add(rs.getString("gp_idx"));//0
-		list.add(rs.getString("ti_room"));//1
-		list.add(rs.getString("ti_day"));//2
-		list.add(rs.getString("ti_lesson"));//3
-		ResultSet rs2=con.prepareStatement("select gp_name,gp_lev from groups where gp_idx="+rs.getString("gp_idx")).executeQuery();
-		if(rs2.next()){
-			String roomName=rs2.getString(2);
-			if(roomName.equals("e")){
-				roomName="초등";
-			}else if(roomName.equals("m")){
-				roomName="중등";
-			}else if(roomName.equals("h")){
-				roomName="고등";
+	private List<String> getmyTimeTable() throws Exception {
+		List<String> list = new ArrayList<String>();
+		String str = "";
+		list.add(rs.getString("gp_idx"));// 0
+		list.add(rs.getString("ti_room"));// 1
+		list.add(rs.getString("ti_day"));// 2
+		list.add(rs.getString("ti_lesson"));// 3
+		ResultSet rs2 = con.prepareStatement(
+				"select gp_name,gp_lev from groups where gp_idx="
+						+ rs.getString("gp_idx")).executeQuery();
+		if (rs2.next()) {
+			String roomName = rs2.getString(2);
+			if (roomName.equals("e")) {
+				roomName = "초등";
+			} else if (roomName.equals("m")) {
+				roomName = "중등";
+			} else if (roomName.equals("h")) {
+				roomName = "고등";
 			}
-			str=roomName+"-"+rs2.getString("gp_name");
+			str = roomName + "-" + rs2.getString("gp_name");
 		}
-		list.add(str);//4
+		list.add(str);// 4
 		return list;
+	}
+
+	// gp_idx 를 얻기 위해서...
+	public String getStudentGp_idx(String id) {
+
+		return null;
 	}
 
 }
