@@ -1,5 +1,6 @@
 package academy.groups.action;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +20,20 @@ public class GroupsListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
+		
 		int level = Integer.parseInt((String) session.getAttribute("level"));
-		if (level <= 3) {
-			// 레벨보다 낮으면 접근 금지
-
+		/* 권한 확인 */
+		if (level < 3) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('권한이 없습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
 		}
+		
 		GroupsDAO groups = new GroupsDAO();
 		int page = 1;
 		int limit = 10;
