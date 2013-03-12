@@ -11,39 +11,7 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-	$(document).ready(function() {
-		/*위치 정보*/
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-			// successCallback
-			function(position) {
-				alert(position.coord.latitude+","+position.coord.longitude);
-			},
-			// errorCallback
-			function(error) {
-				switch (error.code) {
-				case error.TIMEOUT:
-					alert('시간 초과');
-					break;
-				case error.POSITION_UNAVAILABLE:
-					alert('위치를 사용할 수 없음 (이 오류는 위치 정보 공급자가 응답)');
-					break;
-				case error.PERMISSION_DENIED:
-					alert('권한 거부');
-					break;
-				case error.UNKNOWN_ERROR:
-					alert('알 수 없는 오류');
-					break;
-				default:
-					alert(errro.code);
-				}
-			});
-		} else {
-			alert("이 브라우저는 geolcation API를 지원하지 않습니다");
-		}
-
-		/*위치 정보*/
-	});
+	
 </script>
 </head>
 <body>
@@ -189,6 +157,7 @@
 				if (name != null) { /*로그인 안하면 메뉴 안보임 시작  */
 
 					/* 로그인후 레벨에 따라 메뉴 보임 시작 */
+					/* 학생 학부모권한만 보이게 함*/
 					if (lev <= 2) {
 			%>
 
@@ -197,7 +166,7 @@
 				<ul style="display: none;">
 					<li><a href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
 					<li><a href="#"><span>회비내역조회</span></a></li>
-					<li><a href="#"><span>시간표조회</span></a></li>
+					<li><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
 					<li><a href="#"><span>성적조회</span></a></li>
 					<li><a href="#"><span>출결상황조회</span></a></li>
 					<li><a
@@ -209,7 +178,9 @@
 
 
 			<%
-				}
+				/*학부모 학생 메뉴 종료*/
+					}
+					/*이 권한은 직원권한에서 추가 가능*/
 					if (lev >= 3) {
 			%>
 
@@ -226,9 +197,6 @@
 
 				</ul>
 			</li>
-			<%
-				if (lev >= 3) {
-			%>
 			<li><a><span>학급관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<%
@@ -244,9 +212,6 @@
 					<li><a href="#"><span>학급별상담내역</span></a></li>
 					<li><a href="#"><span>학급진도관리</span></a></li>
 				</ul></li>
-			<%
-				}
-			%>
 
 			<li><a><span>성적관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -266,15 +231,12 @@
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
-					<li><a href="./TimeTalbeTeacher.time"><span>강사별시간표</span></a></li>
+					<li><a href="./TimeTableTeacher.time"><span>강사별시간표</span></a></li>
 
 					<li><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
 			<!-- 선생님용 메뉴 -->
 
-			<%
-				if (lev >= 3) {
-			%>
 			<li><a><span>게시판</span><span class="i"></span></a> <!-- Level에 따른 열람 제한 설정 -->
 
 				<ul style="display: none;">
@@ -292,13 +254,6 @@
 					<!-- 직원 계시판은 15 -->
 					<li><a href="./BoardNotice.bo?gid=15"><span>직원게시판</span></a></li>
 				</ul></li>
-			<%
-				}
-			%>
-			<%
-				}
-					if (lev >= 4) {
-			%>
 
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -309,11 +264,6 @@
 					<li><a href="#"><span>급여관리</span></a></li>
 					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
-
-			<%
-				}
-					if (lev >= 5) {
-			%>
 			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
@@ -324,7 +274,10 @@
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
 
-
+			<%
+				/*오로지 관리자만 접근 가능메뉴*/
+						if (lev >= 5) {
+			%>
 			<li><a><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
@@ -333,6 +286,7 @@
 				</ul></li>
 			<%
 				}
+					}
 			%>
 			<!--레벨별 메뉴 설정 끝  -->
 			<%
