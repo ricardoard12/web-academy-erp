@@ -40,7 +40,6 @@ public class GroupsAttitudeListAction implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		AttitudeBean attitude = new AttitudeBean();
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
 		GroupsDAO groupsDAO = new GroupsDAO();
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,7 +48,6 @@ public class GroupsAttitudeListAction implements Action {
 		if (date == null) {
 			date = sdfDate.format(Calendar.getInstance().getTime());
 		}
-//		System.out.println(sdfDate.format(Calendar.getInstance().getTime()));
 
 		int page = 1;
 		int limit = 10; // 페이지 당 표시 줄 수
