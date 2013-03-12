@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import academy.sms.db.SmsDAO;
 
+/* 문자 전송 Action 페이지
+ * 개인, 단체 문자 전송 가능
+ * SMS 전용(LMS, MMS 구현 X)
+ */
 public class SendSmsAction implements Action {
 
 	@Override
@@ -19,30 +23,37 @@ public class SendSmsAction implements Action {
 		ActionForward forward = new ActionForward();
 		SmsDAO smsDAO = new SmsDAO();
 		
+		// 메세지 수신자 정보 결합시킨 문자열 받아오기 
 		String receiverID = request.getParameter("receiverID");
 		String receiverName = request.getParameter("receiverName");
 		String receiverPhone = request.getParameter("receiverPhone");
+		
+		// 전송 메세지, 발신자 전화번호 받아오기
 		String message = request.getParameter("message");
 		String senderPhone = request.getParameter("senderPhone");
 		
+		// 메세지 수신자 정보 저장 리스트
 		List receiverIDList = new ArrayList();
 		List receiverNameList = new ArrayList();
 		List receiverPhoneList = new ArrayList();
+		
+		// 각 수신자 별 전송 결과 저장 리스트
 		List resultMsgList = new ArrayList();
 		
+		// 결합된 수신자 정보 콤마(,)를 구분자로 사용하여 분리 후 리스트 저장
 		for (int i = 0; i < receiverID.split(",").length; i++) {
 			receiverIDList.add(receiverID.split(",")[i]); // 수신자 회원 ID 분리
 			receiverNameList.add(receiverName.split(",")[i]); // 수신자 이름 분리
 			receiverPhoneList.add(receiverPhone.split(",")[i]); // 수신 번호 분리
 		}
 		
-		SMS sms = new SMS();
+		SMS sms = new SMS(); // 문자 발송 메인 클래스인 SMS.class 객체 생성
 		sms.appversion("Tutorial/1.0"); // 버전 설정. 옵션 사항
 		sms.charset("utf8"); // 캐릭터셋 설정
 		sms.setuser("academytest", "dkzkepal1234"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
 		
-		for (int i = 0; i < receiverPhoneList.size(); i++) {
-			SmsMessagePdu pdu = new SmsMessagePdu();
+		for (int i = 0; i < receiverPhoneList.size(); i++) { // 수신자 인원만큼 반복
+			SmsMessagePdu pdu = new SmsMessagePdu(); // 문자 전송 건별 객체 생성
 			pdu.type = "SMS"; // 문자 전송 타입, SMS or LMS or MMS. 타입별 소스코드가 달라짐
 			pdu.destinationAddress = (String) receiverPhoneList.get(i); // 수신번호
 			pdu.scAddress = senderPhone; // 발신번호
@@ -50,10 +61,10 @@ public class SendSmsAction implements Action {
 			sms.add(pdu); // 메세지 스택에 모든 내용 삽입
 		}
 		
-		try {
-			sms.connect();
-			sms.send();
-			sms.disconnect();
+		try { 
+			sms.connect(); // 문자 전송 서버 연결
+			sms.send(); // 메세지 스택의 내용 모두 전송
+			sms.disconnect(); // 문자 전송 서버 연결 종료
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
