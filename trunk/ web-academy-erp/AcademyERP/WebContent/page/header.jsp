@@ -6,7 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
+<%
+				request.setCharacterEncoding("utf-8");
+				//세션으로 id 값 받음
+				String id = (String) session.getAttribute("id");
+				//세션으로 name값 받음
+				String name = (String) session.getAttribute("name");
+				//세션으로 level 값 받음
+				String level = (String) session.getAttribute("level");
+%>
 </head>
 <body>
 <!-- Horizonal navigation -->
@@ -38,6 +46,7 @@
 					<ul>
 					<li><a href="#"><span>공지사항</span></a></li>
 					<li><a href="#"><span>Q&A</span></a></li>
+					<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
 					</ul>
 				</div>
 			</li>
