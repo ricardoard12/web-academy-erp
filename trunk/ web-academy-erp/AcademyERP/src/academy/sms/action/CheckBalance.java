@@ -49,7 +49,7 @@ public class CheckBalance {
 			System.out.println(e.toString());
 		}
 	
-		if (sbi.resultCode.equals("00"))
+		if (sbi.resultCode.equals("00")) // 조회 결과가 정상일 때
 		{
 //			System.out.println("캐쉬: " + sbi.cash);
 //			System.out.println("포인트: " + sbi.point);
@@ -59,7 +59,7 @@ public class CheckBalance {
 			point = sbi.point;
 			mDrop = sbi.mdrop;
 			credits = sbi.credits;
-		} else {
+		} else { // 조회 결과에 이상이 있을 때
 //			System.out.println("Result Code: " + sbi.resultCode);
 //			System.out.println("Result Message: " + sbi.resultMessage);
 			cash = -1;
