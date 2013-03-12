@@ -22,7 +22,7 @@
 <body>
 	<!-- UI Object -->
 	<!-- content -->
-	<div id="content">
+<!-- 	<div id="content"> -->
 
 		<!-- 학생 회원가입시작 -->
 
@@ -37,10 +37,8 @@
 								<td>
 									<div class="item">
 										<label for="temp_input" class="i_label"
-											style="position: absolute; visibility: visible;">이름
-											입력</label> <input type="text" name="mm_name" id="temp_input"
-											class="i_text" style="width: 300px"
-											value="<%=studentbean.getMm_name()%>">
+											style="position: absolute; visibility: visible;"></label> 
+											<%=studentbean.getMm_name()%>
 									</div>
 								</td>
 							</tr>
@@ -56,10 +54,7 @@
 								<th scope="row">주민등록번호</th>
 								<td>
 									<div class="item">
-										<input type="text" name="mm_jumin1" title="주민등록번호 입력"
-											class="i_text" value="<%=studentbean.getMm_jumin1()%>">
-										- <input type="password" name="mm_jumin2" title="레이블 텍스트"
-											class="i_text" value="<%=studentbean.getMm_jumin2()%>">
+										<%=studentbean.getMm_jumin1()%> - <%=studentbean.getMm_jumin2()%>
 									</div>
 								</td>
 							</tr>
@@ -69,29 +64,7 @@
 								<th scope="row">전화번호</th>
 								<td>
 									<div class="item">
-										<select name="mm_telDDD">
-											<option value="02"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("02")) {%>
-												selected <%}%>>02</option>
-											<option value="031"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("031")) {%>
-												selected <%}%>>031</option>
-											<option value="051"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("051")) {%>
-												selected <%}%>>051</option>
-											<option value="052"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("052")) {%>
-												selected <%}%>>052</option>
-											<option value="053"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("053")) {%>
-												selected <%}%>>053</option>
-											<option value="055"
-												<%if (studentbean.getMm_tel().split("-")[0].equals("055")) {%>
-												selected <%}%>>055</option>
-										</select> <input type="text" name="mm_tel1" title="전화번호" class="i_text"
-											value="<%=studentbean.getMm_tel().split("-")[1]%>">-
-										<input type="text" name="mm_tel2" title="전화번호" class="i_text"
-											value="<%=studentbean.getMm_tel().split("-")[2]%>">
+										<%=studentbean.getMm_tel().split("-")[0]%> - <%=studentbean.getMm_tel().split("-")[1]%> - <%=studentbean.getMm_tel().split("-")[2]%>
 									</div>
 								</td>
 							</tr>
@@ -100,38 +73,15 @@
 								<th scope="row">휴대폰번호</th>
 								<td>
 									<div class="item">
-										<select name="mm_phoneDDD">
-											<option value="010"
-												<%if (studentbean.getMm_phone().split("-")[0].equals("010")) {%>
-												selected <%}%>>010</option>
-											<option value="011"
-												<%if (studentbean.getMm_phone().split("-")[0].equals("011")) {%>
-												selected <%}%>>011</option>
-											<option value="016"
-												<%if (studentbean.getMm_phone().split("-")[0].equals("016")) {%>
-												selected <%}%>>016</option>
-											<option value="017"
-												<%if (studentbean.getMm_phone().split("-")[0].equals("017")) {%>
-												selected <%}%>>017</option>
-										</select> <input type="text" name="mm_phone1" title="휴대폰"
-											class="i_text"
-											value="<%=studentbean.getMm_phone().split("-")[1]%>">-
-										<input type="text" name="mm_phone2" title="휴대폰" class="i_text"
-											value="<%=studentbean.getMm_phone().split("-")[2]%>">
+									<%=studentbean.getMm_phone().split("-")[0]%> - <%=studentbean.getMm_phone().split("-")[1]%> - <%=studentbean.getMm_phone().split("-")[2]%>
 									</div>
 								</td>
 							</tr>
-
 							<tr>
 								<th scope="row">우편번호</th>
 								<td>
 									<div class="item">
-										<input type="text" name="mm_zipcode1" title="휴대폰"
-											class="i_text"
-											value="<%=studentbean.getMm_zipcode().split("-")[0]%>">
-										- <input type="text" name="mm_zipcode2" title="휴대폰"
-											class="i_text"
-											value="<%=studentbean.getMm_zipcode().split("-")[1]%>">
+										<%=studentbean.getMm_zipcode().split("-")[0]%> - <%=studentbean.getMm_zipcode().split("-")[1]%>
 									</div>
 								</td>
 							</tr>
@@ -140,8 +90,7 @@
 								<th scope="row">주소</th>
 								<td>
 									<div class="item">
-										<input type="text" name="mm_addr1" title="휴대폰" class="i_text"
-											value="<%=studentbean.getMm_addr1()%>">
+										<%=studentbean.getMm_addr1()%>
 									</div>
 								</td>
 							</tr>
@@ -150,8 +99,7 @@
 								<th scope="row">상세주소</th>
 								<td>
 									<div class="item">
-										<input type="text" name="mm_addr2" title="휴대폰" class="i_text"
-											value="<%=studentbean.getMm_addr2()%>">
+										<%=studentbean.getMm_addr2()%>
 									</div>
 								</td>
 							</tr>
@@ -160,27 +108,7 @@
 								<th scope="row">이메일 주소</th>
 								<td>
 									<div class="item">
-
-										<input type="text" name="mm_email1" title="이메일" class="i_text"
-											value="<%=studentbean.getMm_email().split("@")[0]%>">@
-										<input type="text" name="mm_email2" title="직접입력"
-											class="i_text"
-											value="<%=studentbean.getMm_email().split("@")[1]%>">
-										<select name="mm_emailDDD" onchange="selectDomain()">
-											<option value="">직접 입력</option>
-											<option value="nate.com"
-												<%if (studentbean.getMm_email().split("@")[1].equals("nate.com")) {%>
-												selected <%}%>>nate.com</option>
-											<option value="naver.com"
-												<%if (studentbean.getMm_email().split("@")[1].equals("naver.com")) {%>
-												selected <%}%>>naver.com</option>
-											<option value="gmail.com"
-												<%if (studentbean.getMm_email().split("@")[1].equals("gmail.com")) {%>
-												selected <%}%>>gmail.com</option>
-											<option value="hanmail.net"
-												<%if (studentbean.getMm_email().split("@")[1].equals("hanmail.com")) {%>
-												selected <%}%>>hanmail.net</option>
-										</select>
+										<%=studentbean.getMm_email().split("@")[0]%>@<%=studentbean.getMm_email().split("@")[1]%>
 									</div>
 								</td>
 							</tr>
@@ -188,10 +116,7 @@
 							<tr>
 								<th scope="row">학교명</th>
 								<td>
-									<div class="item">
-										<input type="text" name="st_school_name" title="학교명"
-											class="i_text" value="<%=studentbean.getSt_school_name()%>">
-									</div>
+									<%=studentbean.getSt_school_name()%>
 								</td>
 							</tr>
 
@@ -199,39 +124,15 @@
 								<th scope="row">학년</th>
 								<td>
 									<div class="item">
-
-										<select name="st_school_grade">
-											<option value="1학년"
-												<%if (studentbean.getSt_school_grade().equals("1학년")) {%>
-												selected <%}%>>1학년</option>
-											<option value="2학년"
-												<%if (studentbean.getSt_school_grade().equals("2학년")) {%>
-												selected <%}%>>2학년</option>
-											<option value="3학년"
-												<%if (studentbean.getSt_school_grade().equals("3학년")) {%>
-												selected <%}%>>3학년</option>
-										</select>
+										<%=studentbean.getSt_school_grade()%>
 									</div>
 								</td>
 							</tr>
-							<%
-								List groups = (List) request.getAttribute("groups");
-							%>
 							<tr>
 								<th scope="row">소속학급</th>
 								<td>
 									<div class="item">
-										<select name="st_school_groups">
-											<option value="<%=studentbean.getGp_name()%>"><%=studentbean.getGp_name()%></option>
-											<%
-												for (int i = 0; i < groups.size(); i++) {
-													GroupsBean group = (GroupsBean) groups.get(i);
-											%>
-											<option><%=group.getGp_name()%></option>
-											<%
-												}
-											%>
-										</select>
+										<%=studentbean.getGp_name()%>
 									</div>
 								</td>
 							</tr>
@@ -239,8 +140,7 @@
 								<th scope="row">학부모 이름</th>
 								<td>
 									<div class="item">
-										<input type="text" name="st_parent_name" title="학부모이름"
-											class="i_text" value="<%=studentbean.getSt_parent_name()%>">
+										<%=studentbean.getSt_parent_name()%>
 									</div>
 								</td>
 							</tr>
@@ -249,25 +149,7 @@
 								<th scope="row">학부모 연락처</th>
 								<td>
 									<div class="item">
-										<select name="st_parent_mobileDDD">
-											<option value="010"
-												<%if (studentbean.getSt_parent_mobile().split("-")[0].equals("010")) {%>
-												selected <%}%>>010</option>
-											<option value="011"
-												<%if (studentbean.getSt_parent_mobile().split("-")[0].equals("011")) {%>
-												selected <%}%>>011</option>
-											<option value="016"
-												<%if (studentbean.getSt_parent_mobile().split("-")[0].equals("016")) {%>
-												selected <%}%>>016</option>
-											<option value="017"
-												<%if (studentbean.getSt_parent_mobile().split("-")[0].equals("017")) {%>
-												selected <%}%>>017</option>
-										</select> <input type="text" name="st_parent_mobile1" title="휴대폰"
-											class="i_text"
-											value="<%=studentbean.getSt_parent_mobile().split("-")[1]%>">-
-										<input type="text" name="st_parent_mobile2" title="휴대폰"
-											class="i_text"
-											value="<%=studentbean.getSt_parent_mobile().split("-")[2]%>">
+										<%=studentbean.getSt_parent_mobile().split("-")[0]%> - <%=studentbean.getSt_parent_mobile().split("-")[1]%> - <%=studentbean.getSt_parent_mobile().split("-")[2]%>
 									</div>
 								</td>
 							</tr>
@@ -300,9 +182,7 @@
 								<th scope="row">수강료</th>
 								<td>
 									<div class="item">
-										<input type="text" name="st_tuition" title="학교명"
-											class="i_text" value="<%=studentbean.getSt_tuition()%>">
-										원
+										<%=studentbean.getSt_tuition()%>원
 									</div>
 								</td>
 							</tr>
@@ -311,14 +191,7 @@
 								<th scope="row">납부여부</th>
 								<td>
 									<div class="item">
-										<input name="st_tuition_state" type="radio" value="납부" id="c1"
-											class="i_radio"
-											<%if (studentbean.getSt_tuition_state().equals("납부")) {%>
-											checked <%}%>><label for="c1">납부</label> <input
-											name="st_tuition_state" type="radio" value="미납" id="c2"
-											class="i_radio"
-											<%if (studentbean.getSt_tuition_state().equals("미납")) {%>
-											checked <%}%>><label for="c2">미납</label>
+										<%=studentbean.getSt_tuition_state()%>
 									</div>
 								</td>
 							</tr>
@@ -328,55 +201,26 @@
 								<th scope="row">메모</th>
 								<td>
 									<div class="item">
-										<textarea name="st_memo" cols="50" rows="5" title="레이블 텍스트"
-											class="i_text"><%=studentbean.getSt_memo()%></textarea>
+										<%=studentbean.getSt_memo()%>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">매니저</th>
+								<th scope="row">담임</th>
 								<td>
 									<div class="item">
-										<input type="text" name="mm_manager_id" title="매니저"
-											class="i_text" value="<%=studentbean.getMm_manager_id()%>">
-
+										<%=studentbean.getMm_manager_id()%>
 									</div>
 								</td>
 							</tr>
-							<input type="hidden" name="mm_id"
-								value="<%=studentbean.getMm_id()%>">
-							<input type="hidden" name="st_parent_id"
-								value="<%=studentbean.getSt_parent_id()%>">
-
-
-							<!--  수정버튼 -->
-							<tr align="right">
-								<td></td>
-								<td align="left">
+							<!--  버튼 -->
+							<tr>
+								<td align="center" colspan="2">
 									<div class="item">
-										<input type="submit" value="수정">
-										<%
-											if (check.equals("1")) {
-										%>
-										<input type="button" value="목록"
-											onclick="location.href='./StudentList.st'">
-										<%
-											} else if (check.equals("2")) {
-										%>
-										<input type="button" value="목록"
-											onclick="location.href='./StudentOffList.st'">
-										<%
-											} else if (check.equals("3")) {
-										%>
-										<input type="button" value="목록"
-											onclick="location.href='./StudentOutList.st'">
-										<%
-											}
-										%>
+										<input type="button" value="닫기" onclick="window.close()">
 									</div>
 								</td>
 							</tr>
-
 						</tbody>
 					</table>
 				</div>
@@ -385,7 +229,7 @@
 
 		<!-- 회원가입 끝 -->
 
-	</div>
+<!-- 	</div> -->
 	<!-- //content -->
 </body>
 </html>
