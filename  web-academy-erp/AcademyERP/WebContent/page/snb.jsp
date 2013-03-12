@@ -210,7 +210,7 @@
 					<li><a href="#"><span>학급별시험정보</span></a></li>
 					<li><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
 					<li><a href="#"><span>학급별상담내역</span></a></li>
-					<li><a href="#"><span>학급진도관리</span></a></li>
+<!-- 					<li><a href="#"><span>학급진도관리</span></a></li> -->
 				</ul></li>
 
 			<li><a><span>성적관리</span><span class="i"></span></a>
@@ -273,7 +273,11 @@
 					<li><a href="#"><span>계좌관리</span></a></li>
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
-
+			<li><a><span>SMS 관리</span><span class="i"></span></a>
+				<ul style="display: none;">
+					<li><a href="./AllMessage.sms"><span>전체문자관리</span></a></li>
+					<li><a href="#"><span>포인트관리</span></a></li>
+				</ul></li>
 			<%
 				/*오로지 관리자만 접근 가능메뉴*/
 						if (lev >= 5) {
@@ -283,7 +287,6 @@
 					<li><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
 					<li><a href="#"><span>공지사항 관리</span></a></li>
 					<li><a href="./AllMemberList.master"><span>전체 회원 관리</span></a></li>
-					<li><a href="#"><span>전체 문자 관리</span></a></li>
 				</ul></li>
 			<%
 				}
