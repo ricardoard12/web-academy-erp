@@ -214,6 +214,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										학급 : 
 										<select name="gp_name" onchange="selGroups(value, '<%=date%>')">
+											<option value="">학급 선택</option>
 											<%
 											if (gpList != null) {
 												for (int i = 0; i < gpList.size(); i++) {
