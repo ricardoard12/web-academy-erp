@@ -6,9 +6,11 @@ import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.attitude.db.AttitudeDAO;
 
+// 직원 출,퇴근 취소
 public class EmployeeAttitudeCancelAction implements Action {
 
 	@Override
@@ -16,6 +18,20 @@ public class EmployeeAttitudeCancelAction implements Action {
 			HttpServletResponse response) throws Exception {
 		System.out.println("EmployeeAttitudeCancelAction");
 		request.setCharacterEncoding("UTF-8");
+		
+		/* 권한 확인 */
+		HttpSession session = request.getSession();
+		int level = Integer.parseInt((String) session.getAttribute("level"));
+		if (level < 4) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('권한이 없습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		ActionForward forward = new ActionForward();
 		AttitudeDAO attitudeDAO = new AttitudeDAO();
