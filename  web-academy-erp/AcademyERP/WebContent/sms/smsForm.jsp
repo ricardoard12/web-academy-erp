@@ -13,6 +13,7 @@
 	String receiverID = "";
 	String receiverName = "";
 	String receiverPhone = "";
+	int credits = (Integer) request.getAttribute("credits");
 %>
 </head>
 <body>
@@ -32,6 +33,7 @@
 			%>
 	                <tr><td><%=member.getMm_name()%></td><td><%=phone%></td></tr>
 	        	<%} %>
+	        	<tr><td colspan="2">발송 가능 건수 : <%=credits %>건</td></tr>
 	        	<input type="hidden" name="receiverID" value="<%=receiverID %>">
 		        <input type="hidden" name="receiverName" value="<%=receiverName %>">
 		        <input type="hidden" name="receiverPhone" value="<%=receiverPhone %>">
