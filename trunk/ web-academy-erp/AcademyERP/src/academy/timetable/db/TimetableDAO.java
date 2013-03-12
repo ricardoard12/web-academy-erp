@@ -112,6 +112,11 @@ public class TimetableDAO {
 		list.add(rs.getString("ti_day"));// 2
 		list.add(rs.getString("ti_lesson"));// 3
 		list.add(rs.getString("ti_subject"));// 4
+		String sql="select mm_name from member where mm_id='"+rs.getString("ep_id")+"'";
+		ResultSet rs2=con.prepareStatement(sql).executeQuery();
+		if(rs2.next()){
+			list.add(rs2.getString(1));
+		}
 		return list;
 	}
 
