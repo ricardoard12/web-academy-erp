@@ -45,8 +45,6 @@
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="글쓰기">
 								<tbody>
-
-
 									<tr>
 										<th scope="row">아이디</th>
 										<td>
