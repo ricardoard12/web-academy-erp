@@ -11,6 +11,7 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <script src="./js/calendar.js"></script>
+<script src="./js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 	function memoOpen(id, at_memo, date, gp_name) { // 메모창 열기
 		if (at_memo == "null") at_memo="";
@@ -205,9 +206,8 @@
 								<th scope="row">검색날짜선택</th>
 								<td colspan="7" align="left">
 									<div class="item">
-										<input type="text" name="date"> 
 										<input type="button" value="검색" onclick="CheckDate('<%=gp_name%>')">
-										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
+										<input type="text" name="seldate" value="달력보기" onClick="datePicker(event,'seldate',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
