@@ -40,11 +40,13 @@ public class StudentDetailAction implements Action{
 		request.setAttribute("groups", groups);//소속학급 수정시 전체 소속학급 조회
 		request.setAttribute("check", check);//수강생(1),휴원생(2),퇴원생(3)에서의 목록인지 판단후 저장된값 전송  
 		
-		if(!check.equals("4")){
+		if (check.equals("view")) {
+			forward.setRedirect(false);
+			forward.setPath("./student/student_detail_view.jsp");
+		} else if(!check.equals("4")){
 			forward.setRedirect(false);
 			forward.setPath("./student/student_detail.jsp");
-		}
-		else{
+		} else{
 			forward.setRedirect(false);
 			forward.setPath("./student/student_detail2.jsp");
 		}
