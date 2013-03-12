@@ -144,17 +144,20 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
+	
 	List attitudeList = (List) request.getAttribute("attitudeList");
+	
 	List gpList = null;
 	if (request.getAttribute("gpList") != null) {
 		gpList = (List) request.getAttribute("gpList");
 	}
-	String date = (String) request.getAttribute("date");
+	
 	String gp_name = "";
 	if (request.getAttribute("gp_name") != null) {
 		gp_name = (String)request.getAttribute("gp_name");
 	}
 	
+	String date = (String) request.getAttribute("date");
 	SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 	
 	int nowPage = ((Integer)request.getAttribute("page")).intValue();
@@ -221,11 +224,9 @@
 														%><option value="<%=gpNameList%>"><%=gpNameList%></option><%
 													}
 												}
-											} else if (gp_name.equals("")) {
+											} else {
 												%><option value="">담당 학급 없음</option><%
-											} else { 
-												%> <option value=<%=gp_name %>><%=gp_name %></option> <%}
-											%>
+											}%>
 										</select> 
 									</div>
 								</td>
