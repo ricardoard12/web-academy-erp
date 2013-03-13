@@ -27,6 +27,7 @@ public class SendSms implements Action {
 		ActionForward forward = new ActionForward();
 		StudentDAO studentDAO = new StudentDAO();
 		
+		// 수신자 아이디를 체크박스 값으로 선택해서 문자열로 묶고(구분자는 콤마(,)) 전송받은 상태.
 		String chkValue = request.getParameter("chkValue"); // 체크박스 값 결합시킨 수신자 목록 문자열 가져오기
 		List studentList = new ArrayList(); // 문자열 자른 후 저장할 배열
 		
@@ -36,12 +37,13 @@ public class SendSms implements Action {
 			}
 		}
 		
-		List receiverList = studentDAO.getSMSReceiverList(studentList); // 수신자 정보 조회 후 리스트로 받아옴
+		// 수신자 정보 조회 후 리스트로 받아옴 (이름, 전화번호 등등)
+		List receiverList = studentDAO.getSMSReceiverList(studentList); 
 		
 		request.setAttribute("receiverList", receiverList);
 		
 		
-		// 문자 메세지 포인트 조회
+		// 문자 메세지 잔여 포인트 조회 부분
 		SMS sms = new SMS();
 		
 		sms.setuser("nedgold", "123123"); // 아이디, 패스워드 설정
@@ -49,9 +51,9 @@ public class SendSms implements Action {
 		// 발송 가능 건수 조회
 		SmsBalanceInfo sbi = null;
 		try {
-			sms.connect();
+			sms.connect(); // 서버 연결
 			sbi = sms.getBalanceInfo(); // 메소드 호출해서 정보 조회 후 저장
-			sms.disconnect();
+			sms.disconnect(); // 서버 연결 종료
 		} catch (IOException e) {
 			System.out.println(e.toString());
 		}
@@ -78,7 +80,7 @@ public class SendSms implements Action {
 			response.setContentType ("text/html;charset=utf-8");
 	        PrintWriter out = response.getWriter();
 	        out.println("<script>");
-	        out.println("alert('" + sbi.resultMessage + "(Code : " + sbi.resultCode + ")');");
+	        out.println("alert('" + sbi.resultMessage + "(Code : " + sbi.resultCode + ")');"); // 조회 불가 메세지 출력
 	        out.println("window.close()");
 	        out.println("</script>");
 	        out.close();
@@ -87,6 +89,7 @@ public class SendSms implements Action {
 //			System.out.println("Result Message: " + sbi.resultMessage);
 		}
 		
+		// 문자 메세지 작성 폼으로 이동
 		forward.setRedirect(false);
 		forward.setPath("./sms/smsForm.jsp");
 		return forward;
