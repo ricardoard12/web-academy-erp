@@ -25,8 +25,42 @@ public class FaqBoardFrontController extends HttpServlet implements Servlet {
 	            forward.setRedirect(false);
 	            forward.setPath("./faq_board/faq_board_write.jsp");
 	        //업무일지 입력 기능
-	        }
-//	        else if()
+	        }else if(command.equals("/Faq_BoardAddAction.fb")){
+				action = new Faq_BoardAddAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(command.equals("/Faq_boardList.fb")){
+				action = new Faq_BoardListAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(command.equals("/Faq_BoardDeleteAction.fb")){
+				action = new Faq_BoardDeleteAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(command.equals("/Faq_BoardDetailAction.fb")){
+				action = new Faq_BoardDetailAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(command.equals("/Faq_BoardModifyAction.fb")){
+				action = new Faq_BoardModifyAction();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 	        
       //이동
     	if (forward != null) {

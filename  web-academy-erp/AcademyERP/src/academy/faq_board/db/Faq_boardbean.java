@@ -8,7 +8,16 @@ public class Faq_boardbean {
 	private String faq_name;
 	private String faq_subject;
 	private String faq_content;
+	private String faq_passwd;
 	private Date faq_date;
+	
+	
+	public String getFaq_passwd() {
+		return faq_passwd;
+	}
+	public void setFaq_passwd(String faq_passwd) {
+		this.faq_passwd = faq_passwd;
+	}
 	public int getFaq_num() {
 		return faq_num;
 	}
