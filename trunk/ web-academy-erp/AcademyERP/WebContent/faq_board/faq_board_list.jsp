@@ -34,8 +34,12 @@
 <script type="text/javascript">
 
 function checkPass(){
-	  url="";
-	  window.open(url, "", "width=200, height=300, scrollbars=yes");
+	  var winW = 300;
+	  var winH = 130;
+	  var left = Math.ceil((window.screen.width - winW)/2);
+	  var top = Math.ceil((window.screen.height - winH)/2);
+	  window.open('./faq_board/check.html','패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = no , menubar = no, scrollbars = no, resizable = no');
+	  
 	}
 
 </script>
@@ -94,7 +98,8 @@ function checkPass(){
     		<tr>
     		<td class="frm"><input type="checkbox" name="faq_board_check" id="chk_sel" value="<%=faq_boardbean.getFaq_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=faq_boardbean.getFaq_num() %></td>
-    		<td class="title"><a href="./Faq_BoardDetailAction.fb?num=<%=faq_boardbean.getFaq_num()%>&name=<%=name%>" onclick="checkPass"><%=faq_boardbean.getFaq_subject() %></a></td>
+<%--     		<td class="title"><a href="./Faq_BoardDetailAction.fb?num=<%=faq_boardbean.getFaq_num()%>&name=<%=name%>" onclick="checkPass()"><%=faq_boardbean.getFaq_subject() %></a></td> --%>
+    		<td class="title"><a href="#"onclick="checkPass()"><%=faq_boardbean.getFaq_subject() %></a></td>
     		<td><a href="#"><%=faq_boardbean.getFaq_name() %></a></td>
     		<td class="date" colspan="2"><%=faq_boardbean.getFaq_date() %></td>
     		
