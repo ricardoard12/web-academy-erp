@@ -280,11 +280,16 @@ public class MasterDAO {
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 7; j++) {
 						sql = "insert into timetable (gp_idx,ti_day,ti_lesson,ti_room) values('"
-								+ gp_idx + "','"+(i+"")+"','"+(j+"")+"','')";
+								+ gp_idx
+								+ "','"
+								+ (i + "")
+								+ "','"
+								+ (j + "")
+								+ "','')";
 						con.prepareStatement(sql).executeUpdate();
 					}
 				}
-				
+
 			}
 
 			System.out.println("학급 삽입 완료 --->");
@@ -303,13 +308,15 @@ public class MasterDAO {
 					+ "',groups.gp_ea=" + ea + " where gp_idx="
 					+ Integer.parseInt(id);
 			con.prepareStatement(sql).executeUpdate();
-			sql="select * from room_list where room_list_idx="+Integer.parseInt(room);
-			rs=con.prepareStatement(sql).executeQuery();
-			String roomname="";
-			if(rs.next()){
-				roomname=rs.getString("room_list_name");
+			sql = "select * from room_list where room_list_idx="
+					+ Integer.parseInt(room);
+			rs = con.prepareStatement(sql).executeQuery();
+			String roomname = "";
+			if (rs.next()) {
+				roomname = rs.getString("room_list_name");
 				System.out.println(roomname);
-				sql="update timetable set ti_room='"+roomname+"' where gp_idx='"+id+"'";
+				sql = "update timetable set ti_room='" + roomname
+						+ "' where gp_idx='" + id + "'";
 				con.prepareStatement(sql).executeUpdate();
 			}
 		} catch (Exception e) {
