@@ -1,5 +1,6 @@
 package academy.master.action;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +33,13 @@ public class classSetAction implements Action {
 		new MasterDAO().setClass(groups);
 		forward.setPath("./ClassList.master");
 		forward.setRedirect(true);
-		return forward;
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("opener.location.reload();");
+		out.println("window.close();");
+		out.println("</script>");
+		out.close();
+		return null;
 	}
 }
