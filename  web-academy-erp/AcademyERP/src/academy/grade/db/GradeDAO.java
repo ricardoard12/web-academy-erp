@@ -284,7 +284,7 @@ public class GradeDAO {
                     
                     gradebean.setSt_id(rs.getString("mm_id"));
                     
-                    sql = "select exam.gr_score from exam where st_id = ? and exam.gr_code=?;";
+                    sql = "select exam.gr_score from exam where st_id = ? and exam.gr_code=?";
                     pstmt = con.prepareStatement(sql);
                     pstmt.setString(1, rs.getString("mm_id"));
                     pstmt.setString(2, gr_code);

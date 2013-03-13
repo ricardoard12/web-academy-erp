@@ -37,7 +37,7 @@ public class GradeAcademyTestingStudentAddAction implements Action{
         
         gradedao.insertTestingStudentAdd(st_id_list, gr_score_list, gr_code);
         
-        forward.setRedirect(false);
+        forward.setRedirect(true);
         forward.setPath("./GradeAcademyTestingStudentList.gr?" +
         		"gr_code="+gr_code+"&gp_name="+gp_name);
         return forward;
