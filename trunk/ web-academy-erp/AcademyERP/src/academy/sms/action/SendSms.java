@@ -44,7 +44,7 @@ public class SendSms implements Action {
 		// 문자 메세지 포인트 조회
 		SMS sms = new SMS();
 		
-		sms.setuser("academytest", "dkzkepal1234"); // 아이디, 패스워드 설정
+		sms.setuser("nedgold", "123123"); // 아이디, 패스워드 설정
 	
 		// 발송 가능 건수 조회
 		SmsBalanceInfo sbi = null;
