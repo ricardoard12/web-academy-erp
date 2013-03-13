@@ -269,16 +269,8 @@ public class TimetableDAO {
 		ResultSet rs2 = con.prepareStatement(
 				"select gp_name,gp_lev from groups where gp_idx="
 						+ rs.getString("gp_idx")).executeQuery();
-		if (rs2.next()) {
-			String roomName = rs2.getString(2);
-			if (roomName.equals("e")) {
-				roomName = "초등";
-			} else if (roomName.equals("m")) {
-				roomName = "중등";
-			} else if (roomName.equals("h")) {
-				roomName = "고등";
-			}
-			str = roomName + "-" + rs2.getString("gp_name");
+		if (rs2.next()) {			
+			str = rs2.getString(2) + "-" + rs2.getString("gp_name");
 		}
 		list.add(str);// 4
 		return list;
