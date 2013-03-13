@@ -31,6 +31,15 @@
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+function checkPass(){
+	  url="";
+	  window.open(url, "", "width=200, height=300, scrollbars=yes");
+	}
+
+</script>
+
 </head>
 <body>
 <!-- UI Object -->	
@@ -85,7 +94,7 @@
     		<tr>
     		<td class="frm"><input type="checkbox" name="faq_board_check" id="chk_sel" value="<%=faq_boardbean.getFaq_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=faq_boardbean.getFaq_num() %></td>
-    		<td class="title"><a href="./Faq_BoardDetailAction.fb?num=<%=faq_boardbean.getFaq_num()%>&name=<%=name%>"><%=faq_boardbean.getFaq_subject() %></a></td>
+    		<td class="title"><a href="./Faq_BoardDetailAction.fb?num=<%=faq_boardbean.getFaq_num()%>&name=<%=name%>" onclick="checkPass"><%=faq_boardbean.getFaq_subject() %></a></td>
     		<td><a href="#"><%=faq_boardbean.getFaq_name() %></a></td>
     		<td class="date" colspan="2"><%=faq_boardbean.getFaq_date() %></td>
     		

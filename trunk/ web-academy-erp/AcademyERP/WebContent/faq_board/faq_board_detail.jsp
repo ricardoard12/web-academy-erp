@@ -85,6 +85,11 @@
 												<textarea rows="10" cols="150" name="faq_content"><%=faq_boardbean.getFaq_content() %></textarea>
 										</td>
 									</tr>
+									
+									<tr>
+										<th scope="row">패스워드</th>
+										<td><input type="password" name="faq_passwd"></td>
+									</tr>
 								
 									<!--  글쓰기버튼 -->
 									<tr align="center">
