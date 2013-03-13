@@ -166,7 +166,7 @@
      
       <servlet>
              <servlet-name>FaqBoardFrontController</servlet-name>
-             <servlet-class>academy.board_FAQ.action.FaqBoardFrontController</servlet-class>
+             <servlet-class>academy.faq_board.action.FaqBoardFrontController</servlet-class>
      </servlet>
      <servlet-mapping>
              <servlet-name>FaqBoardFrontController</servlet-name>

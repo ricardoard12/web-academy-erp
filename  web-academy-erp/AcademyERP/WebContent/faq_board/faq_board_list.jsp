@@ -1,13 +1,14 @@
-<%@page import="academy.lesson_plan.db.LessonBean"%>
-<%@page import="academy.member.db.MemberBean"%>
+<%@page import="academy.faq_board.db.Faq_boardbean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% 
+       
     request.setCharacterEncoding("utf-8");
-    
-    LessonBean lessonbean = (LessonBean)request.getAttribute("lessonbean");
-    List lessonList = (List)request.getAttribute("lessonList");
+       
+    Faq_boardbean faq_boardbean = (Faq_boardbean) request.getAttribute("faq_boardbean");
+   
+    List faq_boardList = (List)request.getAttribute("faq_boardList");
     
     int listcount=((Integer)request.getAttribute("listcount")).intValue();
     int nowpage=((Integer)request.getAttribute("page")).intValue();
@@ -20,7 +21,6 @@
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
 	String name = (String) session.getAttribute("name");
-// 	String name = 
 	//세션으로 level 값 받음
 	String level = (String) session.getAttribute("level");
     %>
@@ -53,12 +53,13 @@
         
             <!-- 게시판 시작 -->
             <!-- UI Object -->
-<form method="post" action="LessonDeleteAction.le">
+<form method="post" action="Faq_BoardDeleteAction.fb">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 <!-- level세션값 전달 -->
 <%-- <input type="hidden" name="level" value=<%=session.getAttribute("level")%>> --%>
 
-<caption>업무일지 리스트</caption>
+<caption>FAQ 리스트</caption>
+
 <colgroup>
 <col width="30"><col width="80"><col>
 <col width="115"><col width="85"><col width="60">
@@ -78,33 +79,36 @@
 
 <%
     if(listcount>0){
-    	for(int i=0;i<lessonList.size();i++){
-    		lessonbean=(LessonBean)lessonList.get(i);
+    	for(int i=0;i<faq_boardList.size();i++){
+    		faq_boardbean=(Faq_boardbean)faq_boardList.get(i);
     		%>
     		<tr>
-    		<td class="frm"><input type="checkbox" name="lesson_check" id="chk_sel" value="<%=lessonbean.getLesson_num()%>"><label for="chk_sel">선택</label></td>
-    		<td class="num"><%=lessonbean.getLesson_num() %></td>
-    		<td class="title"><a href="./LessonDetailAction.le?num=<%=lessonbean.getLesson_num()%>"><%=lessonbean.getLesson_subject() %></a></td>
-    		<td><a href="#"><%=lessonbean.getLesson_teacher() %></a></td>
-    		<td class="date" colspan="2"><%=lessonbean.getLesson_date()%></td>
-       		</tr>
-       		<%
+    		<td class="frm"><input type="checkbox" name="faq_board_check" id="chk_sel" value="<%=faq_boardbean.getFaq_num()%>"><label for="chk_sel">선택</label></td>
+    		<td class="num"><%=faq_boardbean.getFaq_num() %></td>
+    		<td class="title"><a href="./Faq_BoardDetailAction.fb?num=<%=faq_boardbean.getFaq_num()%>&name=<%=name%>"><%=faq_boardbean.getFaq_subject() %></a></td>
+    		<td><a href="#"><%=faq_boardbean.getFaq_name() %></a></td>
+    		<td class="date" colspan="2"><%=faq_boardbean.getFaq_date() %></td>
+    		
+    		</tr>
+    		
+    		
+    		<%
     	}
     }
+
     		%>
 
     	
 </tbody>
 </table>
 <div align="right">
-<%-- <% if(level.equals("5")){ %> --%>
-<input type="button" name="lesson_write" value="글쓰기" onclick="location.href='./LessonWrite.le?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
-<%if(level.equals("5")){ %>
-<input type="submit" name="business_delete" value="삭제">
-<%} %>
+
+<input type="button" name="faq_boardwrite" value="글쓰기" onclick="location.href='./Faq_boardWrite.fb?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
+<input type="submit" name="faq_boarddelete" value="삭제">
+
 </form>
 </div>
-<%-- <%}else{}%> --%>
+
 
 <!-- Paginate -->
 
@@ -117,7 +121,7 @@ if(nowpage<=1){
 	<%
 }else{
 	%>
-	<a href="./business_notice.bl?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
+	<a href="./faq_boardList.fb?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
@@ -126,7 +130,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./business_notice.bl?page=<%=a%>"><%=a %></a><%
+		%><a href="./faq_boardList.fb?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
@@ -134,7 +138,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./business_notice.bl?page=<%=nowpage+1%>" class="direction next">다음 </a><%
+	%><a href="./faq_boardList.fb?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>
