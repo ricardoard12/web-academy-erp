@@ -21,6 +21,7 @@
 			<!-- Layer Content -->
 
 			<%
+				request.setCharacterEncoding("utf-8");
 				//세션으로 id 값 받음
 				String id = (String) session.getAttribute("id");
 				//세션으로 name값 받음
