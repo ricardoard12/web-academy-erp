@@ -26,7 +26,7 @@ public class SmsDAO {
 		}
 	}
 
-	public void closingDB() {
+	private void closingDB() {
 		if (con != null)
 			try {
 				con.close();
@@ -68,12 +68,16 @@ public class SmsDAO {
 	}
 
 	// 전체 문자 리스트를 가져오겠다.
-	public List getSmsList() {
+	public List getSmsList(int page,int limit) {
 		List list = null;
+		int startrow=(page-1)*limit+1;
 		try {
 			con = ds.getConnection();
-			String sql="select * from sms order by sms_idx desc";
-			rs=con.prepareStatement(sql).executeQuery();
+			String sql="select * from sms order by sms_idx desc limit ?,?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startrow-1)	;
+			pstmt.setInt(2, limit);
+			rs=pstmt.executeQuery();
 			list=new ArrayList();
 			if(rs.next()){
 				do{
@@ -87,12 +91,12 @@ public class SmsDAO {
 		}
 		return list;
 	}
-
+	//전체 문자의 갯수
 	private List getSmsInfo()throws Exception {
 		List list =new ArrayList();
 		list.add(rs.getInt("sms_idx"));//0
 		list.add(rs.getString("receiver_id"));//1
-		list.add(rs.getString("reveiver_name"));//2
+		list.add(rs.getString("receiver_name"));//2
 		list.add(rs.getString("receiver_phone"));//3
 		list.add(rs.getString("sender_phone"));//4
 		list.add(rs.getString("message"));//5
@@ -100,6 +104,23 @@ public class SmsDAO {
 		list.add(rs.getString("auto_send"));//7
 		list.add(rs.getString("send_time"));//8
 		return list;
+	}
+
+	public int getCount() {
+		int count=0;
+		try{
+			con=ds.getConnection();
+			String sql="select count(sms_idx) from sms";
+			rs=con.prepareStatement(sql).executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			closingDB();
+		}
+		return count;
 	}
 
 }
