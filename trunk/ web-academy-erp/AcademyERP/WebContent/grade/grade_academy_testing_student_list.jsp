@@ -38,12 +38,12 @@
 					String gp_name = request.getParameter("gp_name");
 					String gr_code = request.getParameter("gr_code");
 				%>
-				<legend>학원 시험중 학생리스트</legend>
+				<legend>학원 시험중 학생리스트 : 학급명<%=gp_name %></legend>
 				<form action="./GradeAcademyTestingStudentAdd.gr" name="grAddCheck" method="post" >
 				<input type="hidden" name="gr_code" value="<%=gr_code %>">
 				<input type="hidden" name="gp_name" value="<%=gp_name %>">
 				<table cellspacing="0" border="1" summary="학원 시험중 학생리스트" class="tbl_type_list">
-					<caption>학원 시험중 학생리스트</caption>
+					<caption>학원 시험중 학생리스트 </caption>
 					<colgroup>
 						<col width="16%" span="6">
 					</colgroup>
@@ -54,7 +54,7 @@
 							<th scope="col">학생아이디</th>
 							<th scope="col">학교이름</th>
 							<th scope="col">시험성적</th>
-							<th scope="col">학급명<%=gp_name %></th>
+							<th scope="col">수정</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,8 +69,18 @@
 							<td><%=gradebean.getMm_name() %></td>
 							<td><%=gradebean.getSt_id() %></td>
 							<td><%=gradebean.getSt_school_name() %></td>
-							<td><input type="text" name="gr_score" value="<%=gradebean.getGr_score() %>" size="3"  ></td>
-							<td><%=gradebean.getGp_name() %></td>
+							
+							<td><%if(gradebean.getGr_score() == null){ %>
+							<input type="text" name="gr_score" value="<%=gradebean.getGr_score() %>" size="3"  >
+							<%}else{ %>
+							<%=gradebean.getGr_score() %>
+							 <%} %></td>
+							 
+							<td><%if(gradebean.getGr_score() != null){%>
+							    <input type="button" value="성적수정" onclick="">
+							<%}else{%>
+							    
+								<%}%></td>
 						</tr>
 					<% }
 					}	%>
@@ -91,6 +101,14 @@
 				<!-- //UI Object -->
 				
 <script type="text/javascript">
+
+
+	$(document).ready(function() {
+		// #login-box password field
+		$('#password').attr('type', 'text');
+		$('#password').val('Password');
+	});
+
 	function CheckAll() {
 		if (document.grAddCheck.all.checked == true) { // 체크가 되었다면
 			for ( var x = 0; x < grAddCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
@@ -102,21 +120,20 @@
 			}
 		}
 	}
-	
+
 	function oneMore() {
 		count = 0;
 		for ( var x = 0; x < grAddCheck.check.length; x++) { // int가 아닌 var를 사용한다.. 
-			if(document.grAddCheck.check[x].checked == true){
+			if (document.grAddCheck.check[x].checked == true) {
 				count++;
 			} //for문을 사용하여 모두 체크 시킨다.
 		}
-		
-		if(count<=0){
+
+		if (count <= 0) {
 			alert("한 개이상 선택하세요");
 			return false;
 		}
 	}
-	
 </script>
 				<!-- //수강생 관리 끝 -->
 
