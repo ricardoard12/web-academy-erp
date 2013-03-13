@@ -56,6 +56,12 @@
 		return null;
 	}
 </script>
+<style>
+.add:hover{
+color:#D9418C;
+cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<!-- UI Object -->
@@ -158,9 +164,9 @@
 
 					<!-- //UI Object -->
 					<div align="right">
-						<input type="button" name="createClass" value="학급생성"
-							onclick="location.href='./CreateClass.master'"><input
-							type="submit" value="삭제">
+						<a class="add" onclick="window.open('./CreateClass.master','학급생성',
+							'height=300,width=500,toolbar=no,status=no,linemenubar=no,scrollbars=no')">학급생성</a>
+							<input type="submit" value="삭제">
 					</div>
 				</form>
 				<div class="paginate_complex" align="center">
