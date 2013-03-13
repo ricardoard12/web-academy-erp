@@ -28,7 +28,6 @@ public class classaddaction implements Action {
 		request.setAttribute("sub", sel);
 		forward.setPath("./master/addClass.jsp");
 		forward.setRedirect(false);
-		System.out.println("****");
 		return forward;
 	}
 }
