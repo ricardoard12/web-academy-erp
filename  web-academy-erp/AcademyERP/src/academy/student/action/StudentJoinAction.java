@@ -34,7 +34,8 @@ public class StudentJoinAction implements Action{
 		    
 			studentbean.setSt_school_name(request.getParameter("st_school_name")); //학교명
 			studentbean.setSt_school_grade(request.getParameter("st_school_grade")); //학년
-			studentbean.setGp_name(request.getParameter("st_school_groups"));// 소속학급
+			studentbean.setGp_name(request.getParameter("st_school_groups").split(",")[0]);// 소속학급
+			studentbean.setGp_idx(Integer.parseInt(request.getParameter("st_school_groups").split(",")[1]));
 			studentbean.setSt_parent_name(request.getParameter("st_parent_name")); //학부모이름
 			studentbean.setSt_parent_mobile(request.getParameter("st_parent_mobileDDD")+"-"+request.getParameter("st_parent_mobile1")+"-"+request.getParameter("st_parent_mobile2"));//학부모연락처 
 			studentbean.setSt_parent_id(request.getParameter("st_parent_id")); //학부도아이디
