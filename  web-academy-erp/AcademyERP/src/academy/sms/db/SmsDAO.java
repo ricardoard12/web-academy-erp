@@ -91,7 +91,7 @@ public class SmsDAO {
 		}
 		return list;
 	}
-	//전체 문자의 갯수
+	//sms 정보
 	private List getSmsInfo()throws Exception {
 		List list =new ArrayList();
 		list.add(rs.getInt("sms_idx"));//0
@@ -105,7 +105,7 @@ public class SmsDAO {
 		list.add(rs.getString("send_time"));//8
 		return list;
 	}
-
+	//전체 문자의 갯수
 	public int getCount() {
 		int count=0;
 		try{
