@@ -53,7 +53,7 @@ public class StudentDAO {
 			pstmt.executeUpdate();
 			
 
-			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo,st_status,gp_name) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql="INSERT INTO student(mm_id,st_school_name,st_school_grade,st_parent_name,st_parent_mobile,st_parent_id,st_parent_passwd,st_tuition,st_tuition_state,st_memo,st_status,gp_name,gp_idx) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, studentbean.getMm_id());  //회원이름 => // 회원ID(mm_id) 로 수정하세요
 			pstmt.setString(2,studentbean.getSt_school_name()); // 학교명
@@ -67,6 +67,7 @@ public class StudentDAO {
 			pstmt.setString(10,studentbean.getSt_memo()); // 메모
 			pstmt.setString(11, "재학");
 			pstmt.setString(12, studentbean.getGp_name());// 소속학급
+			pstmt.setInt(13,studentbean.getGp_idx());//gp_Idx
 			pstmt.executeUpdate();
 					
 			sql="INSERT INTO member(mm_name,mm_id,mm_passwd,mm_tel,mm_phone,mm_addr1,mm_addr2,mm_zipcode,mm_email,mm_reg_date,mm_level) VALUES(?,?,?,?,?,?,?,?,?,now(),?) ";
@@ -100,7 +101,7 @@ public class StudentDAO {
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학'";
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학' order by m.mm_reg_date desc";
 			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -355,7 +356,7 @@ public class StudentDAO {
     	
     	try {
 			con= ds.getConnection();
-			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
+			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id,gp_idx FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -385,6 +386,7 @@ public class StudentDAO {
 				studentbean.setSt_parent_mobile(rs.getString("st_parent_mobile"));
 				studentbean.setMm_level_id(rs.getInt("mm_level"));
 				studentbean.setMm_manager_id(rs.getString("mm_manager_id"));
+				studentbean.setGp_idx(rs.getInt("gp_idx"));
 			}
 			
 		} catch (SQLException e) {
@@ -421,7 +423,7 @@ public class StudentDAO {
 			pstmt.setString(11, studentbean.getMm_id()); //회원아이디
 			pstmt.executeUpdate();
 			
-			sql="UPDATE student SET st_school_name=?,st_school_grade=?,st_parent_name=?,st_parent_mobile=?,st_tuition=?,st_tuition_state=?,st_memo=?,gp_name=? WHERE mm_id=?";
+			sql="UPDATE student SET st_school_name=?,st_school_grade=?,st_parent_name=?,st_parent_mobile=?,st_tuition=?,st_tuition_state=?,st_memo=?,gp_name=?,gp_idx=? WHERE mm_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,studentbean.getSt_school_name()); // 학교명
 			pstmt.setString(2,studentbean.getSt_school_grade()); // 학년
@@ -431,7 +433,8 @@ public class StudentDAO {
 			pstmt.setString(6,studentbean.getSt_tuition_state()); // 회비납부여부
 			pstmt.setString(7,studentbean.getSt_memo()); // 메모
 			pstmt.setString(8, studentbean.getGp_name());// 소속학급
-			pstmt.setString(9, studentbean.getMm_id());  //회원ID
+			pstmt.setInt(9,studentbean.getGp_idx());//gp_Idx
+			pstmt.setString(10, studentbean.getMm_id());  //회원ID
 			pstmt.executeUpdate();
 			
 			// 부모 정보 수정된거 업데이트
@@ -481,7 +484,8 @@ public class StudentDAO {
 				studentbean.setSt_school_grade(rs.getString("st_school_grade")); // 학년
 				studentbean.setSt_status(rs.getString("st_status")); //상태
 				studentbean.setEp_id(rs.getString("ep_id")); //담임
-				studentbean.setGp_name(rs.getString("gp_name")); // 소속학과
+				studentbean.setGp_name(rs.getString("gp_name")); // 소속학급
+				studentbean.setGp_idx(rs.getInt("gp_idx"));
 			}
 			
 		} catch (SQLException e) {
@@ -503,7 +507,7 @@ public class StudentDAO {
 		GroupsBean group = null;
 		try {
 			con=ds.getConnection();
-			sql="select gp_name from groups";  //개설된 과목을 가져옴
+			sql="select gp_name,gp_idx from groups";  //개설된 과목을 가져옴
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
@@ -511,6 +515,7 @@ public class StudentDAO {
 				do{
 					group = new GroupsBean();
 					group.setGp_name(rs.getString("gp_name"));
+					group.setGp_idx(rs.getInt("gp_idx"));
 					groups.add(group);
 				}while(rs.next());
 			}
