@@ -259,10 +259,8 @@
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li><a href="./EmployeeJoin.em"><span>신규등록</span></a></li>
-
 					<li><a href="./EmployeeListAction.em"><span>직원현황</span></a></li>
 					<li><a href="./EmployeeAttitudeListAction.em"><span>근태관리</span></a></li>
-					<li><a href="#"><span>급여관리</span></a></li>
 					<li><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
 			<li><a><span>회계관리</span><span class="i"></span></a>
@@ -271,7 +269,8 @@
 					<li><a href="./AccountingList.ac?kind=fee"><span>회비현황</span></a></li>
 					<li><a href="./AccountingList.ac?kind=in"><span>수입현황</span></a></li>
 					<li><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
-					<li><a href="#"><span>계좌관리</span></a></li>
+					<li><a href="#"><span>직원계좌관리</span></a></li>
+					<li><a href="#"><span>직원급여관리</span></a></li>
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
 			<li><a><span>SMS 관리</span><span class="i"></span></a>
