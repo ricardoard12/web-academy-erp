@@ -343,8 +343,7 @@
 										<th scope="row">소속학급</th>
 										<td>
 											<div class="item">
-												<%=studentbean.getGp_name()%>												
-												
+												<%=studentbean.getGp_name()%>										
 											</div>
 										</td>
 									</tr>

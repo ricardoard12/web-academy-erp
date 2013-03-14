@@ -378,7 +378,7 @@
 													<%for(int i =0; i<groups.size(); i++){ 
 														GroupsBean group=(GroupsBean)groups.get(i);
 													%>
-													<option><%=group.getGp_name()%></option>
+													<option value="<%=group.getGp_name()%>,<%=group.getGp_idx() %>" <%if(group.getGp_name().equals(studentbean.getGp_name())){ %>selected<%} %>><%=group.getGp_name()%></option>
 													<%} %>
 												</select>
 											</div>

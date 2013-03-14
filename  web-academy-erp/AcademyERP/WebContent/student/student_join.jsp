@@ -395,7 +395,7 @@
 													<%for(int i =0; i<groups.size(); i++){ 
 														GroupsBean group=(GroupsBean)groups.get(i);
 													%>
-													<option><%=group.getGp_name()%></option>
+													<option value="<%=group.getGp_name()%>,<%=group.getGp_idx()%>"><%=group.getGp_name()%></option>
 													<%} %>
 												</select>
 											</div>
