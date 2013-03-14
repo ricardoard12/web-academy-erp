@@ -18,7 +18,7 @@ public class StudentBean {
     private Date mm_reg_date;  //회원 등록일',
     private String mm_level;  //'등급',
     private String mm_manager_id;  //'매니저아이디',
-    
+    private int gp_idx;
     // 학생 단독 항목
     private String st_school_name; // 학교명
     private String st_school_grade; // 학년
@@ -196,6 +196,12 @@ public class StudentBean {
     public void setSt_memo(String st_memo) {
         this.st_memo = st_memo;
     }
+	public int getGp_idx() {
+		return gp_idx;
+	}
+	public void setGp_idx(int gp_idx) {
+		this.gp_idx = gp_idx;
+	}
     
     
 }
