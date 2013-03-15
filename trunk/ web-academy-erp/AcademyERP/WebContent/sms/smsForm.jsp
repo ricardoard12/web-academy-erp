@@ -65,40 +65,40 @@
 		cellpadding="0" cellspacing="0">
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_01.gif"
-				width="400" height="75" alt=""></td>
+				width="400" height="75" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_02.gif"
-				width="400" height="5" alt=""></td>
+				width="400" height="5" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td><img src="./sms/images/smsForm_03.gif" width="56"
-				height="25" alt=""></td>
+				height="25" alt="" border="0"></td>
 			<td colspan="6"><img src="./sms/images/smsForm_04.gif"
-				width="194" height="25" alt=""></td>
-			<td colspan="3">3건</td>
+				width="194" height="25" alt="" border="0"></td>
+			<td colspan="3" width="25"><%=credits %>건</td>
 			<td><img src="./sms/images/smsForm_06.gif" width="14"
-				height="25" alt=""></td>
+				height="25" alt="" border="0"></td>
 			<td><img src="./sms/images/smsForm_07.gif" width="56"
-				height="25" alt=""></td>
+				height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_08.gif"
-				width="400" height="5" alt=""></td>
+				width="400" height="5" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_09.gif"
-				width="400" height="25" alt=""></td>
+				width="400" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_10.gif"
-				width="96" height="134" alt=""></td>
+				width="96" height="134" alt="" border="0"></td>
 			<td colspan="7">
 				<table id="Table_01" width="208" height="134" border="0"
 					cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="208" height="100" align="center" id="inputMessage"><textarea
-								cols="26" rows="6"></textarea></td>
+						<td width="208" height="100" align="center" id="inputMessage">
+						<textarea	cols="26" rows="6" name="message"></textarea></td>
 					</tr>
 					<tr>
 						<td width="208" height="34" align="right" id="smsByteCount">0 / 80 Byte</td>
@@ -107,147 +107,172 @@
 				</table>
 			</td>
 			<td colspan="3"><img src="./sms/images/smsForm_12.gif"
-				width="96" height="134" alt=""></td>
+				width="96" height="134" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_13.gif"
-				width="400" height="11" alt=""></td>
+				width="400" height="11" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_14.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="7"><img src="./sms/images/smsForm_15.gif"
-				width="208" height="25" alt=""></td>
+				width="208" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_16.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3"><img src="./sms/images/smsForm_17.gif"
-				width="132" height="25" alt=""></td>
+				width="132" height="25" alt="" border="0"></td>
 			<td colspan="5">0518000000</td>
 			<td><img src="./sms/images/smsForm_19.gif" width="36"
-				height="25" alt=""></td>
+				height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_20.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_21.gif"
-				width="400" height="15" alt=""></td>
+				width="400" height="15" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_22.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="2"><img src="./sms/images/smsForm_23.gif"
-				width="79" height="25" alt=""></td>
+				width="79" height="25" alt="" border="0"></td>
 			<td colspan="5"><img src="./sms/images/smsForm_24.gif"
-				width="129" height="25" alt=""></td>
+				width="129" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_25.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_26.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="7" rowspan="5">
+			<div id="receiverList" style="overflow: auto;  width:208; height:125">
 				<table id="Table_01" width="208" height="125" border="0"
 					cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="80">&nbsp;</td>
-						<td width="128">&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
+					<%
+					int blank = 5 - receiverList.size();
+					for (int i = 0; i < receiverList.size(); i++) {
+							MemberBean member = (MemberBean)receiverList.get(i);
+							String phone = member.getMm_phone().split("-")[0] + member.getMm_phone().split("-")[1] + member.getMm_phone().split("-")[2];
+							receiverID += member.getMm_id() + ",";
+							receiverName += member.getMm_name() + ",";
+							receiverPhone += phone + ",";
+							%>
+							<tr>
+								<td width="80" height="25" align="center"><%=member.getMm_name() %></td>
+								<td width="128" height="25" align="center"><%=member.getMm_phone() %></td>
+							</tr>
+					<%
+					} 
+					if (blank > 0) {
+						for (int i = 0; i < blank; i++) {
+					%>
+					
+							<tr>
+								<td width="80" height="25" ></td>
+								<td width="128" height="25" ></td>
+							</tr>
+							<%
+						}
+					}
+					%>
+<!-- 					<tr> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 						<td>&nbsp;</td> -->
+<!-- 					</tr> -->
 				</table>
+				</div>
 			</td>
 			<td colspan="3"><img src="./sms/images/smsForm_28.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_29.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_30.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_31.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_32.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_33.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_34.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="2"><img src="./sms/images/smsForm_35.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_36.gif"
-				width="96" height="25" alt=""></td>
+				width="96" height="25" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_37.gif"
-				width="400" height="30" alt=""></td>
+				width="400" height="30" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_38.gif"
-				width="400" height="9" alt=""></td>
+				width="400" height="9" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3"><img src="./sms/images/smsForm_39.gif"
-				width="132" height="32" alt=""></td>
-			<td colspan="2"><img src="./sms/images/smsForm_40.gif"
-				width="68" height="32" alt=""></td>
+				width="132" height="32" alt="" border="0"></td>
+			<td colspan="2"><a href="#" onclick="return submit()"><img src="./sms/images/smsForm_40.gif"
+				width="68" height="32" alt="" border="0"></a></td>
 			<td><img src="./sms/images/smsForm_41.gif" width="2" height="32"
-				alt=""></td>
-			<td colspan="2"><img src="./sms/images/smsForm_42.gif"
-				width="66" height="32" alt=""></td>
+				alt="" border="0"></td>
+			<td colspan="2"><a href="#" onclick="window.close()"><img src="./sms/images/smsForm_42.gif"
+				width="66" height="32" alt="" border="0"></a></td>
 			<td colspan="4"><img src="./sms/images/smsForm_43.gif"
-				width="132" height="32" alt=""></td>
+				width="132" height="32" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_44.gif"
-				width="400" height="34" alt=""></td>
+				width="400" height="34" alt="" border="0"></td>
 		</tr>
 		<tr>
 			<td><img src="./sms/images/spacer.gif" width="56" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="40" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="36" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="43" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="25" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="2" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="48" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="18" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="36" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="26" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="14" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 			<td><img src="./sms/images/spacer.gif" width="56" height="1"
-				alt=""></td>
+				alt="" border="0"></td>
 		</tr>
 	</table>
 	<!-- End ImageReady Slices -->
