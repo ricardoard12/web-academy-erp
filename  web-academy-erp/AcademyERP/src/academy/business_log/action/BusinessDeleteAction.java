@@ -20,6 +20,8 @@ public class BusinessDeleteAction implements Action{
 		
 		ActionForward forward=new ActionForward();
 		
+		String id = request.getParameter("id");
+		
 		String[] business_check = request.getParameterValues("business_check");
 		
 		for(int i=0 ; i< business_check.length ; i++){
