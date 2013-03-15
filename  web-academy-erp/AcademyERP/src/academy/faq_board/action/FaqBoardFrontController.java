@@ -24,7 +24,7 @@ public class FaqBoardFrontController extends HttpServlet implements Servlet {
 	            forward = new ActionForward();
 	            forward.setRedirect(false);
 	            forward.setPath("./faq_board/faq_board_write.jsp");
-	        //업무일지 입력 기능
+	        
 	        }else if(command.equals("/Faq_BoardAddAction.fb")){
 				action = new Faq_BoardAddAction();
 				try {
@@ -60,7 +60,15 @@ public class FaqBoardFrontController extends HttpServlet implements Servlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else if(command.equals("/Faq_UserCheckAction.fb")){
+				action = new Faq_UserCheckAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+	        
 	        
       //이동
     	if (forward != null) {
