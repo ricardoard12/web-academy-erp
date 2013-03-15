@@ -15,7 +15,7 @@
 	<title>Insert title here</title>
 	<%
 		int num = Integer.parseInt(request.getParameter("num"));
-		Faq_boardbean faq_boardbean =(Faq_boardbean) request.getAttribute("faq_boardbean");
+		Faq_boardbean faq_boardbean = (Faq_boardbean) request.getAttribute("faq_boardbean");
 		//세션으로 id 값 받음
 		String id = (String) session.getAttribute("id");
 		//세션으로 name값 받음

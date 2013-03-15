@@ -60,6 +60,7 @@
 <%-- <input type="hidden" name="level" value=<%=session.getAttribute("level")%>> --%>
 
 <caption>업무일지 리스트</caption>
+
 <colgroup>
 <col width="30"><col width="80"><col>
 <col width="115"><col width="85"><col width="60">
@@ -85,8 +86,7 @@
     		<tr>
     		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
-    		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>"><%=businessbean.getBusiness_subject() %></a></td>
-<%--     		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>"><%=businessbean.getBusiness_subject() %></a></td> --%>
+    		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>"><%=businessbean.getBusiness_subject() %></a></td>
     		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
     		<td class="date" colspan="2"><%=businessbean.getBusiness_date() %></td>
     		

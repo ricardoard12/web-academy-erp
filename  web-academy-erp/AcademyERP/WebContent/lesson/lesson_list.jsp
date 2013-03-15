@@ -84,7 +84,7 @@
     		<tr>
     		<td class="frm"><input type="checkbox" name="lesson_check" id="chk_sel" value="<%=lessonbean.getLesson_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=lessonbean.getLesson_num() %></td>
-    		<td class="title"><a href="./LessonDetailAction.le?num=<%=lessonbean.getLesson_num()%>"><%=lessonbean.getLesson_subject() %></a></td>
+    		<td class="title"><a href="./LessonDetailAction.le?num=<%=lessonbean.getLesson_num()%>&name=<%=name%>"><%=lessonbean.getLesson_subject() %></a></td>
     		<td><a href="#"><%=lessonbean.getLesson_teacher() %></a></td>
     		<td class="date" colspan="2"><%=lessonbean.getLesson_date()%></td>
        		</tr>
