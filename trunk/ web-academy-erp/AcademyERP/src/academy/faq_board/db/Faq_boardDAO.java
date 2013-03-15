@@ -185,6 +185,7 @@ public class Faq_boardDAO {
 	}
 	
 	public boolean userchk(int num , String password) throws Exception {
+		
 		String sql = "";
 		boolean x = false;
 		String DBPass = null;
@@ -194,14 +195,14 @@ public class Faq_boardDAO {
 			sql = "SELECT faq_passwd FROM board_FAQ WHERE faq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			System.out.println("DBNum:"+num);
-			System.out.println("DBPass1:"+password);
+			System.out.println("Action에서 받은 num값 :"+num);
+			System.out.println("Action에서 받은 password값:"+password);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()){
 				DBPass = rs.getString("faq_passwd");
 				
-				System.out.println("DBPass2:"+DBPass);
+				System.out.println("DB에서 가져온 password값:"+DBPass);
 				
 				if(password.equals(DBPass)){
 					x = true;
