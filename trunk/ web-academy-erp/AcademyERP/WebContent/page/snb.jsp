@@ -33,7 +33,10 @@
 				String contextPath = request.getContextPath();
 				String command = requestURI.substring(contextPath.length());
 				
-				String sub1 = "";
+				String sub1_1 = "";
+				String sub1_2 = "";
+				String sub1_3 = "";
+				String sub1_4 = "";
 				
 				String sub2_1 = "";
 				String sub2_2 = "";
@@ -80,7 +83,16 @@
 				String sub10_2 = "";
 				String sub10_3 = "";
 				
-				if(command.equals("/student/student_join.jsp")){
+				if(command.equals("/student/student_detail2.jsp")){
+					sub1_1 = "class = 'active' ";    
+				}else if(command.equals("")){
+				    sub1_2 = "class = 'active' ";    
+				}else if(command.equals("")){
+				    sub1_3 = "class = 'active' ";    
+				}else if(command.equals("")){
+				    sub1_4 = "class = 'active' ";    
+				    //////////////////////////////////////
+				}else if(command.equals("/student/student_join.jsp")){
 					sub2_1 = "class = 'active' ";    
 				}else if(command.equals("/student/student_list.jsp")){
 				    sub2_2 = "class = 'active' ";    
@@ -214,7 +226,7 @@
 								} else {
 							%>
 							<label><a href="./MemberLogout.me" class="btn_sml"><span
-									onclick="">로그아웃 <%=command %></span></a></label>
+									onclick="">로그아웃 <%-- <%=command %> --%></span></a></label>
 							<%
 								}
 							%>
@@ -297,15 +309,15 @@
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
 				
-					<li><a href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
-					<li><a href="#"><span>회비내역조회</span></a></li>
-					<li><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
-					<li><a href="#"><span>성적조회</span></a></li>
-					<li><a href="#"><span>출결상황조회</span></a></li>
-					<li><a
+					<li <%=sub1_1 %>><a href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
+					<li <%=sub1_2 %>><a href="#"><span>회비내역조회</span></a></li>
+					<li <%=sub1_3 %>><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
+					<li <%=sub1_4 %>><a href="#"><span>성적조회</span></a></li>
+					<li ><a href="#"><span>출결상황조회</span></a></li>
+					<li ><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
-					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
-					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
+					<li ><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
+					<li ><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
 
 
