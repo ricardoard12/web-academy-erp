@@ -51,9 +51,8 @@
 	function timeRecord(type, id, date) { 
 // 		var date = document.emAttitudeForm.date.value;
 		location.href="./EmployeeAttitudeTimeRecordingAction.em?type=" + type + "&id=" + id + "&date=" + date;
+		return null;
 	}
-	
-}
 </script>
 </head>
 <%
