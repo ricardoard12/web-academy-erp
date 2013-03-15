@@ -63,12 +63,16 @@ public class FaqBoardFrontController extends HttpServlet implements Servlet {
 			}else if(command.equals("/Faq_UserCheckAction.fb")){
 				action = new Faq_UserCheckAction();
 				try {
-					forward = action.execute(request, response);
+					forward=action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}else if(command.equals("/Faq_check.fb")) {
+	            forward = new ActionForward();
+	            forward.setRedirect(false);
+	            forward.setPath("./faq_board/check2.jsp");
 	        
+	        }
 	        
       //이동
     	if (forward != null) {

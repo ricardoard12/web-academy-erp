@@ -14,7 +14,10 @@
 	src="./lesson/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
 	<title>Insert title here</title>
 	<%
-		int num = Integer.parseInt(request.getParameter("num"));
+// 		int num = Integer.parseInt(request.getParameter("num"));
+		int num = (Integer)request.getAttribute("num");
+		String password = (String) request.getAttribute("password");
+		
 		Faq_boardbean faq_boardbean = (Faq_boardbean) request.getAttribute("faq_boardbean");
 		//세션으로 id 값 받음
 		String id = (String) session.getAttribute("id");

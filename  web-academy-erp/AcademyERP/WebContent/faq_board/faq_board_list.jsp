@@ -16,13 +16,17 @@
     int startpage=((Integer)request.getAttribute("startpage")).intValue();
     int endpage=((Integer)request.getAttribute("endpage")).intValue();
    
-    
   	//세션으로 id 값 받음
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
 	String name = (String) session.getAttribute("name");
 	//세션으로 level 값 받음
 	String level = (String) session.getAttribute("level");
+	
+	// 패스워드체크를 위한 boolean값
+//     boolean userchk = ((Boolean)request.getAttribute("userchk")).booleanValue();
+// 	out.println("userchk 값 : " + userchk);
+	
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,8 +43,8 @@ function checkPass(num){
 	  var winH = 130;
 	  var left = Math.ceil((window.screen.width - winW)/2);
 	  var top = Math.ceil((window.screen.height - winH)/2);
-	  window.open('./faq_board/check2.jsp?num='+ num,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = no , menubar = no, scrollbars = no, resizable = no');
-	  
+	  window.open('./Faq_check.fb?num='+ num,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = no , menubar = no, scrollbars = no, resizable = no');
+// 	  close();
 	}
 
 </script>
@@ -69,8 +73,7 @@ function checkPass(num){
             <!-- UI Object -->
 <form method="post" action="Faq_BoardDeleteAction.fb">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
-<!-- level세션값 전달 -->
-<%-- <input type="hidden" name="level" value=<%=session.getAttribute("level")%>> --%>
+
 
 <caption>FAQ 리스트</caption>
 
