@@ -28,7 +28,7 @@ public class Faq_BoardDetailAction implements Action {
 		System.out.println("Action name값 : " + name);
 		
 		faq_boardbean = faq_boarddao.getDetail(num);
-		boolean usercheck = faq_boarddao.userchk(num, name);
+//		boolean usercheck = faq_boarddao.userchk(num, name);
 		
 		
 		

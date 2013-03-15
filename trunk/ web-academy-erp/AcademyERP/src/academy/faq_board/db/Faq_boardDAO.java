@@ -184,26 +184,26 @@ public class Faq_boardDAO {
 		return faq_boardbean;
 	}
 	
-	public boolean userchk(int num , String name) throws Exception {
+	public boolean userchk(int num , String password) throws Exception {
 		String sql = "";
 		boolean x = false;
-		String DBName = null;
+		String DBPass = null;
 		try {
 			System.out.println("UsetCheck start");
 			con = ds.getConnection();
-			sql = "SELECT faq_name FROM board_FAQ WHERE faq_num=?";
+			sql = "SELECT faq_passwd FROM board_FAQ WHERE faq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			System.out.println("DBNum:"+num);
-			System.out.println("DBName1:"+name);
+			System.out.println("DBPass1:"+password);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()){
-				DBName = rs.getString("faq_name");
+				DBPass = rs.getString("faq_passwd");
 				
-				System.out.println("DBName2:"+DBName);
+				System.out.println("DBPass2:"+DBPass);
 				
-				if(name.equals("DBName")){
+				if(password.equals(DBPass)){
 					x = true;
 				}else{
 					x = false;
