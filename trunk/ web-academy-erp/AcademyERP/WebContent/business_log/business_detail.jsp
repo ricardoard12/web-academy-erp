@@ -63,15 +63,11 @@
 									</tr>
 									
 									<tr>
+<%-- 									<%if(level.equals("3")){ %> --%>
 										<th colspan="2">| <input type="button" value="결재">|
-<%-- 											<% --%>
-<!-- 											if(level.equals("4") || level.equals("5")){ -->
-<!-- 										%> -->
-										<input
-											type="button" value="결재">|
-<%-- 											<% --%>
-											} if(level.equals("5")) {
-<%-- 										%> --%>
+<%-- 										<%}if(level.equals("4")) {%> --%>
+										<input type="button" value="결재">|
+<%-- 											<%}if(level.equals("5")) {	%>  --%>
 											<input type="button" value="결재">|
 <%-- 											<%} %> --%>
 											</th>
@@ -134,10 +130,7 @@
 											</div>
 										</td>
 									</tr>
-									
-									
-
-									
+						
 									<!--  글쓰기버튼 -->
 									<tr align="center">
 										<td></td>

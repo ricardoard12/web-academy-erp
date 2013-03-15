@@ -65,8 +65,14 @@
 										<th scope="row">작성자</th>
 										<td>
 											<div class="item">
+							<!--name값의 유무에 따라 글쓰기 게시판의 작성자 부분에 값이 삽입되거나 없음 -->
+											<%if(name!=null){ %>
 												<input type="text" name="faq_name" id="temp_input"
 													class="i_text" style="width: 300px" value="<%=name%>">
+													<%}else { %>
+													<input type="text" name="faq_name" id="temp_input"
+													class="i_text" style="width: 300px">
+													<%} %>
 										</td>
 									</tr>
 						
