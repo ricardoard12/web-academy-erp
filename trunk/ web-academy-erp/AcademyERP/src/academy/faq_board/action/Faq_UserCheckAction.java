@@ -13,7 +13,7 @@ public class Faq_UserCheckAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		
 		request.setCharacterEncoding("utf-8");
 		Faq_boardbean faq_boardbean = new Faq_boardbean();
 		Faq_boardDAO faq_boarddao = new Faq_boardDAO();
@@ -39,11 +39,16 @@ public class Faq_UserCheckAction implements Action {
 		out.close();
 		return null;
 	}
-		
+//		request.setAttribute("userchk", userchk);
 		request.setAttribute("faq_boardbean", faq_boardbean);
+		request.setAttribute("num", num);
+		request.setAttribute("password", password);
+		
 		forward.setRedirect(false);
+		System.out.println("Action에서의 boolean usercheck값 :" + userchk);
 		forward.setPath("./Faq_BoardDetailAction.fb");
 		return forward;
+		
 	}
 
 }

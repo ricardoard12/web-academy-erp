@@ -17,8 +17,8 @@ import academy.faq_board.db.Faq_boardDAO;
 		System.out.println("Faq_boardListAction Start");
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
-		String level = request.getParameter("level");
-		System.out.println(level);
+//		String level = request.getParameter("level");
+//		System.out.println(level);
 
 		HttpSession session = request.getSession();
 		Faq_boardDAO faq_boarddao = new Faq_boardDAO();

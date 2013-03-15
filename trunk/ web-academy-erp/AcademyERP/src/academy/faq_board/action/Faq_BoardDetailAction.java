@@ -20,29 +20,18 @@ public class Faq_BoardDetailAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		ActionForward forward=new ActionForward();
-		int num = Integer.parseInt(request.getParameter("num"));
+//		int num = Integer.parseInt(request.getParameter("num"));
+		int num = (int) request.getAttribute("num");
 		System.out.println("Action num값 : "+num);
-		HttpSession session = request.getSession();
-//		String name = (String) request.getParameter("name");
-		String name = (String) session.getAttribute("name");
-		System.out.println("Action name값 : " + name);
-		
-		faq_boardbean = faq_boarddao.getDetail(num);
-//		boolean usercheck = faq_boarddao.userchk(num, name);
-		
-		
-		
-//		if(usercheck == false){
-//			response.setContentType("text/html;charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>");
-//			out.println("alert('본인의 게시물이 아닙니다.')");
-//			out.println("history.back()");
-//			out.println("</script>");
-//			out.close();
-//			return null;
-//		}
 				
+//		String password = request.getParameter("password");
+		String password = (String) request.getAttribute("password");
+		System.out.println("Action password값 : " + password);
+				
+		faq_boardbean = faq_boarddao.getDetail(num);
+		
+		request.setAttribute("num", num);
+		request.setAttribute("password", password);
 		request.setAttribute("faq_boardbean", faq_boardbean);
 		forward.setRedirect(false);
 		forward.setPath("./faq_board/faq_board_detail.jsp");
