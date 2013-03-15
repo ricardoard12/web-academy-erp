@@ -217,6 +217,21 @@ public class GradeDAO {
         return gradeSsearch;
     }
     
+    public void gradeAcademyTestingCancel(String score, String id){
+        String sql = "";
+        
+        try {
+            con = ds.getConnection();
+            
+            sql = "delete from exam where gr_score = ? and st_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, score);
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+    }
+    
     public void gradeAcademyMoveTested(String[] check){
         StringBuffer sql = new StringBuffer("update grade set gr_status='Y' where gr_code in (");
         // 기본 쿼리문만을 StringBuffer로 생성한다.
