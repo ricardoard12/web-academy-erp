@@ -246,6 +246,41 @@ public void lessonModify(LessonBean lessonbean) throws Exception{
 		dbClose();
 	}
 }
+
+public boolean userchk(int num , String name) throws Exception {
+	String sql = "";
+	boolean x = false;
+	String DBName = null;
+	try {
+		System.out.println("UsetCheck start");
+		con = ds.getConnection();
+		sql = "SELECT lesson_teacher FROM lesson_plan WHERE lesson_num=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		System.out.println("DBNum:"+num);
+		System.out.println("DBName1:"+name);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()){
+			DBName = rs.getString("lesson_teacher");
+			
+			System.out.println("DBName2:"+DBName);
+			
+			if(name.equals(DBName)){
+				x = true;
+			}else{
+				x = false;
+			}
+		}
+		System.out.println("UserCheck End");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		dbClose();
+	}
+	System.out.println("return x : " + x);
+	return x;
+}
 	
 }
 	
