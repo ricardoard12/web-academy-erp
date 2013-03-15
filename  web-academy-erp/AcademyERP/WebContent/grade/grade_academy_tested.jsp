@@ -71,12 +71,12 @@
 						</tr>
 					<% }%>
 						<!-- 버튼 -->
-						<tr align="right">
+						<!-- <tr align="right">
 							<td align="center" colspan="7">
 								<div class="item">
-									<input type="submit" value="시험완료">
+									<input type="button" value="시험삭제">
 								</div>
-						</tr>
+						</tr> -->
 
 					</tbody>
 				</table>

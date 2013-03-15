@@ -54,7 +54,7 @@
 							<th scope="col">학생아이디</th>
 							<th scope="col">학교이름</th>
 							<th scope="col">시험성적</th>
-							<th scope="col">수정</th>
+							<th scope="col">삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,16 +74,23 @@
 							<input type="text" name="gr_score" value="<%=gradebean.getGr_score() %>" size="3"  >
 							<%}else{ %>
 							<%=gradebean.getGr_score() %>
-							 <%} %></td>
-							 
-							<td><%if(gradebean.getGr_score() != null){%>
-							    <input type="button" value="성적수정" onclick="">
-							<%}else{%>
-							    
-								<%}%></td>
-						</tr>
-					<% }
-					}	%>
+						 <%} %></td>
+
+							<td>
+								<%
+								    if (gradebean.getGr_score() != null) { // 출근 시간이 기록되어 있을 경우
+								%>
+								<a href="#"	onclick="confirmCancel('<%=gradebean.getGr_score()%>','<%=gradebean.getSt_id()%>','<%=gp_name%>','<%=gr_code%>')">
+								<img src="./img/icon_cancel.gif" width="10" height="10"></a>
+								<%
+								    } else {
+								        
+									}%> 
+							</td>
+							
+							</tr>
+							<% }
+							}	%>
 					
 						<!-- 버튼 -->
 						<tr align="right">
@@ -102,12 +109,12 @@
 				
 <script type="text/javascript">
 
-
-	$(document).ready(function() {
-		// #login-box password field
-		$('#password').attr('type', 'text');
-		$('#password').val('Password');
-	});
+	function confirmCancel(score, id, gp_name, gr_code) { // 버튼 클릭 확인
+		if (confirm("취소 처리 하시겠습니까?") == true) {
+			location.href="./GradeAcademyTestingStudentCancel.gr?score=" + score + "&id=" + id  + "&gp_name=" + gp_name + "&gr_code=" + gr_code ;
+			return null;
+		}
+	}
 
 	function CheckAll() {
 		if (document.grAddCheck.all.checked == true) { // 체크가 되었다면

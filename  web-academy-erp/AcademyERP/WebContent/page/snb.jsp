@@ -269,8 +269,6 @@
 					<li><a href="./AccountingList.ac?kind=fee"><span>회비현황</span></a></li>
 					<li><a href="./AccountingList.ac?kind=in"><span>수입현황</span></a></li>
 					<li><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
-					<li><a href="#"><span>직원계좌관리</span></a></li>
-					<li><a href="#"><span>직원급여관리</span></a></li>
 					<li><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
 			<li><a><span>SMS 관리</span><span class="i"></span></a>

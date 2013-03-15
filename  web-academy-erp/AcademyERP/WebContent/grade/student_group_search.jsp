@@ -39,7 +39,7 @@
 					    	GradeBean gradebean = (GradeBean)gradeSsearch.get(i);%>
 						<tr>
 							<td><%=gradebean.getMm_name() %></td>
-							<td onclick="windowclose('<%=gradebean.getMm_id() %>')"><a href=""><%=gradebean.getMm_id() %></a></td>
+							<td onclick="windowclose('<%=gradebean.getSt_id() %>')"><a href=""><%=gradebean.getSt_id() %></a></td>
 							<td><%=gradebean.getMm_jumin1() %> - <%=gradebean.getMm_jumin1() %></td>
 						</tr>
 					<% 		}
