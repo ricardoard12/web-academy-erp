@@ -62,7 +62,7 @@
 	marginheight="0">
 	<!-- ImageReady Slices (Untitled-4) -->
 	<table id="Table_01" width="400" height="601" border="0"
-		cellpadding="0" cellspacing="0">
+		cellpadding="0" cellspacing="0"  style="border-collapse: collapse; margin: 0px; padding: 0px;">
 		<tr>
 			<td colspan="12"><img src="./sms/images/smsForm_01.gif"
 				width="400" height="75" alt="" border="0"></td>
@@ -76,7 +76,7 @@
 				height="25" alt="" border="0"></td>
 			<td colspan="6"><img src="./sms/images/smsForm_04.gif"
 				width="194" height="25" alt="" border="0"></td>
-			<td colspan="3" width="25"><%=credits %>건</td>
+			<td colspan="3" width="25" height="25"></td>
 			<td><img src="./sms/images/smsForm_06.gif" width="14"
 				height="25" alt="" border="0"></td>
 			<td><img src="./sms/images/smsForm_07.gif" width="56"
@@ -95,10 +95,10 @@
 				width="96" height="134" alt="" border="0"></td>
 			<td colspan="7">
 				<table id="Table_01" width="208" height="134" border="0"
-					cellpadding="0" cellspacing="0">
+					cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin: 0px; padding: 0px;">
 					<tr>
 						<td width="208" height="100" align="center" id="inputMessage">
-						<textarea	cols="26" rows="6" name="message"></textarea></td>
+						<textarea	cols="26" rows="6" name="message" placeholder="메세지를 입력하세요."></textarea></td>
 					</tr>
 					<tr>
 						<td width="208" height="34" align="right" id="smsByteCount">0 / 80 Byte</td>
@@ -124,7 +124,7 @@
 		<tr>
 			<td colspan="3"><img src="./sms/images/smsForm_17.gif"
 				width="132" height="25" alt="" border="0"></td>
-			<td colspan="5">0518000000</td>
+			<td colspan="5"><input type="text" name="senderPhone" size="20"></td>
 			<td><img src="./sms/images/smsForm_19.gif" width="36"
 				height="25" alt="" border="0"></td>
 			<td colspan="3"><img src="./sms/images/smsForm_20.gif"
