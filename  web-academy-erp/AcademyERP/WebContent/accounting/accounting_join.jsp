@@ -59,7 +59,8 @@
 					<th scope="row">회원 아이디</th>
 					<td>
 						<div class="item">
-							<input type="text" name="mm_id" id="temp_input" class="i_text" style="width: 300px">
+							<input type="text" name="mm_id" id="temp_input" class="i_text" size="10">
+							<input type="button" value="아이디 찾기" onclick="searchIDopen()">
 						</div>
 					</td>
 				</tr>
@@ -102,10 +103,12 @@
 					<th scope="row">담당자 이름</th>
 					<td>
 						<div class="item">
-						<input type="text" name="ac_manager_name" id="temp_input"	class="i_text" style="width: 300px">
+						<input type="text" name="ac_manager_name" id="temp_input"	
+						class="i_text" size="10" > <input type="button" value="담당자" onclick="searchOfficerOpen()">
 						</div>
 					</td>
 				</tr>
+				
 
 				<tr>
 					<th scope="row">메모</th>
@@ -151,13 +154,21 @@
 	</div>
 
 	<script type="text/javascript">
-		function CheckDate() {
+	
+	function searchIDopen(){
+		window.open('./AccountingIDSearch.ac', '_blank', 'height=200, width=400');
+	}
+	
+	function searchOfficerOpen(){
+		window.open('./AccountingOfficerSearch.ac', '_blank', 'height=200, width=400');
+	}
+	
+	function CheckDate() {
 			var date = document.acCheck.ac_date.value;
 			if(date == ''){
 				alert('날짜 입력하세요');
 				return false;
 			}
-			
 		}
 		
 		jQuery(function() {

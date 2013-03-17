@@ -216,6 +216,31 @@ public class AccountingDAO {
 			e.printStackTrace();
 		}finally {closingDB();}
     	return account;
-    	
+    }
+    
+    public List accountingIDsearch(){
+        List accountingIDlList = null;
+        AccountingBean acbean = null;
+        String sql="";
+        
+        try {
+            con=ds.getConnection();
+            sql = "SELECT mm_id, mm_name FROM member where mm_id like 's%' or mm_id like 't%'";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                accountingIDlList = new ArrayList();
+                do{
+                    acbean = new AccountingBean();
+                    acbean.setGr_period(rs.getString("gr_period"));
+                    acbean.setGr_subject(rs.getString("gr_subject"));
+                    acbean.setGr_memo(rs.getString("gr_memo"));
+                    
+                    accountingIDlList.add(acbean);
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return accountingIDlList;
     }
 }

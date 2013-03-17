@@ -44,13 +44,20 @@ public class AccountingFrontController extends HttpServlet implements Servlet {
         }//학생/학부모 회계내용조회
         else if(command.equals("/AccountingStuentd.ac")){
         	action= new AccountingStuentdAction();
-        	try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+        	try {forward=action.execute(request, response);}
+            catch (Exception e) {e.printStackTrace();}
+        	//수입 지출 수강자 선택 리스트
+        } else if(command.equals("/AccountingIDSearch.ac")){
+            action= new AccountingIDSearchAction();
+            try {forward=action.execute(request, response);}
+            catch (Exception e) {e.printStackTrace();}
+            //담당자 선택 리스트
+        } else if(command.equals("/AccountingOfficerSearch.ac")){
+            action= new AccountingOfficerSearchAction();
+            try {forward=action.execute(request, response);}
+            catch (Exception e) {e.printStackTrace();}
         }
+        
         
         // 이동
         if (forward != null) {

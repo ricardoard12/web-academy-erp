@@ -74,10 +74,6 @@ public class AccountingStuentdAction implements Action{
 		forward.setRedirect(false); //값가지고 이동
 		forward.setPath("/accounting/accounting_student_list.jsp");
 		return forward;
-       
-       
-      
-            
 	}
 
 }
