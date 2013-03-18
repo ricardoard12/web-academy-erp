@@ -59,7 +59,7 @@
 						zip2 = st.nextToken();
 					%>
 						<tr>
-							<td><a href="javascript:setZipcode('<%=mType %>','<%=zip1%>','<%=zip2%>','<%=addr%>')"><%=zipcode%></a></td>
+							<td align="center"><a href="javascript:setZipcode('<%=mType %>','<%=zip1%>','<%=zip2%>','<%=addr%>')"><%=zipcode%></a></td>
 							<td><%=addr %></td>
 						</tr>
 					<%
