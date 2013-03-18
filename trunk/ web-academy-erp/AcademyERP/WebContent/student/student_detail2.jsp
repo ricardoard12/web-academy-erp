@@ -164,15 +164,7 @@
 	
 	
 	</script>
-<%
-if(session.getAttribute("level")!=null){
-	String level=(String)session.getAttribute("level");
-	if(!level.equals("4") || !level.equals("5") || !level.equals("3")){%>
-	<script type="text/javascript">
-		history.back();
-	</script>
-	
-	<% }}%>
+
 <title>Insert title here</title>
 </head>
 <% StudentBean studentbean = (StudentBean)request.getAttribute("studentbean");// detail에서 넘긴 값을 받아옴 

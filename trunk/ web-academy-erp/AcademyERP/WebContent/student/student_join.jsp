@@ -167,9 +167,9 @@
 	<%
 if(session.getAttribute("level")!=null){
 	String level=(String)session.getAttribute("level");
-	if(!level.equals("4") || !level.equals("5")){%>
+	if(level.equals("1") || level.equals("2")){%>
 	<script type="text/javascript">
-		history.back();
+	history.back();
 	</script>
 	
 	<% }}%>
