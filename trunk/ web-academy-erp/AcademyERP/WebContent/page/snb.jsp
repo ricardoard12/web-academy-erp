@@ -432,7 +432,7 @@
 				<ul style="display: none;">
 					<li <%=sub10_1%>><a href="./LevelList.master"><span>레벨/권한
 								설정</span></a></li>
-					<li <%=sub10_2%>><a href="#"><span>공지사항 관리</span></a></li>
+					<li <%=sub10_2%>><a href="#"><span>전체 계시판 관리</span></a></li>
 					<li <%=sub10_3%>><a href="./AllMemberList.master"><span>전체
 								회원 관리</span></a></li>
 				</ul></li>
