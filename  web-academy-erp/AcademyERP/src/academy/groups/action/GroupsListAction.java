@@ -19,11 +19,11 @@ public class GroupsListAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		String name = (String) session.getAttribute("name");
 		
-		int level = Integer.parseInt((String) session.getAttribute("level"));
-		/* 권한 확인 */
-		if (level < 3) {
+		// 권한 확인
+		String sid = (String) session.getAttribute("id");
+		int level = (Integer) session.getAttribute("level");
+		if (sid == null || sid.equals("") || level < 3) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
