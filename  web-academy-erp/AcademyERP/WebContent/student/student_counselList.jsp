@@ -24,11 +24,17 @@ int startpage=((Integer)request.getAttribute("startpage")).intValue();
 int endpage=((Integer)request.getAttribute("endpage")).intValue();
 StudentBean studentbean= (StudentBean)request.getAttribute("studentbean");
 
-
-
 request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 %>
-
+<%
+if(session.getAttribute("level")!=null){
+	String level=(String)session.getAttribute("level");
+	if(!level.equals("4") || !level.equals("5") || !level.equals("3")){%>
+	<script type="text/javascript">
+		history.back();
+	</script>
+	
+	<% }}%>
 <title>Insert title here</title>
 </head>
 <body>
