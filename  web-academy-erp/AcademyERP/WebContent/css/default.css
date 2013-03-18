@@ -5,7 +5,7 @@
 #container{_display:inline-block;width:100%;min-height: 300px;}
 #container:after{display:block;clear:both;content:''}
 .snb{float:left;width:180px;margin-right:-200px}
-#content{margin-left:200px}
+#content{margin-left:200px;width: 70%;}
 #footer{width:100%}
  
 /* Menu Common */
