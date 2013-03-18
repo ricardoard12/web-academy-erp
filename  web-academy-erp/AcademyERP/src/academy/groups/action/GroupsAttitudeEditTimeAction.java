@@ -23,7 +23,7 @@ public class GroupsAttitudeEditTimeAction implements Action {
 		/* 권한 확인 */
 		HttpSession session = request.getSession();
 		String sid = (String) session.getAttribute("id");
-		int level = (Integer) session.getAttribute("level");
+		int level = Integer.parseInt((String) session.getAttribute("level"));
 		if (sid == null || sid.equals("") || level < 3) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
