@@ -115,7 +115,7 @@ public class EmployeeDAO {
 				employee.setEp_position(rs.getString("ep_position"));
 				employee.setEp_subject_name(rs.getString("ep_subject_name"));
 
-				System.out.println("EP_ID : " + rs.getString("ep_id"));
+//				System.out.println("EP_ID : " + rs.getString("ep_id"));
 				
 				sql = "SELECT mm_name FROM member WHERE mm_id=?";
 				pstmt = con.prepareStatement(sql);
