@@ -19,8 +19,9 @@ public class EmployeeOutgoingAddMemoAction implements Action {
 		
 		/* 권한 확인 */
 		HttpSession session = request.getSession();
-		int level = Integer.parseInt((String) session.getAttribute("level"));
-		if (level < 4) {
+		String sid = (String) session.getAttribute("id");
+		int level = (Integer) session.getAttribute("level");
+		if (sid == null || sid.equals("") || level < 4) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
