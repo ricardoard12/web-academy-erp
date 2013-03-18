@@ -13,6 +13,19 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	/* 권한 확인 */
+	String sid = (String)session.getAttribute("id");
+	int level = Integer.parseInt((String) session.getAttribute("level"));
+	if (sid == null || sid.equals("") || level < 3) {
+		%>
+		<script>
+			alert("권한이 없습니다.");
+			history.back();
+		</script>
+		<%
+	}
+
 	String gp_name = (String)request.getAttribute("gp_name");
 	List groupsList = (List)request.getAttribute("groupsList");
 	String chkValue = (String)request.getAttribute("chkValue"); // 체크박스 값 결합시킨 채로 그대로 전달

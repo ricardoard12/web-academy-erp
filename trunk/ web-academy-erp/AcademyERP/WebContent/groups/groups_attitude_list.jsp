@@ -140,7 +140,7 @@
 	                alert("메세지를 전송할 대상을 선택하세요");
 	                return false;
 	        } else {
-	                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=400,height=600,scrollbars=no");
+	                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=600,height=900,scrollbars=no");
 	        }
 	}
 	
@@ -148,6 +148,18 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	/* 권한 확인 */
+	String sid = (String)session.getAttribute("id");
+	int level = Integer.parseInt((String) session.getAttribute("level"));
+	if (sid == null || sid.equals("") || level < 3) {
+		%>
+		<script>
+			alert("권한이 없습니다.");
+			history.back();
+		</script>
+		<%
+	}
 	
 	List attitudeList = (List) request.getAttribute("attitudeList");
 	
