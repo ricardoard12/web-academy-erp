@@ -10,11 +10,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/join.css" rel="stylesheet" type="text/css">
+<title>글쓰기</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-<title>글쓰기</title>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("input[type=submit], input[type=button]").button().click(
+				function(event) {
+					event.preventDefault();
+				});
+	});
+</script>
 </head>
 <body>
 	<!-- UI Object -->
