@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import academy.student.db.StudentDAO;
 
@@ -23,6 +24,21 @@ public class SendSms implements Action {
 			HttpServletResponse response) throws Exception {
 		System.out.println("SendSms");
 		request.setCharacterEncoding("UTF-8");
+		
+		/* 권한 확인 */
+		HttpSession session = request.getSession();
+		String sid = (String) session.getAttribute("id");
+		int level = (Integer) session.getAttribute("level");
+		if (sid == null || sid.equals("") || level < 3) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('권한이 없습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
 		
 		ActionForward forward = new ActionForward();
 		StudentDAO studentDAO = new StudentDAO();
