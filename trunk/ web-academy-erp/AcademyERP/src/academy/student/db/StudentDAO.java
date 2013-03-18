@@ -104,6 +104,8 @@ public class StudentDAO {
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학' limit ?,?";
 			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startrow-1);// 시작계수
+			pstmt.setInt(2, limit);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()){ // 정보가 있으면 저장
@@ -261,6 +263,8 @@ public class StudentDAO {
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학' limit ?,?";  
 			// 휴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, startrow-1);// 시작계수
+			pstmt.setInt(2, limit);
 			rs= pstmt.executeQuery();
 			
 			
@@ -301,6 +305,8 @@ public class StudentDAO {
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학' limit ?,?"; 
 			// 퇴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, startrow-1);// 시작계수
+			pstmt.setInt(2, limit);
 			rs= pstmt.executeQuery();
 			
 			
