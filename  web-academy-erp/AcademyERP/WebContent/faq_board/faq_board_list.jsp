@@ -39,12 +39,15 @@
 
 //비밀번호 체크를 위한 window 띄움
 function checkPass(num){
-	  var winW = 300;
-	  var winH = 130;
+	  var winW = window.screen.Width;
+	  var winH = window.screen.Height;
+	  
 	  var left = Math.ceil((window.screen.width - winW)/2);
 	  var top = Math.ceil((window.screen.height - winH)/2);
-	  window.open('./Faq_check.fb?num='+ num,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = no , menubar = no, scrollbars = no, resizable = no');
-// 	  close();
+	  //화면의 중앙에 위치하도록 position 설정
+	  
+	  window.open('./Faq_check.fb?num='+ num,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = yes , menubar = yes, scrollbars = no, resizable = yes');
+	  
 	}
 
 </script>
@@ -71,7 +74,7 @@ function checkPass(num){
         
             <!-- 게시판 시작 -->
             <!-- UI Object -->
-<form method="post" action="Faq_BoardDeleteAction.fb">
+<form name="listForm" method="post" action="Faq_BoardDeleteAction.fb">
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 
 

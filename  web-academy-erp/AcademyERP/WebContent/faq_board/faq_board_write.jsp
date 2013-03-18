@@ -7,11 +7,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/join.css" rel="stylesheet" type="text/css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript"
-	src="./lesson/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-	<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="./lesson/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+function checkForm(){
+	if(document.faq_WriteForm.faq_subject.value.length == 0 ){
+		alert("제목을 입력하세요.");
+		document.faq_WriteForm.faq_subject.focus();
+		return false;
+	}
+	if(document.faq_WriteForm.faq_name.value.length == 0 ){
+		alert("작성자를 입력하세요.");
+		document.faq_WriteForm.faq_name.focus();
+		return false;
+	}
+	if(document.faq_WriteForm.faq_content.value.length == 0 ){
+		alert("내용을 입력하세요.");
+		document.faq_WriteForm.faq_content.focus();
+		return false;
+	}
+	if(document.faq_WriteForm.faq_passwd.value.length == 0 ){
+		alert("패스워드를 입력하세요.");
+		document.faq_WriteForm.faq_passwd.focus();
+		return false;
+	}
+}
+
+</script>
+
+
 	<%
 		//세션으로 id 값 받음
 		String id = (String) session.getAttribute("id");
@@ -20,6 +47,8 @@
 		//세션으로 level 값 받음
 		String level = (String) session.getAttribute("level");
 	%>
+	
+	
 </head>
 <body>
 	<!-- UI Object -->
@@ -42,7 +71,7 @@
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./Faq_BoardAddAction.fb" method="post">
+				<form action="./Faq_BoardAddAction.fb" method="post" name="faq_WriteForm" onsubmit="return checkForm()">
 					<fieldset>
 						<legend><b>FAQ BOARD FORM</b></legend>
 						<div class="form_table">

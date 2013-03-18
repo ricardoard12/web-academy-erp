@@ -230,6 +230,8 @@ public class BoardDAO {
 				String dbPasswd = rs.getString("board_pass");
 				if (passwd.equals(dbPasswd)) {
 					x = true;
+				}else{
+					x = false;
 				}
 			}
 		} catch (Exception e) {

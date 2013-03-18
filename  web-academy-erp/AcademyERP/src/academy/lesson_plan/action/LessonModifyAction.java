@@ -17,6 +17,7 @@ public class LessonModifyAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		LessonBean lessonbean = new LessonBean();
+		
 		lessonbean.setLesson_num(Integer.parseInt(request.getParameter("lesson_num")));
 		lessonbean.setLesson_teacher(request.getParameter("lesson_teacher"));
 		lessonbean.setLesson_subject(request.getParameter("lesson_subject"));
