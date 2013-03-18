@@ -50,7 +50,7 @@ public class SmsDAO {
 			String autoSend) {
 		try {
 			con = ds.getConnection();
-			String sql = "INSERT INTO sms (receiver_id,receiver_name,receiver_phone,sender_phone,message,result_code,auto_send) VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO sms (receiver_id,receiver_name,receiver_phone,sender_phone,message,result_code,auto_send,send_time) VALUES (?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, name);
