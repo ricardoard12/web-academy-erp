@@ -22,6 +22,26 @@
 	        }
 	    }
 	}
+	
+	function checkForm() {
+		var count = 0;
+	        var chk = document.getElementsByName("chkStudent");
+	        
+	        for (var i = 0; i < chk.length; i++) { 
+	                if (chk[i].checked == true) {
+	                        count++;
+	                        chkValue += chk[i].value; // 체크된 모든 아이디 문자열 결합
+	                        chkValue += ","; // split 에서 구분자로 사용할 문자 삽입
+	                } 
+       		}
+	        
+	        if (count <= 0){
+	                alert("선택된 항목이 없습니다.");
+	                return false;
+        	} else {
+          	      return true;
+        	}
+	}
 
 </script>
 </head>
@@ -46,36 +66,34 @@
 <body>
 	<form action="./GroupsAddStudentAction.gp" method="post">
 		<input type="hidden" name="gp_name"	value="<%=gp_name %>">
-		<table border="1">
-			<tr><th colspan="3"><h1>학급 학생 추가</h1></th></tr>
-			<tr><th>선택 <input type=checkbox onclick="allChecked(this.checked)"></th><th>이름(아이디)</th><th>학교명(학년)</th>
-			<%if (studentList.size() == 0) {%>
-			<tr><td colspan="3">학급에 새로 추가할 학생이 없습니다.</td></tr>
-			<%} else {
-				for (int i = 0; i < studentList.size(); i++) {
-					StudentBean student = (StudentBean)studentList.get(i);
-			%>
-			<tr>
-				<td><input name="chkStudent" type="checkbox" id="a1"
-						class="i_check" value="<%=student.getMm_id()%>"><label for="a1"></label></td>
-				<td>
-					<%=student.getMm_name() %>(<%=student.getMm_id() %>)	
-				</td>
-				<td>
-					<%=student.getSt_school_name() %>(<%=student.getSt_school_grade() %>)	
-				</td>
-			</tr>
-			<%
-				} 
-			}
-			%>
-			<tr>
-				<td align="center" colspan="3">
-					<input type="submit" value="추가">
-					<input type="button" value="취소" onclick="window.close()">
-				</td>
-			</tr>
-		</table>
+		<div align="center">
+			<table border="1" style="width: 600px;">
+				<tr><th colspan="3"><h2>학급 학생 추가</h2></th></tr>
+				<tr><th width="80">선택 <input type=checkbox onclick="allChecked(this.checked)"></th><th width="200">이름(아이디)</th><th width="320">학교명(학년)</th>
+				<%if (studentList.size() == 0) {%>
+				<tr><td colspan="3" height="50" align="center"><h3>학급에 새로 추가할 학생이 없습니다.</h3></td></tr>
+				<%} else {
+					for (int i = 0; i < studentList.size(); i++) {
+						StudentBean student = (StudentBean)studentList.get(i);
+				%>
+				<tr>
+					<td align="center"><input name="chkStudent" type="checkbox" id="a1"
+							class="i_check" value="<%=student.getMm_id()%>"><label for="a1"></label></td>
+					<td align="center">	<%=student.getMm_name() %>(<%=student.getMm_id() %>)</td>
+					<td align="center"><%=student.getSt_school_name() %>(<%=student.getSt_school_grade() %>)</td>
+				</tr>
+				<%
+					} 
+				}
+				%>
+				<tr>
+					<td align="center" colspan="3">
+						<input type="submit" value="추가" onclick="return checkForm()">
+						<input type="button" value="취소" onclick="window.close()">
+					</td>
+				</tr>
+			</table>
+		</div>
 	</form>
 </body>
 </html>

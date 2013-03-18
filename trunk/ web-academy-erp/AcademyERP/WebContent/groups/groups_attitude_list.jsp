@@ -61,7 +61,7 @@
 		if (gp_name == "") {
 			alert('학급을 선택하세요.');
 		} else {
-			window.open("./GroupsAddStudent.gp?gp_name=" + gp_name, "addStudent", "width=400,height=500,scrollbars=yes");
+			window.open("./GroupsAddStudent.gp?gp_name=" + gp_name, "addStudent", "width=700,height=500,scrollbars=yes");
 		}
 	}
 	
@@ -102,7 +102,7 @@
 		}
 	}
 	
-	function moveStudent(gp_name) { // 학급 학생 제외
+	function moveStudent(gp_name) { // 학급 학생 이동
 		var count = 0;
 		var chk = document.getElementsByName("chkStudent");
 		var chkValue = "";
@@ -251,13 +251,14 @@
 						
 						<thead>
 							<tr>
-								<th scope="col">선택 <input type=checkbox name="allCheck" onclick="allChecked()"></th>
-								<th scope="col">이름(아이디)</th>
-								<th scope="col">출결상황</th>
-								<th scope="col">입실시간</th>
-								<th scope="col">퇴실시간</th>
-								<th scope="col">메모</th>
-								<th scope="col">취소</th>
+								<th scope="col" width="80">선택 <input type=checkbox name="allCheck" onclick="allChecked()"></th>
+								<th scope="col" width="150">이름(아이디)</th>
+								<th scope="col" width="150">학교(학년)</th>
+								<th scope="col" width="100">출결상황</th>
+								<th scope="col" width="100">입실시간</th>
+								<th scope="col" width="100">퇴실시간</th>
+								<th scope="col" width="200">메모</th>
+								<th scope="col" width="100">취소</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -272,6 +273,7 @@
 									<td><input name="chkStudent" type="checkbox" id="a1"
 										class="i_check" value="<%=attitude.getAt_member_id()%>"><label for="a1"></label></td>
 									<td><a href="#" onclick="stInfo('<%=attitude.getAt_member_id() %>')"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
+									<td align="center"><%=attitude.getSt_school_name() %>(<%=attitude.getSt_school_grade() %>)</td>
 									<td>
 										<%
 											// at_report_state Y : 출석, N : 결석
