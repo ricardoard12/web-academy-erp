@@ -1,3 +1,5 @@
+<%@page import="academy.seq_board.db.SeqBean"%>
+<%@page import="academy.qna_board.db.QnaBean"%>
 <%@page import="academy.noticle.db.NoticeBean"%>
 <%@page import="academy.student.db.StudentBean"%>
 <%@page import="academy.student.db.StudentDAO"%>
@@ -15,7 +17,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <%
 
-int noticecount=((Integer)request.getAttribute("noticecount")).intValue();
+int noticecount=((Integer)request.getAttribute("qnacount")).intValue();
 int nowpage=((Integer)request.getAttribute("page")).intValue();
 int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
 int startpage=((Integer)request.getAttribute("startpage")).intValue();
@@ -60,20 +62,29 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 					<tbody>
 	
 <%
-						List noticeList = (List)request.getAttribute("noticeList");
-
+						List qnaList = (List)request.getAttribute("qnaList");
+						List seqList =(List)request.getAttribute("seqList");
 %>
 						<thead>
 						<tr><th class="item">번호</th><th class="item">제목</th><th class="item">작성자</th><th class="item">날짜</th><th class="item">조회수</th></tr>
 						</tbody>
 						<%
-							if(noticeList!=null){
-							for(int i =0; i<noticeList.size(); i++){
-								NoticeBean noticebean = (NoticeBean)noticeList.get(i);	
+							if(qnaList!=null){
+							for(int i =0; i<qnaList.size(); i++){
+								QnaBean qnabean = (QnaBean)qnaList.get(i);	
 								%>
-								<tr><td><%=noticebean.getNot_num() %></td><td><a href="./NoticeDetail.no?num=<%=noticebean.getNot_num()%>"><%=noticebean.getNot_title() %></a></td><td><%=noticebean.getNot_subject() %></td><td><%= noticebean.getNot_data() %></td><td><%= noticebean.getNot_recont()%></td></tr>
+								<tr><td><%=qnabean.getQna_num() %></td><td><a href="./QnaDetail.qa?num=<%=qnabean.getQna_num()%>"><%=qnabean.getQna_title() %></a></td><td><%=qnabean.getQna_subject() %></td><td><%= qnabean.getQna_data() %></td><td><%= qnabean.getQna_recont()%></td></tr>
 								<%
+								if(seqList!=null){
+									for(int j =0; j<seqList.size(); j++){
+										SeqBean seqean = (SeqBean)seqList.get(j);	
+										%>
+										<tr><td>답변</td><td><a href="./SeqDetail.sq?num=<%=seqean.getSeq_num()%>"><%=seqean.getSeq_title() %></a></td><td><%=seqean.getSeq_name() %></td><td><%= seqean.getSeq_date() %></td><td><%= seqean.getSeq_count()%></td></tr>
+										<%	
+									}
 								}
+								
+							}
 							%>
 									<tr>
 							<td colspan="8" align="center">
@@ -84,7 +95,7 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 						<%
 						}else{
 						%>
-							<a href="./NoticeList.no?page=<%=nowpage-1%>">[이전]</a>
+							<a href="./QnaList.qa?page=<%=nowpage-1%>">[이전]</a>
 						<%
 					}
 					%>
@@ -93,7 +104,7 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 						if(a==nowpage){
 							%>[<%=a %>]&nbsp;<%
 						}else{
-							%><a href="./NoticeList.no?page=<%=a%>">[<%=a %>]&nbsp;</a><%
+							%><a href="./QnaList.qa?page=<%=a%>">[<%=a %>]&nbsp;</a><%
 						}
 					}
 					%>
@@ -101,7 +112,7 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 					if(nowpage>=maxpage){
 						%><%
 					}else{
-						%><a href="./NoticeList.no?page=<%=nowpage+1%>">[다음]</a><%
+						%><a href="./QnaList.qa?page=<%=nowpage+1%>">[다음]</a><%
 					}
 
 					%>
@@ -120,17 +131,10 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 								}
 %>	
 					</table>
-					<%
-					if(session.getAttribute("level")!=null){
-					String level=(String)session.getAttribute("level");
-					if(level.equals("4") ||level.equals("5") ){%>
 					<div align="right">
-					<input type="button" value="글쓰기" onclick="location.href='./NoticleWriting.no'">
+					<input type="button" value="글쓰기" onclick="location.href='./QnaWriting.qa'">
 					</div>
-					<%
-																} 
-															}%>
-
+					
 				
 				<!-- //UI Object -->
 				</form>

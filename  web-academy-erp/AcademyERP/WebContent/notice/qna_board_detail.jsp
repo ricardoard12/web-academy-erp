@@ -1,3 +1,4 @@
+<%@page import="academy.qna_board.db.QnaBean"%>
 <%@page import="academy.noticle.db.NoticeBean"%>
 <%@page import="java.util.List"%>
 <%@page import="academy.board.db.Re_BoardBean"%>
@@ -12,7 +13,7 @@
 <link href="./css/board.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
 <%
-NoticeBean notice = (NoticeBean)request.getAttribute("notice");
+QnaBean qnabean = (QnaBean)request.getAttribute("qna");
 %>
 
 </head>
@@ -45,22 +46,22 @@ NoticeBean notice = (NoticeBean)request.getAttribute("notice");
 <thead>
 <tr>
 <th scope="row">제목</th>
-<td colspan="5"><%=notice.getNot_title() %></td>
+<td colspan="5"><%=qnabean.getQna_title() %></td>
 </tr>
 </thead>
 <tbody>
 <tr>
 
 <th scope="row">작성자</th>
-<td><%=notice.getNot_subject()%></td>
+<td><%=qnabean.getQna_subject()%></td>
 <th scope="row">작성일</th>
-<td><%=notice.getNot_data() %></td>
+<td><%=qnabean.getQna_data() %></td>
 <th scope="row">조회</th>
-<td><%=notice.getNot_recont() %></td>
+<td><%=qnabean.getQna_recont() %></td>
 </tr>
 <tr>
 <td colspan="6" class="cont">
-<%=notice.getNot_content() %>
+<%=qnabean.getQna_content() %>
 </td>
 </tr>
 </tbody>
@@ -68,14 +69,25 @@ NoticeBean notice = (NoticeBean)request.getAttribute("notice");
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
+<input type="button" name="notice_modify" value="수정" onclick="location.href='./QnaModify.qa?num=<%=qnabean.getQna_num()%>'">
+<% if(session.getAttribute("qnaid")!=null){  // 세션을 이용해서 글생성후 새션과 DB에 저장된 작성자가 같으면 삭제 버튼이 나타난다.
+	String qnaid = (String)session.getAttribute("qnaid");
+	if(qnaid.equals(qnabean.getQna_subject())){
+	%>	
+	<input type="button"  value="삭제" onclick="location.href='./QnaDelete.qa?num=<%=qnabean.getQna_num()%>'"> 
+	<%
+	}
+}
+%>
+
+<input type="button" name="" value="목록" onclick="location.href='./QnaList.qa'">
 <%
 if(session.getAttribute("level")!=null){
 	String level=(String)session.getAttribute("level");
 	if(level.equals("4") ||level.equals("5") ){%>
-<input type="button" name="notice_modify" value="수정" onclick="location.href='./NoticeModify.no?num=<%=notice.getNot_num()%>'">
-<input type="button"  value="삭제" onclick="location.href='./NoticeDelete.no?num=<%=notice.getNot_num()%>'"> 
+	<input type="button" name="" value="답글" onclick="location.href='./SeqWriting.sq?qna_num=<%=qnabean.getQna_num()%>'">
 	<% }}%>
-	<input type="button" name="" value="목록" onclick="location.href='./NoticeList.no'">
+	
 
 </div>
 

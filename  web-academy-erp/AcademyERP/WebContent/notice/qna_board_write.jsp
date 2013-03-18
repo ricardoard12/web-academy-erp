@@ -14,15 +14,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-<%
-if(session.getAttribute("level")!=null){
-	String level=(String)session.getAttribute("level");
-	if(level.equals("1") || level.equals("2") || level.equals("3")){%>
-	<script type="text/javascript">
-		history.back();
-	</script>
-	
-	<% }}%>
+
 <title>글쓰기</title>
 </head>
 <body>
@@ -46,7 +38,7 @@ if(session.getAttribute("level")!=null){
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./NoticleWritingAction.no" method="post">
+				<form action="./QnaWritingAction.qa" method="post">
 					<fieldset>
 						<legend>공지사항 글쓰기</legend>
 						<div class="form_table">
@@ -57,7 +49,16 @@ if(session.getAttribute("level")!=null){
 										<th scope="row">제목</th>
 										<td>
 											<div class="item">
-												<input type="text" name="not_title" id="temp_input"
+												<input type="text" name="qna_title" id="temp_input"
+													class="i_text" style="width: 300px">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">작성자</th>
+										<td>
+											<div class="item">
+												<input type="text" name="qna_name" id="temp_input"
 													class="i_text" style="width: 300px">
 											</div>
 										</td>
@@ -67,7 +68,7 @@ if(session.getAttribute("level")!=null){
 										<th scope="row">내용</th>
 										<td>
 											<div class="item">
-												<textarea name="not_content" cols="100" rows="10"
+												<textarea name="qna_content" cols="100" rows="10"
 													title="레이블 텍스트" id="contents" class="i_text"
 													style="display: none;"></textarea>
 											</div>
@@ -82,7 +83,7 @@ if(session.getAttribute("level")!=null){
 												<input type="submit" value="글쓰기"
 													onclick="submitContents(this)"> <input
 													type="button" name="" value="취소"
-													onclick="location.href='./BoardNotice.bo'">
+													onclick="location.href='./QnaList.qa'">
 											</div>
 										</td>
 									</tr>
