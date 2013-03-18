@@ -97,11 +97,9 @@ public class MemberDAO {
 				String sido = rs.getString("sido");
 				String gugun = rs.getString("gugun");
 				String dong = rs.getString("dong");
-				String ri = rs.getString("ri");
 				String bunji = rs.getString("bunji");
-				if (ri == null) ri = "";
 				if (bunji == null) bunji = "";
-				String addr = sido + " " + gugun + " " + dong + " " + ri + " " + bunji;
+				String addr = sido + " " + gugun + " " + dong + " " + bunji;
 				zipcodeList.add(zipcode + "," + addr);
 			}
 		} catch (Exception e) {
@@ -112,6 +110,35 @@ public class MemberDAO {
 		
 		return zipcodeList;
 	}
+    
+    // ID 자동 부여를 위한 오늘 날짜에 가입한 아이디 확인 및 새 ID 부여
+    public String getNewEmployeeID(String searchID) throws Exception {
+    	String id = "";
+    	try {
+    		con = ds.getConnection();
+    		String sql = "SELECT * FROM member WHERE mm_id LIKE '" + searchID + "%' ORDER BY mm_id DESC LIMIT 0,1";
+    		pstmt = con.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		
+    		if (rs.next()) {
+    			int idNum = Integer.parseInt(rs.getString("mm_id").substring(7));
+    			if (idNum < 10) {
+    				id = searchID + "0" + (idNum + 1);
+    			} else {
+    				id = searchID + (idNum + 1);
+    			}
+    		} else {
+    			id = searchID + "01";
+    		}
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+    	
+		return id;
+    }
     
     /*public List getMemberList(){
         List memberList=null;
