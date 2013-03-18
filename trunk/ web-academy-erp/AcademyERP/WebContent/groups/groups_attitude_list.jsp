@@ -140,7 +140,7 @@
 	                alert("메세지를 전송할 대상을 선택하세요");
 	                return false;
 	        } else {
-	                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=600,height=900,scrollbars=no");
+	                window.open("./SendSms.sms?&chkValue=" + chkValue, "sendSms", "width=600,height=800,scrollbars=no");
 	        }
 	}
 	
