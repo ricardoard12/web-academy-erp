@@ -102,7 +102,7 @@ public class GroupsDAO {
 		return list;
 	}
 
-	public List getAddStudentList() throws Exception {
+	public List getAddStudentList() throws Exception { // 학급 학생 추가 리스트 가져오기 
 		List studentList = null;
 
 		try {
@@ -115,7 +115,7 @@ public class GroupsDAO {
 			while (rs.next()) {
 				StudentBean student = new StudentBean();
 				ResultSet rs2 = null;
-				sql = "SELECT mm_name FROM member WHERE mm_id=?"; // 해당 ㅈ생의 이름 가져오기
+				sql = "SELECT mm_name FROM member WHERE mm_id=?"; // 해당 학생의 이름 가져오기
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, rs.getString("mm_id"));
 				rs2 = pstmt.executeQuery();
