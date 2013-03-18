@@ -22,11 +22,7 @@
 			document.StudentJoinForm.mm_name.focus();
 			return false;
 		}
-		if (document.StudentJoinForm.mm_id.value.length == 0) {
-			alert("아이디를 입력하세요.");
-			document.StudentJoinForm.mm_id.focus();
-			return false;
-		}
+		
 		if (document.StudentJoinForm.mm_pw.value.length == 0) {
 			alert("비밀번호를 입력하세요.");
 			document.StudentJoinForm.mm_pw.focus();
@@ -172,7 +168,10 @@ if(session.getAttribute("level")!=null){
 	history.back();
 	</script>
 	
-	<% }}%>
+	<% }}
+	String id = (String)request.getAttribute("newID");
+	String parent =(String)request.getAttribute("memberid");
+	%>
 <title>Insert title here</title>
 </head>
 <body>
@@ -248,7 +247,7 @@ if(session.getAttribute("level")!=null){
 												<label for="temp_input" class="i_label"
 													style="position: absolute; visibility: visible;">아이디
 													입력</label> <input type="text" name="mm_id" id="temp_input"
-													class="i_text" style="width: 300px">
+													class="i_text" style="width: 300px" value="<%=id%>">
 											</div>
 										</td>
 									</tr>
@@ -438,7 +437,7 @@ if(session.getAttribute("level")!=null){
 										<th scope="row">학부모 아이디</th>
 										<td>
 											<div class="item">
-												<input type="text" name="st_parent_id" title="학교명" class="i_text">
+												<input type="text" name="st_parent_id" title="학교명" class="i_text" value="<%=parent%>">
 											</div>
 										</td>
 									</tr>
