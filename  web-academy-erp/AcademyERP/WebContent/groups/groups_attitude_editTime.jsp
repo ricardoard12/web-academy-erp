@@ -10,6 +10,19 @@
 </head>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	/* 권한 확인 */
+	String sid = (String)session.getAttribute("id");
+	int level = Integer.parseInt((String) session.getAttribute("level"));
+	if (sid == null || sid.equals("") || level < 3) {
+		%>
+		<script>
+			alert("권한이 없습니다.");
+			history.back();
+		</script>
+		<%
+	}
+
 	String id = request.getParameter("id");
  	String time = request.getParameter("time");
 	String type = request.getParameter("type");
