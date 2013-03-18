@@ -13,10 +13,10 @@
 <script type="text/javascript" src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
 <title>Insert title here</title>
 <%
-String sid = (String)session.getAttribute("sMember");// 학상담시 로그인된 선생이기때문에 세션값 사용
-sid="Testteacher";
+String id = (String) session.getAttribute("id");// 학상담시 로그인된 선생이기때문에 세션값 사용
+id="Testteacher";
 
-if(sid==null){
+if(id==null){
 	%>
 		<script type="text/javascript">
 		history.back();
@@ -27,7 +27,15 @@ if(sid==null){
 StudentBean studentBean = (StudentBean)request.getAttribute("student");
 CounselerBean counselerbean = (CounselerBean)request.getAttribute("counselerbean");
 %>
-
+	<%
+if(session.getAttribute("level")!=null){
+	String level=(String)session.getAttribute("level");
+	if(level.equals("1") || level.equals("2")){%>
+	<script type="text/javascript">1
+		history.back();
+	</script>
+	
+	<% }}%>
 </head>
 <body>
 	<!-- UI Object -->
@@ -53,7 +61,7 @@ CounselerBean counselerbean = (CounselerBean)request.getAttribute("counselerbean
 				<form action="./CounselorModifyAction.cc" method="post">
 				<input type="hidden" name="mm_id" value="<%= studentBean.getMm_id()%>">
 				<input type="hidden" name="idx" value="<%=counselerbean.getIdx()%>"> 
-				<input type="hidden" name="ep_id" value="<%=sid%>"> 
+				<input type="hidden" name="ep_id" value="<%=id%>"> 
 					<fieldset>
 						<legend>상담 글쓰기</legend>
 						<div class="form_table">
@@ -100,7 +108,7 @@ CounselerBean counselerbean = (CounselerBean)request.getAttribute("counselerbean
 				<th scope="row">상담자</th>
 				<td>
 					<div class="item">
-					<%=sid %>
+					<%=id %>
 					</div>
 				</td>
 				</tr>
