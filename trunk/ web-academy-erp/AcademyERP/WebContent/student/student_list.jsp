@@ -153,7 +153,7 @@ if(session.getAttribute("level")!=null){
 						<tr align="right">
 							<td align="center" colspan="8">
 								<div class="item">
-									<input type="button" value="원생 등록"  onclick="location.href='./StudentJoin.st'">
+									<input type="button" value="원생 등록"  onclick="location.href='./StudentGroups.st'">
 									<input type="button" value="원생 휴원" onclick="Off()">
 									<input type="button" value="원생 퇴출" onclick="Out()">
 								</div>
