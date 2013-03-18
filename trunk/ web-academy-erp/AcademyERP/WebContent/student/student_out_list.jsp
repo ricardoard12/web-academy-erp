@@ -32,6 +32,22 @@ function Out(){
 }
 
 </script>
+<%
+int counselcount=((Integer)request.getAttribute("studentcount")).intValue();
+int nowpage=((Integer)request.getAttribute("page")).intValue();
+int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
+int startpage=((Integer)request.getAttribute("startpage")).intValue();
+int endpage=((Integer)request.getAttribute("endpage")).intValue();
+%>
+<%
+if(session.getAttribute("level")!=null){
+	String level=(String)session.getAttribute("level");
+	if(!level.equals("4") || !level.equals("5") || !level.equals("3")){%>
+	<script type="text/javascript">
+		history.back();
+	</script>
+	
+	<% }}%>
 <title>Insert title here</title>
 </head>
 <body>
@@ -94,6 +110,42 @@ function Out(){
 						</tr>
 					<%
 					}
+					%>
+					<tr>
+							<td colspan="8" align="center">
+					<%
+					if(nowpage<=1){
+						%>
+						
+						<%
+						}else{
+						%>
+							<a href="./StudentOutList.st?page=<%=nowpage-1%>">[이전]</a>
+						<%
+					}
+					%>
+					<%
+					for(int a=startpage;a<=endpage;a++){
+						if(a==nowpage){
+							%>[<%=a %>]&nbsp;<%
+						}else{
+							%><a href="./StudentOutList.st?page=<%=a%>">[<%=a %>]&nbsp;</a><%
+						}
+					}
+					%>
+					<%
+					if(nowpage>=maxpage){
+						%><%
+					}else{
+						%><a href="./StudentOutList.st?page=<%=nowpage+1%>">[다음]</a><%
+					}
+
+					%>
+					
+					</td>
+					</tr>	
+					
+					<%		
 					}else{
 					%>
 						<tr><td colspan="7">정보없음</td></tr>
