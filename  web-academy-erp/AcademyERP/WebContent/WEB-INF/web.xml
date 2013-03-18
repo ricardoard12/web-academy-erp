@@ -172,4 +172,23 @@
              <servlet-name>FaqBoardFrontController</servlet-name>
              <url-pattern>*.fb</url-pattern>
      </servlet-mapping>
+     
+           <servlet>
+             <servlet-name>CurriculumFrontController</servlet-name>
+             <servlet-class>academy.curriculum.action.CurriculumFrontController</servlet-class>
+     </servlet>
+     <servlet-mapping>
+             <servlet-name>CurriculumFrontController</servlet-name>
+             <url-pattern>*.cr</url-pattern>
+     </servlet-mapping>
+     
+     
+                <servlet>
+             <servlet-name>NoticleFrontController</servlet-name>
+             <servlet-class>academy.noticle.action.NoticleFrontController</servlet-class>
+     </servlet>
+     <servlet-mapping>
+             <servlet-name>NoticleFrontController</servlet-name>
+             <url-pattern>*.no</url-pattern>
+     </servlet-mapping>
 </web-app>
