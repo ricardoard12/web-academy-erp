@@ -57,7 +57,7 @@ public class SmsFrontController extends HttpServlet implements Servlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/DetailSms.sms")) {
-			action = new SmsDeatil();
+			action = new SmsDetail();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
