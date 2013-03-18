@@ -54,6 +54,8 @@ public class BusinessNoticeAction implements Action {
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("businesslist", businesslist);
 		
+		System.out.println("BusinessNoticeAction End");
+		
 		forward.setRedirect(false);
 		forward.setPath("./business_log/business_notice.jsp");
 		return forward;
