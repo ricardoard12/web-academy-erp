@@ -122,5 +122,22 @@ public class SmsDAO {
 		}
 		return count;
 	}
+// 해당 idx의 정보 가져오
+	public List getSmsInfo(String sms_idx) {
+		List list=null;
+		 try{
+			 con=ds.getConnection();
+			 String sql="select * from sms where sms_idx="+Integer.parseInt(sms_idx);
+			 rs=con.prepareStatement(sql).executeQuery();
+			 if(rs.next()){
+				 list=getSmsInfo();
+			 }
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }finally{
+			 closingDB();
+		 }
+		return list;
+	}
 
 }
