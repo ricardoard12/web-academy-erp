@@ -119,13 +119,19 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 									<%
 								}
 %>	
-
+					</table>
 					<%
 					if(session.getAttribute("level")!=null){
 					String level=(String)session.getAttribute("level");
-					if(level.equals("4") ||level.equals("5") ){%><tr><td><input type="button"  value="글쓰기" onclick="location.href='./NoticleWriting.no'"></td></tr><%} }%>
+					if(level.equals("4") ||level.equals("5") ){%>
+					<div align="right">
+					<input type="button" value="글쓰기" onclick="location.href='./NoticleWriting.no'">
+					</div>
+					<%
+																} 
+															}%>
 
-				</table>
+				
 				<!-- //UI Object -->
 				</form>
 				<!-- //수강생 관리 끝 -->
