@@ -51,7 +51,7 @@
 							<div class="sub">
 								<ul>
 									<li><a href="./NoticeList.no"><span>공지사항</span></a></li>
-									<li><a href="#"><span>Q&A</span></a></li>
+									<li><a href="./QnaList.qa"><span>Q&A</span></a></li>
 									<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
 								</ul>
 							</div></li>
