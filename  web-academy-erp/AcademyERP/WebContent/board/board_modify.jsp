@@ -10,7 +10,8 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
-<title>Insert title here</title>
+
+<title>Board List</title>
 <%
 BoardBean boardbean = (BoardBean) request.getAttribute("boardbean");
 %>
