@@ -27,7 +27,6 @@ String level =(String) session.getAttribute("level");
 <body>
 <!-- UI Object -->	
 <div id="wrap">
-    <p>#wrap</p>
     <!-- header -->
     <div id="header">
         <jsp:include page="../page/header.jsp"></jsp:include>
