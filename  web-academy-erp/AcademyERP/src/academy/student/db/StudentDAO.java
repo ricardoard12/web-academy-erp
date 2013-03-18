@@ -94,14 +94,14 @@ public class StudentDAO {
 		}
     }
     
-    public List studentList(){
+    public List studentList(int page,int limit){
 		List studentList =null;
-		
+		int startrow=(page-1)*limit+1; //현재페이지 시작행
     	String sql=""; //조회
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학' order by m.mm_reg_date desc";
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학' limit ?,?";
 			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -251,13 +251,14 @@ public class StudentDAO {
 		return SutdentAttitudeList;
 	}
     
-    public List getStudentOffList(){
+    public List getStudentOffList(int page,int limit){
 		String sql="";
+		int startrow=(page-1)*limit+1; //현재페이지 시작행
     	List<StudentBean> StudentOffList = null;
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학'"; 
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학' limit ?,?";  
 			// 휴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -290,13 +291,14 @@ public class StudentDAO {
     	return StudentOffList;
     	
     }
-    public List getStudentOutList(){
+    public List getStudentOutList(int page,int limit){
 		String sql="";
     	List<StudentBean> studentoutlist = null;
+    	int startrow=(page-1)*limit+1; //현재페이지 시작행
     	
     	try {
 			con = ds.getConnection();
-			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학'"; 
+			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학' limit ?,?"; 
 			// 퇴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -593,4 +595,70 @@ public class StudentDAO {
 		}
     	return receiverInfo;
     }
+    
+    public int getcounselcount(){
+    	String sql="";
+    	int count=0;
+    	try {
+			con=ds.getConnection();
+			sql="SELECT count(*) FROM student WHERE st_status = '재학'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	return count;
+    	
+    }
+    public int studentcountoff(){
+    	String sql="";
+    	int count=0;
+    	try {
+			con=ds.getConnection();
+			sql="SELECT count(*) FROM student WHERE st_status = '휴학'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	return count;
+    	
+    }
+    public int studentcountout(){
+    	String sql="";
+    	int count=0;
+    	try {
+			con=ds.getConnection();
+			sql="SELECT count(*) FROM student WHERE st_status = '퇴학'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return count;
+    	
+    }
+
 }
