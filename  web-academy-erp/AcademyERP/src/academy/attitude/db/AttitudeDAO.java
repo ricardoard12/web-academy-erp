@@ -316,7 +316,7 @@ public class AttitudeDAO {
 		
 		try {
 			con = ds.getConnection();
-			sql = "SELECT student.mm_id, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' AND gp_name=? LIMIT ?,?"; 
+			sql = "SELECT student.mm_id, student.st_school_name, student.st_school_grade, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' AND gp_name=? LIMIT ?,?"; 
 			// 학급 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, gp_name);
@@ -348,6 +348,8 @@ public class AttitudeDAO {
 						attitude.setAt_leave_time(rs2.getTimestamp("at_leave_time"));
 						attitude.setAt_memo(rs2.getString("at_memo"));
 						attitude.setAt_idx(rs2.getInt("at_idx"));
+						attitude.setSt_school_name(rs.getString("st_school_name"));
+						attitude.setSt_school_grade(rs.getString("st_school_grade"));
 						
 						attitudeList.add(attitude);
 					} while (rs2.next());
@@ -356,6 +358,8 @@ public class AttitudeDAO {
 					
 					attitude.setMm_name(rs.getString("mm_name"));
 					attitude.setAt_member_id(rs.getString(1)); // ID 받아옴
+					attitude.setSt_school_name(rs.getString("st_school_name"));
+					attitude.setSt_school_grade(rs.getString("st_school_grade"));
 					attitude.setAt_report_state("N"); // 출근 상태 N(미출근) 으로 설정
 					
 					sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ? LIMIT ?,?";

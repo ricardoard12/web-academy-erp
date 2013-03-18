@@ -12,6 +12,8 @@ public class AttitudeBean {
     private String at_memo;
     private Date at_memo_date;
     private int at_idx;
+    private String st_school_name;
+    private String st_school_grade;
     
     public String getAt_member_id() {
 		return at_member_id;
@@ -60,6 +62,18 @@ public class AttitudeBean {
 	}
 	public void setAt_idx(int at_idx) {
 		this.at_idx = at_idx;
+	}
+	public String getSt_school_name() {
+		return st_school_name;
+	}
+	public void setSt_school_name(String st_school_name) {
+		this.st_school_name = st_school_name;
+	}
+	public String getSt_school_grade() {
+		return st_school_grade;
+	}
+	public void setSt_school_grade(String st_school_grade) {
+		this.st_school_grade = st_school_grade;
 	}
     
 }
