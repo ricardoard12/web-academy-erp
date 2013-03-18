@@ -1,6 +1,7 @@
 package academy.employee.action;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import academy.employee.db.EmployeeDAO;
+import academy.member.db.MemberDAO;
 
 // 신규 직원 등록 폼 로드
 public class EmployeeJoin implements Action {
@@ -36,17 +38,21 @@ public class EmployeeJoin implements Action {
 		
 		ActionForward forward = new ActionForward();
 		EmployeeDAO employeeDAO = new EmployeeDAO();
+		MemberDAO memberDAO = new MemberDAO();
 		List managerList = new ArrayList(); 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 		
 		String mm_level = request.getParameter("mm_level");
 		if (mm_level == null) {
 			mm_level = "3";
 		}
 		
-		System.out.println(mm_level);
-		
 		managerList = employeeDAO.getManagerList(mm_level);
 		
+		// ID 자동 부여를 위한 오늘 날짜에 가입한 아이디 확인 및 새 ID 부여
+		String newID = memberDAO.getNewEmployeeID("T" + sdf.format(System.currentTimeMillis()));
+		
+		request.setAttribute("newID", newID);
 		request.setAttribute("managerList", managerList);
 		request.setAttribute("level", mm_level);
 		
