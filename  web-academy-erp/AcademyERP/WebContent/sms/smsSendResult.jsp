@@ -16,6 +16,18 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
+	/* 권한 확인 */
+	String sid = (String)session.getAttribute("id");
+	int level = Integer.parseInt((String) session.getAttribute("level"));
+	if (sid == null || sid.equals("") || level < 3) {
+		%>
+		<script>
+			alert("권한이 없습니다.");
+			history.back();
+		</script>
+		<%
+	}
+
 	List receiverIDList = (List) request.getAttribute("receiverIDList");
 	List receiverNameList = (List) request.getAttribute("receiverNameList");
 	List receiverPhoneList = (List) request.getAttribute("receiverPhoneList");

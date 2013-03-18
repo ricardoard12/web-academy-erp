@@ -1,11 +1,27 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="academy.member.db.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SMS Send</title>
+<link href="./css/default.css" rel="stylesheet" type="text/css">
+<link href="./css/board.css" rel="stylesheet" type="text/css">
+<link href="./css/demos.css" rel="stylesheet">
+<link href="./css/iPhoneDesign.css" rel="stylesheet">
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="./js/jquery-1.9.1.js"></script>
+<script src="./js/jquery-ui.custom.js"></script>
+<style>
+.content_area{
+min-height: 380px;
+}
+</style>
 <script src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
 // keydown 키 눌러질 때 발생
@@ -24,22 +40,29 @@
 	                          {
 	                                  var str2 = str.charAt(i);
 	                                  if (escape(str2).length > 4) {
-	                                	  if (inputByte <= 78) {
-	                                		  inputByte += 2;
-	                                		  tmp = $(this).val();
-	                                	  } else {
-	                                		  alert("80Byte를 초과하셨습니다.");
-	                                		  $('#inputMessage').html(tmp);
+                                		  inputByte += 2;
+	                                	  if (inputByte > 80) {
+	                                		 if (event.keyCode != '8') //백스페이스는 지우기작업시 바이트 체크하지 않기 위해서
+	                                	        {
+								alert("최대 80Byte 까지만 전송 가능합니다.");
+// 		                                		tmp = str.substring(0, str.length - 1);
+// 		                                		$('#inputMessage').html(tmp);
+// 		                                		$('#inputMessage').replaceWith('<textarea rows="5" cols="45" id="inputMessage" placeholder="여기에 메세지를 입력하세요." style="font-size: 1.2em;padding: 5px 20px 5px 20px;">' + tmp + '</textarea>'); 
+	                                	        }
 	                                	  }
 	                                  } else {
-	                                	  if (inputByte <= 79) {
-	                                		  inputByte++;
-	                                		  tmp = $(this).val();
-	                                	  } else {
-	                                		  alert("80Byte를 초과하셨습니다.");
-	                                		  $('#inputMessage').html(tmp);
+                                		  inputByte++;
+	                                	  if (inputByte > 80) {
+	                                		 if (event.keyCode != '8') //백스페이스는 지우기작업시 바이트 체크하지 않기 위해서
+	                                	        {
+								alert("최대 80Byte 까지만 전송 가능합니다.");
+// 								alert(str.length);
+// 		                                		tmp = str.substring(0, str.length - 1);
+// 		                                		$('#inputMessage').html(tmp);
+// 		                                		$('#inputMessage').replaceWith(tmp); 
+// 		                                		$('#inputMessage').replaceWith('<textarea rows="5" cols="45" id="inputMessage" placeholder="여기에 메세지를 입력하세요." style="font-size: 1.2em;padding: 5px 20px 5px 20px;">' + tmp + '</textarea>');
+	                                	        }
 	                                	  }
-	                                	  
 	                                  }
 	                          }
 	                   }
@@ -48,110 +71,90 @@
 		});
 	});
 </script>
-<title>Insert title here</title>
 <%
+	/* 권한 확인 */
+	String sid = (String)session.getAttribute("id");
+	int level = Integer.parseInt((String) session.getAttribute("level"));
+	if (sid == null || sid.equals("") || level < 3) {
+		%>
+		<script>
+			alert("권한이 없습니다.");
+			history.back();
+		</script>
+		<%
+	}
+
 	request.setCharacterEncoding("UTF-8");
 	List receiverList = (List) request.getAttribute("receiverList");
 	String receiverID = "";
 	String receiverName = "";
 	String receiverPhone = "";
 	int credits = (Integer) request.getAttribute("credits");
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 %>
 </head>
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0"
-	marginheight="0">
-	<!-- ImageReady Slices (Untitled-4) -->
-	<table id="Table_01" width="400" height="601" border="0"
-		cellpadding="0" cellspacing="0"  style="border-collapse: collapse; margin: 0px; padding: 0px;">
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_01.gif"
-				width="400" height="75" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_02.gif"
-				width="400" height="5" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td><img src="./sms/images/smsForm_03.gif" width="56"
-				height="25" alt="" border="0"></td>
-			<td colspan="6"><img src="./sms/images/smsForm_04.gif"
-				width="194" height="25" alt="" border="0"></td>
-			<td colspan="3" width="25" height="25"></td>
-			<td><img src="./sms/images/smsForm_06.gif" width="14"
-				height="25" alt="" border="0"></td>
-			<td><img src="./sms/images/smsForm_07.gif" width="56"
-				height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_08.gif"
-				width="400" height="5" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_09.gif"
-				width="400" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_10.gif"
-				width="96" height="134" alt="" border="0"></td>
-			<td colspan="7">
-				<table id="Table_01" width="208" height="134" border="0"
-					cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin: 0px; padding: 0px;">
-					<tr>
-						<td width="208" height="100" align="center" id="inputMessage">
-						<textarea	cols="26" rows="6" name="message" placeholder="메세지를 입력하세요."></textarea></td>
-					</tr>
-					<tr>
-						<td width="208" height="34" align="right" id="smsByteCount">0 / 80 Byte</td>
-					</tr>
-
-				</table>
-			</td>
-			<td colspan="3"><img src="./sms/images/smsForm_12.gif"
-				width="96" height="134" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_13.gif"
-				width="400" height="11" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_14.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="7"><img src="./sms/images/smsForm_15.gif"
-				width="208" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_16.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="3"><img src="./sms/images/smsForm_17.gif"
-				width="132" height="25" alt="" border="0"></td>
-			<td colspan="5"><input type="text" name="senderPhone" size="20"></td>
-			<td><img src="./sms/images/smsForm_19.gif" width="36"
-				height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_20.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_21.gif"
-				width="400" height="15" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_22.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="2"><img src="./sms/images/smsForm_23.gif"
-				width="79" height="25" alt="" border="0"></td>
-			<td colspan="5"><img src="./sms/images/smsForm_24.gif"
-				width="129" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_25.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_26.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="7" rowspan="5">
-			<div id="receiverList" style="overflow: auto;  width:208; height:125">
-				<table id="Table_01" width="208" height="125" border="0"
-					cellpadding="0" cellspacing="0">
-					<%
+<body>
+<div class="wrapper">
+  <div class="callout">
+    <div class="perimeter">
+      <div class="power_button"></div>
+      <div class="silent"></div>
+      <div class="volume_up"></div>	
+      <div class="volume_down"></div>	
+      <div class="device">
+        <div class="highlight">
+          <div class="speaker"><span><p>&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</p><p>&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</p><p>&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</p><p>&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</p><p>&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</p></span></div>
+           <div class="face">	
+<!--             <div class="face_glare"></div> -->
+	          <div class="display">
+                <div class="top_bar">
+                  <div class="battery"><div class="body"><span></span></div><div class="contact"></div></div>
+                  <div class="signal"><div class="one"></div><div class="two"></div><div class="three"></div><div class="four"></div><div class="five"></div></div>
+                  <p class="carrier">SMS<span>3G</span></p>
+                  <p class="time"><%=sdf.format(System.currentTimeMillis()) %></p>
+                </div>
+                <form action="./SendSmsAction.sms" method="post">
+                <div class="application_title">
+                  <h5>SMS Send</h5>
+                  <a href="#" onclick="return submit()"><span class="button left">전송</span></a>
+                  <a href="#" onclick="window.close()"><span class="button right">취소</span></a>
+                </div>
+                <div class="content_area">
+                	<div><p></p></div>
+                	<div style="color: #f5f6f7; margin: 0px 20px 0px 20px; border-collapse: collapse;" id="credits" align="center">
+                		<table border="0">
+                			<tr>
+	                			<td width="200"><h3>전송 가능한 메세지 건 수 : </h3></td>
+	                			<td width="40" align="right"><h3><%=credits %>건</h3></td>
+                			</tr>
+                		</table>
+			</div>
+			<div align="center" id="message" style="color: #f5f6f7">
+                		<table border="0"  style="color: Black; margin: 10px 20px 0px 20px;background-color: #f5f6f7">	
+                			<tr>
+                				<td width="200"><textarea rows="5" cols="45" name="message" id="inputMessage" placeholder="여기에 메세지를 입력하세요." style="font-size: 1.2em;padding: 5px 20px 5px 20px;"></textarea></td>
+       					</tr>
+                			<tr><td width="200" id="smsByteCount" align="right" style="font-size: 1.2em;">0 / 80 Byte</td></tr>
+                		</table>
+			</div> 
+			<div align="center" id="sendInfo" style="color: #f5f6f7">
+				<table border="0"  style="color: Black; margin: 0px 20px 0px 20px;background-color: #f5f6f7;font-size: 1.2em">	
+                			<tr>
+                				<td width="120" align="center"><h3>발신번호</h3></td>
+       					</tr>
+                			<tr><td width="120" align="center"><input type="text" name="senderPhone" value="0518000000" size="20" style="font-size: 1.2em"></td></tr>
+                		</table>
+			</div>
+			<div align="left"style="color: #f5f6f7;width: 318;">
+				<table border="1"  style="color: Black; margin: 10px 20px 0px 20px;background-color: #f5f6f7;font-size: 1.2em">
+                			<tr>
+                				<td width="126" align="center"><h3>수신자</h3></td><td width="160" align="center"><h3>수신번호</h3></td>
+       					</tr>
+       				</table>
+       				</div>
+       				<div align="center" id="receiverList" style="color: #f5f6f7;overflow:scroll; overflow-x:hidden; width:315; height:140;">
+       				<table  border="1"  style="color: Black; margin: 0px 0px 20px 20px;background-color: #f5f6f7;font-size: 1.2em">
+       					<%
 					int blank = 5 - receiverList.size();
 					for (int i = 0; i < receiverList.size(); i++) {
 							MemberBean member = (MemberBean)receiverList.get(i);
@@ -159,10 +162,10 @@
 							receiverID += member.getMm_id() + ",";
 							receiverName += member.getMm_name() + ",";
 							receiverPhone += phone + ",";
-							%>
-							<tr>
-								<td width="80" height="25" align="center"><%=member.getMm_name() %></td>
-								<td width="128" height="25" align="center"><%=member.getMm_phone() %></td>
+					%>
+							<tr bgcolor="WHITE">
+								<td width="155" height="25" align="center"><h3><%=member.getMm_name() %></h3></td>
+								<td width="190" height="25" align="center"><h3><%=member.getMm_phone() %></h3></td>
 							</tr>
 					<%
 					} 
@@ -170,111 +173,28 @@
 						for (int i = 0; i < blank; i++) {
 					%>
 					
-							<tr>
-								<td width="80" height="25" ></td>
-								<td width="128" height="25" ></td>
+							<tr bgcolor="WHITE">
+								<td width="150" height="25" ></td>
+								<td width="170" height="25" ></td>
 							</tr>
 							<%
 						}
 					}
 					%>
-<!-- 					<tr> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 						<td>&nbsp;</td> -->
-<!-- 					</tr> -->
 				</table>
-				</div>
-			</td>
-			<td colspan="3"><img src="./sms/images/smsForm_28.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_29.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_30.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_31.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_32.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_33.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_34.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><img src="./sms/images/smsForm_35.gif"
-				width="96" height="25" alt="" border="0"></td>
-			<td colspan="3"><img src="./sms/images/smsForm_36.gif"
-				width="96" height="25" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_37.gif"
-				width="400" height="30" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_38.gif"
-				width="400" height="9" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="3"><img src="./sms/images/smsForm_39.gif"
-				width="132" height="32" alt="" border="0"></td>
-			<td colspan="2"><a href="#" onclick="return submit()"><img src="./sms/images/smsForm_40.gif"
-				width="68" height="32" alt="" border="0"></a></td>
-			<td><img src="./sms/images/smsForm_41.gif" width="2" height="32"
-				alt="" border="0"></td>
-			<td colspan="2"><a href="#" onclick="window.close()"><img src="./sms/images/smsForm_42.gif"
-				width="66" height="32" alt="" border="0"></a></td>
-			<td colspan="4"><img src="./sms/images/smsForm_43.gif"
-				width="132" height="32" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td colspan="12"><img src="./sms/images/smsForm_44.gif"
-				width="400" height="34" alt="" border="0"></td>
-		</tr>
-		<tr>
-			<td><img src="./sms/images/spacer.gif" width="56" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="40" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="36" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="43" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="25" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="2" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="48" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="18" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="36" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="26" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="14" height="1"
-				alt="" border="0"></td>
-			<td><img src="./sms/images/spacer.gif" width="56" height="1"
-				alt="" border="0"></td>
-		</tr>
-	</table>
-	<!-- End ImageReady Slices -->
+	        		<input type="hidden" name="receiverID" value="<%=receiverID %>">
+			        <input type="hidden" name="receiverName" value="<%=receiverName %>">
+			        <input type="hidden" name="receiverPhone" value="<%=receiverPhone %>">
+			</div>
+                </div>
+              <div class="home_button"><div></div></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--callout-->
+    
+  </div>
 </body>
 </html>
