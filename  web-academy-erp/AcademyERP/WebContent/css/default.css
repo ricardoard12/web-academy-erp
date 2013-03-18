@@ -2,10 +2,10 @@
 /* UI Object */
 #wrap{width:100%}
 #header{width:100%}
-#container{_display:inline-block;width:100%;min-height: 300px;}
+#container{_display:inline-block;width:100%;min-height: 1000px;}
 #container:after{display:block;clear:both;content:''}
 .snb{float:left;width:180px;margin-right:-200px}
-#content{margin-left:200px;width: 70%;}
+#content{margin-left:215px;width:70%;margin-top:15px}
 #footer{width:100%}
  
 /* Menu Common */
