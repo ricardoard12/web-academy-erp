@@ -28,148 +28,148 @@
 				String name = (String) session.getAttribute("name");
 				//세션으로 level 값 받음
 				String level = (String) session.getAttribute("level");
-				
+
 				String requestURI = request.getRequestURI();
 				String contextPath = request.getContextPath();
 				String command = requestURI.substring(contextPath.length());
-				
+
 				String sub1_1 = "";
 				String sub1_2 = "";
 				String sub1_3 = "";
 				String sub1_4 = "";
-				
+
 				String sub2_1 = "";
 				String sub2_2 = "";
 				String sub2_3 = "";
 				String sub2_4 = "";
-				
+
 				String sub3_1 = "";
 				String sub3_2 = "";
 				String sub3_3 = "";
 				String sub3_4 = "";
 				String sub3_5 = "";
-				
+
 				String sub4_1 = "";
 				String sub4_2 = "";
 				String sub4_3 = "";
 				String sub4_4 = "";
-				
+
 				String sub5_1 = "";
 				String sub5_2 = "";
 				String sub5_3 = "";
-				
+
 				String sub6_1 = "";
 				String sub6_2 = "";
 				String sub6_3 = "";
 				String sub6_4 = "";
 				String sub6_5 = "";
 				String sub6_6 = "";
-				
+
 				String sub7_1 = "";
 				String sub7_2 = "";
 				String sub7_3 = "";
 				String sub7_4 = "";
-				
+
 				String sub8_1 = "";
 				String sub8_2 = "";
 				String sub8_3 = "";
 				String sub8_4 = "";
 				String sub8_5 = "";
-				
+
 				String sub9_1 = "";
 				String sub9_2 = "";
-				
+
 				String sub10_1 = "";
 				String sub10_2 = "";
 				String sub10_3 = "";
-				
-				if(command.equals("/student/student_detail2.jsp")){
-					sub1_1 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub1_2 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub1_3 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub1_4 = "class = 'active' ";    
-				    //////////////////////////////////////
-				}else if(command.equals("/student/student_join.jsp")){
-					sub2_1 = "class = 'active' ";    
-				}else if(command.equals("/student/student_list.jsp")){
-				    sub2_2 = "class = 'active' ";    
-				}else if(command.equals("/student/student_off_list.jsp")){
-				    sub2_3 = "class = 'active' ";    
-				}else if(command.equals("/student/student_out_list.jsp")){
-				    sub2_4 = "class = 'active' ";    
-				    //////////////////////////////////////
-				}else if(command.equals("/master/ListClass.jsp")){
-				    sub3_1 = "class = 'active' ";    
-				}else if(command.equals("/groups/groupsList.jsp")){
-				    sub3_2 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub3_3 = "class = 'active' ";    
-				}else if(command.equals("/groups/groups_attitude_list.jsp")){
-				    sub3_4 = "class = 'active' ";
-				    /////////////////////////////////////////
-				}else if(command.equals("/grade/grade_register.jsp")){
-				    sub4_1 = "class = 'active' ";    
-				}else if(command.equals("/grade/grade_academy_testing.jsp")){
-				    sub4_2 = "class = 'active' ";    
-				}else if(command.equals("/grade/grade_academy_tested.jsp")){
-				    sub4_3 = "class = 'active' ";    
-				}else if(command.equals("/grade/grade_school_list.jsp")){
-				    sub4_4 = "class = 'active' ";
-				    ///////////////////////////////////////////
-				}else if(command.equals("/timetable/timeTablelist.jsp")){
-				    sub5_1 = "class = 'active' ";    
-				}else if(command.equals("/timetable/ViewTimeTable.jsp")){
-				    sub5_2 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub5_3 = "class = 'active' ";   
-				    ///////////////////////////////////////////
-				}else if(command.equals("/board/board_notice.jsp")){
-				    sub6_1 = "class = 'active' ";    
-				}else if(command.equals("/business_log/business_notice.jsp")){
-				    sub6_2 = "class = 'active' ";    
-				}else if(command.equals("/lesson/lesson_list.jsp")){
-				    sub6_3 = "class = 'active' ";   
-				}else if(command.equals("/board/board_notice.jsp")){
-				    sub6_4 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub6_5 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub6_6 = "class = 'active' ";   
-				    ///////////////////////////////////////////
-				}else if(command.equals("/employee/employee_join.jsp")){
-				    sub7_1 = "class = 'active' ";    
-				}else if(command.equals("/employee/employee_list.jsp")){
-				    sub7_2 = "class = 'active' ";    
-				}else if(command.equals("/employee/employee_attitude_list.jsp")){
-				    sub7_3 = "class = 'active' ";   
-				}else if(command.equals("/employee/employee_outgoing_list.jsp")){
-				    sub7_4 = "class = 'active' ";    
-				    ///////////////////////////////////////////
-				}else if(command.equals("/accounting/accounting_join.jsp")){
-				    sub8_1 = "class = 'active' ";    
-				}else if(command.equals("/accounting/accounting_list.jsp")){
-				    sub8_2 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub8_3 = "class = 'active' ";   
-				}else if(command.equals("")){
-				    sub8_4 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub8_5 = "class = 'active' ";    
-				    ///////////////////////////////////////////
-				}else if(command.equals("/sms/smsList.jsp")){
-				    sub9_1 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub9_2 = "class = 'active' ";
-				    ///////////////////////////////////////////
-				}else if(command.equals("/master/employee_list.jsp")){
-				    sub10_1 = "class = 'active' ";    
-				}else if(command.equals("")){
-				    sub10_2 = "class = 'active' ";    
-				}else if(command.equals("/master/AllMemberList.jsp")){
-				    sub10_3 = "class = 'active' ";   
+
+				if (command.equals("/student/student_detail2.jsp")) {
+					sub1_1 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub1_2 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub1_3 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub1_4 = "class = 'active' ";
+					//////////////////////////////////////
+				} else if (command.equals("/student/student_join.jsp")) {
+					sub2_1 = "class = 'active' ";
+				} else if (command.equals("/student/student_list.jsp")) {
+					sub2_2 = "class = 'active' ";
+				} else if (command.equals("/student/student_off_list.jsp")) {
+					sub2_3 = "class = 'active' ";
+				} else if (command.equals("/student/student_out_list.jsp")) {
+					sub2_4 = "class = 'active' ";
+					//////////////////////////////////////
+				} else if (command.equals("/master/ListClass.jsp")) {
+					sub3_1 = "class = 'active' ";
+				} else if (command.equals("/groups/groupsList.jsp")) {
+					sub3_2 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub3_3 = "class = 'active' ";
+				} else if (command.equals("/groups/groups_attitude_list.jsp")) {
+					sub3_4 = "class = 'active' ";
+					/////////////////////////////////////////
+				} else if (command.equals("/grade/grade_register.jsp")) {
+					sub4_1 = "class = 'active' ";
+				} else if (command.equals("/grade/grade_academy_testing.jsp")) {
+					sub4_2 = "class = 'active' ";
+				} else if (command.equals("/grade/grade_academy_tested.jsp")) {
+					sub4_3 = "class = 'active' ";
+				} else if (command.equals("/grade/grade_school_list.jsp")) {
+					sub4_4 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/timetable/timeTablelist.jsp")) {
+					sub5_1 = "class = 'active' ";
+				} else if (command.equals("/timetable/ViewTimeTable.jsp")) {
+					sub5_2 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub5_3 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/board/board_notice.jsp")) {
+					sub6_1 = "class = 'active' ";
+				} else if (command.equals("/business_log/business_notice.jsp")) {
+					sub6_2 = "class = 'active' ";
+				} else if (command.equals("/lesson/lesson_list.jsp")) {
+					sub6_3 = "class = 'active' ";
+				} else if (command.equals("/board/board_notice.jsp")) {
+					sub6_4 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub6_5 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub6_6 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/employee/employee_join.jsp")) {
+					sub7_1 = "class = 'active' ";
+				} else if (command.equals("/employee/employee_list.jsp")) {
+					sub7_2 = "class = 'active' ";
+				} else if (command.equals("/employee/employee_attitude_list.jsp")) {
+					sub7_3 = "class = 'active' ";
+				} else if (command.equals("/employee/employee_outgoing_list.jsp")) {
+					sub7_4 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/accounting/accounting_join.jsp")) {
+					sub8_1 = "class = 'active' ";
+				} else if (command.equals("/accounting/accounting_list.jsp")) {
+					sub8_2 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub8_3 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub8_4 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub8_5 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/sms/smsList.jsp")) {
+					sub9_1 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub9_2 = "class = 'active' ";
+					///////////////////////////////////////////
+				} else if (command.equals("/master/employee_list.jsp")) {
+					sub10_1 = "class = 'active' ";
+				} else if (command.equals("")) {
+					sub10_2 = "class = 'active' ";
+				} else if (command.equals("/master/AllMemberList.jsp")) {
+					sub10_3 = "class = 'active' ";
 				}
 			%>
 			<form action="" method="post">
@@ -308,16 +308,17 @@
 
 			<li><a><span>학부모/학생용</span><span class="i"></span></a>
 				<ul style="display: none;">
-				
-					<li <%=sub1_1 %>><a href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
-					<li <%=sub1_2 %>><a href="#"><span>회비내역조회</span></a></li>
-					<li <%=sub1_3 %>><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
-					<li <%=sub1_4 %>><a href="#"><span>성적조회</span></a></li>
-					<li ><a href="#"><span>출결상황조회</span></a></li>
-					<li ><a
+
+					<li <%=sub1_1%>><a
+						href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
+					<li <%=sub1_2%>><a href="#"><span>회비내역조회</span></a></li>
+					<li <%=sub1_3%>><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
+					<li <%=sub1_4%>><a href="#"><span>성적조회</span></a></li>
+					<li><a href="#"><span>출결상황조회</span></a></li>
+					<li><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
-					<li ><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
-					<li ><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
+					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
+					<li><a href="#"><span>학생위치조회(학부모전용)</span></a></li>
 				</ul></li>
 
 
@@ -333,12 +334,12 @@
 				<!-- class="active" --> <a><span>원생관리</span><span class="i"></span></a>
 
 				<ul style="display: none;">
-					<li <%=sub2_1 %>>
+					<li <%=sub2_1%>>
 						<!-- class="active" --> <a href="./StudentGroups.st"><span>신규등록</span></a>
 					</li>
-					<li <%=sub2_2 %>><a href="./StudentList.st"><span>수강생관리</span></a></li>
-					<li <%=sub2_3 %>><a href="./StudentOffList.st"><span>휴원생관리</span></a></li>
-					<li <%=sub2_4 %>><a href="./StudentOutList.st"><span>퇴원생관리</span></a></li>
+					<li <%=sub2_2%>><a href="./StudentList.st"><span>수강생관리</span></a></li>
+					<li <%=sub2_3%>><a href="./StudentOffList.st"><span>휴원생관리</span></a></li>
+					<li <%=sub2_4%>><a href="./StudentOutList.st"><span>퇴원생관리</span></a></li>
 
 				</ul>
 			</li>
@@ -347,38 +348,36 @@
 					<%
 						if (lev >= 4) {
 					%>
-					<li <%=sub3_1 %>><a href="./ClassList.master"><span>학급생성</span></a></li>
+					<li <%=sub3_1%>><a href="./ClassList.master"><span>학급생성</span></a></li>
 					<%
 						}
 					%>
-					<li <%=sub3_2 %>><a href="./ClassInfo.gp"><span>학급정보</span></a></li>
-					<li <%=sub3_3 %>><a href="#"><span>학급별시험정보</span></a></li>
-					<li <%=sub3_4 %>><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
-					<li <%=sub3_5 %>><a href="#"><span>학급별상담내역</span></a></li>
+					<li <%=sub3_2%>><a href="./ClassInfo.gp"><span>학급정보</span></a></li>
+					<li <%=sub3_3%>><a href="#"><span>학급별시험정보</span></a></li>
+					<li <%=sub3_4%>><a href="./GroupsAttitudeListAction.gp"><span>학급별출결현황</span></a></li>
+					<li <%=sub3_5%>><a href="#"><span>학급별상담내역</span></a></li>
 					<!-- 					<li><a href="#"><span>학급진도관리</span></a></li> -->
 				</ul></li>
-
-			<li><a><span>성적관리</span><span class="i"></span></a>
-				<ul style="display: none;">
-					<li <%=sub4_1 %>><a href="./GradeJoin.gr"><span> - 학원/학교 시험등록</span></a></li>
-
-					<li <%=sub4_2 %>><a href="./GradeAcademyTesting.gr"><span> - 학원
-								시험진행</span></a></li>
-
-					<li <%=sub4_3 %>><a href="./GradeAcademyTested.gr"><span> - 학원
-								시험완료</span></a></li>
-
-					<li <%=sub4_4 %>><a href="./GradeSchoolTested.gr"><span> - 학교 성적
-						</span></a></li>
-
-				</ul></li>
-
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li <%=sub5_1 %>><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
-					<li <%=sub5_2 %>><a href="./TimeTableTeacher.time"><span>강사별시간표</span></a></li>
+					<li <%=sub5_1%>><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
+					<li <%=sub5_2%>><a href="./TimeTableTeacher.time"><span>강사별시간표</span></a></li>
 
-					<li <%=sub5_3 %>><a href="#"><span>학급별시간표</span></a></li>
+					<li <%=sub5_3%>><a href="#"><span>학급별시간표</span></a></li>
+				</ul></li>
+			<li><a><span>성적관리</span><span class="i"></span></a>
+				<ul style="display: none;">
+					<li <%=sub4_1%>><a href="./GradeJoin.gr"><span> -
+								학원/학교 시험등록</span></a></li>
+
+					<li <%=sub4_2%>><a href="./GradeAcademyTesting.gr"><span>
+								- 학원 시험진행</span></a></li>
+
+					<li <%=sub4_3%>><a href="./GradeAcademyTested.gr"><span>
+								- 학원 시험완료</span></a></li>
+
+					<li <%=sub4_4%>><a href="./GradeSchoolTested.gr"><span>
+								- 학교 성적 </span></a></li>
 				</ul></li>
 			<!-- 선생님용 메뉴 -->
 
@@ -386,39 +385,40 @@
 
 				<ul style="display: none;">
 					<!-- 공지사항은 계시판 10 -->
-					<li <%=sub6_1 %>><a href="./BoardNotice.bo?gid=10"><span>공지사항</span></a></li>
+					<li <%=sub6_1%>><a href="./BoardNotice.bo?gid=10"><span>공지사항</span></a></li>
 					<!-- 업무일지는 11 -->
-					<li <%=sub6_2 %>><a href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
+					<li <%=sub6_2%>><a
+						href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
 					<!-- 강의계획서는 12 -->
-					<li <%=sub6_3 %>><a
+					<li <%=sub6_3%>><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서</span></a></li>
 					<!-- 수업자료실 13 -->
-					<li <%=sub6_4 %>><a href="./BoardNotice.bo?gid=13"><span>수업자료실</span></a></li>
+					<li <%=sub6_4%>><a href="./BoardNotice.bo?gid=13"><span>수업자료실</span></a></li>
 					<!-- 직원 자료실은 14 -->
-					<li <%=sub6_5 %>><a href="./BoardNotice.bo?gid=14"><span>직원자료실</span></a></li>
+					<li <%=sub6_5%>><a href="./BoardNotice.bo?gid=14"><span>직원자료실</span></a></li>
 					<!-- 직원 계시판은 15 -->
-					<li <%=sub6_6 %>><a href="./BoardNotice.bo?gid=15"><span>직원게시판</span></a></li>
+					<li <%=sub6_6%>><a href="./BoardNotice.bo?gid=15"><span>직원게시판</span></a></li>
 				</ul></li>
 
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li <%=sub7_1 %>><a href="./EmployeeJoin.em"><span>신규등록</span></a></li>
-					<li <%=sub7_2 %>><a href="./EmployeeListAction.em"><span>직원현황</span></a></li>
-					<li <%=sub7_3 %>><a href="./EmployeeAttitudeListAction.em"><span>근태관리</span></a></li>
-					<li <%=sub7_4 %>><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
+					<li <%=sub7_1%>><a href="./EmployeeJoin.em"><span>신규등록</span></a></li>
+					<li <%=sub7_2%>><a href="./EmployeeListAction.em"><span>직원현황</span></a></li>
+					<li <%=sub7_3%>><a href="./EmployeeAttitudeListAction.em"><span>근태관리</span></a></li>
+					<li <%=sub7_4%>><a href="./EmployeeOutgoingListAction.em"><span>퇴직자관리</span></a></li>
 				</ul></li>
 			<li><a><span>회계관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li <%=sub8_1 %>><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
-					<li <%=sub8_2 %>><a href="./AccountingList.ac?kind=fee"><span>회비현황</span></a></li>
-					<li <%=sub8_3 %>><a href="./AccountingList.ac?kind=in"><span>수입현황</span></a></li>
-					<li <%=sub8_4 %>><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
-					<li <%=sub8_5 %>><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
+					<li <%=sub8_1%>><a href="./AccountingJoin.ac"><span>회계등록</span></a></li>
+					<li <%=sub8_2%>><a href="./AccountingList.ac?kind=fee"><span>회비현황</span></a></li>
+					<li <%=sub8_3%>><a href="./AccountingList.ac?kind=in"><span>수입현황</span></a></li>
+					<li <%=sub8_4%>><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
+					<li <%=sub8_5%>><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
 			<li><a><span>SMS 관리</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li <%=sub9_1 %>><a href="./AllMessage.sms"><span>전체문자관리</span></a></li>
-					<li <%=sub9_2 %>><div style="margin-left: 10px;"
+					<li <%=sub9_1%>><a href="./AllMessage.sms"><span>전체문자관리</span></a></li>
+					<li <%=sub9_2%>><div style="margin-left: 10px;"
 							onclick="window.open('./MessagePoint.sms','전체문자관리',
 								'height=200,width=500,toolbar=no,status=no,linemenubar=no,scrollbars=no')">
 							<span>포인트관리</span>
@@ -430,9 +430,11 @@
 			%>
 			<li><a><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 				<ul style="display: none;">
-					<li <%=sub10_1 %>><a href="./LevelList.master"><span>레벨/권한 설정</span></a></li>
-					<li <%=sub10_2 %>><a href="#"><span>공지사항 관리</span></a></li>
-					<li <%=sub10_3 %>><a href="./AllMemberList.master"><span>전체 회원 관리</span></a></li>
+					<li <%=sub10_1%>><a href="./LevelList.master"><span>레벨/권한
+								설정</span></a></li>
+					<li <%=sub10_2%>><a href="#"><span>공지사항 관리</span></a></li>
+					<li <%=sub10_3%>><a href="./AllMemberList.master"><span>전체
+								회원 관리</span></a></li>
 				</ul></li>
 			<%
 				}

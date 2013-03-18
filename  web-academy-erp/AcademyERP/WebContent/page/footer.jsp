@@ -12,17 +12,15 @@
 	<div id="footer">
 		<ul>
 			<li class="frst"><a href="#" target="_blank"></a></li>
-			<li><a href="#" target="_blank"></a></li>
+			<li><a href="#" target="_blank"><strong>법적고지</strong></a></li>
 			<li><a href="#" target="_blank"><strong>개인정보취급방침</strong></a></li>
 			<li><a href="#" target="_blank">사이트맵</a></li>
-			<li><a href="#" target="_blank"></a></li>
-			<li><a href="#" target="_blank"></a></li>
+			<li><a href="#" target="_blank">이메일 무단 수집 거부</a></li>
+			<li><a href="#" target="_blank">찾아 오시는길</a></li>
 			<li><a href="#" target="_blank"></a></li>
 			<li><a href="#" target="_blank">고객센터</a></li>
 		</ul>
-		<p class="info">urva in in Curva ostendit minimus soror tenuior lumbos
-			DOLIOLUM videbatur esse satis magna, ostende. A capite ad pollicem nu
-
+		<p class="info">Academy ERP
 		</p>
 		<p class="info2">
 			사업자등록번호 :###-##-##### <span>통신판매업신고번호</span> :##########<br>
@@ -31,7 +29,7 @@
 		</p>
 		<address>
 			<a href="#" target="_blank" class="logo logo_v1"></a> <em>Copyright ©</em>
-			<a href="#" target="_blank">#################</a> <span>All
+			<a href="#" target="_blank">Yeun-tae,Han-vit,Young-ho,Seong-jae,Jae-woo</a> <span>All
 				Rights Reserved.</span>
 		</address>
 	</div>

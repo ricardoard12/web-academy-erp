@@ -19,11 +19,14 @@
 <body>
 <!-- Horizonal navigation -->
 <div id="menu" class="menu mc_gray">
-	<div class="inset">
+<div class="homeImg" style="float:left"><img src="./"></div>
+<div class="mainImg" align="center"><img src="./"></div>
+	<div style="clear:both"></div>
+	<div class="inset">	
 		<div class="major">
 		<!-- class="major + (m1~m12)"-->
 			<ul>
-			<li class="m1"><a href="./Main.main"><span>HOME</span></a>
+			<!--  <li class="m1"><a href="./Main.main"><span>HOME</span></a>-->
 			<li class="m2"><a href="#"><span>학원소개</span></a>
 				<div class="sub">
 					<ul>
