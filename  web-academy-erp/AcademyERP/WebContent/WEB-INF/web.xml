@@ -191,4 +191,21 @@
              <servlet-name>NoticleFrontController</servlet-name>
              <url-pattern>*.no</url-pattern>
      </servlet-mapping>
+                     <servlet>
+             <servlet-name>QnaFrontController</servlet-name>
+             <servlet-class>academy.qna_board.action.QnaFrontController</servlet-class>
+     </servlet>
+     <servlet-mapping>
+             <servlet-name>QnaFrontController</servlet-name>
+             <url-pattern>*.qa</url-pattern>
+     </servlet-mapping>
+     
+                        <servlet>
+             <servlet-name>SeqFrontController</servlet-name>
+             <servlet-class>academy.seq_board.action.SeqFrontController</servlet-class>
+     </servlet>
+     <servlet-mapping>
+             <servlet-name>SeqFrontController</servlet-name>
+             <url-pattern>*.sq</url-pattern>
+     </servlet-mapping>
 </web-app>
