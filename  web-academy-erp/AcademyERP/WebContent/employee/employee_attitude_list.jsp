@@ -86,15 +86,15 @@
 						class="tbl_type_list">
 						<caption>직원 출근 현황</caption>
 						<colgroup>
-							<col width="12%">
+							<col width="16%">
 							<col>
-							<col width="12%" span="6">
+							<col width="16%" span="6">
 						</colgroup>
 						
 						<thead>
 							<tr>
 								<th scope="row">검색날짜선택</th>
-								<td colspan="7" align="left">
+								<td colspan="6" align="left">
 									<div class="item">
 										<input type="button" value="검색" onclick="CheckDate(seldate.value)">
 										<input type="text" name="seldate" value="" onClick="datePicker(event,'seldate',0)">
@@ -109,12 +109,12 @@
 						
 						<thead>
 							<tr>
-								<th scope="col">이름(아이디)</th>
-								<th scope="col">출결상황</th>
-								<th scope="col">출근시간</th>
-								<th scope="col">퇴근시간</th>
-								<th scope="col">메모</th>
-								<th scope="col">취소</th>
+								<th scope="col" width="300" style="padding-left: 10px;">이름(아이디)</th>
+								<th scope="col" width="150">출결상황</th>
+								<th scope="col" width="150">출근시간</th>
+								<th scope="col" width="150">퇴근시간</th>
+								<th scope="col" width="300">메모</th>
+								<th scope="col" width="150">취소</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -123,7 +123,7 @@
 							AttitudeBean attitude = (AttitudeBean)attitudeList.get(i);
 						%>
 							<tr>
-								<td><a href="./EmployeeDetailAction.em?id=<%=attitude.getAt_member_id()%>"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
+								<td width="300" style="padding-left: 10px;"><a href="./EmployeeDetailAction.em?id=<%=attitude.getAt_member_id()%>"><%=attitude.getMm_name() %>(<%=attitude.getAt_member_id() %>)</a></td>
 								<td>
 									<%
 										// at_report_state Y : 출근, N : 미출근
