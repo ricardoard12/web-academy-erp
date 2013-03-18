@@ -141,7 +141,7 @@ if(nowpage<=1){
 	<%
 }else{
 	%>
-	<a href="./faq_boardList.fb?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
+	<a href="./Faq_boardList.fb?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
@@ -150,7 +150,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./faq_boardList.fb?page=<%=a%>"><%=a %></a><%
+		%><a href="./Faq_boardList.fb?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
@@ -158,7 +158,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./faq_boardList.fb?page=<%=nowpage+1%>" class="direction next">다음 </a><%
+	%><a href="./Faq_boardList.fb?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>
