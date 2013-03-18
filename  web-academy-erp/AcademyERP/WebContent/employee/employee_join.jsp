@@ -81,6 +81,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	List managerList = (List)request.getAttribute("managerList"); 
+	String newID = (String)request.getAttribute("newID");
 	String level = request.getParameter("level");
 %>
 <body>
@@ -114,11 +115,9 @@
 									<tr>
 										<th scope="row">회원이름</th>
 										<td>
-											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">이름
-													입력</label> <input type="text" name="mm_name" id="temp_input"
-													class="i_text" style="width: 300px">
+											<div>
+												<input type="text" name="mm_name" id="temp_input"
+													size="20" placeholder="아이디를 입력">
 											</div>
 										</td>
 									</tr>
@@ -126,10 +125,8 @@
 										<th scope="row">회원아이디</th>
 										<td>
 											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">아이디
-													입력</label> <input type="text" name="mm_id" id="temp_input"
-													class="i_text" style="width: 300px">
+												<input type="text" name="mm_id" id="temp_input"
+													size="20" value="<%=newID%>">
 											</div>
 										</td>
 									</tr>
@@ -137,16 +134,12 @@
 										<th scope="row">비밀번호</th>
 										<td>
 											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">비밀번호
-													입력</label> <input type="password" name="mm_passwd" id="temp_input"
-													class="i_text" style="width: 300px">
+												<input type="password" name="mm_passwd" id="temp_input"
+													size="20" placeholder="비밀번호 입력">
 											</div> <br>
 											<div class="item">
-												<label for="temp_input" class="i_label"
-													style="position: absolute; visibility: visible;">비밀번호
-													입력 확인</label> <input type="password" name="mm_passwd2"
-													id="temp_input" class="i_text" style="width: 300px">
+												<input type="password" name="mm_passwd2"
+													id="temp_input" size="20" placeholder="비밀번호 확인 입력">
 											</div>
 										</td>
 									</tr>
@@ -174,8 +167,8 @@
 													<option value="053">053</option>
 													<option value="055">055</option>
 												</select> 
-												<input type="text" name="mm_tel1" title="전화번호" class="i_text"> - 
-												<input type="text" name="mm_tel2" title="전화번호" class="i_text">
+												<input type="text" name="mm_tel1" title="전화번호" size="10"> - 
+												<input type="text" name="mm_tel2" title="전화번호" size="10">
 											</div>
 										</td>
 									</tr>
@@ -190,8 +183,8 @@
 													<option>016</option>
 													<option>017</option>
 												</select> 
-												<input type="text" name="mm_phone1" title="휴대폰" class="i_text"> - 
-												<input type="text" name="mm_phone2" title="휴대폰" class="i_text">
+												<input type="text" name="mm_phone1" title="휴대폰" size="10"> - 
+												<input type="text" name="mm_phone2" title="휴대폰" size="10">
 											</div>
 										</td>
 									</tr>
@@ -200,8 +193,8 @@
 										<th scope="row">우편번호</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_zipcode1" title="우편번호1" class="i_text"> - 
-												<input type="text" name="mm_zipcode2" title="우편번호2" class="i_text">
+												<input type="text" name="mm_zipcode1" title="우편번호1" size="15"> - 
+												<input type="text" name="mm_zipcode2" title="우편번호2" size="15">
 												<input type="button" value="우편번호 찾기" onclick="openZipcode()">
 											</div>
 										</td>
@@ -211,7 +204,7 @@
 										<th scope="row">주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr1" title="주소" class="i_text">
+												<input type="text" name="mm_addr1" title="주소" size="60">
 											</div>
 										</td>
 									</tr>
@@ -220,8 +213,7 @@
 										<th scope="row">상세주소</th>
 										<td>
 											<div class="item">
-												<input type="text" name="mm_addr2" title="상세주소"
-													class="i_text">
+												<input type="text" name="mm_addr2" title="상세주소" size="60">
 											</div>
 										</td>
 									</tr>
