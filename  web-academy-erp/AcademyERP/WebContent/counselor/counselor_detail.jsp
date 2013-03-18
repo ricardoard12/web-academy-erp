@@ -16,6 +16,16 @@
 StudentBean student=(StudentBean) request.getAttribute("student");
 CounselerBean counselor = (CounselerBean)request.getAttribute("counselerbean");
 %>
+	<%
+if(session.getAttribute("level")!=null){
+	String level=(String)session.getAttribute("level");
+	if(level.equals("1") || level.equals("2")){%>
+	<script type="text/javascript">
+		history.back();
+	</script>
+	
+	<% }}%>
+
 </head>
 <body>
 <!-- UI Object -->	
