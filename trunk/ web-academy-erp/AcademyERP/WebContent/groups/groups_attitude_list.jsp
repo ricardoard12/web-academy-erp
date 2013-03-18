@@ -252,12 +252,12 @@
 						<thead>
 							<tr>
 								<th scope="col" width="80">선택 <input type=checkbox name="allCheck" onclick="allChecked()"></th>
-								<th scope="col" width="150">이름(아이디)</th>
-								<th scope="col" width="150">학교(학년)</th>
+								<th scope="col" width="200">이름(아이디)</th>
+								<th scope="col" width="250">학교(학년)</th>
 								<th scope="col" width="100">출결상황</th>
 								<th scope="col" width="100">입실시간</th>
 								<th scope="col" width="100">퇴실시간</th>
-								<th scope="col" width="200">메모</th>
+								<th scope="col" width="150">메모</th>
 								<th scope="col" width="100">취소</th>
 							</tr>
 						</thead>
