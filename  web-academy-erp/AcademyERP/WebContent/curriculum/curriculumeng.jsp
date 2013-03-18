@@ -15,7 +15,14 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 </script>
+<style type="text/css">
+.a {
+font-size: 20px; 
+text-decoration:none;
+color: black;
+}
 
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -35,8 +42,8 @@
 			</div>
 			<!-- //snb -->
 			<!-- content -->
-			<div id="content">
-			<div><a href="./Curriculumkor.cr">언어</a> / <a href="./Curriculummath.cr">수리</a> / <a href="./Curriculumeng.cr">외국어</a></div>
+			<div id="content" >
+			<div><a href="./Curriculumkor.cr" class="a">언어</a> / <a href="./Curriculummath.cr" class="a">수리</a> / <a href="./Curriculumeng.cr" class="a">외국어</a></div>
 			<img src="./img/curriculumeng1.png">
 			<img src="./img/curriculumeng2.png">
 			<img src="./img/curriculumeng3.png">
