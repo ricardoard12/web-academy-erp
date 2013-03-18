@@ -117,7 +117,7 @@ if(nowpage<=1){
 	<%
 }else{
 	%>
-	<a href="./business_notice.bl?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
+	<a href="./LessonListAction.le?page=<%=nowpage-1%>" class="direction prev"><span></span>이전</a>
 	<%
 }
 %>
@@ -126,7 +126,7 @@ for(int a=startpage;a<=endpage;a++){
 	if(a==nowpage){
 		%><strong><%=a %></strong>&nbsp;<%
 	}else{
-		%><a href="./business_notice.bl?page=<%=a%>"><%=a %></a><%
+		%><a href="./LessonListAction.le?page=<%=a%>"><%=a %></a><%
 	}
 }
 %>
@@ -134,7 +134,7 @@ for(int a=startpage;a<=endpage;a++){
 if(nowpage>=maxpage){
 	%><a href="#" class="direction next">끝<span></span><span></span></a><%
 }else{
-	%><a href="./business_notice.bl?page=<%=nowpage+1%>" class="direction next">다음 </a><%
+	%><a href="./LessonListAction.le?page=<%=nowpage+1%>" class="direction next">다음 </a><%
 }
 
 %>
