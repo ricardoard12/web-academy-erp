@@ -232,6 +232,9 @@
 												<%=studentbean.getMm_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">회원아이디</th>
@@ -240,6 +243,9 @@
 												<%=studentbean.getMm_id()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<!-- <tr>
 		<th scope="row">인풋:설명 보이고 줄 바꿈</th>
@@ -258,6 +264,9 @@
 												- <%=studentbean.getMm_jumin2()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 
@@ -268,6 +277,9 @@
 											<%=studentbean.getMm_tel().split("-")[0]%>-	<%=studentbean.getMm_tel().split("-")[1]%>-<%=studentbean.getMm_tel().split("-")[2]%>											
 										</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -277,6 +289,9 @@
 											<%=studentbean.getMm_phone().split("-")[0] %>-<%=studentbean.getMm_phone().split("-")[1] %>-<%=studentbean.getMm_phone().split("-")[2] %>
 										</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -287,6 +302,9 @@
 												<%=studentbean.getMm_zipcode().split("-")[1]%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -296,6 +314,9 @@
 											<%=studentbean.getMm_addr1()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -305,6 +326,9 @@
 												<%=studentbean.getMm_addr2()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -317,6 +341,9 @@
 												
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -326,6 +353,9 @@
 												<%=studentbean.getSt_school_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -336,6 +366,9 @@
 												<%=studentbean.getSt_school_grade() %>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									
 										<tr>
@@ -345,6 +378,9 @@
 												<%=studentbean.getGp_name()%>										
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">학부모 이름</th>
@@ -353,6 +389,9 @@
 												<%=studentbean.getSt_parent_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -364,6 +403,9 @@
 									<%=studentbean.getSt_parent_mobile().split("-")[2]%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -373,6 +415,9 @@
 												<%=studentbean.getSt_parent_id() %>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 	                               <tr>
 										<th scope="row">재학상태</th>
@@ -381,6 +426,9 @@
 												<%=studentbean.getSt_status()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">수강료</th>
@@ -390,6 +438,9 @@
 												원
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -399,15 +450,24 @@
 											<%=studentbean.getSt_tuition_state() %>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">담임</th>
 										<td>
 											<div class="item">
+											<%if(studentbean.getMm_manager_id()!=null){ %>
 												<%=studentbean.getMm_manager_id()%>
-												
+												<%}else{ %>
+												정보없음
+												<%} %>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 						
 

@@ -60,7 +60,7 @@ if(session.getAttribute("level")!=null){
 					<fieldset>
 						<legend>학생 상담내역</legend>
 						<div class="form_table">
-							<table border="1" cellspacing="0" summary="회원가입">
+							<table border="1" cellspacing="0" summary="회원가입" >
 								<tbody>
 									<!-- <tr>
 		<th scope="row">회원 이름</th>
@@ -92,12 +92,15 @@ if(session.getAttribute("level")!=null){
 		</tr>-->
 
 									<tr>
-										<th scope="row">회원이름</th>
+										<th scope="row" >회원이름</th>
 										<td>
 											<div class="item">
 												<%=studentbean.getMm_name()%>
 											</div>
 										</td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">회원아이디</th>
@@ -106,6 +109,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getMm_id()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<!-- <tr>
 		<th scope="row">인풋:설명 보이고 줄 바꿈</th>
@@ -125,6 +131,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getSt_school_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -134,6 +143,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getSt_school_grade() %>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									<tr>
@@ -143,6 +155,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getSt_parent_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 
 									
@@ -153,6 +168,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getSt_status()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									   <tr>
 										<th scope="row">소속학급</th>
@@ -161,6 +179,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getGp_name()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									<tr>
 										<th scope="row">담임</th>
@@ -169,6 +190,9 @@ if(session.getAttribute("level")!=null){
 												<%=studentbean.getEp_id()%>
 											</div>
 										</td>
+											<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									</tr>
 									
 							
