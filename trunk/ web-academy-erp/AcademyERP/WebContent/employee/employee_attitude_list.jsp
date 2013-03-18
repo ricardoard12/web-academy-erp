@@ -38,12 +38,11 @@
 		}
 	}	
 	
-	function CheckDate() { // 달력 체크
-		var date = document.emAttitudeForm.date.value;
-		if (date == "") {
+	function CheckDate(selDate) { // 달력 체크
+		if (selDate == "") {
 			alert('날짜 입력하세요');
 		} else {
-			document.emAttitudeForm.action = "./EmployeeAttitudeListAction.em?date=" + date;
+			document.emAttitudeForm.action = "./EmployeeAttitudeListAction.em?date=" + selDate;
 			document.emAttitudeForm.submit();
 		}
 	}
@@ -95,14 +94,14 @@
 						<thead>
 							<tr>
 								<th scope="row">검색날짜선택</th>
-								<td colspan="2" align="left">
+								<td colspan="7" align="left">
 									<div class="item">
-										<input type="text" name="date"> 
-										<input type="button" value="검색" onclick="CheckDate()">
-										<input type="button" value="달력보기" onClick="datePicker(event,'date',0)">
+										<input type="button" value="검색" onclick="CheckDate(seldate.value)">
+										<input type="text" name="seldate" value="" onClick="datePicker(event,'seldate',0)">
 										<!-- 동일한 날짜입력 의 경우 세번째 1일 타켓 구분 입력 안하면 기본 0값 -->
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일<br>
+										<%=date.split("-")[0] %>년 <%=date.split("-")[1] %>월 <%=date.split("-")[2] %>일
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</div>
 								</td>
 							</tr>
