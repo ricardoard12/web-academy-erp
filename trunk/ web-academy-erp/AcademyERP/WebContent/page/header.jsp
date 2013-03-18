@@ -39,7 +39,7 @@
 			<li class="m3"><a href="#"><span>커리큘럼</span></a>
 				<div class="sub">
 					<ul>
-					<li><a href="#"><span>과목소개</span></a></li>
+					<li><a href="./Curriculumkor.cr"><span>과목소개</span></a></li>
 					</ul>
 				</div>
 			</li>
@@ -47,7 +47,7 @@
 			<li class="m4"><a href="#"><span>커뮤니티</span><!-- <span class="i"></span> --></a>
 				<div class="sub">
 					<ul>
-					<li><a href="#"><span>공지사항</span></a></li>
+					<li><a href="./NoticeList.no"><span>공지사항</span></a></li>
 					<li><a href="#"><span>Q&A</span></a></li>
 					<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
 					</ul>
