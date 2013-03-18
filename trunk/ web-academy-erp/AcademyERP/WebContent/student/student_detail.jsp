@@ -474,8 +474,12 @@ if(session.getAttribute("level")!=null){
 										<th scope="row">담임</th>
 										<td>
 											<div class="item">
+											<%if(studentbean.getMm_manager_id()!=null){ %>
 												<input type="text" name="mm_manager_id" title="매니저" class="i_text" value="<%=studentbean.getMm_manager_id()%>">
+												<%}else{ %>
+												<input type="text" name="mm_manager_id" title="매니저" class="i_text" value="미배정">
 												
+												<%} %>
 											</div>
 										</td>
 									</tr>
