@@ -1,3 +1,4 @@
+<%@page import="academy.qna_board.db.QnaBean"%>
 <%@page import="academy.noticle.db.NoticeBean"%>
 <%@page import="academy.board.db.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,17 +14,9 @@
 <script type="text/javascript" src="./board/SE2.2.1.O9186/js/HuskyEZCreator.js" charset="utf-8"></script>
 <title>Insert title here</title>
 <%
-NoticeBean notice = (NoticeBean)request.getAttribute("notice");
+QnaBean qna = (QnaBean)request.getAttribute("qna");
 %>
-<%
-if(session.getAttribute("level")!=null){
-	String level=(String)session.getAttribute("level");
-	if(level.equals("4") ||level.equals("5") ){%>
-	<script type="text/javascript">
-		history.back();
-	</script>
-	
-	<% }}%>
+
 
 </head>
 <body>
@@ -47,8 +40,8 @@ if(session.getAttribute("level")!=null){
 
 				<!-- 게시판 글쓰기 시작 -->
 
-				<form action="./NoticeModifyAction.no" method="post">
-				<input type="hidden" name="num" value="<%=notice.getNot_num()%>">
+				<form action="./QnaModifyAction.qa" method="post">
+				<input type="hidden" name="num" value="<%=qna.getQna_num()%>">
 				
 					<fieldset>
 						<legend>게시판 수정</legend>
@@ -61,7 +54,7 @@ if(session.getAttribute("level")!=null){
 			<th scope="row">제목</th>
 			<td>
 				<div class="item">
-					<input type="text" name="not_title" id="temp_input"class="i_text" style="width: 300px" value="<%=notice.getNot_title()%>">
+					<input type="text" name="qna_title" id="temp_input"class="i_text" style="width: 300px" value="<%=qna.getQna_title()%>">
 		</div>
 						</td>
 					</tr>
@@ -69,8 +62,8 @@ if(session.getAttribute("level")!=null){
 			<th scope="row">내용</th>
 			<td>
 				<div class="item">
-					<textarea name="not_content" cols="100" rows="10" title="레이블 텍스트"
-						id= "contents" class="i_text" style="display: none;"><%=notice.getNot_content() %></textarea>
+					<textarea name="qna_content" cols="100" rows="10" title="레이블 텍스트"
+						id= "contents" class="i_text" style="display: none;"><%=qna.getQna_content() %></textarea>
 				</div>
 			</td>
 		</tr>
@@ -81,7 +74,7 @@ if(session.getAttribute("level")!=null){
 			<td align="left">
 				<div class="item">
 					<input type="submit"  value="수정" onclick="submitContents(this)"> 
-					<input type="button" name="" value="취소" onclick="location.href='./NoticeList.no'">
+					<input type="button" name="" value="취소" onclick="location.href='./QnaList.qa'">
 				</div>
 			</td>
 		</tr>
