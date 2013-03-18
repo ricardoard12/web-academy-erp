@@ -10,7 +10,7 @@
 .form_table caption{padding:8px 0;font-weight:bold;text-align:left}
 .form_table th,
 .form_table td{padding:8px;border:0;vertical-align:top}
-.form_table th{color:#333}
+.form_table th{color:#333; width: 150px; padding-left: 20px}
 .form_table td{color:#666}
 .form_table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
 .form_table tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
