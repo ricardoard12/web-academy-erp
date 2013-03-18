@@ -34,7 +34,6 @@ request.getAttribute("studentbean"); // 학생의 기본정보를 저장
 <body>
 	<!-- UI Object -->
 	<div id="wrap">
-		<p>#wrap</p>
 		<!-- header -->
 		<div id="header">
 			<jsp:include page="../page/header.jsp"></jsp:include>
