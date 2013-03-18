@@ -67,7 +67,7 @@ public class SendSmsAction implements Action {
 		SMS sms = new SMS(); // 문자 발송 메인 클래스인 SMS.class 객체 생성
 		sms.appversion("Tutorial/1.0"); // 버전 설정. 옵션 사항
 		sms.charset("utf8"); // 캐릭터셋 설정
-		sms.setuser("academytest", "dkzkepal1234"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
+		sms.setuser("nedgold", "123123"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
 		
 		for (int i = 0; i < receiverPhoneList.size(); i++) { // 수신자 인원만큼 반복
 			SmsMessagePdu pdu = new SmsMessagePdu(); // 문자 전송 건별 객체 생성
