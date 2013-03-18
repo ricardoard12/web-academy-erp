@@ -18,9 +18,9 @@ public class GroupsNameListAction implements Action{
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		int level = Integer.parseInt((String) session.getAttribute("level"));
-		/* 권한 확인 */
-		if (level < 3) {
+		String sid = (String) session.getAttribute("id");
+		int level = (Integer) session.getAttribute("level");
+		if (sid == null || sid.equals("") || level < 3) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
