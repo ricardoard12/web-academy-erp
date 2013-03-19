@@ -21,7 +21,23 @@
 		String business_name = (String) session.getAttribute("name");
 		//세션으로 level 값 받음
 		String level = (String) session.getAttribute("level");
+		
+		String check_level3 = null;
+		
 	%>
+	
+	<script type="text/javascript">
+	
+	function check_level() {
+		
+		var check = document.getElementById(check_leve3);
+		var check = 1;
+		
+		return check;
+		
+	}
+	
+	</script>
 </head>
 <body>
 	<!-- UI Object -->
@@ -62,13 +78,29 @@
 									</tr>
 									
 									<tr>
-<%-- 									<%if(level.equals("3")){ %> --%>
-										<th colspan="2">| <input type="button" value="결재">|
-<%-- 										<%}if(level.equals("4")) {%> --%>
-										<input type="button" value="결재">|
-<%-- 											<%}if(level.equals("5")) {	%>  --%>
-											<input type="button" value="결재">|
-<%-- 											<%} %> --%>
+										<th colspan="2">| 
+											
+										<!--해당 버튼 선택시 boolean형으로 값을 적용시킨다. -->
+										<!--해당값이 있을경우 true, 아니면 false로 이미지 적용 유무 판별 -->
+										
+										
+										<!-- level값이 3일때 결재 선택시 -->
+<%-- 										<%if(check_level3 == null){ %> --%>
+										<%if(level.equals("3") || level.equals("4") || level.equals("5")){ %>
+										<input type="button" name="check_level3" id="check_level3" value="결재" onclick="return check_level()">|
+										<%} %>
+<%-- 										<%}else{ %> --%>
+<!-- 										<img src="../img/stamp1.png"> -->
+<%-- 										<%} %> --%>
+										
+										<!-- level값이 4일때 결재 선택시 -->
+										<%if(level.equals("4") || level.equals("5")){ %>
+										<input type="button" name="check_level4" value="결재">|
+										<%} %>
+										<!-- level값이 5일때 결재 선택시 -->
+										<%if(level.equals("5")){ %>
+										<input type="button" name="check_level5" value="결재">|
+										<%} %>
 											</th>
 
 
@@ -93,10 +125,7 @@
 										<th scope="row">내용</th>
 										<td>
 											<div class="item">
-<!-- 												<textarea name="business_today" cols="100" rows="10" -->
-<!-- 													title="레이블 텍스트" id="contents" class="i_text" -->
-<%-- 													style="display: none;"><%=businessbean.getBusiness_today() %></textarea> --%>
-													<textarea name="business_today" cols="140" rows="10"><%=businessbean.getBusiness_today() %></textarea>
+											<textarea name="business_today" cols="140" rows="10"><%=businessbean.getBusiness_today() %></textarea>
 											</div>
 										</td>
 									</tr>
@@ -111,8 +140,6 @@
 										<th scope="row">내용</th>
 										<td>
 											<div class="item">
-<!-- 											<textarea name="business_counsel" id="business_counsel" cols="100" rows="10" -->
-<%-- 											class="i_text" style="display: none;" title="레이블 텍스트"><%=businessbean.getBusiness_counsel() %></textarea> --%>
 												<textarea name="business_counsel" id="business_counsel" cols="140" rows="10"><%=businessbean.getBusiness_counsel() %></textarea>
 											</div>
 										</td>
@@ -126,9 +153,7 @@
 										<th scope="row">내용</th>
 										<td>
 											<div class="item">
-<!-- 												<textarea name="business_etc" id="business_etc" cols="100" rows="10" -->
-<%-- 												class="i_text" style="display: none;" title="레이블 텍스트"><%=businessbean.getBusiness_etc()%></textarea> --%>
-													<textarea name="business_etc" id="business_etc" cols="140" rows="10"><%=businessbean.getBusiness_etc()%></textarea>
+											<textarea name="business_etc" id="business_etc" cols="140" rows="10"><%=businessbean.getBusiness_etc()%></textarea>
 											</div>
 										</td>
 									</tr>
