@@ -20,11 +20,11 @@ public class TimetableDAO {
 
 	public TimetableDAO() {
 		try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-//            Context init = new InitialContext();
-//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+//        	Class.forName("com.mysql.jdbc.Driver");
+//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+            Context init = new InitialContext();
+            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("timetable DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
