@@ -2,7 +2,6 @@ package academy.accounting.db;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,11 +21,8 @@ public class AccountingDAO {
     DataSource ds;
     public AccountingDAO() {
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-//            Context init = new InitialContext();
-//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+            Context init = new InitialContext();
+            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
         } catch (Exception e) {e.printStackTrace();}
     }
     
@@ -46,7 +42,7 @@ public class AccountingDAO {
         
         try {
             //회계ID 번호 구하기
-//            //            con=ds.getConnection();
+            con=ds.getConnection();
             sql="select max(ac_idx) from accounting";
             pstmt=con.prepareStatement(sql);
             rs=pstmt.executeQuery();
@@ -58,7 +54,7 @@ public class AccountingDAO {
 
             con = ds.getConnection();
             sql = "insert into accounting(ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo)" +
-            		"values(?,?,?,?,?,?,?,?)";
+                    "values(?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, acnum);
             pstmt.setString(2, acBean.getMm_id());
@@ -81,7 +77,7 @@ public class AccountingDAO {
         List acList = null;
         AccountingBean acBean = null;
         try {
-            //            con=ds.getConnection();
+            con=ds.getConnection();
             if(kind.equals("fee")){
                 sql.append("where ac_io_type = '수강료' ");
             }else if(kind.equals("in")){
@@ -120,7 +116,7 @@ public class AccountingDAO {
         List searchlist = null;
         AccountingBean acBean = null;
         try {
-            //            con=ds.getConnection();
+            con=ds.getConnection();
             sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
                     "where ac_date = ? order by ac_id desc";
             pstmt=con.prepareStatement(sql);
@@ -169,57 +165,57 @@ public class AccountingDAO {
     }
     
     public int getAccountcount(String memberid){ // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
-    	int accountcount =0;
-    	String  sql="";
-    	try {
-			//            con=ds.getConnection();
-			sql="select count(*) from accounting where mm_id =? and ac_io_type='수강료'"; // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
-			pstmt=con.prepareStatement(sql	);
-			pstmt.setString(1, memberid);
-			rs= pstmt.executeQuery();
-			if(rs.next()){
-				accountcount = rs.getInt(1); // 조회한 값을 accountcount를 집어 넣는다.
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {closingDB();}
-    	
-		return accountcount;
-    	
+        int accountcount =0;
+        String  sql="";
+        try {
+            con=ds.getConnection();
+            sql="select count(*) from accounting where mm_id =? and ac_io_type='수강료'"; // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
+            pstmt=con.prepareStatement(sql  );
+            pstmt.setString(1, memberid);
+            rs= pstmt.executeQuery();
+            if(rs.next()){
+                accountcount = rs.getInt(1); // 조회한 값을 accountcount를 집어 넣는다.
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {closingDB();}
+        
+        return accountcount;
+        
     }
     
     public List getAccountingStudent(String memberid,int page,int limit){
-		List account = null; //가지고온 정보를 저장할 list를 가지고옴
-		int startrow=(page-1)*limit+1; //현재페이지 시작행
-		String sql="";
-    	
-    	try {
-			con = ds.getConnection();
-			sql="select ac_price,ac_cc_type,ac_date,ac_memo from accounting where mm_id =? and ac_io_type ='수강료' order by ac_date desc limit ?,?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, memberid);
-			pstmt.setInt(2, startrow-1);// 시작계수
-			pstmt.setInt(3, limit);
-			rs= pstmt.executeQuery();
-			
-			if(rs.next()){
-				account = new ArrayList();
-				do{
-					AccountingBean accounting = new AccountingBean();
-					accounting.setAc_cc_type(rs.getString("ac_cc_type"));
-					accounting.setAc_price(rs.getInt("ac_price"));
-					accounting.setAc_date(rs.getDate("ac_date"));
-					accounting.setAc_memo(rs.getString("ac_memo"));
-					
-					account.add(accounting);
-				}while(rs.next());
-			}
-    	} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {closingDB();}
-    	return account;
+        List account = null; //가지고온 정보를 저장할 list를 가지고옴
+        int startrow=(page-1)*limit+1; //현재페이지 시작행
+        String sql="";
+        
+        try {
+            con = ds.getConnection();
+            sql="select ac_price,ac_cc_type,ac_date,ac_memo from accounting where mm_id =? and ac_io_type ='수강료' order by ac_date desc limit ?,?";
+            pstmt=con.prepareStatement(sql);
+            pstmt.setString(1, memberid);
+            pstmt.setInt(2, startrow-1);// 시작계수
+            pstmt.setInt(3, limit);
+            rs= pstmt.executeQuery();
+            
+            if(rs.next()){
+                account = new ArrayList();
+                do{
+                    AccountingBean accounting = new AccountingBean();
+                    accounting.setAc_cc_type(rs.getString("ac_cc_type"));
+                    accounting.setAc_price(rs.getInt("ac_price"));
+                    accounting.setAc_date(rs.getDate("ac_date"));
+                    accounting.setAc_memo(rs.getString("ac_memo"));
+                    
+                    account.add(accounting);
+                }while(rs.next());
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {closingDB();}
+        return account;
     }
     
     public List accountingIDsearch(){
@@ -228,23 +224,49 @@ public class AccountingDAO {
         String sql="";
         
         try {
-            //            con=ds.getConnection();
-            sql = "SELECT mm_id, mm_name FROM member where mm_id like 's%' or mm_id like 't%'";
+            con=ds.getConnection();
+            sql = "SELECT mm_id, mm_name, mm_jumin1, mm_jumin2 FROM member where mm_id like 's%' or mm_id like 't%'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if(rs.next()){
                 accountingIDlList = new ArrayList();
                 do{
                     acbean = new AccountingBean();
-                    acbean.setGr_period(rs.getString("gr_period"));
-                    acbean.setGr_subject(rs.getString("gr_subject"));
-                    acbean.setGr_memo(rs.getString("gr_memo"));
-                    
+                    acbean.setMm_id(rs.getString("mm_id"));
+                    acbean.setMm_name(rs.getString("mm_name"));
+                    acbean.setMm_jumin1(rs.getInt("mm_jumin1"));
+                    acbean.setMm_jumin2(rs.getInt("mm_jumin2"));
                     accountingIDlList.add(acbean);
                 }while(rs.next());
             }
             
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
         return accountingIDlList;
+    }
+    
+    public List accountingOfficerSearch(){
+        List accountingOfficerlList = null;
+        AccountingBean acbean = null;
+        String sql="";
+        
+        try {
+            con=ds.getConnection();
+            sql = "SELECT mm_id, mm_name, mm_jumin1, mm_jumin2 FROM member where mm_id like 't%'";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                accountingOfficerlList = new ArrayList();
+                do{
+                    acbean = new AccountingBean();
+                    acbean.setMm_id(rs.getString("mm_id"));
+                    acbean.setMm_name(rs.getString("mm_name"));
+                    acbean.setMm_jumin1(rs.getInt("mm_jumin1"));
+                    acbean.setMm_jumin2(rs.getInt("mm_jumin2"));
+                    accountingOfficerlList.add(acbean);
+                }while(rs.next());
+            }
+            
+        } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
+        return accountingOfficerlList;
     }
 }
