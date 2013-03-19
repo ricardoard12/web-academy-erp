@@ -32,7 +32,7 @@
 					<tbody>
 					
 					<% if(idlist == null){%>
-						<tr><td colspan="3"><h1>학생 입력해주세요</h1></td></tr>
+						<tr><td colspan="3"><h1>입력해주세요</h1></td></tr>
 					<%}else{			
 
 						for(int i=0; i<idlist.size(); i++){

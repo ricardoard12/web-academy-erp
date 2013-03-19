@@ -32,15 +32,15 @@
 					<tbody>
 					
 					<% if(officerlist == null){%>
-						<tr><td colspan="3"><h1>학생 입력해주세요</h1></td></tr>
+						<tr><td colspan="3"><h1>입력해주세요</h1></td></tr>
 					<%}else{			
 
 						for(int i=0; i<officerlist.size(); i++){
 						    AccountingBean acbean = (AccountingBean)officerlist.get(i);%>
 						<tr>
-							<td><%=acbean.getMm_name() %></td>
-							<td onclick="windowclose('<%=acbean.getMm_id() %>')">
-							<a href=""><%=acbean.getMm_id() %></a></td>
+							<td onclick="windowclose('<%=acbean.getMm_name() %>')">
+							<a href=""><%=acbean.getMm_name() %></a></td>
+							<td><%=acbean.getMm_id() %></td>
 							<td><%=acbean.getMm_jumin1() %> - <%=acbean.getMm_jumin1() %></td>
 						</tr>
 					<% 		}
@@ -57,8 +57,8 @@
 	</form>
 	
 	<script type="text/javascript">
-	function windowclose(mm_id){
-		opener.document.acCheck.ac_manager_name.value = mm_id;
+	function windowclose(mm_name){
+		opener.document.acCheck.ac_manager_name.value = mm_name;
 		window.close();
 	}
 	</script>
