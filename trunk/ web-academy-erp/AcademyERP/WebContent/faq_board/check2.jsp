@@ -23,7 +23,7 @@ function Check()
 	request.setCharacterEncoding("utf-8");
 	// DB검색을 위한 num값 전달
 	int num = Integer.parseInt(request.getParameter("num"));
-	
+	String level = request.getParameter("level");
 // 	boolean userchk = ((Boolean)request.getAttribute("userchk")).booleanValue();
 // 	out.println("userchk 값 : " + userchk);
 	
