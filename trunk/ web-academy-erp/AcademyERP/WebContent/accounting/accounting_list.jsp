@@ -90,7 +90,7 @@
 										<td><input type="checkbox" name="check" value="<%=acBean.getAc_id()%>"></td>
 										<td><%=acBean.getAc_id()%></td>
 										<td><%=acBean.getMm_id()%></td>
-										<td>직원,학생에서 가져와야됨</td>
+										<td><%=acBean.getMm_name()%></td>
 										<td><%=acBean.getAc_io_type()%></td>
 										<td><%=acBean.getAc_price()%>원</td>
 										<td><%=acBean.getAc_cc_type()%></td>
