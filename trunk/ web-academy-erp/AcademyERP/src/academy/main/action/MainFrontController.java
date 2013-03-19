@@ -22,9 +22,13 @@ public class MainFrontController extends HttpServlet implements Servlet {
         Action action = null;
 
         if (command.equals("/Main.main")) {
-        	forward = new ActionForward();
-        	forward.setRedirect(false);
-            forward.setPath("./page/main.jsp");
+        	action=new MainAction();
+        	try{
+        		forward=action.execute(request, response);
+        	}catch(Exception e){
+        		e.printStackTrace();
+        	}
+        	
         }        
         // 이동
         if (forward != null) {
