@@ -24,8 +24,8 @@
 	String level = (String) session.getAttribute("level");
 	
 	// 패스워드체크를 위한 boolean값
-//     boolean userchk = ((Boolean)request.getAttribute("userchk")).booleanValue();
-// 	out.println("userchk 값 : " + userchk);
+	//boolean userchk = ((Boolean)request.getAttribute("userchk")).booleanValue();
+	//out.println("userchk 값 : " + userchk);
 	
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,7 +46,7 @@ function checkPass(num){
 	  var top = Math.ceil((window.screen.height - winH)/2);
 	  //화면의 중앙에 위치하도록 position 설정
 	  
-	  window.open('./Faq_check.fb?num='+ num,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = yes , menubar = yes, scrollbars = no, resizable = yes');
+	  window.open('./Faq_check.fb?num='+ num +'&level=' + level,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = yes , menubar = yes, scrollbars = no, resizable = yes');
 	  
 	}
 
