@@ -37,7 +37,7 @@ public class LessonDetailAction implements Action {
 		
 		lessonbean = lessondao.getDetail(num);
 		
-		if(!level.equals("5") && !level.equals("4")){
+//		if(!level.equals("5") && !level.equals("4")){
 			
 			boolean usercheck = lessondao.userchk(num, name);
 			
@@ -51,7 +51,7 @@ public class LessonDetailAction implements Action {
 				out.close();
 				return null;
 			}
-		}
+//		}
 		
 		request.setAttribute("lessonbean", lessonbean);
 		forward.setRedirect(false);
