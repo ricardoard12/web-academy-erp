@@ -26,7 +26,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="./css/default.css" rel="stylesheet" type="text/css">
 <link href="./css/board.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
+<title>상세정보</title>
 </head>
 <body>
 	<!-- UI Object -->
@@ -77,9 +77,7 @@
 									if (lev >= 4) {
 								%>
 								<th scope="col">&nbsp;</th>
-								<%
-									}
-								%>
+								<%} %>
 								<th scope="col">No</th>
 								<th scope="col">제목</th>
 								<th scope="col">글쓴이</th>
@@ -88,19 +86,22 @@
 							</tr>
 						</thead>
 
-						<tbody>							
+						<tbody>
 							<%
 								if (noticeList.size() > 0) {
 									for (int i = 0; i < noticeList.size(); i++) {
 										BoardBean boardbean = (BoardBean) noticeList.get(i);
 							%>
 							<!-- notice sector -->
-							<tr style="background:#F6F6F6">
+							<tr style="background: #F6F6F6">
+								<%if(lev>=4){ %>
 								<td class="frm"><input type="checkbox" name="board_check"
 									id="chk_sel" value="<%=boardbean.getBoard_num()%>"><label
 									for="chk_sel">선택</label></td>
+								<%} %>
 								<td class="num"><%=boardbean.getBoard_num()%></td>
-								<td class="title"><img src="./img/notice_icon.gif" width="15" height="15"/> <a
+								<td class="title"><img src="./img/notice_icon.gif"
+									width="15" height="15" /> <a
 									href="./BoardDetailAction.bo?num=<%=boardbean.getBoard_num()%>&?gid=<%=gid%>'"><%=boardbean.getBoard_subject()%></a></td>
 								<td><a href="#"><%=boardbean.getBoard_name()%></a></td>
 								<td class="date"><%=boardbean.getBoard_date()%></td>
