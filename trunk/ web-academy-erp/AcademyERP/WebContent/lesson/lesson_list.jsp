@@ -20,7 +20,6 @@
 	String id = (String) session.getAttribute("id");
 	//세션으로 name값 받음
 	String name = (String) session.getAttribute("name");
-// 	String name = 
 	//세션으로 level 값 받음
 	String level = (String) session.getAttribute("level");
     %>
@@ -98,9 +97,9 @@
 <div align="right">
 <%-- <% if(level.equals("5")){ %> --%>
 <input type="button" name="lesson_write" value="글쓰기" onclick="location.href='./LessonWrite.le?level=<%=level%>&id=<%=id%>&name=<%=name%>'">
-<%if(level.equals("5")){ %>
+<%-- <%if(level.equals("5")){ %> --%>
 <input type="submit" name="business_delete" value="삭제">
-<%} %>
+<%-- <%} %> --%>
 </form>
 </div>
 <%-- <%}else{}%> --%>

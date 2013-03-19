@@ -27,6 +27,11 @@ public class Faq_UserCheckAction implements Action {
 		//password값 전달하여 받는 값 확인
 		System.out.println("Action에서 Faq_password값은 : " + password + "입니다.");
 		
+		String level = request.getParameter("level");
+		System.out.println("Action에서 level값은 : " + level + "입니다.");
+		
+		
+		if(!level.equals("5") && !level.equals("4")){
 		boolean userchk = faq_boarddao.userchk(num, password);
 		
 		if(userchk == false){
@@ -39,13 +44,15 @@ public class Faq_UserCheckAction implements Action {
 		out.close();
 		return null;
 	}
-//		request.setAttribute("userchk", userchk);
+		}
+
 		request.setAttribute("faq_boardbean", faq_boardbean);
 		request.setAttribute("num", num);
 		request.setAttribute("password", password);
-		
 		forward.setRedirect(false);
-		System.out.println("Action에서의 boolean usercheck값 :" + userchk);
+		
+		
+		
 		forward.setPath("./Faq_BoardDetailAction.fb");
 		return forward;
 		

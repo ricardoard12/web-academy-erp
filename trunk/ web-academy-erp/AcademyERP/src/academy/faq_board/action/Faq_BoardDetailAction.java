@@ -20,11 +20,11 @@ public class Faq_BoardDetailAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		ActionForward forward=new ActionForward();
-//		int num = Integer.parseInt(request.getParameter("num"));
+
 		int num = (int) request.getAttribute("num");
 		System.out.println("Action num값 : "+num);
 				
-//		String password = request.getParameter("password");
+
 		String password = (String) request.getAttribute("password");
 		System.out.println("Action password값 : " + password);
 				
