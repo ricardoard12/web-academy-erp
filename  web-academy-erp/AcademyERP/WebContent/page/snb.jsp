@@ -360,10 +360,14 @@
 				</ul></li>
 			<li><a><span>시간표관리</span><span class="i"></span></a>
 				<ul style="display: none;">
+					<%
+						if (lev >= 4) {
+					%>
 					<li <%=sub5_1%>><a href="./TimeTableList.time"><span>전체시간표</span></a></li>
+					<%
+						}
+					%>
 					<li <%=sub5_2%>><a href="./TimeTableTeacher.time"><span>강사별시간표</span></a></li>
-
-					<li <%=sub5_3%>><a href="#"><span>학급별시간표</span></a></li>
 				</ul></li>
 			<li><a><span>성적관리</span><span class="i"></span></a>
 				<ul style="display: none;">
@@ -398,7 +402,9 @@
 					<!-- 직원 계시판은 15 -->
 					<li <%=sub6_6%>><a href="./BoardNotice.bo?gid=15"><span>직원게시판</span></a></li>
 				</ul></li>
-
+			<%
+				if (lev >= 4) {
+			%>
 			<li><a><span>직원관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li <%=sub7_1%>><a href="./EmployeeJoin.em"><span>신규등록</span></a></li>
@@ -414,9 +420,6 @@
 					<li <%=sub8_4%>><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
 					<li <%=sub8_5%>><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
-			<%
-				if (lev >= 4) {
-			%>
 			<li><a><span>SMS 관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li <%=sub9_1%>><a href="./AllMessage.sms"><span>전체문자관리</span></a></li>
