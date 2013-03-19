@@ -311,10 +311,10 @@
 
 					<li <%=sub1_1%>><a
 						href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
-					<li <%=sub1_2%>><a href="#"><span>회비내역조회</span></a></li>
+					<li <%=sub1_2%>><a href="./AccountingStuentd.ac"><span>회비내역조회</span></a></li>
 					<li <%=sub1_3%>><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
 					<li <%=sub1_4%>><a href="#"><span>성적조회</span></a></li>
-					<li><a href="#"><span>출결상황조회</span></a></li>
+					<li><a href="./AttitudeStudent.at"><span>출결상황조회</span></a></li>
 					<li><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
@@ -387,8 +387,7 @@
 					<!-- 공지사항은 계시판 10 -->
 					<li <%=sub6_1%>><a href="./BoardNotice.bo?gid=10"><span>공지사항</span></a></li>
 					<!-- 업무일지는 11 -->
-					<li <%=sub6_2%>><a
-						href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
+					<li <%=sub6_2%>><a href="./BusinessNotice.bl?level=<%=level%>"><span>업무일지</span></a></li>
 					<!-- 강의계획서는 12 -->
 					<li <%=sub6_3%>><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서</span></a></li>
@@ -415,6 +414,9 @@
 					<li <%=sub8_4%>><a href="./AccountingList.ac?kind=out"><span>지출현황</span></a></li>
 					<li <%=sub8_5%>><a href="./AccountingList.ac?kind=list"><span>전체조회</span></a></li>
 				</ul></li>
+			<%
+				if (lev >= 4) {
+			%>
 			<li><a><span>SMS 관리</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li <%=sub9_1%>><a href="./AllMessage.sms"><span>전체문자관리</span></a></li>
@@ -425,14 +427,15 @@
 						</div></li>
 				</ul></li>
 			<%
-				/*오로지 관리자만 접근 가능메뉴*/
+				}
+						/*오로지 관리자만 접근 가능메뉴*/
 						if (lev >= 5) {
 			%>
 			<li><a><span>홈페이지관리(Master전용)</span><span class="i"></span></a>
 				<ul style="display: none;">
 					<li <%=sub10_1%>><a href="./LevelList.master"><span>레벨/권한
 								설정</span></a></li>
-					<li <%=sub10_2%>><a href="#"><span>공지사항 관리</span></a></li>
+					<li <%=sub10_2%>><a href="#"><span>전체 계시판 관리</span></a></li>
 					<li <%=sub10_3%>><a href="./AllMemberList.master"><span>전체
 								회원 관리</span></a></li>
 				</ul></li>
