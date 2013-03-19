@@ -38,7 +38,8 @@
 <script type="text/javascript">
 
 //비밀번호 체크를 위한 window 띄움
-function checkPass(num){
+function checkPass(num , level){
+	
 	  var winW = window.screen.Width;
 	  var winH = window.screen.Height;
 	  
@@ -46,8 +47,8 @@ function checkPass(num){
 	  var top = Math.ceil((window.screen.height - winH)/2);
 	  //화면의 중앙에 위치하도록 position 설정
 	  
-	  window.open('./Faq_check.fb?num='+ num +'&level=' + level,'패스워드 체크','width='+winW+',height='+winH+',left='+left+',top='+top+',toolbar = no, location = no, status = yes , menubar = yes, scrollbars = no, resizable = yes');
-	  
+	  window.open("./Faq_check.fb?num="+ num +"&level=" + level,"패스워드 체크","width="+winW+",height="+winH+",left="+left+",top="+top+",toolbar = no, location = no, status = yes , menubar = yes, scrollbars = no, resizable = yes");
+// 	  location.href="./Faq_check.fb?num="+ num +"&level=" + level;
 	}
 
 </script>
@@ -77,7 +78,7 @@ function checkPass(num){
 <table cellspacing="0" border="1" summary="게시판의 글제목 리스트" class="tbl_type_notice">
 
 
-<caption>FAQ 리스트</caption>
+<caption>QnA 리스트</caption>
 
 <colgroup>
 <col width="30"><col width="80"><col>
@@ -104,8 +105,8 @@ function checkPass(num){
     		<tr>
     		<td class="frm"><input type="checkbox" name="faq_board_check" id="chk_sel" value="<%=faq_boardbean.getFaq_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=faq_boardbean.getFaq_num() %></td>
-    		<td class="title"><a href="#" onclick="checkPass(<%=faq_boardbean.getFaq_num() %>)"><%=faq_boardbean.getFaq_subject() %></a></td>
-    		<td><a href="#"><%=faq_boardbean.getFaq_name() %></a></td>
+    		<td class="title"><a href="" onclick="checkPass('<%=faq_boardbean.getFaq_num() %>','<%= level%>')"><%=faq_boardbean.getFaq_subject() %></a></td>
+    		<td><a href=""><%=faq_boardbean.getFaq_name() %></a></td>
     		<td class="date" colspan="2"><%=faq_boardbean.getFaq_date() %></td>
     		
     		</tr>

@@ -72,7 +72,7 @@
 						<div class="sub">
 							<ul>
 								<li><a href="#"><span>공지사항</span></a></li>
-								<li><a href="#"><span>Q&A</span></a></li>
+								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>Q&A</span></a></li>
 								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
 							</ul>
 						</div></li>

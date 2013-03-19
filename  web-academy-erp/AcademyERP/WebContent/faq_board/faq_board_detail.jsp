@@ -49,7 +49,7 @@
 
 				<form action="./Faq_BoardModifyAction.fb" method="post">
 					<fieldset>
-						<legend><b>FAQ BOARD Detail FORM</b></legend>
+						<legend><b>QnA BOARD Detail FORM</b></legend>
 						<div class="form_table">
 							<table border="1" cellspacing="0" summary="회원가입">
 							<input type="hidden" name="faq_num" value="<%=num%>">
