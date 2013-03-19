@@ -38,7 +38,7 @@ public class BusinessDetailAction implements Action {
 				
 		businessbean = businessdao.getDetail(num);
 		
-//		if(!level.equals("5") || !level.equals("4")){
+		if(!level.equals("5") && !level.equals("4")){
 		
 			boolean usercheck = businessdao.userchk(num, name);
 				
@@ -52,7 +52,7 @@ public class BusinessDetailAction implements Action {
 				out.close();
 				return null;
 			}
-//		}
+		}
 				
 		request.setAttribute("businessbean", businessbean);
 		forward.setRedirect(false);
