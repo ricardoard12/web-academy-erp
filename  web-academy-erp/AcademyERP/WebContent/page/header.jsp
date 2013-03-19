@@ -73,7 +73,7 @@
 							<ul>
 								<li><a href="./QnaList.qa"><span>공지사항</span></a></li>
 								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>Q&A</span></a></li>
-								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
+								<li><a href=""><span>FAQ</span></a></li>
 							</ul>
 						</div></li>
 					<li class="m6"><a href="./sitemap/sitemap.jsp"><span>site
