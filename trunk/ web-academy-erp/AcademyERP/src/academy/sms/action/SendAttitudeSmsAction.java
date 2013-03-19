@@ -66,7 +66,7 @@ public class SendAttitudeSmsAction implements Action {
 		pdu.text = message; // 전송 메세지
 		sms.add(pdu); // 메세지 스택에 모든 내용 삽입
 		
-//		System.out.println(studentName + "학생이 " + status + "하였습니다. - 아이티윌부산");
+		System.out.println(studentName + "학생이 " + status + "하였습니다. - 아이티윌부산");
 		
 		try {
 			sms.connect(); // 서버 연결
