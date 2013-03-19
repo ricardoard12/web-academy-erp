@@ -71,7 +71,7 @@
 					<li class="m5"><a href="#"><span>커뮤니티</span> <!-- <span class="i"></span> --></a>
 						<div class="sub">
 							<ul>
-								<li><a href="#"><span>공지사항</span></a></li>
+								<li><a href="./QnaList.qa"><span>공지사항</span></a></li>
 								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>Q&A</span></a></li>
 								<li><a href="./Faq_boardList.fb?name=<%=name%>&id=<%=id%>"><span>FAQ</span></a></li>
 							</ul>
