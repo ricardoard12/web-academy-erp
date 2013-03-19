@@ -7,10 +7,10 @@
     <% 
        
     request.setCharacterEncoding("utf-8");
-       
-    
+        
     BusinessBean businessbean = (BusinessBean) request.getAttribute("businessbean");
     List businessList=(List)request.getAttribute("businesslist");
+    
     int listcount=((Integer)request.getAttribute("listcount")).intValue();
     int nowpage=((Integer)request.getAttribute("page")).intValue();
     int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
