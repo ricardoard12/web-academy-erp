@@ -30,6 +30,9 @@ public class Faq_UserCheckAction implements Action {
 		String level = request.getParameter("level");
 		System.out.println("Action에서 level값은 : " + level + "입니다.");
 		
+		String level2 = (String) request.getAttribute("level");
+		System.out.println("session level val = " + level2);
+		
 		
 		if(!level.equals("5") && !level.equals("4")){
 		boolean userchk = faq_boarddao.userchk(num, password);
