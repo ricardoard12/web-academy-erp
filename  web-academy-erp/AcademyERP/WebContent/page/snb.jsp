@@ -311,10 +311,10 @@
 
 					<li <%=sub1_1%>><a
 						href="./StudentDetail.st?id=<%=id%>&check=4"><span>학생정보조회</span></a></li>
-					<li <%=sub1_2%>><a href="./AccountingStuentd.ac"><span>회비내역조회</span></a></li>
+					<li <%=sub1_2%>><a href="#"><span>회비내역조회</span></a></li>
 					<li <%=sub1_3%>><a href="./TimeTableStudent.time"><span>시간표조회</span></a></li>
 					<li <%=sub1_4%>><a href="#"><span>성적조회</span></a></li>
-					<li><a href="./AttitudeStudent.at"><span>출결상황조회</span></a></li>
+					<li><a href="#"><span>출결상황조회</span></a></li>
 					<li><a
 						href="./LessonListAction.le?level=<%=level%>&id=<%=id%>&name=<%=name%>"><span>강의계획서열람</span></a></li>
 					<li><a href="#"><span>학원차량위치조회(운행시간)</span></a></li>
@@ -432,7 +432,7 @@
 				<ul style="display: none;">
 					<li <%=sub10_1%>><a href="./LevelList.master"><span>레벨/권한
 								설정</span></a></li>
-					<li <%=sub10_2%>><a href="#"><span>전체 계시판 관리</span></a></li>
+					<li <%=sub10_2%>><a href="#"><span>공지사항 관리</span></a></li>
 					<li <%=sub10_3%>><a href="./AllMemberList.master"><span>전체
 								회원 관리</span></a></li>
 				</ul></li>
