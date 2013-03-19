@@ -1,5 +1,6 @@
 package academy.board.action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,25 @@ public class BoardNoticeAction implements Action {
 		// List re_boardlist = new ArrayList();
 		ActionForward forward = new ActionForward();
 		String gid = request.getParameter("gid");
+		/*session 검증부분*/
+		HttpSession session=request.getSession();
+		int glevel=Integer.parseInt(gid);
+		String level;
+		if(glevel<20){
+			level=(String)session.getAttribute("level");
+			if(level==null||level.equals("null")){
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('권한이 없습니다. 먼저 로그인 하세요.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+				return null;
+			}
+		}
+		/*session 검증부분*/
+
 		int page = 1;
 		int limit = 13;
 
