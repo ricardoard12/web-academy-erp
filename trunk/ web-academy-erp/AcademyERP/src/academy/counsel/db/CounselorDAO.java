@@ -1,6 +1,7 @@
 package academy.counsel.db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +21,11 @@ public class CounselorDAO {
 	    DataSource ds;
 	    public CounselorDAO() {
 	        try {
-	            Context init=new InitialContext();
-	           ds=(DataSource)init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+	        	Class.forName("com.mysql.jdbc.Driver");
+	        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+	        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//	            Context init = new InitialContext();
+//	            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 	          
 	        } catch (Exception e) {
 	            e.printStackTrace();
@@ -32,7 +36,7 @@ public class CounselorDAO {
 			String sql="";
 			
 			try {
-				con= ds.getConnection();
+//				con= ds.getConnection();
 				sql="select count(*) from counsel where mm_id=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -64,7 +68,7 @@ public class CounselorDAO {
 	    	String sql="";
 	    	
 	    	try {
-				con= ds.getConnection();
+//				con= ds.getConnection();
 				sql="select idx,mm_id,cc_subject,cc_content,cc_date,gp_name,ep_id from counsel where mm_id=? order by idx DESC limit ?,?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -107,7 +111,7 @@ public class CounselorDAO {
 			StudentBean studentbean = null;
 			
 			try {
-				con=ds.getConnection();
+//				con=ds.getConnection();
 				sql="select m.mm_name,s.mm_id,s.st_parent_name,s.gp_name, m.mm_manager_id from member as m INNER JOIN student as s where s.mm_id=? and m.mm_id=s.mm_id";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, mm_id);
@@ -137,7 +141,7 @@ public class CounselorDAO {
 	    	String sql="";
 	    	int idx=0;
 	    	try {
-				con =ds.getConnection();
+//				con =ds.getConnection();
 				sql="select max(idx) from counsel where mm_id=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, counselor.getMm_id());
@@ -170,7 +174,7 @@ public class CounselorDAO {
 			String sql="";
 			CounselerBean counseler =null;
 	    	try {
-				con= ds.getConnection();
+//				con= ds.getConnection();
 				sql="select idx,mm_id,cc_subject,cc_content, ep_id,cc_date from counsel where mm_id=? and idx=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -205,7 +209,7 @@ public class CounselorDAO {
 	    	
 	    	String sql="";
 	    	try {
-				con=ds.getConnection();
+//				con=ds.getConnection();
 				sql="update counsel set cc_subject =?,cc_content =?,ep_id =? where idx=? and mm_id =?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, counselor.getCc_subject());

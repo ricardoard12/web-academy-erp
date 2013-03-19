@@ -1,6 +1,7 @@
 package academy.qna_board.db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +22,11 @@ public class QnaDAO {
 	
 	 public QnaDAO(){  //DB사용을위해 정의
 		try {
-			Context init = new InitialContext();
-	           ds=(DataSource)init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 		} catch (Exception e) {
 			// TODO: handle exception]
 			e.printStackTrace();
@@ -34,7 +38,7 @@ public class QnaDAO {
 		String sql="";
 		
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="SELECT COUNT(*) FROM board_qna";  // 공지글 구해오기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -62,7 +66,7 @@ public class QnaDAO {
 		int startrow=(page-1)*limit+1; //스타트페이지구하기
 		
 		try {
-			con =ds.getConnection();
+//			con =ds.getConnection();
 			sql="SELECT qna_num,qna_title,qna_subject,qna_recont,qna_data FROM board_qna ORDER BY qna_num DESC LIMIT ?,?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, startrow-1);
@@ -101,7 +105,7 @@ public class QnaDAO {
 		int qna_num=0;
 		
 		try {
-			con= ds.getConnection();
+//			con= ds.getConnection();
 			sql="SELECT MAX(qna_num) FROM board_qna"; //글번호 구하기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -135,7 +139,7 @@ public class QnaDAO {
 		String sql="";
 		
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="update board_qna set qna_recont=qna_recont+1 where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -154,7 +158,7 @@ public class QnaDAO {
 		QnaBean qna = null;
 		String sql="";
 		try {
-			con =ds.getConnection();
+//			con =ds.getConnection();
 			sql="select qna_num,qna_title,qna_subject,qna_content,qna_data,qna_recont from board_qna where qna_num=?"; //조회
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -185,7 +189,7 @@ public class QnaDAO {
 	public void setNotice(QnaBean notice){
 		String sql="";
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="update board_qna set qna_title=?,qna_content=? where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, notice.getQna_title());
@@ -205,7 +209,7 @@ public class QnaDAO {
 	public void DeleteNotice(int num){
 		String sql="";
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="delete from board_qna where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
