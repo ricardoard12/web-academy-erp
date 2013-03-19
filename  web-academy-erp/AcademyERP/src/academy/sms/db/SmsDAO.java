@@ -1,6 +1,7 @@
 package academy.sms.db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,8 +19,11 @@ public class SmsDAO {
 
 	public SmsDAO() {
 		try {
-			Context init = new InitialContext();
-			ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Sms DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +53,7 @@ public class SmsDAO {
 			String senderPhone, String message, String resultCode,
 			String autoSend) {
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "INSERT INTO sms (receiver_id,receiver_name,receiver_phone,sender_phone,message,result_code,auto_send,send_time) VALUES (?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -72,7 +76,7 @@ public class SmsDAO {
 		List list = null;
 		int startrow=(page-1)*limit+1;
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql="select * from sms order by sms_idx desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startrow-1)	;
@@ -109,7 +113,7 @@ public class SmsDAO {
 	public int getCount() {
 		int count=0;
 		try{
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			String sql="select count(sms_idx) from sms";
 			rs=con.prepareStatement(sql).executeQuery();
 			if(rs.next()){
@@ -126,7 +130,7 @@ public class SmsDAO {
 	public List getSmsInfo(String sms_idx) {
 		List list=null;
 		 try{
-			 con=ds.getConnection();
+//			 con=ds.getConnection();
 			 String sql="select * from sms where sms_idx="+Integer.parseInt(sms_idx);
 			 rs=con.prepareStatement(sql).executeQuery();
 			 if(rs.next()){

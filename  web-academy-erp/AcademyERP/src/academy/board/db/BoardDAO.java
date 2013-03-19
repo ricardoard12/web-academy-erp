@@ -1,6 +1,7 @@
 package academy.board.db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +22,11 @@ public class BoardDAO {
 	public BoardDAO() { // 생성자
 		// 디비연결 이름호출
 		try {
-			Context init = new InitialContext();
-			ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("BoardDB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,7 +38,7 @@ public class BoardDAO {
 		String sql = "";
 		try {
 			System.out.println("BoardInsert start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			sql = "select max(board_num) from board";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -88,7 +92,7 @@ public class BoardDAO {
 		int x = 0;
 		try {
 			System.out.println("getListCount start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 
 			sql = "select count(*) from board where board_gid='" + gid + "'";
 			pstmt = con.prepareStatement(sql);
@@ -112,7 +116,7 @@ public class BoardDAO {
 		int x = 0;
 		try {
 			System.out.println("getReListCount start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 
 			sql = "select count(*) from board";
 			pstmt = con.prepareStatement(sql);
@@ -137,7 +141,7 @@ public class BoardDAO {
 		int startrow = (page - 1) * limit + 1; // 현재페이지 시작행
 		try {
 			System.out.println("getBoardList start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			// 3 sql
 			sql = "select * from board where board_gid='" + gid
 					+ "'order by board_re_ref desc, board_re_seq asc limit ?,?";
@@ -166,7 +170,7 @@ public class BoardDAO {
 		String sql = "";
 		try {
 			System.out.println("setReadCountUpdate start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 
 			sql = "update board set board_readcount=board_readcount+1 where board_num=?";
 			pstmt = con.prepareStatement(sql);
@@ -185,7 +189,7 @@ public class BoardDAO {
 		BoardBean boardbean = null;
 		try {
 			System.out.println("getDetail start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 
 			sql = "select * from board where board_num=?";
 			pstmt = con.prepareStatement(sql);
@@ -218,7 +222,7 @@ public class BoardDAO {
 		boolean x = false;
 		try {
 			System.out.println("isBoardWriter start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 
 			sql = "select board_pass from board where board_num=? ";
 			pstmt = con.prepareStatement(sql);
@@ -246,7 +250,7 @@ public class BoardDAO {
 		String sql = "";
 		try {
 			System.out.println("boardModify start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			sql = "update board set board_file=?, board_subject=?, board_content=? where board_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boardbean.getBoard_file());
@@ -269,7 +273,7 @@ public class BoardDAO {
 
 		try {
 			System.out.println("boardDelete start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			for (int i = 0; i < num.length; i++) {
 				sql = "delete from board where board_num=" + num[i];
 				stmt = con.createStatement();
@@ -294,7 +298,7 @@ public class BoardDAO {
 		int num = 0;
 		try {
 			System.out.println("BoardReply start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			sql = "select max(board_num) from board";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -357,7 +361,7 @@ public class BoardDAO {
 		List list = null;
 		try {
 			System.out.println("getNoticeList start");
-			con = ds.getConnection();
+			//            con = ds.getConnection();
 			String sql = "select * from board where board_gid='10' order by board_num desc limit 5";
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {
