@@ -330,4 +330,37 @@ public class MasterDAO {
 		}
 	}
 
+	public List getBoardList(String gid) {
+		List list = null;
+		try {
+			con = ds.getConnection();
+			String sql = "select * from board where board_gid='" + gid
+					+ "' order by board_num desc limit 0,3";
+			rs = con.prepareStatement(sql).executeQuery();
+			list = new ArrayList();
+			if (rs.next()) {
+				do{
+				list.add(getBoardInfo());
+				}
+				while(rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	private List getBoardInfo() throws Exception {
+		List list = new ArrayList();
+		list.add(rs.getInt("board_num"));//0
+		list.add(rs.getString("board_pass"));//1
+		list.add(rs.getString("board_name"));//2
+		list.add(rs.getString("board_subject"));//3
+		list.add(rs.getString("board_content"));//4
+		list.add(rs.getString("board_file"));//5
+		list.add(rs.getInt("board_readcount"));//6
+		list.add(rs.getDate("board_date"));//7
+		list.add(rs.getString("board_gid"));//8
+		return list;
+	}
 }
