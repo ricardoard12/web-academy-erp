@@ -11,6 +11,29 @@ public class AccountingBean {
     private Date ac_date; // 결제일
     private String ac_manager_name; // 담당자명
     private String ac_memo; // 메모
+    private String mm_name;
+    private int mm_jumin1;
+    private int mm_jumin2;
+    
+    
+    public int getMm_jumin1() {
+        return mm_jumin1;
+    }
+    public void setMm_jumin1(int mm_jumin1) {
+        this.mm_jumin1 = mm_jumin1;
+    }
+    public int getMm_jumin2() {
+        return mm_jumin2;
+    }
+    public void setMm_jumin2(int mm_jumin2) {
+        this.mm_jumin2 = mm_jumin2;
+    }
+    public String getMm_name() {
+        return mm_name;
+    }
+    public void setMm_name(String mm_name) {
+        this.mm_name = mm_name;
+    }
     public String getAc_id() {
         return ac_id;
     }

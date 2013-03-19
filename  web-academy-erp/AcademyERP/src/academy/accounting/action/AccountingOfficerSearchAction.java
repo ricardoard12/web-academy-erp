@@ -23,7 +23,7 @@ public class AccountingOfficerSearchAction implements Action{
         request.setAttribute("officerlist", officerlist);
         
         forward.setRedirect(false);
-        forward.setPath("./accounting/.jsp");
+        forward.setPath("./accounting/officer_search.jsp");
         return forward;
 
     }
