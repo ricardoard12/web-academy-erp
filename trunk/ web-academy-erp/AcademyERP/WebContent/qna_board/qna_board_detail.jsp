@@ -69,7 +69,7 @@ QnaBean qnabean = (QnaBean)request.getAttribute("qna");
 <!-- 수정 / 삭제 -->
 <br>
 <div align="center">
-<input type="button" name="notice_modify" value="수정" onclick="location.href='./QnaModify.qa?num=<%=qnabean.getQna_num()%>'">
+<%-- <input type="button" name="notice_modify" value="수정" onclick="location.href='./QnaModify.qa?num=<%=qnabean.getQna_num()%>'"> --%>
 <% if(session.getAttribute("qnaid")!=null){  // 세션을 이용해서 글생성후 새션과 DB에 저장된 작성자가 같으면 삭제 버튼이 나타난다.
 	String qnaid = (String)session.getAttribute("qnaid");
 	if(qnaid.equals(qnabean.getQna_subject())){
