@@ -55,7 +55,7 @@ public class TimetableDAO {
 	public List getTimetable(String gp_idx) {
 		List list = null;
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * from timetable,member where gp_idx='"
 					+ gp_idx + "' AND ep_id=mm_id";
 			rs = con.prepareStatement(sql).executeQuery();
@@ -78,7 +78,7 @@ public class TimetableDAO {
 	public List getGpList() {
 		List list = null;
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * from groups";
 			rs = con.prepareStatement(sql).executeQuery();
 			list = new ArrayList();
@@ -136,7 +136,7 @@ public class TimetableDAO {
 	public List getSubject() {
 		List list = null;
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * from subject";
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {
@@ -156,7 +156,7 @@ public class TimetableDAO {
 	public List getEpList(String subject) {
 		List list = null;
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * from employee,member where mm_id=ep_id AND ep_subject_name='"
 					+ subject + "'";
 			rs = con.prepareStatement(sql).executeQuery();
@@ -191,7 +191,7 @@ public class TimetableDAO {
 		// list.add(request.getParameter("room_idx"));
 		// list.add(request.getParameter("sub_name"));
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * from timetable where ep_id=? AND ti_day=? AND ti_lesson=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, list.get(0).toString());
@@ -222,7 +222,7 @@ public class TimetableDAO {
 		String ti_lesson = list.get(3);
 		String ti_subject = list.get(4);
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "update timetable set ep_id=?,ti_subject=? where gp_idx=? AND ti_day=? AND ti_lesson=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ep_id);
@@ -244,7 +244,7 @@ public class TimetableDAO {
 	public List getmyTimetable(String id) {
 		List list = null;
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			String sql = "select * " + "from timetable "
 					+ "where timetable.ep_id='" + id + "'";
 			rs = con.prepareStatement(sql).executeQuery();
@@ -284,7 +284,7 @@ public class TimetableDAO {
 	public String getStudentGp_idx(String id) {
 		String gp_idx=null;
 		try{
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			String sql="select gp_idx from student where mm_id='"+id+"'";
 			rs=con.prepareStatement(sql).executeQuery();
 			if(rs.next()){
