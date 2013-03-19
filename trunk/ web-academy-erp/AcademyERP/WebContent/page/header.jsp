@@ -23,10 +23,7 @@
 		<!--  <div class="mainImg" style="float: left"></div>-->
 		<div class="homeImg" style="float: left">
 			<a href="./"><img src="./img/academy.gif"></a>
-		</div>
-		<div class="mainImg" align="center">
-			<img src="./">
-		</div>
+		</div>		
 		<!-- Horizonal navigation -->
 		<div style="clear: both"></div>
 		<div class="inset">
