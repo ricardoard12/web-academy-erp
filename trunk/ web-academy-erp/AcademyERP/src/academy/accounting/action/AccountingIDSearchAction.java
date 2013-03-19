@@ -23,7 +23,7 @@ public class AccountingIDSearchAction implements Action{
         request.setAttribute("idlist", idlist);
         
         forward.setRedirect(false);
-        forward.setPath("./accounting/.jsp");
+        forward.setPath("./accounting/id_search.jsp");
         return forward;
     }
 
