@@ -77,7 +77,8 @@ public class AccountingDAO {
     
     //전체리스트
     public List ackindList(String kind){
-        StringBuffer sql = new StringBuffer("select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting ");
+        StringBuffer sql = new StringBuffer("select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo, mm_name" +
+        		"from accounting ");
         List acList = null;
         AccountingBean acBean = null;
         try {
@@ -90,7 +91,7 @@ public class AccountingDAO {
                 sql.append("where ac_io_type = '지출' ");
             }else if(kind.equals("list")){}
             
-            sql.append("order by ac_id desc");
+            sql.append("and member.mm_id = accounting.mm_id order by ac_id desc");
             
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
@@ -100,6 +101,7 @@ public class AccountingDAO {
                     acBean = new AccountingBean();
                     acBean.setAc_id(rs.getString("ac_id"));
                     acBean.setMm_id(rs.getString("mm_id"));
+                    acBean.setMm_name(rs.getString("mm_name"));
                     acBean.setAc_price(rs.getInt("ac_price"));
                     acBean.setAc_cc_type(rs.getString("ac_cc_type"));
                     acBean.setAc_io_type(rs.getString("ac_io_type"));
