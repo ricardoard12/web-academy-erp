@@ -84,7 +84,9 @@ QnaBean qnabean = (QnaBean)request.getAttribute("qna");
 <%
 if(session.getAttribute("level")!=null){
 	String level=(String)session.getAttribute("level");
-	if(level.equals("4") ||level.equals("5") ){%>
+// 	if(level.equals("4") ||level.equals("5") ){
+	if(level.equals("6")){
+	%>
 	<input type="button" name="" value="답글" onclick="location.href='./SeqWriting.sq?qna_num=<%=qnabean.getQna_num()%>'">
 	<% }}%>
 	

@@ -132,12 +132,8 @@ int endpage=((Integer)request.getAttribute("endpage")).intValue();
 %>	
 					</table>
 					<div align="right">
-					<%
-					String level = (String)request.getAttribute("level");
-					if(level.equals("5")){					
-					%>
+				
 					<input type="button" value="글쓰기" onclick="location.href='./QnaWriting.qa'">
-					<%} %>
 					</div>
 					
 				
