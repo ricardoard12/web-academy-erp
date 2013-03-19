@@ -24,6 +24,7 @@
 	String name = (String) session.getAttribute("name");
 	//세션으로 level 값 받음
 	String level = (String) session.getAttribute("level");
+	
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,7 +86,7 @@
     		<tr>
     		<td class="frm"><input type="checkbox" name="business_check" id="chk_sel" value="<%=businessbean.getBusiness_num()%>"><label for="chk_sel">선택</label></td>
     		<td class="num"><%=businessbean.getBusiness_num() %></td>
-    		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>"><%=businessbean.getBusiness_subject() %></a></td>
+    		<td class="title"><a href="./BusinessDetailAction.bl?num=<%=businessbean.getBusiness_num()%>&name=<%=name%>&level=<%=level%>"><%=businessbean.getBusiness_subject() %></a></td>
     		<td><a href="#"><%=businessbean.getBusiness_name() %></a></td>
     		<td class="date" colspan="2"><%=businessbean.getBusiness_date() %></td>
     		
