@@ -57,7 +57,7 @@ public class SendAttitudeSmsAction implements Action {
 		SMS sms = new SMS(); 
 		sms.appversion("Tutorial/1.0"); // 버전 설정. 옵션 사항
 		sms.charset("utf8"); // 캐릭터셋 설정
-		sms.setuser("nedgold", "123123"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
+		sms.setuser("scandea", "123456"); // 사이트 아이디, 패스워드 (전송 시엔 패스워드가 MD5 형식으로 암호화 됨)
 		
 		SmsMessagePdu pdu = new SmsMessagePdu();
 		pdu.type = "SMS"; // 문자 전송 타입, SMS or LMS or MMS. 타입별 소스코드가 달라짐
