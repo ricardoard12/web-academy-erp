@@ -22,11 +22,11 @@ public class NoticeDAO {
 	
 	 public NoticeDAO(){  //DB사용을위해 정의
 		try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-//            Context init = new InitialContext();
-//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+//        	Class.forName("com.mysql.jdbc.Driver");
+//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+            Context init = new InitialContext();
+            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 		} catch (Exception e) {
 			// TODO: handle exception]
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class NoticeDAO {
 		String sql="";
 		
 		try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="SELECT COUNT(*) FROM notice";  // 공지글 구해오기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -66,7 +66,7 @@ public class NoticeDAO {
 		int startrow=(page-1)*limit+1; //스타트페이지구하기
 		
 		try {
-//			con =ds.getConnection();
+			con =ds.getConnection();
 			sql="SELECT not_num,not_title,not_subject,not_recont,not_data FROM notice ORDER BY not_num DESC LIMIT ?,?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, startrow-1);
@@ -105,7 +105,7 @@ public class NoticeDAO {
 		int not_num=0;
 		
 		try {
-//			con= ds.getConnection();
+			con= ds.getConnection();
 			sql="SELECT MAX(not_num) FROM notice"; //글번호 구하기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -139,7 +139,7 @@ public class NoticeDAO {
 		String sql="";
 		
 		try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="update notice set not_recont=not_recont+1 where not_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -158,7 +158,7 @@ public class NoticeDAO {
 		NoticeBean noitce = null;
 		String sql="";
 		try {
-//			con =ds.getConnection();
+			con =ds.getConnection();
 			sql="select not_num,not_title,not_subject,not_content,not_data,not_recont from notice where not_num=?"; //조회
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -189,7 +189,7 @@ public class NoticeDAO {
 	public void setNotice(NoticeBean notice){
 		String sql="";
 		try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="update notice set not_title=?,not_content=? where not_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, notice.getNot_title());
@@ -209,7 +209,7 @@ public class NoticeDAO {
 	public void DeleteNotice(int num){
 		String sql="";
 		try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="delete from notice where not_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);

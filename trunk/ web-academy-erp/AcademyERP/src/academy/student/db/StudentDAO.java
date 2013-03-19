@@ -25,11 +25,11 @@ public class StudentDAO {
     DataSource ds;
     public StudentDAO() {
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-//            Context init = new InitialContext();
-//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+//        	Class.forName("com.mysql.jdbc.Driver");
+//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+            Context init = new InitialContext();
+            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class StudentDAO {
     public void insertStudent(StudentBean studentbean){
     	String sql="";
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			System.out.println("성공");
 			sql="INSERT INTO member(mm_name,mm_id,mm_passwd,mm_jumin1,mm_jumin2,mm_tel,mm_phone,mm_addr1,mm_addr2,mm_zipcode,mm_email,mm_reg_date,mm_level) VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),?) ";
 			pstmt=con.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class StudentDAO {
     	String sql=""; //조회
     	
     	try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			sql=" SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='재학' order by st_idx desc limit ?,?";
 			// 재학생정보를 가져오는 sql
 			pstmt=con.prepareStatement(sql);
@@ -141,7 +141,7 @@ public class StudentDAO {
     public void updateStudentOff(String[] st_status){
     	String sql="";
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
 				sql="UPDATE student SET st_status = '휴학' WHERE mm_id =?"; //휴학처리
 				pstmt = con.prepareStatement(sql);
@@ -167,7 +167,7 @@ public class StudentDAO {
     public  void updatestudentOut(String[] st_status){
     	String sql="";
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
 				sql="UPDATE student SET st_status = '퇴학' WHERE mm_id =?"; //퇴출 처리
 				pstmt = con.prepareStatement(sql);
@@ -196,7 +196,7 @@ public class StudentDAO {
 		ResultSet rs3 = null;
 		String sql="";
 		try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			sql = "SELECT s.mm_id,m.mm_name FROM student AS s,member AS m WHERE s.mm_id = m.mm_id AND st_status = '재학' and gp_name =?"; 
 			// 학생 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
@@ -263,7 +263,7 @@ public class StudentDAO {
     	List<StudentBean> StudentOffList = null;
     	
     	try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='휴학' order by st_idx desc limit ?,?";  
 			// 휴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
@@ -305,7 +305,7 @@ public class StudentDAO {
     	int startrow=(page-1)*limit+1; //현재페이지 시작행
     	
     	try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			sql="SELECT m.mm_id,m.mm_name,s.st_school_name,s.st_school_grade,s.gp_name,s.st_tuition_state,st_status FROM member AS m,student AS s WHERE m.mm_id LIKE 's%' and m.mm_id=s.mm_id and st_status='퇴학' order by st_idx desc limit ?,?"; 
 			// 퇴학생의 목록을 가져온다.
 			pstmt =con.prepareStatement(sql);
@@ -344,7 +344,7 @@ public class StudentDAO {
     public  void updateStudentIn(String[] st_status){
     	String sql="";
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			for(int i=0; i <st_status.length; i++){ // st_status배열길이까지 for문 처리
 				sql="UPDATE student SET st_status = '재학' WHERE mm_id =?"; //재학처리
 				pstmt = con.prepareStatement(sql);
@@ -367,7 +367,7 @@ public class StudentDAO {
     	String sql="";
     	
     	try {
-//			con= ds.getConnection();
+			con= ds.getConnection();
 			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id,gp_idx FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
 			
 			pstmt = con.prepareStatement(sql);
@@ -417,7 +417,7 @@ public class StudentDAO {
     	String sql="";
     	
     	try {
-//			con = ds.getConnection();
+			con = ds.getConnection();
 			
 			// 학생 정보 업데이트
 			sql="UPDATE member SET mm_name=?,mm_jumin1=?,mm_jumin2=?,mm_tel=?,mm_phone=?,mm_addr1=?,mm_addr2=?,mm_zipcode=?,mm_email=?,mm_manager_id=? WHERE mm_id=?";
@@ -476,7 +476,7 @@ public class StudentDAO {
 		String sql="";
 		StudentBean studentbean=null;
 		try {
-//			con= ds.getConnection();
+			con= ds.getConnection();
 			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_name,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_name=g.gp_name and s.st_status='재학' and m.mm_id=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -518,7 +518,7 @@ public class StudentDAO {
 		String sql="";
 		GroupsBean group = null;
 		try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="select gp_name,gp_idx from groups";  //개설된 과목을 가져옴
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -547,7 +547,7 @@ public class StudentDAO {
     public List getSMSReceiverList(List studentList) throws Exception { // 문자 발송 대상 전화번호 가져오기
     	List receiverList = null;
     	try {
-//    		con = ds.getConnection();
+    		con = ds.getConnection();
     		receiverList = new ArrayList();
     		for (int i = 0; i < studentList.size(); i++) {
 //    			System.out.println("StudentList Size : " + studentList.size());
@@ -581,7 +581,7 @@ public class StudentDAO {
     	String parentPhone = "";
     	List receiverInfo = null;
     	try {
-//    		con = ds.getConnection();
+    		con = ds.getConnection();
     		String sql = "SELECT member.mm_name, student.st_parent_mobile FROM member, student WHERE member.mm_id=? AND student.mm_id=?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -610,7 +610,7 @@ public class StudentDAO {
     	String sql="";
     	int count=0;
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="SELECT count(*) FROM student WHERE st_status = '재학'";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -632,7 +632,7 @@ public class StudentDAO {
     	String sql="";
     	int count=0;
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="SELECT count(*) FROM student WHERE st_status = '휴학'";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -654,7 +654,7 @@ public class StudentDAO {
     	String sql="";
     	int count=0;
     	try {
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql="SELECT count(*) FROM student WHERE st_status = '퇴학'";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();

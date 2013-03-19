@@ -31,11 +31,11 @@ public class Faq_boardDAO {
 	
 	public Faq_boardDAO(){
 		try {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-//            Context init = new InitialContext();
-//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+//        	Class.forName("com.mysql.jdbc.Driver");
+//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+            Context init = new InitialContext();
+            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("FAQ_Board DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class Faq_boardDAO {
 		
 		try {
 			System.out.println("faq_board Insert start");
-			//            con = ds.getConnection();
+			            con = ds.getConnection();
 			sql = "select max(faq_num) from board_FAQ;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -83,7 +83,7 @@ public class Faq_boardDAO {
 		int startrow=(page-1)*limit+1; //현재페이지 시작행
 		try {
 			System.out.println("getFaq_boardList start");
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			//3 sql
 			sql="select * from board_FAQ order by faq_num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class Faq_boardDAO {
 		int x = 0;
 		try {
 			System.out.println("getListCount start");
-			//            con = ds.getConnection();
+			            con = ds.getConnection();
 			
 			sql = "select count(*) from board_FAQ";
 			pstmt = con.prepareStatement(sql);
@@ -145,7 +145,7 @@ public class Faq_boardDAO {
 
         try {
         	System.out.println("Faq_boardDelete start");
-            //            con = ds.getConnection();
+                        con = ds.getConnection();
             for(int i=0; i<num.length; i++){
             	sql="delete from board_FAQ where faq_num="+num[i];
             	stmt=con.createStatement();
@@ -164,7 +164,7 @@ public class Faq_boardDAO {
 		Faq_boardbean faq_boardbean = new Faq_boardbean();
 		try {
 			System.out.println("getDetail start");
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			
 			sql="select * from board_FAQ where faq_num=?";
 			pstmt=con.prepareStatement(sql);
@@ -195,7 +195,7 @@ public class Faq_boardDAO {
 		String DBPass = null;
 		try {
 			System.out.println("UsetCheck start");
-			//            con = ds.getConnection();
+			            con = ds.getConnection();
 			sql = "SELECT faq_passwd FROM board_FAQ WHERE faq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -228,7 +228,7 @@ public class Faq_boardDAO {
 		String sql="";
 		try {
 			System.out.println("FAQ_BOARD_Modify start");
-//			con=ds.getConnection();
+			con=ds.getConnection();
 			sql = "UPDATE board_FAQ SET faq_name=? , faq_subject=? , faq_content=?, faq_passwd=? WHERE faq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, faq_boardbean.getFaq_name());
