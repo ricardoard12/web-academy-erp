@@ -20,7 +20,7 @@ public class NoticeDetailAction implements Action{
 		if( request.getParameter("num")!= null){
 			num = Integer.parseInt(request.getParameter("num"));
 		}else{
-			num=(int)request.getAttribute("num");
+			num=Integer.parseInt((String)request.getAttribute("num"));
 		}
 		
 		noticedao.setcount(num);

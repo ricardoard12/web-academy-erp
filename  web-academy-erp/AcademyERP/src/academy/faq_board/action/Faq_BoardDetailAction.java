@@ -21,7 +21,7 @@ public class Faq_BoardDetailAction implements Action {
 		
 		ActionForward forward=new ActionForward();
 
-		int num = (int) request.getAttribute("num");
+		int num = Integer.parseInt((String)request.getAttribute("num"));
 		System.out.println("Action num값 : "+num);
 				
 
