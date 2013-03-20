@@ -13,7 +13,7 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<resource-ref>
+<resource-ref>
 		<description>Academy DB</description>
 		<res-ref-name>p4.learntime/0909</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
