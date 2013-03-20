@@ -46,12 +46,20 @@
 			alert("주민등록번호를 입력하세요.");
 			document.joinEmployeeForm.mm_jumin1.focus();
 			return false;
+		} else if (document.joinEmployeeForm.mm_jumin1.value.length > 6) {
+			alert("주민등록번호 형식이 잘못되었습니다.");
+			documemt.joinEmployeeForm.mm_jumin1.focus();
 		}
+		
 		if (document.joinEmployeeForm.mm_jumin2.value.length == 0) {
 			alert("주민등록번호를 입력하세요.");
 			document.joinEmployeeForm.mm_jumin2.focus();
 			return false;
+		} else if (document.joinEmployeeForm.mm_jumin2.value.length > 7) {
+			alert("주민등록번호 형식이 잘못되었습니다.");
+			documemt.joinEmployeeForm.mm_jumin2.focus();
 		}
+		
 		if (document.joinEmployeeForm.mm_manager_id.value.length == 0) {
 			alert("상위관리자를 입력하세요.");
 			document.joinEmployeeForm.mm_manager_id.focus();
@@ -75,6 +83,18 @@
 	        opener.document.joinEmployeeForm.mm_addr1.value = addr;
 	        window.close();
         }
+	
+	function chkJumin1() {
+		if (document.joinEmployeeForm.mm_jumin1.value.length == 6) {
+			document.joinEmployeeForm.mm_jumin2.focus();
+		} 
+	}
+	
+	function chkJumin2() {
+		if (document.joinEmployeeForm.mm_jumin2.value.length == 7) {
+			document.joinEmployeeForm.mm_telDDD.focus();
+		} 
+	}
 </script>
 <title>Insert title here</title>
 </head>
@@ -148,8 +168,8 @@
 										<td>
 											<div class="item">
 												<input type="text" name="mm_jumin1" title="주민등록번호 입력"
-													class="i_text"> - <input type="password"
-													name="mm_jumin2" title="레이블 텍스트" class="i_text">
+													class="i_text" onkeyup="chkJumin1()"> - <input type="password"
+													name="mm_jumin2" title="레이블 텍스트" class="i_text" onkeyup="chkJumin2()">
 											</div>
 										</td>
 									</tr>
