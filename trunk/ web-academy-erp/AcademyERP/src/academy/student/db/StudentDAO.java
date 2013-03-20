@@ -368,7 +368,7 @@ public class StudentDAO {
     	
     	try {
 			con= ds.getConnection();
-			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,st_parent_mobile,mm_manager_id,gp_idx FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
+			sql="SELECT s.mm_id, m.mm_name,m.mm_jumin1,m.mm_jumin2,m.mm_tel,m.mm_phone,m.mm_addr1,m.mm_addr2,m.mm_email,m.mm_reg_date,m.mm_zipcode,m.mm_level,m.mm_manager_id,s.st_school_name,s.st_school_grade,s.gp_name,s.st_parent_id,s.st_parent_name,s.st_tuition, s.st_tuition_state,s.st_memo,s.st_status,s.st_parent_mobile,s.mm_manager_id,s.gp_idx FROM student as s INNER JOIN member as m WHERE s.mm_id = m.mm_id and s.mm_id=?"; // 학생 정보 가지고오는 sql 문
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -477,7 +477,7 @@ public class StudentDAO {
 		StudentBean studentbean=null;
 		try {
 			con= ds.getConnection();
-			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_name,g.ep_id,s.st_status from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_name=g.gp_name and s.st_status='재학' and m.mm_id=?";
+			sql="select m.mm_id, m.mm_name,m.mm_tel,m.mm_phone,m.mm_email,s.st_school_name,s.st_school_grade,s.st_parent_name,s.st_parent_mobile,s.gp_name,g.ep_id,s.st_status, s.gp_idx from member AS m, student As s, groups As g where m.mm_id=s.mm_id and s.gp_name=g.gp_name and s.st_status='재학' and m.mm_id=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
