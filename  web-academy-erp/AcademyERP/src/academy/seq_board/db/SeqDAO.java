@@ -22,11 +22,11 @@ public class SeqDAO {
 	
 	 public SeqDAO(){  //DB사용을위해 정의
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 		} catch (Exception e) {
 			// TODO: handle exception]
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class SeqDAO {
 		String sql="";
 		
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="SELECT COUNT(*) FROM board_seq";  // 공지글 구해오기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -66,7 +66,7 @@ public class SeqDAO {
 		int startrow=(page-1)*limit+1; //스타트페이지구하기
 		
 		try {
-			con =ds.getConnection();
+//			con =ds.getConnection();
 			sql="SELECT s.seq_num,s.seq_title,s.seq_name,s.seq_count,s.seq_date FROM board_seq as s, board_qna as q where s.qna_num=q.qna_num ORDER BY s.seq_num DESC LIMIT ?,?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, startrow-1);
@@ -105,7 +105,7 @@ public class SeqDAO {
 		int seq_num=0;
 		
 		try {
-			con= ds.getConnection();
+//			con= ds.getConnection();
 			sql="SELECT MAX(seq_num) FROM board_seq"; //글번호 구하기
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -140,7 +140,7 @@ public class SeqDAO {
 		String sql="";
 		
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="update board_seq set seq_count=seq_count+1 where seq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -159,7 +159,7 @@ public class SeqDAO {
 		SeqBean noitce = null;
 		String sql="";
 		try {
-			con =ds.getConnection();
+//			con =ds.getConnection();
 			sql="select seq_num,seq_title,seq_name,seq_content,seq_date,seq_count from board_seq where seq_num=?"; //조회
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -190,7 +190,7 @@ public class SeqDAO {
 	public void setNotice(SeqBean notice){
 		String sql="";
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="update board_seq set seq_title=?,seq_content=? where seq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, notice.getSeq_title());
@@ -210,7 +210,7 @@ public class SeqDAO {
 	public void DeleteNotice(int num){
 		String sql="";
 		try {
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql="delete from board_seq where seq_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);

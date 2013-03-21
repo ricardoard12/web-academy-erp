@@ -24,11 +24,11 @@ public class EmployeeDAO {
 
 	public EmployeeDAO() {
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Emp DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class EmployeeDAO {
 	public boolean employeeInsert(EmployeeBean employee) throws Exception { // 직원 등록
 		boolean result = false;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,now(),?,?,null)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, employee.getMm_name());
@@ -100,7 +100,7 @@ public class EmployeeDAO {
 		List groupsList = null;
 		Vector vector = new Vector();
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT * FROM employee WHERE ep_status='재직'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -164,7 +164,7 @@ public class EmployeeDAO {
     	MemberBean member = new MemberBean();
     	Vector vector = new Vector();
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "SELECT * FROM member,employee WHERE member.mm_id=? AND employee.ep_id=?";
     		// member 와 employee 테이블에서 일치하는 아이디가 있는지 확인
     		pstmt = con.prepareStatement(sql);
@@ -209,7 +209,7 @@ public class EmployeeDAO {
     
     public void employeeOutgoing(List outgoingList) throws Exception { // 직원 퇴직 처리
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		
     		for (int i = 0; i < outgoingList.size(); i++) {
     			String ep_id = (String) outgoingList.get(i);
@@ -238,7 +238,7 @@ public class EmployeeDAO {
 		List memberList = null;
 		Vector vector = new Vector();
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT * FROM employee WHERE ep_status='퇴직'"; // '퇴직'인 사람 조회
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -285,7 +285,7 @@ public class EmployeeDAO {
     public List getManagerList(String mm_level) throws Exception { // 회원 가입 폼에서 상위 관리자 목록 출력
     	List managerList = null;
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "SELECT mm_name,mm_id,mm_level FROM member WHERE mm_level > ?";
     		// 설정할 레벨(lv.3 or 4)보다 상위 레벨(lv.4 or 5)의 회원 정보를 가져옴
     		pstmt = con.prepareStatement(sql);
@@ -314,7 +314,7 @@ public class EmployeeDAO {
     public boolean employeeOutgoingAddMemo(String id, String ep_memo) throws Exception {
     	boolean result = false;
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
 			sql = "UPDATE employee SET ep_memo=? WHERE ep_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ep_memo);

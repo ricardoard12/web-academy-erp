@@ -22,11 +22,11 @@ public class GroupsDAO {
 
 	public GroupsDAO() {
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Groups DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class GroupsDAO {
 		List gpList = null;
 		String sql = "";
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "select gp_name from groups"; // 전체 학급명 가지고오기
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -64,7 +64,7 @@ public class GroupsDAO {
 	public int getCount(String ep_id) throws Exception {
 		int x = 0;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			String sql = "SELECT COUNT(gp_idx) FROM groups where ep_id='"
 					+ ep_id + "'";
 			rs = con.prepareStatement(sql).executeQuery();
@@ -85,7 +85,7 @@ public class GroupsDAO {
 		List list = null;
 		int startrow = (page - 1) * limit + 1;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			String sql = "SELECT * FROM groups where ep_id='" + ep_id
 					+ "' order by gp_idx desc limit " + (startrow - 1) + ","
 					+ limit;
@@ -110,7 +110,7 @@ public class GroupsDAO {
 		List studentList = null;
 
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			String sql = "SELECT mm_id, st_school_name, st_school_grade FROM student WHERE gp_name IS NULL"; // 학급에 소속되어 있지 않은 학생만 검색
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -145,7 +145,7 @@ public class GroupsDAO {
 	public boolean groupsAddStudent(String gp_name, List studentList) throws Exception { // 학급 학생 추가
 		boolean result = false;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			for (int i = 0; i < studentList.size(); i++) {
 				String mm_id = (String) studentList.get(i);
 				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
@@ -168,7 +168,7 @@ public class GroupsDAO {
 	public boolean groupsDelStudent(List studentList) throws Exception { // 학급 학생 제외
 		boolean result = false;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			for (int i = 0; i < studentList.size(); i++) {
 				String mm_id = (String) studentList.get(i);
 				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
@@ -191,7 +191,7 @@ public class GroupsDAO {
 	public List getGroupsMoveList() throws Exception { // 이동시킬 학급 목록 가져오기
 		List groupsList = null;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			String sql = "SELECT gp_name FROM groups WHERE gp_status=1 ORDER BY gp_name ASC"; // gp_status=1(개강중)인 학급 목록만 대상에 추가
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -212,7 +212,7 @@ public class GroupsDAO {
 	public boolean groupsMoveStudent(String gp_name, String[] studentList) throws Exception { // 학급 학생 이동
 		boolean result = false;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			
 			for (int i = 0; i < studentList.length; i++) { // 배열 크기만큼 반복
 				String sql = "UPDATE student SET gp_name=? WHERE mm_id=?"; // 학생 정보의 gp_name만 변경
@@ -271,7 +271,7 @@ public class GroupsDAO {
 	public List getRoomList() {
 		List list = null;
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			String sql = "select * from room_list";
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {

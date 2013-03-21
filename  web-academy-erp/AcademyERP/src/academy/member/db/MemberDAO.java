@@ -21,11 +21,11 @@ public class MemberDAO {
     
     public MemberDAO() {
         try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
             System.out.println("Master DB Connected");
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class MemberDAO {
         Vector vector = new Vector();
         
         try {
-            con = ds.getConnection();
+//            con = ds.getConnection();
             sql = "select mm_passwd, mm_name, mm_level from member where mm_id = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMm_id());
@@ -90,7 +90,7 @@ public class MemberDAO {
     public List searchZipcode(String searchDong) throws Exception { // 우편번호 찾기
 		List zipcodeList = new ArrayList();
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "SELECT * FROM zipcode WHERE dong LIKE ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+searchDong+"%");
@@ -119,7 +119,7 @@ public class MemberDAO {
     public String getNewEmployeeID(String searchID) throws Exception {
     	String id = "";
     	try {
-    		con = ds.getConnection();
+//    		con = ds.getConnection();
     		String sql = "SELECT * FROM member WHERE mm_id LIKE '" + searchID + "%' ORDER BY mm_id DESC LIMIT 0,1";
     		pstmt = con.prepareStatement(sql);
     		rs = pstmt.executeQuery();

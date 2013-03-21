@@ -24,11 +24,11 @@ public class MasterDAO {
 
 	public MasterDAO() {
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Master DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class MasterDAO {
 			str = "";
 		}
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "select mm_id,mm_name,ep_position,ep_department,mm_manager_id,mm_level,ep_status"
 					+ " from member,employee where mm_id=ep_id" + str;
 			pstmt = con.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class MasterDAO {
 	// level update 부분
 	public void updateLevel(String id, String level) {
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "update member set mm_level=" + level
 					+ " where mm_id=?";
 			pstmt = con.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class MasterDAO {
 	public int getCount() {
 		int x = 0;
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "select count(gp_idx) from groups";
 			rs = con.prepareStatement(sql).executeQuery();
 			if (rs.next()) {
@@ -160,7 +160,7 @@ public class MasterDAO {
 		int startrow = (page - 1) * limit + 1;
 		try {
 			System.out.println("->");
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "select * from groups "
 					+ "order by groups.gp_idx desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -204,7 +204,7 @@ public class MasterDAO {
 	public void updateStatus(String id, String status) {
 
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "update groups set gp_status='" + status
 					+ "' where gp_idx=" + Integer.parseInt(id);
 			con.prepareStatement(sql).executeUpdate();
@@ -218,7 +218,7 @@ public class MasterDAO {
 	// 지울꺼다...
 	public void deleteclass(String string) {
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "delete from groups where gp_idx='" + string + "'";
 			con.prepareStatement(sql).executeUpdate();
 		} catch (Exception e) {
@@ -232,7 +232,7 @@ public class MasterDAO {
 		List tList = null;
 		String str = "재직";
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "select employee.ep_id,member.mm_name,employee.ep_subject_name "
 					+ "from employee,member "
 					+ "where mm_id=ep_id AND ep_status='" + str + "'";
@@ -265,7 +265,7 @@ public class MasterDAO {
 	// 반생
 	public void setClass(GroupsBean groups) {
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "insert into groups (gp_name,ep_id,gp_lev,gp_half,gp_status,gp_startdate,gp_enddate) values(?,?,?,?,?,?,?)";
 			System.out.println("학급삽입 --->");
 			pstmt = con.prepareStatement(sql);
@@ -307,7 +307,7 @@ public class MasterDAO {
 
 	public void updateRoom(String id, String room, int ea) {
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "update groups SET groups.gp_room='" + room
 					+ "',groups.gp_ea=" + ea + " where gp_idx="
 					+ Integer.parseInt(id);
@@ -333,7 +333,7 @@ public class MasterDAO {
 	public List getBoardList(String gid) {
 		List list = null;
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			String sql = "select * from board where board_gid='" + gid
 					+ "' order by board_num desc limit 0,3";
 			rs = con.prepareStatement(sql).executeQuery();

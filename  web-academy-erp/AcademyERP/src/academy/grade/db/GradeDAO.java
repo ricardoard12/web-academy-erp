@@ -22,11 +22,11 @@ public class GradeDAO {
     DataSource ds;
     public GradeDAO() {
         try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class GradeDAO {
         boolean result = false;  //정상 성적입력확인 여부
         System.out.println(gradebean.getGr_school());
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             
             // 성적테이블 생성
             sql = "insert into grade(gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gr_place, " +
@@ -79,7 +79,7 @@ public class GradeDAO {
         String sql = "";
         GradeBean gradebean = null;
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select employee.ep_account_name, employee.ep_id, member.mm_jumin1, member.mm_jumin2 " +
             		"from employee inner join member where employee.ep_id = member.mm_id";
             pstmt = con.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class GradeDAO {
         GradeBean gradebean = null;
         String sql="";
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select gr_code, gr_subject, gr_memo, gr_exam_date, ep_id, gp_name" +
             		" from grade where gr_place = '학원' and gr_status=? ";
             pstmt = con.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class GradeDAO {
         String sql = "";
         GradeBean gradebean = null;
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select member.mm_name, member.mm_id, member.mm_jumin1, member.mm_jumin2, student.st_school_name " +
             		"from member inner join student where member.mm_id = student.mm_id";
         	pstmt = con.prepareStatement(sql);
@@ -169,7 +169,7 @@ public class GradeDAO {
         String sql = "";
         GradeBean gradebean = null;
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select groups.gp_name, employee.ep_account_name, employee.ep_subject_name " +
             		"from groups inner join employee where groups.ep_id = employee.ep_id;";
             pstmt = con.prepareStatement(sql);
@@ -197,7 +197,7 @@ public class GradeDAO {
         String sql = "";
         GradeBean gradebean = null;
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select mm_name, mm_id, mm_jumin1, mm_jumin2 from member where mm_name like ? and mm_id like 's%'";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, "%"+mm_name+"%");
@@ -225,7 +225,7 @@ public class GradeDAO {
         String sql = "";
         
         try {
-                        con = ds.getConnection();
+//                        con = ds.getConnection();
             
             sql = "delete from exam where gr_score = ? and st_id = ?";
             pstmt = con.prepareStatement(sql);
@@ -251,7 +251,7 @@ public class GradeDAO {
         }
         
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             pstmt = con.prepareStatement(sql.toString());
             pstmt.executeUpdate();
             
@@ -262,7 +262,7 @@ public class GradeDAO {
         String sql = "";
    
         try {
-                        con = ds.getConnection();
+//                        con = ds.getConnection();
             
             for(int i=0; i<st_id_list.size(); i++){
                     
@@ -288,7 +288,7 @@ public class GradeDAO {
         ResultSet rs2=null;
         
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select member.mm_name, student.mm_id, student.st_school_name, student.gp_name " +
             		"from student inner join member where student.mm_id = member.mm_id and student.gp_name = ?";
             pstmt = con.prepareStatement(sql);
@@ -330,7 +330,7 @@ public class GradeDAO {
         String sql="";
         
         try {
-                        con=ds.getConnection();
+//                        con=ds.getConnection();
             sql = "select gr_subject, gr_memo, gr_period, st_school_name, gr_school from grade where gr_place = '학교'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
