@@ -41,11 +41,11 @@ public class Re_BoardDAO {
 	public Re_BoardDAO() { // 생성자
 		// 디비연결 이름호출
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("RE_BoardDB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +62,7 @@ public class Re_BoardDAO {
 		String sql  = "";
 		try {
 			System.out.println("re_boardinsert start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "select max(re_board_num) FROM re_board where re_board_num = ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, re_boardbean.getRe_board_num());
@@ -98,7 +98,7 @@ public class Re_BoardDAO {
 		int startrow = (page - 1) * limit + 1;
 		try {
 			System.out.println("getReBoardList start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 
 			sql = "select * from re_board order by re_board_ref desc, re_board_seq asc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -138,7 +138,7 @@ public class Re_BoardDAO {
 		int x = 0;
 		try {
 			System.out.println("getReListCount start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			
 			sql = "select count(*) from re_board";
 			pstmt = con.prepareStatement(sql);

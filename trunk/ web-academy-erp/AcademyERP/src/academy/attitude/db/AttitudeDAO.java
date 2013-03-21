@@ -21,11 +21,11 @@ public class AttitudeDAO {
 
 	public AttitudeDAO() {
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class AttitudeDAO {
 		ResultSet rs3 = null;
 		
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT employee.ep_id,member.mm_name FROM employee,member WHERE employee.ep_id = member.mm_id AND employee.ep_status='재직'"; 
 			// 직원 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
@@ -113,7 +113,7 @@ public class AttitudeDAO {
     	ResultSet rs2 = null;
     	try {
 //    		System.out.println("기록 준비");
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -174,7 +174,7 @@ public class AttitudeDAO {
     	boolean result = false;
     	try {
 //    		System.out.println("DAO Date : " + date);
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_memo_date >= ? AND at_memo_date <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -228,7 +228,7 @@ public class AttitudeDAO {
     public boolean employeeAttitudeCancel(String id, String type, String date) throws Exception {
     	boolean result = false;
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "SELECT at_memo FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -288,7 +288,7 @@ public class AttitudeDAO {
     public boolean employeeAttitudeEditTime(String id, String editTime, String type, String date) throws Exception {
     	boolean result = false;
     	try {
-    		            con = ds.getConnection();
+//    		            con = ds.getConnection();
     		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, editTime);
@@ -319,7 +319,7 @@ public class AttitudeDAO {
 		int startRow = (page - 1) * limit;
 		
 		try {
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT student.mm_id, student.st_school_name, student.st_school_grade, member.mm_name FROM student, member WHERE student.mm_id = member.mm_id AND student.st_status='재학' AND gp_name=? LIMIT ?,?"; 
 			// 학급 명단(아이디, 이름) 조회
 			pstmt = con.prepareStatement(sql);
@@ -398,7 +398,7 @@ public class AttitudeDAO {
     public int getGroupsStudentCount(String gp_name) throws Exception {
     	int listCount = 0;
     	try {
-    		con = ds.getConnection();
+//    		con = ds.getConnection();
     		sql = "SELECT COUNT(st_idx) FROM student WHERE gp_name = ? AND st_status='재학'";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, gp_name);
@@ -418,7 +418,7 @@ public class AttitudeDAO {
     public boolean studentAttitudeEditTime(String id, String editTime, String type, String date) throws Exception { // 학생 출결 시간 수정
     	boolean result = false;
     	try {
-    		con = ds.getConnection();
+//    		con = ds.getConnection();
     		sql = "UPDATE attitude SET at_" + type + "_time=? WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, editTime);
@@ -441,7 +441,7 @@ public class AttitudeDAO {
     	boolean result = false;
     	try {
     		System.out.println(id);
-    		con = ds.getConnection();
+//    		con = ds.getConnection();
     		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_memo_date > current_date()";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -475,7 +475,7 @@ public class AttitudeDAO {
         	ResultSet rs2 = null;
         	try {
 //        		System.out.println("기록 준비");
-        		con = ds.getConnection();
+//        		con = ds.getConnection();
         		sql = "SELECT at_member_id,at_come_time FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
         		pstmt = con.prepareStatement(sql);
         		pstmt.setString(1, id);
@@ -537,7 +537,7 @@ public class AttitudeDAO {
     public boolean studentAttitudeCancel(String id, String type, String date) throws Exception {
     	boolean result = false;
     	try {
-    		con = ds.getConnection();
+//    		con = ds.getConnection();
     		sql = "SELECT at_idx, at_memo FROM attitude WHERE at_member_id=? AND at_come_time >= ? AND at_come_time <= ?";
     		pstmt = con.prepareStatement(sql);
     		pstmt.setString(1, id);
@@ -690,7 +690,7 @@ public class AttitudeDAO {
 		String gp_id=null;
 		
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			sql="select gp_id from student As s, " +
 					"attitude As a where s.mm_id = a.at_member_id  and " +
 					"at_member_id =? and a. at_idx = (select  max(at_idx) from attitude where at_member_id=?)";
@@ -717,7 +717,7 @@ public class AttitudeDAO {
 		String sql="";
 		int attitudecount =0;
 		try {
-			con = ds.getConnection();
+//			con = ds.getConnection();
 			sql="select count(*) from attitude where at_member_id =?"; // 구해오는 sql문장
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, memberid);
@@ -742,7 +742,7 @@ public class AttitudeDAO {
     	String sql="";
     	String state=""; //상태를 한글로 바꾸기 
     	try {
-			            con=ds.getConnection();
+//			            con=ds.getConnection();
 			sql="select at_report_state,at_come_time,at_leave_time,at_memo from attitude where at_member_id =? order by at_come_time desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, memberid);

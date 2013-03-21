@@ -34,11 +34,11 @@ public class BusinessDAO {
 	public BusinessDAO() { //생성자
 		//디비연결 이름호출
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Business_Log_DB Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class BusinessDAO {
 		
 		try {
 			System.out.println("BusinessInsert start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "select max(business_num) from business_log;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -87,7 +87,7 @@ public class BusinessDAO {
 		int startrow=(page-1)*limit+1; //현재페이지 시작행
 		try {
 			System.out.println("getBusinessList start");
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			//3 sql
 			sql="select * from business_log order by business_num desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class BusinessDAO {
 		int x = 0;
 		try {
 			System.out.println("getReListCount start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			
 			sql = "select count(*) from business_log";
 			pstmt = con.prepareStatement(sql);
@@ -149,7 +149,7 @@ public class BusinessDAO {
 		BusinessBean businessbean = new BusinessBean();//자바빈객체
 		try {
 			System.out.println("getDetail start");
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			
 			sql="select * from business_log where business_num=?";
 			pstmt=con.prepareStatement(sql);
@@ -181,7 +181,7 @@ public class BusinessDAO {
 
         try {
         	System.out.println("businessDelete start");
-                        con = ds.getConnection();
+//                        con = ds.getConnection();
             for(int i=0; i<num.length; i++){
             	sql="delete from business_log where business_num="+num[i];
             	stmt=con.createStatement();
@@ -200,7 +200,7 @@ public class BusinessDAO {
 		boolean x = false;
 		try {
 			System.out.println("isBoardWriter start");
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			
 			sql="select business_name from board where business_num=? ";
 			pstmt=con.prepareStatement(sql);
@@ -227,7 +227,7 @@ public class BusinessDAO {
 		String sql="";
 		try {
 			System.out.println("businessModify start");
-			con=ds.getConnection();
+//			con=ds.getConnection();
 			sql = "UPDATE business_log SET business_name=?,business_subject=? , business_today=? , business_counsel=?, business_etc=? WHERE business_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, businessbean.getBusiness_name());
@@ -251,7 +251,7 @@ public class BusinessDAO {
 		String DBName = null;
 		try {
 			System.out.println("UsetCheck start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT business_name FROM business_log WHERE business_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);

@@ -23,11 +23,11 @@ public class LessonDAO {
 	
 	public LessonDAO() {
 		try {
-//        	Class.forName("com.mysql.jdbc.Driver");
-//        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+        	Class.forName("com.mysql.jdbc.Driver");
+        	String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+        	con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
 			System.out.println("Lesson DB Connected");
 
 		} catch (Exception e) {
@@ -50,7 +50,7 @@ public class LessonDAO {
 		try {
 			
 			System.out.println("Lesson_Plan_Insert Start");
-			            con = ds.getConnection();
+//			            con = ds.getConnection();
 			sql = "SELECT max(lesson_num) FROM lesson_plan;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -89,7 +89,7 @@ public class LessonDAO {
 	int startrow=(page-1)*limit+1; //현재페이지 시작행
 	try {
 		System.out.println("getLessonList start");
-		con=ds.getConnection();
+//		con=ds.getConnection();
 		//3 sql
 		sql="SELECT * FROM lesson_plan ORDER BY lesson_num DESC LIMIT ?,?";
 		pstmt=con.prepareStatement(sql);
@@ -128,7 +128,7 @@ public int getListCount() throws Exception{
 	int x = 0;
 	try {
 		System.out.println("getLessonListCount start");
-		            con = ds.getConnection();
+//		            con = ds.getConnection();
 		
 		sql = "select count(*) from lesson_plan";
 		pstmt = con.prepareStatement(sql);
@@ -154,7 +154,7 @@ public boolean lessonDelete(String[] num) throws Exception{
 
     try {
     	System.out.println("lessonDelete start");
-                    con = ds.getConnection();
+//                    con = ds.getConnection();
         for(int i=0; i<num.length; i++){
         	sql="DELETE FROM lesson_plan WHERE lesson_num="+num[i];
         	stmt=con.createStatement();
@@ -173,7 +173,7 @@ public boolean isBoardWriter(int num , String name){
 	boolean x = false;
 	try {
 		System.out.println("isBoardWriter start");
-		con=ds.getConnection();
+//		con=ds.getConnection();
 		
 		sql="SELECT lesson_teacher FROM lesson_plan WHERE lesson_num=? ";
 		pstmt=con.prepareStatement(sql);
@@ -201,7 +201,7 @@ public LessonBean getDetail(int num)throws Exception {
 	LessonBean lessonbean = new LessonBean();
 	try {
 		System.out.println("getDetail start");
-		con=ds.getConnection();
+//		con=ds.getConnection();
 		
 		sql="SELECT * FROM lesson_plan WHERE lesson_num=?";
 		pstmt=con.prepareStatement(sql);
@@ -232,7 +232,7 @@ public void lessonModify(LessonBean lessonbean) throws Exception{
 	String sql="";
 	try {
 		System.out.println("LessonModify start");
-		con=ds.getConnection();
+//		con=ds.getConnection();
 		sql = "UPDATE lesson_plan SET lesson_teacher=?, lesson_subject=? , lesson_goal=? , lesson_book=?, lesson_cost=?, lesson_time=?, lesson_content=? where lesson_num=?";
 		pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, lessonbean.getLesson_teacher());
@@ -258,7 +258,7 @@ public boolean userchk(int num , String name) throws Exception {
 	String DBName = null;
 	try {
 		System.out.println("UsetCheck start");
-		            con = ds.getConnection();
+//		            con = ds.getConnection();
 		sql = "SELECT lesson_teacher FROM lesson_plan WHERE lesson_num=?";
 		pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, num);

@@ -22,11 +22,11 @@ public class AccountingDAO {
     DataSource ds;
     public AccountingDAO() {
         try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
-//            con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
-            Context init = new InitialContext();
-            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
+            Class.forName("com.mysql.jdbc.Driver");
+            String URL = "jdbc:mysql://localhost:3306/p4_learntime_kr?useUnicode=true&amp; characterEncoding=utf8";
+            con = DriverManager.getConnection(URL , "p4.learntime" , "0909");
+//            Context init = new InitialContext();
+//            ds = (DataSource) init.lookup("java:comp/env/jdbc/p4_learntime_kr");
         } catch (Exception e) {e.printStackTrace();}
     }
     
@@ -46,7 +46,7 @@ public class AccountingDAO {
         
         try {
             //회계ID 번호 구하기
-            con=ds.getConnection();
+//            con=ds.getConnection();
             sql="select max(ac_idx) from accounting";
             pstmt=con.prepareStatement(sql);
             rs=pstmt.executeQuery();
@@ -56,7 +56,7 @@ public class AccountingDAO {
             //회계ID 날짜-acnum
             acnum=sdf.format(cal.getTime()).toString()+"-"+(num+1);
 
-            con = ds.getConnection();
+//            con = ds.getConnection();
             sql = "insert into accounting(ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo)" +
                     "values(?,?,?,?,?,?,?,?)";
             pstmt = con.prepareStatement(sql);
@@ -84,7 +84,7 @@ public class AccountingDAO {
         List acList = null;
         AccountingBean acBean = null;
         try {
-            con=ds.getConnection();
+//            con=ds.getConnection();
             if(kind.equals("fee")){
                 sql.append("where ac_io_type = '수강료'  and member.mm_id = accounting.mm_id");
             }else if(kind.equals("in")){
@@ -126,7 +126,7 @@ public class AccountingDAO {
         List searchlist = null;
         AccountingBean acBean = null;
         try {
-            con=ds.getConnection();
+//            con=ds.getConnection();
             sql="select ac_id,mm_id,ac_price,ac_cc_type,ac_io_type,ac_date,ac_manager_name,ac_memo from accounting " +
                     "where ac_date = ? order by ac_id desc";
             pstmt=con.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class AccountingDAO {
         }
    
         try {
-            con = ds.getConnection();
+//            con = ds.getConnection();
             pstmt = con.prepareStatement(sql.toString());
             pstmt.executeUpdate();
         } catch (Exception e) {e.printStackTrace();} finally {closingDB();}
@@ -178,7 +178,7 @@ public class AccountingDAO {
         int accountcount =0;
         String  sql="";
         try {
-            con=ds.getConnection();
+//            con=ds.getConnection();
             sql="select count(*) from accounting where mm_id =? and ac_io_type='수강료'"; // 해당아이뒤의 수강료를 낸 정보의 갯수를 구해온다.
             pstmt=con.prepareStatement(sql  );
             pstmt.setString(1, memberid);
@@ -201,7 +201,7 @@ public class AccountingDAO {
         String sql="";
         
         try {
-            con = ds.getConnection();
+//            con = ds.getConnection();
             sql="select ac_price,ac_cc_type,ac_date,ac_memo from accounting where mm_id =? and ac_io_type ='수강료' order by ac_date desc limit ?,?";
             pstmt=con.prepareStatement(sql);
             pstmt.setString(1, memberid);
@@ -234,7 +234,7 @@ public class AccountingDAO {
         String sql="";
         
         try {
-            con=ds.getConnection();
+//            con=ds.getConnection();
             sql = "SELECT mm_id, mm_name, mm_jumin1, mm_jumin2 FROM member where mm_id like 's%' or mm_id like 't%'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -260,7 +260,7 @@ public class AccountingDAO {
         String sql="";
         
         try {
-            con=ds.getConnection();
+//            con=ds.getConnection();
             sql = "SELECT mm_id, mm_name, mm_jumin1, mm_jumin2 FROM member where mm_id like 't%'";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
